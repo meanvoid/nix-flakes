@@ -1,0 +1,23 @@
+name: "nix build"
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        device_name: [
+          unsigned-int64
+        ]
+    steps:
+    - uses: actions/checkout@v3
+    - uses: cachix/install-nix-action@v20
+      with: 
+       github_access_token: ${{ secrets.ACCESS_TOKEN }}
+    - run: nix build --no-link --print-out-paths .#nixosConfigurations.${{ matrix.device_name }}.config.system.build.toplevel

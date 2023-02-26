@@ -1,0 +1,4 @@
+[
+  ./settings.nix
+  ./samba.nix
+]

@@ -1,0 +1,3 @@
+[
+  ./utils/hddparm.nix
+]
