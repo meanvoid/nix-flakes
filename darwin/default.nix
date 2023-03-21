@@ -7,17 +7,17 @@ let
   nixpkgsConfig = {
     config = { allowUnfree = true; };
     overlays = lib.singleton (
-      final: prev: (lib.optionalAttrs (prev.stdenv.system == "aarch64-darwin") 
-      {
-        pkgs-x86 = 
-        (import nixpkgs {
-          system = "x86_64-darwin";
-          inherit (nixpkgsConfig) config;
-        });
+      final: prev: (lib.optionalAttrs (prev.stdenv.system == "aarch64-darwin")
+        {
+          pkgs-x86 =
+            (import nixpkgs {
+              system = "x86_64-darwin";
+              inherit (nixpkgsConfig) config;
+            });
 
-        inherit (final.pkgs-x86)
-          blender;
-      })
+          inherit (final.pkgs-x86)
+            blender;
+        })
     );
   };
 in

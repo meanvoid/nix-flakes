@@ -21,7 +21,7 @@
       # Prod
       blender # 3D Editor
       gimp
-      
+
       # yubico shit
       yubikey-manager
     ];

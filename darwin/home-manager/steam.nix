@@ -1,7 +1,9 @@
-{ stdenv, 
-undmg, 
-fetchurl, 
-lib, ... }:
+{ stdenv
+, undmg
+, fetchurl
+, lib
+, ...
+}:
 with builtins;
 
 stdenv.mkDerivation {
@@ -14,7 +16,7 @@ stdenv.mkDerivation {
   };
 
   name = "steambutgay";
-  src = fetchurl { 
+  src = fetchurl {
     url = "https://cdn.cloudflare.steamstatic.com/client/installer/steam.dmg";
     sha256 = "18sbm0779vlig1j0c0cgm7y481x9klbjmn0hi8x61lxgj466fmaz";
   };

@@ -8,7 +8,7 @@
         "https://cache.nixos.org/"
       ];
       # trusted-public-keys = [
-        # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       # ];
       trusted-users = [
         "@admin"
@@ -60,7 +60,7 @@
       wget # no wget??
       htop # default 
       neofetch # cool
-      tmux 
+      tmux
       screen
 
       # Basic utils
@@ -89,7 +89,7 @@
       cleanup = "zap";
     };
     # brews = [  ];
-    
+
     casks = [ "firefox" "spotify" "steam" "krita" ];
   };
 
