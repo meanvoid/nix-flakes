@@ -37,10 +37,10 @@
   imports = [ 
     #TODO flake.nix
     ./hardware-configuration.nix 
-    ./services/flatpak.nix # fix fonts/icons issues in flatpak apps
-    ./services/fonts.nix
-    ./containers/minecraft.nix
-    ./services/jellyfin.nix
+    ../../modules/services/flatpak.nix # fix fonts/icons issues in flatpak apps
+    ../../modules/services/fonts.nix
+    ../../modules/containers/minecraft.nix
+    ../../modules/services/jellyfin.nix
   ];
 
   nixpkgs = {

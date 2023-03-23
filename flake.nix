@@ -54,7 +54,7 @@
     ### --- flakes --- ###
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, doom-emacs, ... }@inputs:
+  outputs = { self, darwin, nixpkgs, home-manager, doom-emacs, nur, ... }@inputs:
     let
       user = "ashuramaru";
       location = "$HOME/.nixpkgs/";
@@ -63,7 +63,7 @@
       nixosConfigurations = (                                               
         import ./host/home-server {                                                    
           inherit (nixpkgs) lib;
-          inherit inputs self nixpkgs home-manager user;
+          inherit inputs self nixpkgs home-manager nur user;
         }
       );
       darwinConfigurations = (

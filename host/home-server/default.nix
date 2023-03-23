@@ -11,7 +11,7 @@ let
   lib = nixpkgs.lib;
 in
 {
-  home-seerver = lib.nixosSystem {                               # Desktop profile
+  home-server = lib.nixosSystem {                               # Desktop profile
     inherit system;
     specialArgs = {
       inherit inputs user system;
@@ -20,8 +20,8 @@ in
       };
     };                                                      # Pass flake variable
     modules = [                                             # Modules that are used.
-      # nur.nixosModules.nur
+      nur.nixosModules.nur
       ./configuration.nix
     ];
   };
-};
+}
