@@ -527,7 +527,7 @@
       curl
       wget
       dig
-      finger
+      finger_bsd
       nmap
 
       # Compressing/Decompressing
