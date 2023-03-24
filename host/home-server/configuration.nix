@@ -64,7 +64,7 @@
     kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = with config.boot.kernelPackages; [ zenpower vendor-reset ];
     kernelParams = [
-      # "ip=192.168.1.50:::::enp7s0:dhcp"
+      "ip=192.168.1.100:::::enp7s0:dhcp"
       "video=DP-1:2560x1440@120"
       "video=DP-2:2560x1440@120"
     ];
@@ -228,7 +228,7 @@
     vlans = {
       eth0 = {
         id = 1;
-	interface = "enp7s0";
+	interface = "enp6s0";
       };
       # TODO
       # hosts = { };
@@ -254,7 +254,59 @@
       allowedTCPPorts = [ 53 80 443 ];
     };
   };
- 
+  virtualisation = {
+    # writableStore = true;
+    # writableStoreUseTmpfs = true;
+     libvirtd = {
+       enable = true;
+       allowedBridges = [
+	 "br0"
+	 "virbr0"
+	 "virbr1"
+	 "vireth0"
+       ];
+       extraOptions = [
+         "--verbose"
+       ];
+       qemu = {
+         ovmf = { enable = true; packages = [ pkgs.OVMF.fd pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd ]; };
+	 swtpm = { enable = true; };
+         runAsRoot = true;
+       };
+     };
+     # TODO look into ForwardPorts and fileSystems
+     # qemu = {
+       # virtioKeyboard = true;
+       # Look into TODO package = config.virtualisation.host.pkgs.qemu_kvm;
+       # diskInterface = "virtio";
+       # guestAgent.enable = true;
+     # };
+     podman = {
+       enable = true;
+       enableNvidia = true;
+       extraPackages = with pkgs; [ gvisor gvproxy tun2socks ];
+       # networkSocket = { enable = true; port = 2376; }; # TODO 
+       # dockerSocket.enable = true;
+       # defaultNetwork.settings # TODO
+       autoPrune = { enable = true; dates = "weekly"; };
+     };
+     docker = {
+       enable = true;
+       enableNvidia = true;
+       enableOnBoot = true;
+
+       daemon.settings = {
+         fixed-cidr-v6 = "fd00::/80";
+	 ipv6 = true;
+       };
+       autoPrune = { enable = true; dates = "weekly"; };
+     };
+     lxc = { enable = true; };
+     lxd = { enable = true; recommendedSysctlSettings = true; };
+     # resolution = { x = 1920; y = 1080; };
+     # useEFIBoot = true;
+     waydroid.enable = true;
+  };
   services = {
     hardware = {
       bolt.enable = true;
@@ -461,7 +513,7 @@
   environment = {
     systemPackages = with pkgs; [
 
-      # dev env
+      # dev env # TODO change to shell
       gnumake
       gcc
       autoconf
@@ -471,14 +523,22 @@
       zlib
       m4
 
-      # Essentials
+      # Networking
       curl
       wget
+      dig
+      finger
+      nmap
+
+      # Compressing/Decompressing
+      zip
       unzip
+      rar
       unrar
       lz4
       
       # Utils
+      distrobox
       util-linux
       neofetch
       nvtop
