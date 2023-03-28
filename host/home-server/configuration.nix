@@ -211,8 +211,8 @@
     firewall = {
       enable = true;
       allowPing = true;
-      allowedUDPPorts = [ 53 ];
-      allowedTCPPorts = [ 53 80 443 ];
+      allowedUDPPorts = [ 53 8081 50003 ];
+      allowedTCPPorts = [ 22 53 80 443 ];
     };
   };
   virtualisation = {
