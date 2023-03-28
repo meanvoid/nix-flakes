@@ -1,54 +1,16 @@
-{ config, pkgs, lib, ... }:
-
-# packageOverrides = pkgs: {
-      # steam = pkgs.steam.override {
-        # extraPkgs = pkgs: with pkgs; [
-          # xorg.xhost
-          # xorg.libXcursor
-          # xorg.libXi
-          # xorg.libXinerama
-          # xorg.libXScrnSaver
-          # curl
-          # imagemagick
-          # libpng
-          # libpulseaudio
-          # libvorbis
-          # stdenv.cc.cc.lib
-          # libkrb5
-          # keyutils
-          # libgdiplus
-          # glxinfo
-          # mesa-demos
-          # vulkan-tools
-          # vulkan-headers
-          # vulkan-caps-viewer
-          # vulkan-validation-layers
-          # vulkan-extension-layer
-          # vulkan-loader
-          # vkBasalt
-          # mangohud
-          # gamescope
-          # steamtinkerlaunch
-        # ];
-      # };
-    # };
+{ config, pkgs, inputs, lib, ... }:
 
 {
-  imports = [ 
-    #TODO flake.nix
-    ./hardware-configuration.nix 
-    ../../modules/services/flatpak.nix # fix fonts/icons issues in flatpak apps
-    ../../modules/services/fonts.nix
-    ../../modules/containers/minecraft.nix
-    ../../modules/services/jellyfin.nix
-  ];
+  imports = 
+    [ ./hardware-configuration.nix ] ++
+    (import ../../modules/programs) ++
+    (import ../../modules/services);
 
   nixpkgs = {
     config = {
       allowUnfree = true;
     };
   };
-
   nix = {
     gc = {
       automatic = true;
@@ -60,11 +22,12 @@
       experimental-features = [ "nix-command" "flakes" ]; 
     };
   };
+
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = with config.boot.kernelPackages; [ zenpower vendor-reset ];
     kernelParams = [
-      "ip=192.168.1.100:::::enp7s0:dhcp"
+      # "ip=192.168.1.100:::::enp6s0:dhcp"
       "video=DP-1:2560x1440@120"
       "video=DP-2:2560x1440@120"
     ];
@@ -126,8 +89,7 @@
   console = {
     earlySetup = false;
     keyMap = "us";
-    # font = "Lat2-Terminus16";
-    font = "${pkgs.terminus_font}/share/consolefonts/ter-u32b.psf.gz";
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-u16n.psf.gz";
   };
 
   hardware = {
@@ -170,7 +132,6 @@
       enable = true;
       daemon.enable = true;
     };
-    steam-hardware.enable = true;
   };
   sound = { 
     enable = true;
@@ -250,8 +211,8 @@
     firewall = {
       enable = true;
       allowPing = true;
-      allowedUDPPorts = [ 53 8081 50003 ];
-      allowedTCPPorts = [ 22 53 80 443 ];
+      allowedUDPPorts = [ 53 ];
+      allowedTCPPorts = [ 53 80 443 ];
     };
   };
   virtualisation = {
@@ -372,7 +333,7 @@
       ];
       banner = 
       ''
-      ${pkgs.figlet}/bin/figlet -ctf slant "GAY SEX" | ${pkgs.lolcat}/bin/lolcat
+      Sex is not allowed
       '';
       openFirewall = true;
       allowSFTP = true;
@@ -454,9 +415,6 @@
       pinentryFlavor = "curses";
       enableSSHSupport = true;
     };
-    steam = {
-      enable = true;
-    };
     dconf.enable = true;
   };
 
@@ -469,10 +427,10 @@
 
       shared = {
         gid = 911;
-        members = [ "ashuramaru" "meanrin" ];
+        members = [ "ashuramaru" "meanrin" "jellyfin" ];
       };
       jellyfin = {
-        members = [ "ashuramaru" "meanrin" "shared" "video" "audio" ];
+        members = [ "ashuramaru" "meanrin" ];
       };
       virt = {
 	members = [ "docker" "podman" "libvirtd" "kvm" "qemu" ];
@@ -594,10 +552,7 @@
         "${XDG_DATA_HOME}/.icons"
       ];
       CUDA_PATH="${pkgs.cudatoolkit}";
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
-      PATH = [
-        # "${XDG_BIN_HOME}"
-      ];
+      # PATH = [ # "${XDG_BIN_HOME}" ];
     };
     etc = {
       # TODO!!!!!!

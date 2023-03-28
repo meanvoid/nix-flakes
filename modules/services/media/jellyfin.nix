@@ -2,6 +2,8 @@
 {
   services.jellyfin = {
     enable = true;
-    # package = pkgs.jellyfin-ffmpeg;
+    user = "jellyfin";
+    group = "jellyfin";
+    openFirewall = true;
   }; 
 }
