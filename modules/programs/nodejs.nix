@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  config.environment.systemPackages = with pkgs.nodePackages; [ 
+  config.environment.systemPackages = with pkgs.nodePackages; [
     yarn # node package manager
     typescript # tsc 
     ts-node # repl for typescript
