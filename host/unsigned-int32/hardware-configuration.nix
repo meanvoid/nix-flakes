@@ -107,11 +107,11 @@
       options = [ "subvol=Gaymes" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2" "x-gvfs-show" ];
     };
 
-  fileSystems."/Shared/development/libvirt" =
-    {
-      device = "/dev/disk/by-uuid/feb06296-9aa0-417b-96a8-be0f10377c21";
-      fsType = "xfs";
-    };
+  # fileSystems."/Shared/development/libvirt" =
+    # {
+      # device = "/dev/disk/by-uuid/feb06296-9aa0-417b-96a8-be0f10377c21";
+      # fsType = "xfs";
+    # };
 
   fileSystems."/efi" =
     {
