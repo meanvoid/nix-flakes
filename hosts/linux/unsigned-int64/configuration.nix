@@ -114,6 +114,7 @@
         permitRootLogin = "prohibit-password";
       };
     };
+  };
     programs = {
       gnupg.agent = {
         enable = true;

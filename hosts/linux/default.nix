@@ -8,9 +8,10 @@ let
     inherit system;
     config.allowUnfree = true; # Allow proprietary software
   };
+  lib = nixpkgs.lib;
 in
 {
-  unsigned-int32 = nixpkgs.lib.nixosSystem {
+  unsigned-int32 = lib.nixosSystem {
     # Desktop profile
     inherit system;
     specialArgs = {
@@ -35,7 +36,7 @@ in
     ];
   };
 
-  unsigned-int64 = nixpkgs.lib.nixosSystem {
+  unsigned-int64 = lib.nixosSystem {
     inherit system;
     specialArgs = {
       inherit inputs system users path;
