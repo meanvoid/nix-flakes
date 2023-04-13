@@ -4,9 +4,28 @@
   imports = [
     ./hardware-configuration.nix
   ];
-  boot.loader.grub = {
-    enable = true;
-    devices = [ "/dev/sda" ];
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+    };
+  };
+  boot.loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+      generationsDir = { copyKernels = true; };
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 15;
+      };
+      timeout = 10;
   };
   #!!! maybe delete since we are running 32 gigs
   zramSwap = { enable = true; };
@@ -115,18 +134,17 @@
       };
     };
   };
-    programs = {
-      gnupg.agent = {
-        enable = true;
-	pinentryFlavor = "curses";
-	enableSSHSupport = true;
-      };
-      neovim = {
-        enable = true;
-        viAlias = true;
-        vimAlias = true;
-      };
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      pinentryFlavor = "curses";
+      enableSSHSupport = true;
     };
-
-    system.stateVersion = "22.11"; # Did you read the comment?
-  }
+    neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+    };
+  };
+  system.stateVersion = "22.11";
+}
