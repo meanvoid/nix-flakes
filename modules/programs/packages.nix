@@ -6,7 +6,7 @@
   environment.systemPackages = with pkgs; [
     # Desktop apps
     thunderbird # mail client
-    firefox 
+    firefox
     lollypop # music player
 
     # Utils (add busybox later)
@@ -69,23 +69,23 @@
     dotnetPackages.Nuget
     powershell
 
-  # DE apps
-  ++ (with pkgs.gnome; [ 
+    # DE apps
+    ++ (with pkgs.gnome; [
     gnome-tweaks
     adwaita-icon-theme
     dconf-editor
     gnome-shell-extensions
-   ]) 
-   ++ (with pkgs.gnomeExtensions; [
-        appindicator
-	git
-	gtile
-	sensory-perception
-	snow
-	snowy
-   ])
-   ++ (with pkgs.libsForQt5; [
-        breeze-icons
-	breeze-gtk
-   ]);
-}
+  ])
+    ++ (with pkgs.gnomeExtensions; [
+    appindicator
+    git
+    gtile
+    sensory-perception
+    snow
+    snowy
+  ])
+    ++ (with pkgs.libsForQt5; [
+    breeze-icons
+    breeze-gtk
+  ]);
+    }

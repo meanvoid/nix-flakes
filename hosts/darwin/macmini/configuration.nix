@@ -1,4 +1,4 @@
-{ pkgs, lib, config, user, ... }:
+{ pkgs, lib, config, usesr, ... }:
 {
   # Nix configuration ------------------------------------------------------------------------------
   nix = {
@@ -27,8 +27,8 @@
       		'';
   };
 
-  users.users."${user}" = {
-    home = "/Users/${user}";
+  users.users."${users.marie}" = {
+    home = "/Users/${users.marie}";
     shell = pkgs.zsh;
   };
 
@@ -54,7 +54,6 @@
     };
     systemPackages = with pkgs; [
       # Cli
-      kitty # Terminal emulator
       git # git because git on mac sucks
       openssh # same as git
       wget # no wget??
@@ -68,7 +67,6 @@
       binutils
 
       # Emacs
-      emacs
       fd
       ripgrep
 
@@ -76,7 +74,7 @@
       neovim
 
       # FFmpeg and codecs
-      ffmpeg_5
+      ffmpeg_6
     ];
   };
 
@@ -84,8 +82,8 @@
   homebrew = {
     enable = true;
     onActivation = {
-      autoUpdate = false;
-      upgrade = false;
+      autoUpdate = true;
+      upgrade = true;
       cleanup = "zap";
     };
     # brews = [  ];

@@ -1,0 +1,10 @@
+# ashuramaru@macmini
+sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIH1Qgk+QwOCPm9kWyWj1YxTTB2kJXaxD/s9elipAtl/6AAAADXNzaDp5a19maWRvXzE= ashuramaru@macmini
+# ashuramaru@nixos
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIItRkqYVF6G96qgpqM6foQzgzn+dvPyHiuQrlsd0Hm7o ashuramaru@gensokyo <ashuramaru@tenjin-dk.com>
+# reimu@gensokyo laptop
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKD7/eZmkbNEWPCM4l3sdguMAkPPl/7ZXx1Xyla5oUbd reimu@gensokyo <ashuramaru@tenjin-dk.com>
+# mobile
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvPT3actoRVsAUEDz+wOl8byacHZMKVlTObnQ0RJ9+H u0_a413@localhost
+#jackS tmp
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJDgmNWQRw6NXAdJuXVJcKKX9F6xzMpcb+h2qQ7KYn/e dimonsterhome@gmail.com
