@@ -64,7 +64,7 @@
     in
     {
       nixosConfigurations = (
-        import ./host/linux {
+        import ./hosts/linux {
           inherit (nixpkgs) lib;
           inherit inputs self nixpkgs home-manager nur spicetify-nix users;
         }
