@@ -22,7 +22,6 @@
     ### --- systems --- ###
 
     ### --- flakes --- ###
-
     ### --- modules --- ###
     home-manager = { url = "github:nix-community/home-manager"; }; # url: https://github.com/nix-community/home-manager.git	desc: manage home directory
     nixgl = { url = "github:guibou/nixGL"; };
@@ -32,7 +31,6 @@
       inputs.emacs-overlay.follows = "emacs-overlay";
     };
     ### --- modules --- ###
-
     ### --- overlays --- ### 
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
@@ -48,27 +46,33 @@
       url = "github:nix-community/comma";
       flake = false;
     };
+    
+    spicetify-nix = { 
+      url = github:the-argus/spicetify-nix;
+    };
     ### --- overlays --- ###
-
     ### --- flakes --- ###
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, doom-emacs, nur, ... }@inputs:
+  outputs = { self, darwin, nixpkgs, home-manager, doom-emacs, spicetify-nix, nur, ... }@inputs:
     let
-      user = "ashuramaru";
+      users = { 
+        marie = "ashuramaru";
+	alex = "meanrin";
+      };
       location = "$HOME/.nixpkgs/";
     in
     {
       nixosConfigurations = (
         import ./host/unsigned-int32 {
           inherit (nixpkgs) lib;
-          inherit inputs self nixpkgs home-manager nur user;
+          inherit inputs self nixpkgs home-manager nur spicetify-nix users;
         }
       );
       darwinConfigurations = (
         import ./host/darwin {
           inherit (nixpkgs) lib;
-          inherit inputs self darwin nixpkgs home-manager user;
+          inherit inputs self darwin nixpkgs home-manager users;
         }
       );
     };

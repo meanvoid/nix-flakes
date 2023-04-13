@@ -1,4 +1,4 @@
-{ lib, self, darwin, nixpkgs, home-manager, inputs, user, ... }:
+{ lib, self, darwin, nixpkgs, home-manager, inputs, users, ... }:
 let
   inherit (darwin.lib) darwinSystem;
   system = "aarch64-darwin";
@@ -24,7 +24,7 @@ in
 {
   macmini = darwinSystem {
     inherit system;
-    specialArgs = { inherit user inputs; };
+    specialArgs = { inherit users inputs; };
     modules = [
       # modules = lib.attrValues self.darwinModules ++ [
       # nix darwin module
@@ -36,7 +36,7 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit user; };
-        home-manager.users.${user} = import ./home-manager/home.nix;
+        home-manager.users.${users} = import ./home-manager/home.nix;
       }
     ];
   };

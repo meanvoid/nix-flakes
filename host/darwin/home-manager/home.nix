@@ -1,4 +1,4 @@
-{ config, pkgs, lib, user, ... }:
+{ config, pkgs, lib, users, ... }:
 {
   imports = [ ./imports.nix ];
   home = {

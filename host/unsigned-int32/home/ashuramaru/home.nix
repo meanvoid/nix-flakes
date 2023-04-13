@@ -1,12 +1,12 @@
 { config, pkgs, lib, users, ... }:
 {
-  imports = [(import ../../../../modules/programs/spotify.nix)];
+  imports = 
+    [(import ../../../../modules/programs/spotify.nix)] ++ 
+    (import ../../../../modules/overlays);
   home = {
     username = "${users.marie}";
-    # homeDirectory = "${/home/${users.marie}}";
     packages = with pkgs; [
-      discord
-      spotify
+      firefox
     ];
     stateVersion = "23.05";
     };
