@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, home-manager, nur, users, ... }:
+{ lib, inputs, nixpkgs, home-manager, spicetify-nix, nur, users, ... }:
 
 let
   system = "x86_64-linux"; # System architecture
@@ -27,7 +27,7 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
-          inherit users;
+          inherit spicetify-nix users;
 	  host = { hostName = "unsigned-int32"; };
         };
         home-manager.users.${users.marie} = { imports = [ ./home/${users.marie}/home.nix ]; };
