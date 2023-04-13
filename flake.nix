@@ -18,7 +18,6 @@
     ### --- systems --- ###
     darwin = { url = "github:lnl7/nix-darwin/master"; }; # url: https://github.com/lnl7/nix-darwin.git			desc: darwin specific module
     wsl = { url = "github:nix-community/nixos-wsl"; }; # url: https://github.com/nix-community/nixos-wsl.git		desc: module for using nixos in wsl(berry useful!!!)
-    apple-silicon = { url = "github:tpwrules/nixos-apple-silicon"; }; # url: https://github.com/tpwrules/nixos-apple-silicon.git	desc: nixify asahi linux (i desperetaly want asahi on m2 :c )
     ### --- systems --- ###
 
     ### --- flakes --- ###
