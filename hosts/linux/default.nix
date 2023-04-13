@@ -2,7 +2,7 @@
 
 let
   #!!!
-  system = nixpkgs.lib.system;
+  system = builtins.currentSystem;
 
   pkgs = import nixpkgs {
     inherit system;
