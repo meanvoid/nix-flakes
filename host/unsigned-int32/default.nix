@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, home-manager, nur, user, ... }:
+{ lib, inputs, nixpkgs, home-manager, nur, users, ... }:
 
 let
   system = "x86_64-linux"; # System architecture
@@ -15,15 +15,25 @@ in
     # Desktop profile
     inherit system;
     specialArgs = {
-      inherit inputs user system;
-      host = {
-        hostName = "unsigned-int32";
-      };
+      inherit inputs users system;
+      host = { hostName = "unsigned-int32"; };
     }; # Pass flake variable
     modules = [
       # Modules that are used.
       nur.nixosModules.nur
       ./configuration.nix
+
+      home-manager.nixosModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.extraSpecialArgs = {
+          inherit users;
+	  host = { hostName = "unsigned-int32"; };
+        };
+        home-manager.users.${users.marie} = { imports = [ ./home/${users.marie}/home.nix ]; };
+	# !!! change to variable
+	home-manager.users.${users.alex} = { imports = [ ./home/${users.alex}/home.nix ]; };
+      }
     ];
   };
 }

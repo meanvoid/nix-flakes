@@ -17,7 +17,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 14d";
+      options = "--delete-older-than 7d";
     };
     settings = {
       auto-optimise-store = true;
@@ -441,9 +441,6 @@
       jellyfin = {
         members = [ "ashuramaru" "meanrin" ];
       };
-      virt = {
-        members = [ "docker" "podman" "libvirtd" "kvm" "qemu" ];
-      };
     };
     users = {
       ashuramaru = {
@@ -455,7 +452,7 @@
           "$6$79Eopfg.bX9kzgyR$mPzq3.dFGkCaX2NiAPiTqltBQ0b9gLpEPsX7YdKLyuMbvLssUlfFDiOhZ.FZ.AwS6JbXQ6AXB41Yq5QpJxWJ6/";
         hashedPassword =
           "$6$9BY1nlAvCe/S63yL$yoKImQ99aC8l.CBPqGGrr74mQPPGucug13efoGbBaF.LT9GNUYeOk8ZejZpJhnJjPRkaU0hJTYtplI1rkxVnY.";
-        extraGroups = [ "ashuramaru" "wheel" "networkmanager" "video" "audio" "virt" ];
+        extraGroups = [ "ashuramaru" "wheel" "networkmanager" "video" "audio" "storage" "docker" "podman" "libvirtd" "kvm" "qemu"  ];
         # openssh.authorizedKeys.keyFiles = [ "/etc/nixos/ssh/auth_ashuramaru" ];
       };
       meanrin = {
@@ -465,7 +462,7 @@
         uid = 1001;
         initialHashedPassword =
           "$6$Vyk8fqJUAWcfHcZ.$JrE0aK4.LSzpDlXNIHs9LFHyoaMXHFe9S0B66Kx8Wv0nVCnh7ACeeiTIkX95YjGoH0R8DavzSS/aSizJH1YgV0";
-        extraGroups = [ "meanrin" "wheel" "networkmanager" "video" "audio" "virt" ];
+        extraGroups = [ "meanrin" "wheel" "networkmanager" "video" "audio" "storage" "docker" "podman" "libvirtd" "kvm" "qemu"  ];
         # openssh.authorizedKeys.keyFiles = [ "/root/" ];
       };
     };
