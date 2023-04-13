@@ -30,5 +30,4 @@
     fsType = "btrfs";
     options = [ "subvol=home" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2" ];
   };
-  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }
