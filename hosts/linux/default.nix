@@ -2,20 +2,13 @@
 
 let
   #!!!
-  systemConfigurations = {
-    unsigned-int32 = {
-      hostName = "unsigned-int32";
-      system = "x86_64-linux";
-    };
-    unsigned-int64 = {
-      hostName = "unsigned-int64";
-      system = "aarch64-linux";
-    };
-  };
+  system = nixpkgs.lib.system;
+
   pkgs = import nixpkgs {
-      inherit = systemConfigurations.${system}.system;
-      config.allowUnfree = true; # Allow proprietary software
-    };
+    inherit system;
+    config.allowUnfree = true; # Allow proprietary software
+  };
+
   lib = nixpkgs.lib;
 in
 {
@@ -23,11 +16,10 @@ in
     # Desktop profile
     inherit system;
     specialArgs = {
-      inherit inputs users systemConfigurations.${system}.system;
-      host = systemConfigurations.${hostName}.hostName;
-    }; # Pass flake variableb
+      inherit inputs users system;
+      host = { hostName = "unsigned-int32"; };
+    };
     modules = [
-      # Modules that are used.
       nur.nixosModules.nur
       ./unsigned-int32/configuration.nix
 
@@ -36,7 +28,7 @@ in
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
           inherit spicetify-nix users;
-	  host = systemConfigurations.${system}.hostName;
+	  host = { hostName = "unsigned-int32"; };
         };
         home-manager.users.${users.marie} = { imports = [ ./unsigned-int32/home/${users.marie}/home.nix ]; };
 	# !!! change to variable
@@ -44,11 +36,12 @@ in
       }
     ];
   };
-  unsigned-int64 = lib.nixosSystem = {
-    inherit systemConfigurations.${system}.system;
+
+  unsigned-int64 = lib.nixosSystem {
+    inherit system;
     specialArgs = {
-      inherit inputs systemConfigurations.${system}.system users;
-      host = systemConfigurations.${system}.hostName;
+      inherit inputs users system;
+      host = { hostName = "unsigned-int64"; };
     };
     modules = [ 
       ./unsigned-int64/configuration.nix
