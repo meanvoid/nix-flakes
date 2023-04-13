@@ -74,7 +74,8 @@
         initialHashedPassword = "";
         openssh.authorizedKeys.keys = 
 	[ 
-	  sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIBTfrnNlYOUKKGzgAcD+5eblH8mQRRoA4jU6GYNqKa/VAAAACnNzaDpnaXRodWI= Marie Levjewa email: ashuramaru@tenjin-dk.com id:unsigned-int32 
+	"sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIBTfrnNlYOUKKGzgAcD+5eblH8mQRRoA4jU6GYNqKa/VAAAACnNzaDpnaXRodWI= Marie Levjewa email: ashuramaru@tenjin-dk.com id:unsigned-int32"
+	"sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBCzoNOzhhF9uYDu7CbuzVRJ2K6dClXLrEoJrQvIYjnxHTBMqKuByi9M2HEmkpGO+a3H3WjeeXfqjH2CwZJ97jmIAAAAEc3NoOg== meanrin@outlook.com"
 	];
       };
       ashuramaru = {
@@ -84,7 +85,10 @@
         initialHashedPassword = "";
         extraGroups = [ "wheel" "users" ];
 	openssh.authorizedKeys.keys = 
-	[ sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIBTfrnNlYOUKKGzgAcD+5eblH8mQRRoA4jU6GYNqKa/VAAAACnNzaDpnaXRodWI= Marie Levjewa email: ashuramaru@tenjin-dk.com id:unsigned-int32 ];
+	[ 
+	"sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIBTfrnNlYOUKKGzgAcD+5eblH8mQRRoA4jU6GYNqKa/VAAAACnNzaDpnaXRodWI= Marie Levjewa email: ashuramaru@tenjin-dk.com id:unsigned-int32"
+	"sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBCzoNOzhhF9uYDu7CbuzVRJ2K6dClXLrEoJrQvIYjnxHTBMqKuByi9M2HEmkpGO+a3H3WjeeXfqjH2CwZJ97jmIAAAAEc3NoOg== meanrin@outlook.com"
+	];
       };
     };
   };
@@ -102,11 +106,13 @@
     pcscd.enable = true;
     openssh = {
       enable = true;
-      passwordAuthentication = false;
-      kbdInteractiveAuthentication = false;
-      permitRootLogin = "no";
-      openFirewall = true;
       allowSFTP = true;
+      openFirewall = true;
+      settings = {
+        passwordAuthentication = false;
+        kbdInteractiveAuthentication = true;
+        permitRootLogin = "prohibit-password";
+      };
     };
     programs = {
       gnupg.agent = {
