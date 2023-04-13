@@ -2,20 +2,14 @@
 
 let
   #!!!
-  system = builtins.currentSystem;
-
-  pkgs = import nixpkgs {
-    inherit system;
-    config.allowUnfree = true; # Allow proprietary software
-  };
   lib = nixpkgs.lib;
 in
 {
   unsigned-int32 = lib.nixosSystem {
     # Desktop profile
-    inherit system;
+    system = "x86_64-linux";
     specialArgs = {
-      inherit inputs system users path;
+      inherit inputs users path;
       host = { hostName = "unsigned-int32"; };
     };
     modules = [
@@ -37,9 +31,9 @@ in
   };
 
   unsigned-int64 = lib.nixosSystem {
-    inherit system;
+    system = "aarch64-linux";
     specialArgs = {
-      inherit inputs system users path;
+      inherit inputs users path;
       host = { hostName = "unsigned-int64"; };
     };
     modules = [ 

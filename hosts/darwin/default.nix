@@ -35,7 +35,7 @@ in
         nixpkgs = nixpkgsConfig;
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit user; };
+        home-manager.extraSpecialArgs = { inherit users; };
         home-manager.users.${users} = import ./home-manager/home.nix;
       }
     ];
