@@ -51,7 +51,7 @@
 	    prefixLength = 64;
 	  } 
 	];
-      };
+  };
     };
     firewall = {
       enable = true;
