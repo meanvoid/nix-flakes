@@ -3,10 +3,10 @@
 {
   imports =
     [ ./hardware-configuration.nix ] ++
-    [ (import ../../modules/powermanagment/hddparm.nix) ] ++
-    (import ../../modules/programs) ++
-    (import ../../modules/services) ++
-    (import ../../modules/networking);
+    [ (import ../../../../modules/powermanagment/hddparm.nix) ] ++
+    (import ../../../../modules/programs) ++
+    (import ../../../../modules/services) ++
+    (import ../../../../modules/networking);
 
   nixpkgs = {
     config = {

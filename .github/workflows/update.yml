@@ -1,4 +1,4 @@
-name: "validate nix flake"
+name: "update flake.lock"
 on:
   pull_request:
   push:
@@ -10,4 +10,4 @@ jobs:
     - uses: cachix/install-nix-action@v20
       with:
         github_access_token: ${{ secrets.CACHIX_AUTH_TOKEN }}
-    - run: nix flake check
+    - run: nix flake update
