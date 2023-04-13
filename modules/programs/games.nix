@@ -26,7 +26,7 @@
         vulkan-extension-layer
         vulkan-loader
         vkBasalt
-        mangohud
+        # mangohud
         gamescope
         steamtinkerlaunch
         (pkgs.callPackage ../../derivations/nixos/default.nix { })

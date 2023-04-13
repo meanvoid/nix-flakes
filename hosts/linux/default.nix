@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, home-manager, spicetify-nix, nur, users, ... }:
+{ lib, inputs, nixpkgs, home-manager, spicetify-nix, nur, users, path, ... }:
 
 let
   #!!!
@@ -8,15 +8,13 @@ let
     inherit system;
     config.allowUnfree = true; # Allow proprietary software
   };
-
-  lib = nixpkgs.lib;
 in
 {
-  unsigned-int32 = lib.nixosSystem {
+  unsigned-int32 = nixpkgs.lib.nixosSystem {
     # Desktop profile
     inherit system;
     specialArgs = {
-      inherit inputs users system;
+      inherit inputs system users path;
       host = { hostName = "unsigned-int32"; };
     };
     modules = [
@@ -27,7 +25,7 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
-          inherit spicetify-nix users;
+          inherit spicetify-nix users path;
 	  host = { hostName = "unsigned-int32"; };
         };
         home-manager.users.${users.marie} = { imports = [ ./unsigned-int32/home/${users.marie}/home.nix ]; };
@@ -37,10 +35,10 @@ in
     ];
   };
 
-  unsigned-int64 = lib.nixosSystem {
+  unsigned-int64 = nixpkgs.lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit inputs users system;
+      inherit inputs system users path;
       host = { hostName = "unsigned-int64"; };
     };
     modules = [ 

@@ -60,13 +60,13 @@
         marie = "ashuramaru";
 	alex = "meanrin";
       };
-      location = "$HOME/.nixpkgs/";
+      path = "/etc/nixos";
     in
     {
       nixosConfigurations = (
         import ./hosts/linux {
           inherit (nixpkgs) lib;
-          inherit inputs self nixpkgs home-manager nur spicetify-nix users;
+          inherit inputs self nixpkgs home-manager nur spicetify-nix users path;
         }
       );
       darwinConfigurations = (
