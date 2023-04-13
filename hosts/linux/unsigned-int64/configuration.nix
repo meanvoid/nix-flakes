@@ -51,9 +51,6 @@
 	    prefixLength = 64;
 	  } 
 	];
-	defaultGateway = "172.31.1.1";
-	defaultGateway6 = { address = "fe80::1"; inteface = "enp1s0"; };
-	nameservers = [ "8.8.8.8" ];
       };
     };
     firewall = {
