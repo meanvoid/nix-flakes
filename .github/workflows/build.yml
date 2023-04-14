@@ -1,4 +1,4 @@
-name: "validate nix flake"
+name: "build nix flake"
 on:
   pull_request:
   push:
