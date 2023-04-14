@@ -9,11 +9,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        device_name: [unsigned-int32, unsigned-int64]
     steps:
     - uses: actions/checkout@v3
     - uses: cachix/install-nix-action@v20
       with:
        cachix_auth_token: ${{ secrets.CACHIX_AUTH_TOKEN }}
        github_access_token: ${{ secrets.ACCESS_TOKEN }}
-    - run: nix build --no-link --print-out-paths .#nixosConfigurations.unsigned-int32.config.system.build.toplevel
-    - run: nix build --no-link --print-out-paths .#nixosConfigurations.unsigned-int64.config.system.build.toplevel
+    - run: nix build --no-link --print-out-paths .#nixosConfigurations.${{ matrix.device_name }}.config.system.build.toplevel
