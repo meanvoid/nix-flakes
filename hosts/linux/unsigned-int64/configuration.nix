@@ -3,6 +3,7 @@
 {
   imports = 
   [ ./hardware-configuration.nix ] ++
+  [(import ./../../../modules/server/minecraft.nix)] ++
   (import ./networking);
   
   age.secrets = {
