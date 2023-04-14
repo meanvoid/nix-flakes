@@ -13,8 +13,8 @@ in
       host = { hostName = "unsigned-int32"; };
     };
     modules = [
-      nur.nixosModules.nur
       ./unsigned-int32/configuration.nix
+      nur.nixosModules.nur
       agenix.nixosModules.default
 
       home-manager.nixosModules.home-manager {
@@ -39,6 +39,7 @@ in
     };
     modules = [ 
       ./unsigned-int64/configuration.nix
+      agenix.nixosModules.default
     ];
   };
 }
