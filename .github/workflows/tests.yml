@@ -1,4 +1,4 @@
-name: "nix testing"
+name: "nix tests"
 on:
   push:
 jobs:
