@@ -4,16 +4,12 @@
   services = {
     nextcloud = { 
       enable = true;
-      package = pkgs.nextcloud25;
+      package = pkgs.nextcloud26;
       home = "/var/lib/nextcloud";
       hostName = "cloud.tenjin-dk.com";
       https = true;
-      # caching.apcu = true;
       caching.redis = true;
-      maxUploadSize = "4G";
-      autoUpdateApps.enable = true;
-      autoUpdateApps.startAt = "Sun 05:00:00";
-      globalProfiles = true;
+      maxUploadSize = "10G";
       config = {
         extraTrustedDomains = [ "www.cloud.tenjin-dk.com" ];
         overwriteProtocol = "https";
@@ -31,12 +27,11 @@
 	  host = "/run/redis/redis-nextcloud.sock";
 	  port = 6379;
 	  dbindex = 0;
-	  # password = "redis";
 	  timeout = 1.5;
 	};
       };
       phpOptions = {
-        "opcache.memory_consumption" = "512";
+        "opcache.memory_consumption" = "8096M";
 	"opcache.interned_strings_buffer" = "16";
       };
     };
