@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, agenix, ... }:
 
 {
   services.wg-netmanager.enable = true;
@@ -6,7 +6,7 @@
   networking.wg-quick.interfaces = {
     ports0 = {
       address = [ "172.168.10.2/24" ];
-      privateKeyFile = "/root/private.key";
+      privateKeyFile = config.age.secrets."wireguard-config".path;
       peers = [{
         publicKey = "7mwL4c31JhxE5Sgu97wyWyLOGo45Q9wItw2KRB1LTyc=";
         presharedKeyFile = "/root/host.psk";

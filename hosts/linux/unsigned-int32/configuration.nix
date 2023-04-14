@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, path, users, ... }:
+{ lib, inputs, config, pkgs, agenix, users, path, ... }:
 
 {
   imports =
@@ -7,6 +7,10 @@
     (import ./../../../modules/programs) ++
     (import ./../../../modules/services) ++
     (import ./../../../modules/networking);
+
+  age.secrets = {
+    "wireguard-config".file = ../../../secrets/wireguard-config.age;
+  };
 
   nixpkgs = {
     config = {
@@ -476,7 +480,7 @@
 
   environment = {
     systemPackages = with pkgs; [
-
+    #!!!!!!!! change to different system configurations
       # dev env # TODO change to shell
       gnumake
       gcc
