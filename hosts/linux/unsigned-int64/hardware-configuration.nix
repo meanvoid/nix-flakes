@@ -15,8 +15,8 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/1A9A-3FEA";
-    fsType = "ext2";
+    device = "/dev/disk/by-uuid/218C-2E9F";
+    fsType = "vfat";
   };
 
   fileSystems."/var" = {
