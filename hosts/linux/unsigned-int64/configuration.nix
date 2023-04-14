@@ -4,10 +4,11 @@
   imports = 
   [ ./hardware-configuration.nix ] ++
   (import ./networking);
-
-  age.secrets.wireguard-server.file = ../../../secrets/wireguard-server.age;
-  age.secrets.wireguard-shared.file = ../../../secrets/wireguard-shared.age;
-
+  
+  age.secrets = {
+    wireguard-server.file = ./../../../secrets/wireguard-server.age;
+    wireguard-shared.file = ./../../../secrets/wireguard-shared.age;
+  };
   nix = {
     gc = {
       automatic = true;
