@@ -1,8 +1,13 @@
-name: "build nix flake"
+name: "nix build"
 on:
   push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 jobs:
-  tests:
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3

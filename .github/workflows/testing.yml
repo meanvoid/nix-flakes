@@ -1,0 +1,22 @@
+name: "nix testing"
+on:
+  push:
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v20
+        with:
+          cachix_auth_token: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          github_access_token: ${{ secrets.ACCESS_TOKEN }}
+      - run: nix flake update
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v20
+        with:
+          cachix_auth_token: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          github_access_token: ${{ secrets.ACCESS_TOKEN }}
+      - run: nix flake check
