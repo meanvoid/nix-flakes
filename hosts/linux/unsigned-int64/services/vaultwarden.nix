@@ -4,6 +4,7 @@
   services.vaultwarden = {
     enable = true;
     backupDir = "/var/lib/bitwarden_rs/backups";
+    package = pkgs.vaultwarden-postgresql;
     config = {
       domain = "https://bitwarden.tenjin-dk.com";
       signupsAllowed = false;

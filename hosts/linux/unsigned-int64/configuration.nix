@@ -27,6 +27,7 @@
       };
       timeout = 10;
   };
+  boot.initrd.services.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
   #!!! maybe delete since we are running 32 gigs
   zramSwap = { enable = true; };
   networking = {
@@ -112,6 +113,9 @@
     htop
     tmux
   ];
+  environment.etc."mdadm.conf".text = ''
+  ARRAY /dev/md0 name=unsigned-int64:root UUID=8e5e4207:07f4d007:9654119f:86f9b109
+  '';
   security = {
     acme = {
       acceptTerms = true;
