@@ -92,10 +92,10 @@
         openssh.authorizedKeys.keys = 
 	[
 	# marie
-	"sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIMCcqGZ0mTV4977nx0JVU/fA7ohnekfQuaLJhrcBeXY1AAAACnNzaDpyZW1vdGU= email:ashuramaru@tenjin-dk.com host:ashuramaru@unsigned-int32"
-	"sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBNGvCRZ03gaR6CtkZvVMgctqtue895YVdLjpTJIqmBSttC4CyGd7Kea/P1sqFLg7gL1JQmm4+YWDSXL8YfJdpfYAAAAOc3NoOnJlbW90ZS1kc2E= email:ashuramaru@tenjin-dk.com host:ashuramaru@unsigned-int32"
-	"sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBHrPpcJaulQaRgQGg2ZQOwr1hGq0kWi8S/tRaBJHIbfzmn9sqsFSZf9LGBIfIDfj/L5plw9U87z7y74so14gAoYAAAAOc3NoOnJlbW90ZS1kc2E= email:ashuramaru@tenjin-dk.com host:ashuramaru@unsigned-int32"
-	"sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIJ2AcWj4RpIOoHNN8F7dIlNkMQzM2wyyxGMTNw0fD6TeAAAACnNzaDpyZW1vdGU= email:ashuramaru@tenjin-dk.com host:ashuramaru@unsigned-int32"
+	"sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIKNF4qCh49NCn6DUnzOCJ3ixzLyhPCCcr6jtRfQdprQLAAAACnNzaDpyZW1vdGU= email:ashuramaru@tenjin-dk.com id:ashuramaru@unsigned-int32"
+	"sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIEF0v+eyeOEcrLwo3loXYt9JHeAEWt1oC2AHh+bZP9b0AAAACnNzaDpyZW1vdGU= email:ashuramaru@tenjin-dk.com id:ashuramaru@unsigned-int32"
+	"sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBFdzdMIdu/bKlIkGx1tCf1sL65NwrmpvBZQ+nSbKknbGHdrXv33mMzLVUsCGUaUxmeYcCULNNtSb0kvgDjRlcgIAAAAOc3NoOnJlbW90ZS1kc2E= email:ashuramaru@tenjin-dk.com id:ashuramaru@unsigned-int32"
+	"sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBNR1p1OviZgAkv5xQ10NTLOusPT8pQUG2qCTpO3AhmxaZM2mWNePVNqPnjxNHjWN+a/FcZ5on74QZQJtwXI5m80AAAAOc3NoOnJlbW90ZS1kc2E= email:ashuramaru@tenjin-dk.com id:ashuramaru@unsigned-int32"
 	# alex
 	"sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBCzoNOzhhF9uYDu7CbuzVRJ2K6dClXLrEoJrQvIYjnxHTBMqKuByi9M2HEmkpGO+a3H3WjeeXfqjH2CwZJ97jmIAAAAEc3NoOg== meanrin@outlook.com"
 	];
@@ -108,10 +108,10 @@
         extraGroups = [ "wheel" "users" ];
 	openssh.authorizedKeys.keys = 
 	[
-	"sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIMCcqGZ0mTV4977nx0JVU/fA7ohnekfQuaLJhrcBeXY1AAAACnNzaDpyZW1vdGU= email:ashuramaru@tenjin-dk.com host:ashuramaru@unsigned-int32"
-	"sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBNGvCRZ03gaR6CtkZvVMgctqtue895YVdLjpTJIqmBSttC4CyGd7Kea/P1sqFLg7gL1JQmm4+YWDSXL8YfJdpfYAAAAOc3NoOnJlbW90ZS1kc2E= email:ashuramaru@tenjin-dk.com host:ashuramaru@unsigned-int32"
-	"sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBHrPpcJaulQaRgQGg2ZQOwr1hGq0kWi8S/tRaBJHIbfzmn9sqsFSZf9LGBIfIDfj/L5plw9U87z7y74so14gAoYAAAAOc3NoOnJlbW90ZS1kc2E= email:ashuramaru@tenjin-dk.com host:ashuramaru@unsigned-int32"
-	"sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIJ2AcWj4RpIOoHNN8F7dIlNkMQzM2wyyxGMTNw0fD6TeAAAACnNzaDpyZW1vdGU= email:ashuramaru@tenjin-dk.com host:ashuramaru@unsigned-int32"
+	"sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIKNF4qCh49NCn6DUnzOCJ3ixzLyhPCCcr6jtRfQdprQLAAAACnNzaDpyZW1vdGU= email:ashuramaru@tenjin-dk.com id:ashuramaru@unsigned-int32"
+	"sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIEF0v+eyeOEcrLwo3loXYt9JHeAEWt1oC2AHh+bZP9b0AAAACnNzaDpyZW1vdGU= email:ashuramaru@tenjin-dk.com id:ashuramaru@unsigned-int32"
+	"sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBFdzdMIdu/bKlIkGx1tCf1sL65NwrmpvBZQ+nSbKknbGHdrXv33mMzLVUsCGUaUxmeYcCULNNtSb0kvgDjRlcgIAAAAOc3NoOnJlbW90ZS1kc2E= email:ashuramaru@tenjin-dk.com id:ashuramaru@unsigned-int32"
+	"sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBNR1p1OviZgAkv5xQ10NTLOusPT8pQUG2qCTpO3AhmxaZM2mWNePVNqPnjxNHjWN+a/FcZ5on74QZQJtwXI5m80AAAAOc3NoOnJlbW90ZS1kc2E= email:ashuramaru@tenjin-dk.com id:ashuramaru@unsigned-int32"
 	];
       };
       meanrin = {
