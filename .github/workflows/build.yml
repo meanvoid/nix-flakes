@@ -1,15 +1,23 @@
-name: "validate nix flake"
+name: "nix build"
 on:
-  pull_request:
-  push:
+# TODO: create own runer
+#  push:
+#    branches:
+#      - master
+#  pull_request:
+#    branches:
+#      - master
 jobs:
-  tests:
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        device_name: [unsigned-int32, unsigned-int64]
     steps:
     - uses: actions/checkout@v3
     - uses: cachix/install-nix-action@v20
       with:
        cachix_auth_token: ${{ secrets.CACHIX_AUTH_TOKEN }}
-       github_access_token: $ {{ secrets.ACCESS_TOKEN }}
-    - run: nix build .#nixosConfigurations.unsigned-int32
-    - run: nix build .#nixosConfigurations.unsigned-int64
+       github_access_token: ${{ secrets.ACCESS_TOKEN }}
+    - run: nix build --no-link --print-out-paths .#nixosConfigurations.${{ matrix.device_name }}.config.system.build.toplevel
