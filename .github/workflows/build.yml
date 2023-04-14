@@ -1,11 +1,12 @@
 name: "nix build"
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+# TODO: create own runer
+#  push:
+#    branches:
+#      - master
+#  pull_request:
+#    branches:
+#      - master
 jobs:
   build:
     runs-on: ubuntu-latest
