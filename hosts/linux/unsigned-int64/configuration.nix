@@ -125,6 +125,17 @@
 	"sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBCzoNOzhhF9uYDu7CbuzVRJ2K6dClXLrEoJrQvIYjnxHTBMqKuByi9M2HEmkpGO+a3H3WjeeXfqjH2CwZJ97jmIAAAAEc3NoOg== meanrin@outlook.com" 
 	];
       };
+      Jack = {
+        isNormalUser = true;
+	home = "/home/jackS";
+	description = "JackS";
+	initialHashedPassword = "";
+	extraGroups = [ "users" ];
+	openssh.authorizedKeys.keys =
+	[
+	"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJDgmNWQRw6NXAdJuXVJcKKX9F6xzMpcb+h2qQ7KYn/e dimonsterhome@gmail.com"
+	];
+      };
     };
   };
   environment.systemPackages = with pkgs; [
