@@ -1,9 +1,13 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, agenix, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = 
+  [ ./hardware-configuration.nix ] ++
+  [(import ./networking)];
+
+  age.secrets.wireguard-server.file = ../../../secrets/wireguard-server.age;
+  age.secrets.wireguard-shared.file = ../../../secrets/wireguard-shared.age;
+
   nix = {
     gc = {
       automatic = true;
@@ -56,7 +60,7 @@
     };
     firewall = {
       enable = true;
-      allowedUDPPorts = [ 53 3128  ];
+      allowedUDPPorts = [ 53 3128 51280 ];
       allowedTCPPorts = [ 53 80 443 3128 25565 ];
       extraCommands = ''
         ${pkgs.iptables}/bin/iptables -I INPUT -p tcp --dport 22 -i wireguard0 -j DROP

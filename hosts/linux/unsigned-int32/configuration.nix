@@ -9,7 +9,8 @@
     (import ./../../../modules/networking);
 
   age.secrets = {
-    "wireguard-config".file = ../../../secrets/wireguard-config.age;
+    wireguard-client.file = ./../../../secrets/wireguard-client.age;
+    wireguard-shared.file = ../../../secrets/wireguard-shared.age;
   };
 
   nixpkgs = {

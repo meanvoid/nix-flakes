@@ -6,7 +6,7 @@
       wireguard0 = {
         address = [ "192.168.10.1/24" "dced:2718:5f06:718a::1/64" "10.64.10.1/24" "fd02:f8eb:7ca4:5f4c::1/64"];
         listenPort = 51820;
-        privateKeyFile = "/root/secrets/wireguard/wireguard0/keys/interface/private.key";
+        privateKeyFile = "";
 
         postUp = ''
           ${pkgs.iptables}/bin/iptables -A FORWARD -i wireguard0 -j ACCEPT
@@ -55,29 +55,6 @@
 	    presharedKeyFile = "/root/secrets/wireguard/wireguard0/keys/psk/ashuramaru@win10-libvirt";
 	    allowedIPs = [ "192.168.10.104/32" "10.64.10.104/32" "dced:2718:5f06:718a::104/128" fd02:f8eb:7ca4:5f4c::104/128 ];
 	  }
-	  # soniya@a32
-	  {
-	    publicKey = "pDhkiKK0PiPPsx9SYl6HuBHsXX+VnoS8kmOBoy3FoTc=";
-	    presharedKeyFile = "/root/secrets/wireguard/wireguard0/keys/psk/soniya@a32";
-	    allowedIPs = [ "192.168.10.105/32" "10.64.10.104/32" "dced:2718:5f06:718a::105/128" "fd02:f8eb:7ca4:5f4c::105/128" ];
-	  }
-	  # kellymausu@pc
-	  {
-	    publicKey = "cXP5odCiB4NxISN2zJ0SUWqsp/W2oIYKOZglbKM1B3k=";
-	    presharedKeyFile = "/root/secrets/wireguard/wireguard0/keys/psk/kellymausu@pc";
-	    allowedIPs = [ "192.168.10.110/32" "dced:2718:5f06:718a::110/128" ];
-	  }
-	  # maybe todo: kellymausu@mobile???
-          # endemp@windows
-          {
-            publicKey = "lPG7NLQS97yzyHlF4zcCUfkMa3TNqfYGaPsrNm2f6XA=";
-            presharedKeyFile = "/root/secrets/wireguard/wireguard0/keys/psk/endemp.psk";
-            allowedIPs = [ "10.64.10.2/32" "fd02:f8eb:7ca4:5f4c::2/128" ];
-          }
-
-
-
-
           # julio@windows
           {
             publicKey = "OZg74pRtgDUkQjINEOHM0fnzJsvbLyKFdx6HzIi1Tkg=";
