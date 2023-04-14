@@ -1,9 +1,13 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, agenix, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = 
+  [ ./hardware-configuration.nix ] ++
+  (import ./networking);
+
+  age.secrets.wireguard-server.file = ../../../secrets/wireguard-server.age;
+  age.secrets.wireguard-shared.file = ../../../secrets/wireguard-shared.age;
+
   nix = {
     gc = {
       automatic = true;
@@ -56,7 +60,7 @@
     };
     firewall = {
       enable = true;
-      allowedUDPPorts = [ 53 3128  ];
+      allowedUDPPorts = [ 53 3128 51280 ];
       allowedTCPPorts = [ 53 80 443 3128 25565 ];
       extraCommands = ''
         ${pkgs.iptables}/bin/iptables -I INPUT -p tcp --dport 22 -i wireguard0 -j DROP
@@ -125,6 +129,17 @@
 	"sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBCzoNOzhhF9uYDu7CbuzVRJ2K6dClXLrEoJrQvIYjnxHTBMqKuByi9M2HEmkpGO+a3H3WjeeXfqjH2CwZJ97jmIAAAAEc3NoOg== meanrin@outlook.com" 
 	];
       };
+      Jack = {
+        isNormalUser = true;
+	home = "/home/jackS";
+	description = "JackS";
+	initialHashedPassword = "";
+	extraGroups = [ "users" ];
+	openssh.authorizedKeys.keys =
+	[
+	"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJDgmNWQRw6NXAdJuXVJcKKX9F6xzMpcb+h2qQ7KYn/e dimonsterhome@gmail.com"
+	];
+      };
     };
   };
   environment.systemPackages = with pkgs; [
@@ -138,6 +153,9 @@
     acme = {
       acceptTerms = true;
       defaults.email = "ashuramaru@riseup.net";
+    };
+    sudo = {
+      wheelNeedsPassword = false;
     };
   };
   services = {

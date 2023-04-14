@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, home-manager, spicetify-nix, nur, users, path, ... }:
+{ lib, inputs, self, nixpkgs, nur, agenix, users, path, home-manager, spicetify-nix, ... }:
 
 let
   #!!!
@@ -15,12 +15,13 @@ in
     modules = [
       nur.nixosModules.nur
       ./unsigned-int32/configuration.nix
+      agenix.nixosModules.default
 
       home-manager.nixosModules.home-manager {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
-          inherit spicetify-nix users path;
+          inherit users path spicetify-nix;
 	  host = { hostName = "unsigned-int32"; };
         };
         home-manager.users.${users.marie} = { imports = [ ./unsigned-int32/home/${users.marie}/home.nix ]; };
