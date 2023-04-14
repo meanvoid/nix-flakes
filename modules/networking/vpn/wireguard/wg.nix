@@ -11,7 +11,7 @@
         publicKey = "7mwL4c31JhxE5Sgu97wyWyLOGo45Q9wItw2KRB1LTyc=";
         presharedKeyFile = config.age.secrets.wireguard-shared.path;
         allowedIPs = [ "172.168.10.1/32" ];
-        endpoint = "ports.tenjin-dk.com";
+        endpoint = "tenjin-dk.com:51280";
         persistentKeepalive = 25;
       }];
     };
