@@ -4,7 +4,7 @@ let
 in
 {
   services.minecraft-server = {
-    enabme = true;
+    enable = true;
     package = minecraft;
     jvmOpts = 
     "-Xms4096M -Xmx8192M -XX:+CMSIncrementalPacing -XX:+CMSClassUnloadingEnabled -XX:ParallelGCThreads=2 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10";
