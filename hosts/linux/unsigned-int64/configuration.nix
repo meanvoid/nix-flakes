@@ -139,6 +139,9 @@
       acceptTerms = true;
       defaults.email = "ashuramaru@riseup.net";
     };
+    sudo = {
+      wheelNeedsPassword = false;
+    };
   };
   services = {
     pcscd.enable = true;
