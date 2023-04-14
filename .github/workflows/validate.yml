@@ -1,6 +1,5 @@
 name: "validate nix flake"
 on:
-  pull_request:
   push:
 jobs:
   tests:

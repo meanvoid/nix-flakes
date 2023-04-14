@@ -1,6 +1,5 @@
 name: "build nix flake"
 on:
-  pull_request:
   push:
 jobs:
   tests:
