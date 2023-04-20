@@ -283,6 +283,7 @@
     waydroid.enable = true;
   };
   services = {
+    lvm.boot.thin.enable = true;
     hardware = {
       bolt.enable = true;
       openrgb = {
