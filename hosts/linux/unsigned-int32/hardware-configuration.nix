@@ -115,6 +115,12 @@
       fsType = "ext4";
       options = [ "noatime" ];
     };
+  fileSystems."/var/backup" =
+    {
+      device = "/dev/hddpool/backup";
+      fsType = "ext4";
+      options = [ "noatime" ];
+    };
   networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
