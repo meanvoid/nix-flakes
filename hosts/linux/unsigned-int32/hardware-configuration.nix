@@ -1,7 +1,7 @@
+# !!! move to moduled structure
 { config, lib, pkgs, modulesPath, ... }:
 
-{
-  imports =
+{  imports =
     [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "uas" "sd_mod" "r8169" ];
@@ -109,8 +109,12 @@
       device = "/dev/disk/by-uuid/8B3E-8D34";
       fsType = "vfat";
     };
-
-  # networking.useDHCP = lib.mkDefault true;
+  fileSystems."/Shared/media" =
+    {
+      device = "/dev/hddpool/media";
+      fsType = "ext4";
+      options = [ "noatime" ];
+    };
   networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
