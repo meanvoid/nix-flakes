@@ -5,12 +5,7 @@
     enable = true;
     enableCompletion = true;
     sessionVariables = { };
-    profileExtra = ''
-    '';
-    historyFile = "$HOME/.config/bash/bash_hist.bash";
-    historyFileSize = 5000;
-    historyIgnore = [ "ls" "cd" "clear" "exit" "neofetch" ];
-    historySize = 1000;
+    profileExtra = '''';
     initExtra = ''
       shopt -s autocd
       set -o vi

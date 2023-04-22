@@ -1,6 +1,7 @@
 { config, pkgs, lib, users, ... }:
 {
   imports =
+    [(import ../../../../../modules/programs/spotify.nix)] ++
     (import ../../../../../modules/overlays) ++
     (import ../../../../../modules/programs);
       home = {
