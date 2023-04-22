@@ -7,7 +7,6 @@
     tsun # testing
     javascript-typescript-langserver
     nodemon # uptimer for js and not only apps
-    lodash # generic library mostly deprecated but let it be
     jsdoc # jsdocuments generator 
     sass # sass compiler 
   ];

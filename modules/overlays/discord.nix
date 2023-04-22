@@ -2,7 +2,8 @@
 
 let
   discordOverlay = pkgs.discord.override { withOpenASAR = true; };
-in {
+in
+{
   home.packages = [
     discordOverlay
   ];

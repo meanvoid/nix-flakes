@@ -2,7 +2,7 @@
 
 {
   services = {
-    nextcloud = { 
+    nextcloud = {
       enable = true;
       package = pkgs.nextcloud26;
       home = "/var/lib/nextcloud";
@@ -24,15 +24,15 @@
       };
       extraOptions = {
         redis = {
-	  host = "/run/redis/redis-nextcloud.sock";
-	  port = 6379;
-	  dbindex = 0;
-	  timeout = 1.5;
-	};
+          host = "/run/redis/redis-nextcloud.sock";
+          port = 6379;
+          dbindex = 0;
+          timeout = 1.5;
+        };
       };
       phpOptions = {
         "opcache.memory_consumption" = "8096M";
-	"opcache.interned_strings_buffer" = "16";
+        "opcache.interned_strings_buffer" = "16";
       };
     };
   };

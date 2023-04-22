@@ -1,7 +1,7 @@
 {
   description = "meanvoid nix/nixos/darwin  nix flake configuration";
 
-  inputs = { 
+  inputs = {
     ### --- nixpkgs --- ###
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/nur";
@@ -9,26 +9,26 @@
     ### --- nixpkgs --- ###
 
     ### --- systems --- ###
-    darwin = { 
+    darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "unstable";
     };
-    wsl = { 
+    wsl = {
       url = "github:nix-community/nixos-wsl";
       inputs.nixpkgs.follows = "unstable";
     };
     ### --- systems --- ###
 
     ### --- modules --- ###
-    home-manager = { 
+    home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "unstable";
     };
-    nixgl = { 
+    nixgl = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "unstable";
     };
-    agenix = { 
+    agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "unstable";
     };
@@ -57,19 +57,21 @@
     ### --- overlays --- ###
   };
 
-  outputs = { 
-  self,
-  nixpkgs,
-  nur,
-  darwin,  
-  home-manager,
-  agenix,
-  doom-emacs, 
-  spicetify-nix, ... }@inputs:
+  outputs =
+    { self
+    , nixpkgs
+    , nur
+    , darwin
+    , home-manager
+    , agenix
+    , doom-emacs
+    , spicetify-nix
+    , ...
+    }@inputs:
     let
-      users = { 
+      users = {
         marie = "ashuramaru";
-	alex = "meanrin";
+        alex = "meanrin";
       };
       #!!! remove
       path = "/etc/nixos";

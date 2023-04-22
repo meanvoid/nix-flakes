@@ -1,7 +1,8 @@
 # !!! move to moduled structure
 { config, lib, pkgs, modulesPath, ... }:
 
-{  imports =
+{
+  imports =
     [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "uas" "sd_mod" "r8169" ];

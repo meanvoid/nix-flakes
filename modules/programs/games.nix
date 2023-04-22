@@ -26,13 +26,11 @@
         vulkan-extension-layer
         vulkan-loader
         vkBasalt
-        # mangohud
+        mangohud
         gamescope
         steamtinkerlaunch
-        (pkgs.callPackage ../../derivations/nixos/default.nix { })
-      ];
-    };
-  };
+        (pkgs.callPackage ../../derivations/nixos/default.nix { }) ]; }; };
   programs.steam = { enable = true; remotePlay.openFirewall = true; };
   environment.sessionVariables = rec { STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d"; };
 }
+### !!! TODO add option with to use this in both home-manager and system configuration
