@@ -17,16 +17,17 @@ in
       nur.nixosModules.nur
       agenix.nixosModules.default
 
-      home-manager.nixosModules.home-manager {
+      home-manager.nixosModules.home-manager
+      {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
           inherit users path spicetify-nix;
-	  host = { hostName = "unsigned-int32"; };
+          host = { hostName = "unsigned-int32"; };
         };
         home-manager.users.${users.marie} = { imports = [ ./unsigned-int32/home/${users.marie}/home.nix ]; };
-	# !!! change to variable
-	home-manager.users.${users.alex} = { imports = [ ./unsigned-int32/home/${users.alex}/home.nix ]; };
+        # !!! change to variable
+        home-manager.users.${users.alex} = { imports = [ ./unsigned-int32/home/${users.alex}/home.nix ]; };
       }
     ];
   };
@@ -37,7 +38,7 @@ in
       inherit inputs users path;
       host = { hostName = "unsigned-int64"; };
     };
-    modules = [ 
+    modules = [
       ./unsigned-int64/configuration.nix
       agenix.nixosModules.default
     ];

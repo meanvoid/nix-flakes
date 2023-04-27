@@ -4,7 +4,7 @@
   imports =
     [ ./hardware-configuration.nix ] ++
     [ (import ./../../../modules/powermanagment/hddparm.nix) ] ++
-    (import ./../../../modules/programs) ++
+    [ (import ./../../../modules/programs/games.nix) ] ++
     (import ./../../../modules/services) ++
     (import ./../../../modules/networking);
 
@@ -283,6 +283,7 @@
     waydroid.enable = true;
   };
   services = {
+    lvm.boot.thin.enable = true;
     hardware = {
       bolt.enable = true;
       openrgb = {
@@ -457,7 +458,7 @@
           "$6$79Eopfg.bX9kzgyR$mPzq3.dFGkCaX2NiAPiTqltBQ0b9gLpEPsX7YdKLyuMbvLssUlfFDiOhZ.FZ.AwS6JbXQ6AXB41Yq5QpJxWJ6/";
         hashedPassword =
           "$6$9BY1nlAvCe/S63yL$yoKImQ99aC8l.CBPqGGrr74mQPPGucug13efoGbBaF.LT9GNUYeOk8ZejZpJhnJjPRkaU0hJTYtplI1rkxVnY.";
-        extraGroups = [ "ashuramaru" "wheel" "networkmanager" "video" "audio" "storage" "docker" "podman" "libvirtd" "kvm" "qemu"  ];
+        extraGroups = [ "ashuramaru" "wheel" "networkmanager" "video" "audio" "storage" "docker" "podman" "libvirtd" "kvm" "qemu" ];
         # openssh.authorizedKeys.keyFiles = [ "/etc/nixos/ssh/auth_ashuramaru" ];
       };
       meanrin = {
@@ -467,7 +468,7 @@
         uid = 1001;
         initialHashedPassword =
           "$6$Vyk8fqJUAWcfHcZ.$JrE0aK4.LSzpDlXNIHs9LFHyoaMXHFe9S0B66Kx8Wv0nVCnh7ACeeiTIkX95YjGoH0R8DavzSS/aSizJH1YgV0";
-        extraGroups = [ "meanrin" "wheel" "networkmanager" "video" "audio" "storage" "docker" "podman" "libvirtd" "kvm" "qemu"  ];
+        extraGroups = [ "meanrin" "wheel" "networkmanager" "video" "audio" "storage" "docker" "podman" "libvirtd" "kvm" "qemu" ];
         # openssh.authorizedKeys.keyFiles = [ "/root/" ];
       };
     };
@@ -481,8 +482,6 @@
 
   environment = {
     systemPackages = with pkgs; [
-    #!!!!!!!! change to different system configurations
-      # dev env # TODO change to shell
       gnumake
       gcc
       autoconf
@@ -510,19 +509,17 @@
       distrobox
       util-linux
       neofetch
+      hyfetch
       nvtop
       zenith-nvidia
-      # config.programs.htop see htop at
       pciutils
       usbutils
       nvme-cli
       fio # I/O tester
       lm_sensors
       libva-utils
-
-      # CUDA (I FUCKING HATE THIS THING)
-      cudatoolkit
-      cudaPackages.cutensor
+      yt-dlp
+      spotdl
 
       # GNOME software and extensions
       gnome.gnome-boxes
@@ -532,7 +529,7 @@
       gnome.adwaita-icon-theme
       gnomeExtensions.appindicator
 
-      # pkgs.firefox-wrapped 
+      # browser
       firefox
       thunderbird
 
@@ -540,13 +537,11 @@
       virt-top
       virt-manager
 
-      # dev apps
-      blender
-      obs-studio
-
       # FFMPEG/ENC/DEC
-      ffmpeg_5-full
-      nv-codec-headers
+      ffmpeg_6-full
+      imagemagick
+      mpv
+      mpd
       gst_all_1.gstreamer
       gst_all_1.gst-vaapi
       gst_all_1.gstreamermm

@@ -5,23 +5,21 @@
     services = [
       {
         type = "socks";
-	bindPort = 1080;
-          auth = [ "strong" ];
-          acl = [{
-            rule = "allow";
-            users = [ "ashuramaru" ];
-          }
-        ];
+        bindPort = 1080;
+        auth = [ "strong" ];
+        acl = [{
+          rule = "allow";
+          users = [ "ashuramaru" ];
+        }];
       }
       {
         type = "proxy";
-	bindPort = 3128;
-	  auth = [ "strong" ];
-	  acl = [{
-	     rule = "allow";
-	     users = [ "minecraft" ];
-	   }
-	  ];
+        bindPort = 3128;
+        auth = [ "strong" ];
+        acl = [{
+          rule = "allow";
+          users = [ "minecraft" ];
+        }];
       }
     ];
     usersFile = "/etc/3proxy.passwd";
