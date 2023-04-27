@@ -2,6 +2,7 @@
 let
   ip = "${pkgs.iptables}/bin/iptables";
   ip6 = "${pkgs.iptables}/bin/ip6tables";
+
 in
 {
   networking = {
@@ -22,10 +23,10 @@ in
         '';
         preDown = ''
           # Accept traffic from wireguard0
-          ${ip4} -D FORWARD -i wireguard0 -j ACCEPT
+          ${ip} -D FORWARD -i wireguard0 -j ACCEPT
           # IPv4 rules
-          ${ip4} -t nat -D POSTROUTING -s 10.64.10.1/24 -o enp1s0 -j MASQUERADE
-          ${ip4} -t nat -D POSTROUTING -s 192.168.10.1/24 -o enp1s0 -j MASQUERADE
+          ${ip} -t nat -D POSTROUTING -s 10.64.10.1/24 -o enp1s0 -j MASQUERADE
+          ${ip} -t nat -D POSTROUTING -s 192.168.10.1/24 -o enp1s0 -j MASQUERADE
           # IPv6 rules
           ${ip6} -t nat -D POSTROUTING -s fd02:f8eb:7ca4:5f4c::1/64 -o enp1s0 -j MASQUERADE
           ${ip6} -t nat -D POSTROUTING -s dced:2718:5f06:718a::1/64 -o enp1s0 -j MASQUERADE
