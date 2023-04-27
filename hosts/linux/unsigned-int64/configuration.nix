@@ -1,11 +1,10 @@
 { config, pkgs, lib, agenix, ... }:
 
 {
-  imports =
-    [ ./hardware-configuration.nix ] ++
-    [ (import ./../../../modules/server/minecraft.nix) ] ++
-    (import ./networking);
-
+  imports = 
+  [ ./hardware-configuration.nix ] ++
+  (import ./networking);
+  
   age.secrets = {
     wireguard-server.file = ./../../../secrets/wireguard-server.age;
     wireguard-shared.file = ./../../../secrets/wireguard-shared.age;
