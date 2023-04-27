@@ -9,7 +9,7 @@ in
       wireguard0 = {
         address = [ "192.168.10.1/24" "dced:2718:5f06:718a::1/64" "10.64.10.1/24" "fd02:f8eb:7ca4:5f4c::1/64" ];
         listenPort = 51820;
-        privateKeyFile = config.age.secrets.wireguard-server.path
+        privateKeyFile = config.age.secrets.wireguard-server.path;
         postUp = ''
           # Accept traffic from wireguard0
           ${ip} -A FORWARD -i wireguard0 -j ACCEPT
@@ -45,13 +45,13 @@ in
           # pc
           {
             publicKey = "OZg74pRtgDUkQjINEOHM0fnzJsvbLyKFdx6HzIi1Tkg=";
-            # presharedKeyFile = "/root/secrets/wireguard/julio.psk";
+            presharedKeyFile = config.age.secrets.wireguard-server-shared_julio.path;
             allowedIPs = [ "10.64.10.8/32" "fd02:f8eb:7ca4:5f4c::8/128" ];
           }
           # ipad
           {
             publicKey = "w7OuonhifNvieZajGNd6u5a/NwGTDB9iq5dYnPzqiUM=";
-            # presharedKeyFile = "/root/secrets/wireguard/julio.psk";
+            presharedKeyFile = config.age.secrets.wireguard-server-shared_julio.path;
             allowedIPs = [ "10.64.10.9/32" "fd02:f8eb:7ca4:5f4c::9/128" ];
           }
           # --- Julio --- #
