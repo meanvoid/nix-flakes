@@ -7,6 +7,7 @@
   
   age.secrets = {
     wireguard-server.file = ./../../../secrets/wireguard-server.age;
+    wireguard0.file = ./../../../secrets/wireguard0.age;
     wireguard-shared.file = ./../../../secrets/wireguard-shared.age;
     wireguard-server-shared_julio.file = ./../../../secrets/wireguard-server-shared_julio.age;
   };
