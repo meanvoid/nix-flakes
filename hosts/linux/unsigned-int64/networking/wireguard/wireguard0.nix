@@ -46,13 +46,13 @@ in
           ${iptables} -t nat -D POSTROUTING -s 192.168.10.1/24 -o eth0 -j MASQUERADE
           ${ip6tables} -t nat -D POSTROUTING -s fd02:f8eb:7ca4:5f4c::1/64 -o eth0 -j MASQUERADE
           ${ip6tables} -t nat -D POSTROUTING -s dced:2718:5f06:718a::1/64 -o eth0 -j MASQUERADE
-        '';
+          '';
 
         peers = [
           # --- Marie --- #
           # ashuramaru@nixos
           {
-            publicKey = "7mwL4c31JhxE5Sgu97wyWyLOGo45Q9wItw2KRB1LTyc=";
+            publicKey = "QCg3hCNix8lMAw+l/icN7xRjmautUjMK6tqC+GzOg2I=";
             presharedKeyFile = config.age.secrets.wireguard-shared.path;
             allowedIPs = [ "192.168.10.100/32" "dced:2718:5f06:718a::100/128" ];
           }
