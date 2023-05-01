@@ -182,7 +182,6 @@
         inteface = "wireguard0";
         server = [ "1.1.1.1" ];
        };
-       resolveLocalQueries = true;
     };
   };
   programs = {
