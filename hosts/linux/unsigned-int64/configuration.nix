@@ -179,13 +179,16 @@
     };
     dnsmasq = {
       enable = true;
-      extraConfig = ''
-        interface=wireguard0
-      '';
-    #   settings = {
-    #     inteface = "wireguard0";
-    #     server = [ "1.1.1.1" ];
-    #    };
+      settings = {
+        inteface = "wireguard0";
+        server = [ 
+          # adguard dns
+          "94.140.14.14" 
+          "94.140.15.15"
+          # cloudflare
+          "1.1.1.1" 
+        ];
+      };
     };
   };
   programs = {
