@@ -20,6 +20,7 @@ in
     };
     wg0 = {
       address = [ "192.168.10.100/24" ];
+      dns = [ "192.168.10.1" "dced:2718:5f06:718a::1" ];
       privateKeyFile = private;
       peers = [{
         publicKey = "7mwL4c31JhxE5Sgu97wyWyLOGo45Q9wItw2KRB1LTyc=";

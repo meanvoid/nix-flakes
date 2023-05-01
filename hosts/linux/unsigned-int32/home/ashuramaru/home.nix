@@ -4,8 +4,8 @@
     [(import ../../../../../modules/programs/spotify.nix)] ++
     (import ../../../../../modules/overlays) ++
     (import ../../../../../modules/programs);
-      home = {
-        username = "${users.marie}";
+    home = {
+      username = "${users.marie}";
 	packages = with pkgs; [
     # Audio
     easyeffects
