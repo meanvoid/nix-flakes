@@ -22,11 +22,11 @@ in
         privateKeyFile = config.age.secrets.wireguard-server.path;
         postUp = ''
           # Drop incoming SSH traffic on wireguard0 interface
-          ${iptables}/bin/iptables -I INPUT -p tcp --dport 22 -i wireguard0 -j DROP
+          ${iptables} -I INPUT -p tcp --dport 22 -i wireguard0 -j DROP
           # Allow incoming SSH traffic on wg-ports0 interface only for source IP range
-          ${iptables}/bin/iptables -I INPUT -p tcp --dport 22 -i wg-ports0 -m iprange --src-range 172.168.1.50-172.168.1.100 -j ACCEPT
+          ${iptables} -I INPUT -p tcp --dport 22 -i wg-ports0 -m iprange --src-range 172.168.1.50-172.168.1.100 -j ACCEPT
           # Allow incoming SSH traffic on wireguard0 interface only for source IP range
-          ${iptables}/bin/iptables -I INPUT -p tcp --dport 22 -i wireguard0 -m iprange --src-range 192.168.10.50-192.168.10.100 -j ACCEPT
+          ${iptables} -I INPUT -p tcp --dport 22 -i wireguard0 -m iprange --src-range 192.168.10.50-192.168.10.100 -j ACCEPT
           
           # Allow traffic from wireguard0 interface
           ${iptables} -A FORWARD -i wireguard0 -j ACCEPT
