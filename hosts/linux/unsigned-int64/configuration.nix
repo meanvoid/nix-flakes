@@ -180,9 +180,17 @@
     dnsmasq = {
       enable = true;
       settings = {
-        inteface = "wireguard0";
+        server = [ 
+          # adguard dns
+          "94.140.14.14" 
+          "94.140.15.15"
+          # cloudflare
+          "1.1.1.1" 
+        ];
       };
-      resolveLocalQueries = true; 
+      extraConfig = ''
+        interface=wireguard0
+      '';
     };
   };
   programs = {
