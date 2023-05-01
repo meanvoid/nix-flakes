@@ -32,20 +32,20 @@ in
           ${iptables} -A FORWARD -i wireguard0 -j ACCEPT
           
           # NAT rules for IPv4 and IPv6 traffic
-          ${iptables} -t nat -A POSTROUTING -s 10.64.10.1/24 -o enp1s0 -j MASQUERADE
-          ${iptables} -t nat -A POSTROUTING -s 192.168.10.1/24 -o enp1s0 -j MASQUERADE
-          ${ip6tables} -t nat -A POSTROUTING -s fd02:f8eb:7ca4:5f4c::1/64 -o enp1s0 -j MASQUERADE
-          ${ip6tables} -t nat -A POSTROUTING -s dced:2718:5f06:718a::1/64 -o enp1s0 -j MASQUERADE
+          ${iptables} -t nat -A POSTROUTING -s 10.64.10.1/24 -o eth0 -j MASQUERADE
+          ${iptables} -t nat -A POSTROUTING -s 192.168.10.1/24 -o eth0 -j MASQUERADE
+          ${ip6tables} -t nat -A POSTROUTING -s fd02:f8eb:7ca4:5f4c::1/64 -o eth0 -j MASQUERADE
+          ${ip6tables} -t nat -A POSTROUTING -s dced:2718:5f06:718a::1/64 -o eth0 -j MASQUERADE
         '';
         preDown = ''
           # Block traffic from wireguard0 interface
           ${iptables} -D FORWARD -i wireguard0 -j ACCEPT
           
           # NAT rules for IPv4 and IPv6 traffic
-          ${iptables} -t nat -D POSTROUTING -s 10.64.10.1/24 -o enp1s0 -j MASQUERADE
-          ${iptables} -t nat -D POSTROUTING -s 192.168.10.1/24 -o enp1s0 -j MASQUERADE
-          ${ip6tables} -t nat -D POSTROUTING -s fd02:f8eb:7ca4:5f4c::1/64 -o enp1s0 -j MASQUERADE
-          ${ip6tables} -t nat -D POSTROUTING -s dced:2718:5f06:718a::1/64 -o enp1s0 -j MASQUERADE
+          ${iptables} -t nat -D POSTROUTING -s 10.64.10.1/24 -o eth0 -j MASQUERADE
+          ${iptables} -t nat -D POSTROUTING -s 192.168.10.1/24 -o eth0 -j MASQUERADE
+          ${ip6tables} -t nat -D POSTROUTING -s fd02:f8eb:7ca4:5f4c::1/64 -o eth0 -j MASQUERADE
+          ${ip6tables} -t nat -D POSTROUTING -s dced:2718:5f06:718a::1/64 -o eth0 -j MASQUERADE
         '';
 
         peers = [

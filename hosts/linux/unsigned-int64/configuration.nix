@@ -59,10 +59,16 @@
           }
         ];
       };
+      nat = {
+        enable = true;
+        enableIPv6 = true;
+        externalInterface = "eth0";
+        internalInterfaces = [ "wireguard0" ];
+      };
     };
     firewall = {
       enable = true;
-      allowedUDPPorts = [ 53 3128 51280 ];
+      allowedUDPPorts = [ 53 3128 51280 51820 ];
       allowedTCPPorts = [ 53 80 443 3128 25565 ];
       extraCommands = ''
         ${pkgs.iptables}/bin/iptables -t nat -A PREROUTING -i enp1s0 -p tcp --dport 25565 -j DNAT --to-destination 172.168.10.2:25565
@@ -168,6 +174,15 @@
         kbdInteractiveAuthentication = true;
         permitRootLogin = "prohibit-password";
       };
+    };
+    dnsmasq = {
+      enable = true;
+      settings = {
+        inteface = wireguard0;
+        # server = [ ]
+      };
+      # !!!
+      # resolveLocalQueries = true;
     };
   };
   programs = {
