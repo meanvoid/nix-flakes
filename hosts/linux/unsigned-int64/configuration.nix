@@ -177,13 +177,16 @@
         permitRootLogin = "prohibit-password";
       };
     };
-    # dnsmasq = {
-    #   enable = true;
+    dnsmasq = {
+      enable = true;
+      extraConfig = ''
+        interface=wireguard0
+      '';
     #   settings = {
     #     inteface = "wireguard0";
     #     server = [ "1.1.1.1" ];
     #    };
-    # };
+    };
   };
   programs = {
     gnupg.agent = {
