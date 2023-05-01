@@ -180,15 +180,14 @@
     dnsmasq = {
       enable = true;
       settings = {
-        listenAddresses = [ "192.168.10.1" "dced:2718:5f06:718a::1" "10.64.10.1" ];
-        onlyFrom = [ "192.168.10.0/24" "10.64.10.0/24" ];
-        server = [ 
-          # adguard dns
-          "94.140.14.14" 
-          "94.140.15.15"
-          # cloudflare
-          "1.1.1.1" 
-        ];
+        inteface = "wireguard0";
+        # server = [ 
+        #   # adguard dns
+        #   "94.140.14.14" 
+        #   "94.140.15.15"
+        #   # cloudflare
+        #   "1.1.1.1" 
+        # ];
       };
     };
   };
