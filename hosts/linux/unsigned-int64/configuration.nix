@@ -178,7 +178,7 @@
     dnsmasq = {
       enable = true;
       settings = {
-        inteface = wireguard0;
+        inteface = "wireguard0";
         # server = [ ]
       };
       # !!!
