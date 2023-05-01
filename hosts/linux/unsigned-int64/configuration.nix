@@ -59,12 +59,12 @@
           }
         ];
       };
-      nat = {
+    };
+    nat = {
         enable = true;
         enableIPv6 = true;
         externalInterface = "eth0";
         internalInterfaces = [ "wireguard0" ];
-      };
     };
     firewall = {
       enable = true;
@@ -174,15 +174,6 @@
         kbdInteractiveAuthentication = true;
         permitRootLogin = "prohibit-password";
       };
-    };
-    dnsmasq = {
-      enable = true;
-      settings = {
-        inteface = "wireguard0";
-        # server = [ ]
-      };
-      # !!!
-      # resolveLocalQueries = true;
     };
   };
   programs = {
