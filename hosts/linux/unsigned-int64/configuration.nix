@@ -63,7 +63,7 @@
     nat = {
         enable = true;
         enableIPv6 = true;
-        externalInterface = "eth0";
+        externalInterface = "enp1s0";
         internalInterfaces = [ "wireguard0" ];
     };
     firewall = {
@@ -176,14 +176,14 @@
         permitRootLogin = "prohibit-password";
       };
     };
-    dnsmasq = {
-      enable = true;
-      settings = {
-        inteface = "wireguard0";
-        server = [ "1.1.1.1" ];
-       };
-       resolveLocalQueries = true;
-    };
+    # dnsmasq = {
+    #   enable = true;
+    #   settings = {
+    #     inteface = "wireguard0";
+    #     server = [ "1.1.1.1" ];
+    #    };
+    #    resolveLocalQueries = true;
+    # };
   };
   programs = {
     gnupg.agent = {
