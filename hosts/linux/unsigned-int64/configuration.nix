@@ -65,14 +65,11 @@
       allowedUDPPorts = [ 53 3128 51280 ];
       allowedTCPPorts = [ 53 80 443 3128 25565 ];
       extraCommands = ''
-                ${pkgs.iptables}/bin/iptables -I INPUT -p tcp --dport 22 -i wireguard0 -j DROP
-        	${pkgs.iptables}/bin/iptables -I INPUT -p tcp -i wireguard0 -s 172.168.1.100 -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -t nat -A PREROUTING -i enp1s0 -p tcp --dport 25565 -j DNAT --to-destination 172.168.10.2:25565
+        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o wg-ports0 -p tcp --dport 25565 -d 172.168.10.2 -j SNAT --to-source 172.168.10.1
 
-        	${pkgs.iptables}/bin/iptables -t nat -A PREROUTING -i enp1s0 -p tcp --dport 25565 -j DNAT --to-destination 172.168.10.2:25565
-        	${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o wg-ports0 -p tcp --dport 25565 -d 172.168.10.2 -j SNAT --to-source 172.168.10.1
-
-        	${pkgs.iptables}/bin/iptables -A FORWARD -i enp1s0 -o wg-ports0 -p tcp --dport 25565 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
-        	${pkgs.iptables}/bin/iptables -A FORWARD -i wg-ports0 -o enp1s0 -p tcp --sport 25565 -m state --state ESTABLISHED,RELATED -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -A FORWARD -i enp1s0 -o wg-ports0 -p tcp --dport 25565 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -A FORWARD -i wg-ports0 -o enp1s0 -p tcp --sport 25565 -m state --state ESTABLISHED,RELATED -j ACCEPT
       '';
       extraStopCommands = ''
         ${pkgs.iptables}/bin/iptables -t nat -D PREROUTING -i enp1s0 -p tcp --dport 25565 -j DNAT --to-destination 172.168.10.2:25565
