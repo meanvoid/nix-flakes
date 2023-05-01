@@ -20,10 +20,10 @@ in
     };
     wg0 = {
       address = [ "192.168.10.100/24" ];
-      dns = [ "192.168.10.1" "dced:2718:5f06:718a::1" ];
+      # dns = [ "192.168.10.1" "dced:2718:5f06:718a::1" ];
       privateKeyFile = private;
       peers = [{
-        publicKey = "";
+        publicKey = "HU4h1/FqzNs5C6Vo5bXKVEE2bDq5PQe2LgINZywcpic=";
         presharedKeyFile = shared;
         allowedIPs = [ "192.168.10.1/32" ];
         endpoint = "tenjin-dk.com:51820";
