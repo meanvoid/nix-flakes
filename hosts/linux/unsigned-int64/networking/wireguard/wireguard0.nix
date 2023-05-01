@@ -19,7 +19,7 @@ in
           "fd02:f8eb:7ca4:5f4c::1/64" 
         ];
         listenPort = 51820;
-        privateKeyFile = config.age.secrets.wireguard-server.path;
+        privateKeyFile = config.age.secrets.wireguard0.path;
         postUp = ''
           # Drop incoming SSH traffic on wireguard0 interface
           ${iptables} -I INPUT -p tcp --dport 22 -i wireguard0 -j DROP
