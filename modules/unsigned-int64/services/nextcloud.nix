@@ -14,7 +14,7 @@ in {
   #   group = "nextcloud";
   # };
   services.nextcloud = {
-    enable = true;
+    enable = false;
     package = pkgs.nextcloud26;
     extraApps = with pkgs.nextcloud26Packages.apps; {
       inherit tasks polls notes mail news contacts calendar deck bookmarks keeweb;
