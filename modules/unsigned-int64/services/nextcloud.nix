@@ -10,8 +10,8 @@ in {
   age.secrets.admin = {
     file = "${path}/admin.age";
     mode = "770";
-    owner = "d";
-    group = "d";
+    owner = "nextcloud";
+    group = "nextcloud";
   };
   services.nextcloud = {
     enable = true;
