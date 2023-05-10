@@ -39,12 +39,12 @@ in {
       adminpassFile = config.age.secrets.admin.path;
     };
     extraOptions = {
-      redis = {
-        host = "/run/redis/redis-nextcloud.sock";
-        port = 6379;
-        dbindex = 0;
-        timeout = 1.5;
-      };
+      # redis = {
+      #   host = "/run/redis/redis-nextcloud.sock";
+      #   port = 6379;
+      #   dbindex = 0;
+      #   timeout = 1.5;
+      # };
       # "memcache.local" = "\\OC\\Memcache\\Redis";
       # "memcache.distributed" = "\\OC\\Memcache\\Redis";
       # "memcache.locking" = "\\OC\\Memcache\\Redis";
