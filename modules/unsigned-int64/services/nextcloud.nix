@@ -7,20 +7,19 @@
 }: let
   path = ./../../../secrets;
 in {
-  # age.secrets.admin = {
-  #   file = "${path}/admin.age";
-  #   mode = "770";
-  #   owner = "nextcloud";
-  #   group = "nextcloud";
-  # };
+  age.secrets.admin = {
+    file = "${path}/admin.age";
+    mode = "770";
+    owner = "nextcloud";
+    group = "nextcloud";
+  };
   services.nextcloud = {
-    enable = false;
+    enable = true;
     package = pkgs.nextcloud26;
     extraApps = with pkgs.nextcloud26Packages.apps; {
       inherit tasks polls notes mail news contacts calendar deck bookmarks keeweb;
     };
     extraAppsEnable = true;
-    home = "/var/lib/nextcloud";
     hostName = "cloud.tenjin-dk.com";
     https = true;
     caching = {
@@ -59,11 +58,11 @@ in {
     after = ["postgresql.service"];
   };
 
-  # services.redis.servers.nextcloud = {
-  #   enable = true;
-  #   user = "nextcloud";
-  #   port = 6379;
-  # };
+  services.redis.servers.nextcloud = {
+    enable = true;
+    user = "nextcloud";
+    port = 6379;
+  };
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
     enableACME = true;
