@@ -1,16 +1,11 @@
 { config, pkgs, lib, agenix, ... }:
 
 {
-  imports = 
-  [ ./hardware-configuration.nix ] ++
-  (import ./networking);
-  
-  age.secrets = {
-    wireguard-server.file = ./../../../secrets/wireguard-server.age;
-    wireguard0.file = ./../../../secrets/wireguard0.age;
-    wireguard-shared.file = ./../../../secrets/wireguard-shared.age;
-    wireguard-server-shared_julio.file = ./../../../secrets/wireguard-server-shared_julio.age;
-  };
+  imports =
+    [ ./hardware-configuration.nix ] ++
+    (import ./../../../modules/unsigned-int64/networking) ++
+    (import ./../../../modules/unsigned-int64/services);
+
   nix = {
     gc = {
       automatic = true;
@@ -62,15 +57,15 @@
       };
     };
     nat = {
-        enable = true;
-        enableIPv6 = true;
-        externalInterface = "enp1s0";
-        internalInterfaces = [ "wireguard0" ];
+      enable = true;
+      enableIPv6 = true;
+      externalInterface = "enp1s0";
+      internalInterfaces = [ "wireguard0" ];
     };
     firewall = {
       enable = true;
-      allowedUDPPorts = [ 53 3128 51280 51820 ];
-      allowedTCPPorts = [ 53 80 443 3128 25565 ];
+      allowedUDPPorts = [ 53 1080 3128 51280 51820 ];
+      allowedTCPPorts = [ 53 80 443 1080 3128 25565 ];
       extraCommands = ''
         ${pkgs.iptables}/bin/iptables -t nat -A PREROUTING -i enp1s0 -p tcp --dport 25565 -j DNAT --to-destination 172.168.10.2:25565
         ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o wg-ports0 -p tcp --dport 25565 -d 172.168.10.2 -j SNAT --to-source 172.168.10.1
@@ -180,12 +175,12 @@
     dnsmasq = {
       enable = true;
       settings = {
-        server = [ 
+        server = [
           # adguard dns
-          "94.140.14.14" 
+          "94.140.14.14"
           "94.140.15.15"
           # cloudflare
-          "1.1.1.1" 
+          "1.1.1.1"
         ];
       };
       extraConfig = ''

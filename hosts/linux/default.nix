@@ -1,8 +1,7 @@
 { lib, inputs, self, nixpkgs, nur, agenix, users, path, home-manager, spicetify-nix, ... }:
 
 let
-  #!!!
-  lib = nixpkgs.lib;
+  lib = nixpkgs.lib; 
 in
 {
   unsigned-int32 = lib.nixosSystem {
@@ -25,9 +24,10 @@ in
           inherit users path spicetify-nix;
           host = { hostName = "unsigned-int32"; };
         };
-        home-manager.users.${users.marie} = { imports = [ ./unsigned-int32/home/${users.marie}/home.nix ]; };
-        # !!! change to variable
-        home-manager.users.${users.alex} = { imports = [ ./unsigned-int32/home/${users.alex}/home.nix ]; };
+        home-manager.users = lib.mkMerge (lib.mapAttrsToList 
+          (user: userName: { 
+            "${userName}" = { import = "./unsigned-int32/home/${userName}"; }; 
+          }) users);
       }
     ];
   };

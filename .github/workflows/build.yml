@@ -13,7 +13,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        device_name: [unsigned-int32, unsigned-int64]
+        device_name: [
+          unsigned-int32, 
+          unsigned-int64
+        ]
     steps:
     - uses: actions/checkout@v3
     - uses: cachix/install-nix-action@v20

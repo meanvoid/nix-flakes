@@ -22,7 +22,7 @@ let
   };
 in
 {
-  macmini = darwinSystem {
+  unsigned-int8 = darwinSystem {
     inherit system;
     specialArgs = { inherit users inputs; };
     modules = [
@@ -36,7 +36,7 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit users; };
-        home-manager.users.${users} = import ./home-manager/home.nix;
+        home-manager.users.${users} = import ./home/home.nix;
       }
     ];
   };

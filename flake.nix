@@ -72,8 +72,10 @@
       users = {
         marie = "ashuramaru";
         alex = "meanrin";
+        twi = "twithefurry";
+        kelly = "kellyreanimausu";
+        morgana = "theultydespair";
       };
-      #!!! remove
       path = "/etc/nixos";
     in
     {

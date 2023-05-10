@@ -5,8 +5,8 @@
     [ ./hardware-configuration.nix ] ++
     [ (import ./../../../modules/powermanagment/hddparm.nix) ] ++
     [ (import ./../../../modules/programs/games.nix) ] ++
-    (import ./../../../modules/services) ++
-    (import ./../../../modules/networking);
+    (import ./../../../modules/unsigned-int32/services) ++
+    (import ./../../../modules/unsigned-int32/networking);
 
   age.secrets = {
     wireguard-client.file = ./../../../secrets/wireguard-client.age;
