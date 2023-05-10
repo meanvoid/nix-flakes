@@ -59,11 +59,11 @@ in {
     after = ["postgresql.service"];
   };
 
-  services.redis.servers.nextcloud = {
-    enable = true;
-    user = "nextcloud";
-    port = 6379;
-  };
+  # services.redis.servers.nextcloud = {
+  #   enable = true;
+  #   user = "nextcloud";
+  #   port = 6379;
+  # };
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
     enableACME = true;
