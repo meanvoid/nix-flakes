@@ -23,10 +23,10 @@ in {
     home = "/var/lib/nextcloud";
     hostName = "cloud.tenjin-dk.com";
     https = true;
-    # caching = {
-      # redis = true;
+    caching = {
+      redis = true;
       # apcu = false;
-    # };
+    };
     maxUploadSize = "10G";
     config = {
       overwriteProtocol = "https";
@@ -39,15 +39,15 @@ in {
       adminpassFile = config.age.secrets.admin.path;
     };
     extraOptions = {
-      # redis = {
-      #   host = "/run/redis/redis-nextcloud.sock";
-      #   port = 6379;
-      #   dbindex = 0;
-      #   timeout = 1.5;
-      # };
-      # "memcache.local" = "\\OC\\Memcache\\Redis";
-      # "memcache.distributed" = "\\OC\\Memcache\\Redis";
-      # "memcache.locking" = "\\OC\\Memcache\\Redis";
+      redis = {
+        host = "/run/redis/redis-nextcloud.sock";
+        port = 6379;
+        dbindex = 0;
+        timeout = 1.5;
+      };
+      "memcache.local" = "\\OC\\Memcache\\Redis";
+      "memcache.distributed" = "\\OC\\Memcache\\Redis";
+      "memcache.locking" = "\\OC\\Memcache\\Redis";
     };
     phpOptions = {
       "opcache.memory_consumption" = "8096M";
