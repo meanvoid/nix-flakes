@@ -16,9 +16,9 @@ in {
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud26;
-    # extraApps = with pkgs.nextcloud26Packages.apps; {
-      # inherit tasks polls notes mail news contacts calendar deck bookmarks keeweb;
-    # };
+    extraApps = with pkgs.nextcloud26Packages.apps; {
+      inherit tasks polls notes mail news contacts calendar deck bookmarks keeweb;
+    };
     extraAppsEnable = true;
     home = "/var/lib/nextcloud";
     hostName = "cloud.tenjin-dk.com";
@@ -54,10 +54,10 @@ in {
       "opcache.interned_strings_buffer" = "16";
     };
   };
-  systemd.services.nextcloud-setup = {
-    requires = ["postgresql.service"];
-    after = ["postgresql.service"];
-  };
+  # systemd.services.nextcloud-setup = {
+  #   requires = ["postgresql.service"];
+  #   after = ["postgresql.service"];
+  # };
 
   services.redis.servers.nextcloud = {
     enable = true;
