@@ -1,8 +1,12 @@
-{ config, pkgs, lib, users, ... }:
 {
-  imports = [ ./programs.nix ];
+  config,
+  pkgs,
+  lib,
+  users,
+  ...
+}: {
+  imports = [./programs.nix];
   home = {
-
     # Todo move every package to different files
 
     packages = with pkgs; [

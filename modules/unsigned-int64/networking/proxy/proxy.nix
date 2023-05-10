@@ -1,25 +1,33 @@
-{ config, pkgs, lib, ... }:
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   services._3proxy = {
     enable = true;
     services = [
       {
         type = "socks";
         bindPort = 1080;
-        auth = [ "strong" ];
-        acl = [{
-          rule = "allow";
-          users = [ "ashuramaru" "marie" "alex" ];
-        }];
+        auth = ["strong"];
+        acl = [
+          {
+            rule = "allow";
+            users = ["ashuramaru" "marie" "alex"];
+          }
+        ];
       }
       {
         type = "proxy";
         bindPort = 3128;
-        auth = [ "strong" ];
-        acl = [{
-          rule = "allow";
-          users = [ "tgsk" ];
-        }];
+        auth = ["strong"];
+        acl = [
+          {
+            rule = "allow";
+            users = ["tgsk"];
+          }
+        ];
       }
     ];
     usersFile = "/etc/3proxy.passwd";

@@ -1,8 +1,13 @@
-{ config, pkgs, lib, users, ... }:
 {
+  config,
+  pkgs,
+  lib,
+  users,
+  ...
+}: {
   imports =
-    (import ../modules/shared/overlays) ++
-    (import ../modules/${users.marie}/programs);
+    (import ../modules/shared/overlays)
+    ++ (import ../modules/${users.marie}/programs);
   home = {
     username = "${users.marie}";
     packages = with pkgs; [

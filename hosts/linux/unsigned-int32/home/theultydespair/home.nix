@@ -1,5 +1,10 @@
-{ config, lib, pkgs, users, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  users,
+  ...
+}: {
   home = {
     username = "${users.morgana}";
     homeDirectory = "/home/${users.morgana}";

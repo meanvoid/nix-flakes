@@ -1,5 +1,10 @@
-{ config, lib, pkgs, users, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  users,
+  ...
+}: {
   home = {
     username = "${users.twi}";
     homeDirectory = "/home/${users.twi}";

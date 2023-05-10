@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   environment.etc."mdadm.conf".text = ''
     HOMEHOST <ignore>
     ARRAY /dev/md0 UUID=2d0be890:bc0f45fb:96a52424:865c564f

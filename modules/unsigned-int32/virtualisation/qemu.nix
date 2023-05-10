@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   virtualisation.libvirtd.qemu = {
     ovmf = {
       enable = true;
@@ -8,7 +12,7 @@
         pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd
       ];
     };
-    swtpm = { enable = true; };
+    swtpm = {enable = true;};
     runAsRoot = true;
   };
 }

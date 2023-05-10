@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.opentabletdriver = {

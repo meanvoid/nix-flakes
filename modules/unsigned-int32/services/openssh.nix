@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   services.openssh = {
     enable = true;
     settings = {
@@ -8,7 +11,7 @@
       kbdInteractiveAuthentication = true;
       permitRootLogin = "prohibit-password";
     };
-    ports = [ 22 52755 ];
+    ports = [22 52755];
     listenAddresses = [
       {
         addr = "192.168.1.100";

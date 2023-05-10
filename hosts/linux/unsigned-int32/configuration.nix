@@ -1,18 +1,25 @@
-{ lib, inputs, config, pkgs, agenix, users, path, ... }:
-
 {
+  lib,
+  inputs,
+  config,
+  pkgs,
+  agenix,
+  users,
+  path,
+  ...
+}: {
   imports =
-    [ ./hardware-configuration.nix ] ++
-    [ (import ./../../../modules/shared/desktop/gnome.nix) ] ++
-    (import ./../../../modules/unsigned-int32/environment) ++
-    (import ./../../../modules/unsigned-int32/networking) ++
-    (import ./../../../modules/unsigned-int32/programs) ++
-    (import ./../../../modules/unsigned-int32/services) ++
-    (import ./../../../modules/unsigned-int32/virtualisation) ++
-    (import ./../../../modules/shared/settings);
+    [./hardware-configuration.nix]
+    ++ [(import ./../../../modules/shared/desktop/gnome.nix)]
+    ++ (import ./../../../modules/unsigned-int32/environment)
+    ++ (import ./../../../modules/unsigned-int32/networking)
+    ++ (import ./../../../modules/unsigned-int32/programs)
+    ++ (import ./../../../modules/unsigned-int32/services)
+    ++ (import ./../../../modules/unsigned-int32/virtualisation)
+    ++ (import ./../../../modules/shared/settings);
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    extraModulePackages = with config.boot.kernelPackages; [ zenpower vendor-reset ];
+    extraModulePackages = with config.boot.kernelPackages; [zenpower vendor-reset];
     kernelParams = [
       "video=DP-1:2560x1440@120"
       "video=DP-2:2560x1440@120"
@@ -39,9 +46,13 @@
               gracePeriod = 30;
               keyLength = 64;
               saltLength = 64;
-              storage = { device = "/dev/nvme0n1p1"; fsType = "vfat"; path = "/crypt-storage/default_slot0"; };
+              storage = {
+                device = "/dev/nvme0n1p1";
+                fsType = "vfat";
+                path = "/crypt-storage/default_slot0";
+              };
             };
-            crypttabExtraOpts = [ "fido2-device=auto" ];
+            crypttabExtraOpts = ["fido2-device=auto"];
           };
           "based" = {
             device = "/dev/md5";
@@ -52,9 +63,13 @@
               gracePeriod = 30;
               keyLength = 64;
               saltLength = 64;
-              storage = { device = "/dev/nvme0n1p1"; fsType = "vfat"; path = "/crypt-storage/hdd_slot0"; };
+              storage = {
+                device = "/dev/nvme0n1p1";
+                fsType = "vfat";
+                path = "/crypt-storage/hdd_slot0";
+              };
             };
-            crypttabExtraOpts = [ "fido2-device=auto" ];
+            crypttabExtraOpts = ["fido2-device=auto"];
           };
         };
       };
@@ -65,7 +80,7 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
-      generationsDir = { copyKernels = true; };
+      generationsDir = {copyKernels = true;};
       systemd-boot = {
         enable = true;
         consoleMode = "keep";
@@ -138,8 +153,7 @@
       enable = true;
       enableIPv6 = true;
       externalInterface = "eth0";
-      internalInterfaces = [ "ve-+" "ports0" ];
-
+      internalInterfaces = ["ve-+" "ports0"];
     };
     networkmanager = {
       enable = true;
@@ -147,13 +161,13 @@
       dns = "dnsmasq";
       ethernet.macAddress = "preserve";
       firewallBackend = "nftables";
-      unmanaged = [ "interface-name:ve-*" ];
+      unmanaged = ["interface-name:ve-*"];
     };
     firewall = {
       enable = true;
       allowPing = true;
-      allowedUDPPorts = [ 53 ];
-      allowedTCPPorts = [ 53 80 443 25565 ];
+      allowedUDPPorts = [53];
+      allowedTCPPorts = [53 80 443 25565];
     };
   };
 
@@ -180,7 +194,7 @@
         };
         url = {
           "https://github.com/" = {
-            insteadOf = [ "gh:" "github:" ];
+            insteadOf = ["gh:" "github:"];
           };
         };
       };
@@ -263,7 +277,7 @@
   time.timeZone = "Europe/Kyiv";
   i18n = {
     defaultLocale = "en_US.utf8";
-    supportedLocales = [ "all" ];
+    supportedLocales = ["all"];
   };
 
   system.stateVersion = "23.05";

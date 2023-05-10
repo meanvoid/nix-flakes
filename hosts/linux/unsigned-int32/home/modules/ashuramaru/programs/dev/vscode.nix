@@ -1,8 +1,12 @@
-{ config, pkgs, lib, ... }:
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
+    package = pkgs.vscode.fhsWithPackages (ps: with ps; [rustup zlib openssl.dev pkg-config]);
     # enableUpdateCheck = true;
     # enableExtensionUpdateCheck = true;
     mutableExtensionsDir = true;
@@ -49,7 +53,7 @@
       prisma.prisma # nodejs.prisma
       vscodevim.vim # vim
       # wholroyd.jinja # jinja
-      yzhang.markdown-all-in-one # markdown 
+      yzhang.markdown-all-in-one # markdown
 
       # Utils
       christian-kohler.path-intellisense # file name intellisense

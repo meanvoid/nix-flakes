@@ -1,5 +1,10 @@
-{ pkgs, lib, config, usesr, ... }:
 {
+  pkgs,
+  lib,
+  config,
+  usesr,
+  ...
+}: {
   # Nix configuration ------------------------------------------------------------------------------
   nix = {
     package = pkgs.nix;
@@ -16,12 +21,14 @@
       interval.Day = 7;
       options = "--delete-older-than 7d";
     };
-    extraOptions = ''
-      auto-optimise-store = true
-      experimental-features = nix-command flakes 
-    '' + lib.optionalString (pkgs.system == "aarch64-darwin") ''
-      extra-platforms = x86_64-darwin aarch64-darwin
-    '';
+    extraOptions =
+      ''
+        auto-optimise-store = true
+        experimental-features = nix-command flakes
+      ''
+      + lib.optionalString (pkgs.system == "aarch64-darwin") ''
+        extra-platforms = x86_64-darwin aarch64-darwin
+      '';
   };
 
   users.users."${users.marie}" = {
@@ -35,11 +42,11 @@
   };
 
   # Services
-  services = { nix-daemon = { enable = true; }; };
+  services = {nix-daemon = {enable = true;};};
 
   # Programs
   programs = {
-    zsh = { enable = true; };
+    zsh = {enable = true;};
     # nix-index = { enable = true; };
   };
 
@@ -54,7 +61,7 @@
       git # git because git on mac sucks
       openssh # same as git
       wget # no wget??
-      htop # default 
+      htop # default
       neofetch # cool
       tmux
       screen
@@ -85,7 +92,7 @@
     };
     # brews = [  ];
 
-    casks = [ "firefox" "spotify" "steam" "krita" ];
+    casks = ["firefox" "spotify" "steam" "krita"];
   };
 
   # Fonts
@@ -111,7 +118,7 @@
       # remapCapsLockToEscape = true;
     };
   };
-  # Security/PAM and etc	
+  # Security/PAM and etc
   security = {
     pam = {
       enableSudoTouchIdAuth = true;

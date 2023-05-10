@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   services.gnome = {
     sushi.enable = true;
     glib-networking.enable = true;

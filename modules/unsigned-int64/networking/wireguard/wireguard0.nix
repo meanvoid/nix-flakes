@@ -1,6 +1,11 @@
-{ config, pkgs, lib, agenix, ... }:
-let
-  var = import ./default.nix { inherit config; };
+{
+  config,
+  pkgs,
+  lib,
+  agenix,
+  ...
+}: let
+  var = import ./default.nix {inherit config;};
   iptables = "${pkgs.iptables}/bin/iptables";
   ip6tables = "${pkgs.iptables}/bin/ip6tables";
   nft = "${pkgs.nftables}" /bin/nft;
@@ -14,19 +19,17 @@ let
       julio = config.age.secrets.wireguard-server-shared_julio.path;
     };
   };
-in
-{
-  imports = [ ./default.nix ];
+in {
+  imports = [./default.nix];
   networking.wg-quick.interfaces.wireguard0 = {
-    address =
-      [
-        # Private
-        "192.168.10.1/24"
-        "dced:2718:5f06:718a::1/64"
-        # public
-        "10.64.10.1/24"
-        "fd02:f8eb:7ca4:5f4c::1/64"
-      ];
+    address = [
+      # Private
+      "192.168.10.1/24"
+      "dced:2718:5f06:718a::1/64"
+      # public
+      "10.64.10.1/24"
+      "fd02:f8eb:7ca4:5f4c::1/64"
+    ];
     listenPort = 51820;
     privateKeyFile = "${keys.private}";
     postUp = ''
@@ -36,10 +39,10 @@ in
       ${iptables} -I INPUT -p tcp --dport 22 -i wg-ports0 -m iprange --src-range 172.168.1.50-172.168.1.254 -j ACCEPT
       # Allow incoming SSH traffic on wireguard0 interface only for source IP range
       ${iptables} -I INPUT -p tcp --dport 22 -i wireguard0 -m iprange --src-range 192.168.10.100-192.168.10.200 -j ACCEPT
-          
+
       # Allow traffic from wireguard0 interface
       ${iptables} -A FORWARD -i wireguard0 -j ACCEPT
-          
+
       # NAT rules for IPv4 and IPv6 traffic
       ${iptables} -t nat -A POSTROUTING -s 10.64.10.1/24 -o eth0 -j MASQUERADE
       ${iptables} -t nat -A POSTROUTING -s 192.168.10.1/24 -o eth0 -j MASQUERADE
@@ -49,7 +52,7 @@ in
     preDown = ''
       # Block traffic from wireguard0 interface
       ${iptables} -D FORWARD -i wireguard0 -j ACCEPT
-          
+
       # NAT rules for IPv4 and IPv6 traffic
       ${iptables} -t nat -D POSTROUTING -s 10.64.10.1/24 -o eth0 -j MASQUERADE
       ${iptables} -t nat -D POSTROUTING -s 192.168.10.1/24 -o eth0 -j MASQUERADE
@@ -145,37 +148,37 @@ in
       {
         publicKey = "";
         presharedKeyFile = "${keys.preshared.twi}";
-        allowedIPs = [ "192.168.10.150/32" "dced:2718:5f06:718a::150/128" ];
+        allowedIPs = ["192.168.10.150/32" "dced:2718:5f06:718a::150/128"];
       }
       # @wolverine
       {
         publicKey = "";
         presharedKeyFile = "${keys.preshared.twi}";
-        allowedIPs = [ "192.168.10.151/32" "dced:2718:5f06:718a::151/128" ];
+        allowedIPs = ["192.168.10.151/32" "dced:2718:5f06:718a::151/128"];
       }
       # @debik
       {
         publicKey = "cXP5odCiB4NxISN2zJ0SUWqsp/W2oIYKOZglbKM1B3k=";
         presharedKeyFile = "${keys.preshared.twi}";
-        allowedIPs = [ "192.168.10.152/32" "dced:2718:5f06:718a::152/128" ];
+        allowedIPs = ["192.168.10.152/32" "dced:2718:5f06:718a::152/128"];
       }
       # @elizabeth
       {
         publicKey = "ERVp/6DN6D1pmRN9qNsBbvF3CgFR0125xZlg3MYQ1AQ=";
         presharedKeyFile = "${keys.preshared.twi}";
-        allowedIPs = [ "192.168.10.153/32" "dced:2718:5f06:718a::153/128" ];
+        allowedIPs = ["192.168.10.153/32" "dced:2718:5f06:718a::153/128"];
       }
       # @morgana-android
       {
         publicKey = "Esc/RqKeN7Q20RNx8T73obo0o/lJ/MoM9UqnE6+EPgM=";
         presharedKeyFile = "${keys.preshared.twi}";
-        allowedIPs = [ "192.168.10.250/32" "dced:2718:5f06:718a::250/128" ];
+        allowedIPs = ["192.168.10.250/32" "dced:2718:5f06:718a::250/128"];
       }
       # @crimson1
       {
         publicKey = "";
         presharedKeyFile = "${keys.preshared.twi}";
-        allowedIPs = [ "192.168.10.251/32" "dced:2718:5f06:718a::251/128" ];
+        allowedIPs = ["192.168.10.251/32" "dced:2718:5f06:718a::251/128"];
       }
       # --- Twi Network --- #
       ## --- Private IP access(For bazed people) --- ##
@@ -186,13 +189,13 @@ in
       {
         publicKey = "OZg74pRtgDUkQjINEOHM0fnzJsvbLyKFdx6HzIi1Tkg=";
         presharedKeyFile = "${keys.preshared.julio}";
-        allowedIPs = [ "10.64.10.10/32" "fd02:f8eb:7ca4:5f4c::10/128" ];
+        allowedIPs = ["10.64.10.10/32" "fd02:f8eb:7ca4:5f4c::10/128"];
       }
       # @ipad
       {
         publicKey = "w7OuonhifNvieZajGNd6u5a/NwGTDB9iq5dYnPzqiUM=";
         presharedKeyFile = "${keys.preshared.julio}";
-        allowedIPs = [ "10.64.10.11/32" "fd02:f8eb:7ca4:5f4c::11/128" ];
+        allowedIPs = ["10.64.10.11/32" "fd02:f8eb:7ca4:5f4c::11/128"];
       }
       # --- Julio --- #
       ## --- Public IP access(For Losers) --- ##

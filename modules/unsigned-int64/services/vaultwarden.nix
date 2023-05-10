@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   services.vaultwarden = {
     enable = true;
     backupDir = "/var/lib/bitwarden_rs/backups";
@@ -10,8 +12,6 @@
       signupsAllowed = false;
       signupsVerify = true;
       signupsDomainsWhitelist = "tenjin-dk.com, riseup.net";
-      # webVaultFolder = "${pkgs.bitwarden_rs-vault}/share/bitwarden_rs/vault";
-      # webVaultEnabled = true;
       logFile = "/var/log/bitwarden";
       websocketEnabled = true;
       websocketAddress = "0.0.0.0";

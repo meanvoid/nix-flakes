@@ -1,4 +1,8 @@
-{ config, lib, pkgs, ... }:
 {
-  virtualisation.lxc = { enable = true; };
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  virtualisation.lxc = {enable = true;};
 }
