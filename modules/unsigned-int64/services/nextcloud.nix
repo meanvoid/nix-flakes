@@ -7,12 +7,12 @@
 }: let
   path = ./../../../secrets;
 in {
-  age.secrets.admin = {
-    file = "${path}/admin.age";
-    mode = "770";
-    owner = "nextcloud";
-    group = "nextcloud";
-  };
+  # age.secrets.admin = {
+  #   file = "${path}/admin.age";
+  #   mode = "770";
+  #   owner = "nextcloud";
+  #   group = "nextcloud";
+  # };
   services.nextcloud = {
     enable = false;
     package = pkgs.nextcloud26;
@@ -59,11 +59,11 @@ in {
     after = ["postgresql.service"];
   };
 
-  services.redis.servers.nextcloud = {
-    enable = true;
-    user = "nextcloud";
-    port = 6379;
-  };
+  # services.redis.servers.nextcloud = {
+  #   enable = true;
+  #   user = "nextcloud";
+  #   port = 6379;
+  # };
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
     enableACME = true;
