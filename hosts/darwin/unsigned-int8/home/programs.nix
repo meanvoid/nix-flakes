@@ -1,8 +1,6 @@
 { config, pkgs, lib, ... }:
 {
   programs = {
-
-    # Move zsh to programs/utils/zsh.nix
     zsh = {
       enable = true;
       enableAutosuggestions = true;
@@ -18,9 +16,9 @@
       };
 
       initExtra = ''
-        				source ${pkgs.spaceship-prompt}/share/zsh/site-functions/prompt_spaceship_setup
-        				autoload -U promptinit; promptinit
-        			'';
+        source ${pkgs.spaceship-prompt}/share/zsh/site-functions/prompt_spaceship_setup
+        autoload -U promptinit; promptinit
+      '';
     };
     neovim = {
       enable = true;
@@ -49,17 +47,17 @@
       ];
 
       extraConfig = ''
-          			syntax enable                             " Syntax highlighting
-          			colorscheme srcery                        " Color scheme text
-          			let g:lightline = {
-            			\ 'colorscheme': 'wombat',
-            		\ }                                     " Color scheme lightline
-          			highlight Comment cterm=italic gui=italic " Comments become italic
-          			hi Normal guibg=NONE ctermbg=NONE         " Remove background, better for personal theme
+        syntax enable                             " Syntax highlighting
+        colorscheme srcery                        " Color scheme text
+        let g:lightline = {
+          \ 'colorscheme': 'wombat',
+        \ }                                       " Color scheme lightline
+        highlight Comment cterm=italic gui=italic " Comments become italic
+        hi Normal guibg=NONE ctermbg=NONE         " Remove background, better for personal theme
         
-          			set number                                " Set numbers
-          			nmap <F6> :NERDTreeToggle<CR>             " F6 opens NERDTree
-        		'';
+        set number                                " Set numbers
+        nmap <F6> :NERDTreeToggle<CR>             " F6 opens NERDTree
+      '';
     };
     direnv = {
       enable = true;
@@ -67,9 +65,7 @@
     };
     htop = {
       enable = true;
-      settings = {
-        show_program-path = true;
-      };
+      settings.show_program-path = true;
     };
   };
 }

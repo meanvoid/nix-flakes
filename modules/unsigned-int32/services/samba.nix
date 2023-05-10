@@ -13,20 +13,17 @@
       securityType = "user";
       invalidUsers = [ "root" ];
       extraConfig = ''
-                workgroup = MEANRIN
-                server string = unsigned-int32
-                netbios name = unsigned-int32
-                security = user
-                # use sendfile = yes
-                # note: localhost is the ipv6 localhost ::1
-                hosts allow = 192.168.1.0/24 127.0.0.1 localhost
-                hosts deny = 0.0.0.0/0
-                guest account = nobody
-                map to guest = bad user
-
-        	load printers = yes
-        	printing = cups
-        	printcup name = cups
+        workgroup = WORKGROUP
+        server string = unsigned-int32
+        netbios name = unsigned-int32
+        security = user
+        hosts allow = 192.168.1.0/24 192.168.10.0/24 127.0.0.1 localhost ::1
+        hosts deny = 0.0.0.0/0
+        guest account = nobody
+        map to guest = bad user
+        load printers = yes
+        printing = cups
+        printcup name = printer
       '';
       shares = {
         Public = {

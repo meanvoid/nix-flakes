@@ -17,11 +17,11 @@
       options = "--delete-older-than 7d";
     };
     extraOptions = ''
-          			auto-optimise-store = true
-          			experimental-features = nix-command flakes 
-      			'' + lib.optionalString (pkgs.system == "aarch64-darwin") ''
-        					extra-platforms = x86_64-darwin aarch64-darwin
-      		'';
+      auto-optimise-store = true
+      experimental-features = nix-command flakes 
+    '' + lib.optionalString (pkgs.system == "aarch64-darwin") ''
+      extra-platforms = x86_64-darwin aarch64-darwin
+    '';
   };
 
   users.users."${users.marie}" = {
@@ -30,8 +30,8 @@
   };
 
   networking = {
-    computerName = "macmini";
-    hostName = "macmini";
+    computerName = "unsigned-int8";
+    hostName = "unsigned-int8";
   };
 
   # Services
@@ -117,5 +117,4 @@
       enableSudoTouchIdAuth = true;
     };
   };
-
 }

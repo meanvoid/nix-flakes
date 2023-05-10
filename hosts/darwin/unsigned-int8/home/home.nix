@@ -1,6 +1,6 @@
 { config, pkgs, lib, users, ... }:
 {
-  imports = [ ./imports.nix ];
+  imports = [ ./programs.nix ];
   home = {
 
     # Todo move every package to different files
@@ -16,7 +16,6 @@
       discord
 
       # Games
-      superTuxKart # A fucking legend
       chiaki # Playstation RemotePlay but FOSS
       # Prod
       blender # 3D Editor
@@ -25,7 +24,6 @@
       # yubico shit
       yubikey-manager
     ];
-    # import ./packages.nix pkgs;
-    stateVersion = "22.11";
+    stateVersion = "23.05";
   };
 }

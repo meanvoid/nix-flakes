@@ -110,7 +110,7 @@
         home = "/home/ashuramaru";
         description = "Marie";
         initialHashedPassword = "";
-        extraGroups = [ "wheel" "users" ];
+        extraGroups = [ "wheel" ];
         openssh.authorizedKeys.keys =
           [
             "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIKNF4qCh49NCn6DUnzOCJ3ixzLyhPCCcr6jtRfQdprQLAAAACnNzaDpyZW1vdGU= email:ashuramaru@tenjin-dk.com id:ashuramaru@unsigned-int32"
@@ -124,7 +124,7 @@
         home = "/home/meanrin";
         description = "Alex";
         initialHashedPassword = "";
-        extraGroups = [ "wheel" "users" ];
+        extraGroups = [ "wheel" ];
         openssh.authorizedKeys.keys =
           [
             "sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBCzoNOzhhF9uYDu7CbuzVRJ2K6dClXLrEoJrQvIYjnxHTBMqKuByi9M2HEmkpGO+a3H3WjeeXfqjH2CwZJ97jmIAAAAEc3NoOg== meanrin@outlook.com"

@@ -1,5 +1,5 @@
 { config, pkgs, lib, agenix, ... }:
-let 
+let
   var = import ./default.nix { inherit config; };
   iptables = "${pkgs.iptables}/bin/iptables";
   ip6tables = "${pkgs.iptables}/bin/ip6tables";
@@ -12,7 +12,7 @@ let
       signed = config.age.secrets.wireguard-shared_signed.path;
       twi = config.age.secrets.wireguard-shared_twi.path;
       julio = config.age.secrets.wireguard-server-shared_julio.path;
-    };  
+    };
   };
 in
 {
@@ -28,7 +28,7 @@ in
         "fd02:f8eb:7ca4:5f4c::1/64"
       ];
     listenPort = 51820;
-    privateKeyFile = ${keys.private};
+    privateKeyFile = "${keys.private}";
     postUp = ''
       # Drop incoming SSH traffic on wireguard0 interface
       ${iptables} -I INPUT -p tcp --dport 22 -i wireguard0 -j DROP
@@ -63,7 +63,7 @@ in
       # @signed-int4
       {
         publicKey = "";
-        presharedKeyFile = ${keys.preshared.signed};
+        presharedKeyFile = "${keys.preshared.signed}";
         allowedIPs = [
           "192.168.10.50/32"
           "dced:2718:5f06:718a::50/128"
@@ -72,7 +72,7 @@ in
       # @signed-int8
       {
         publicKey = "";
-        presharedKeyFile = ${keys.preshared.signed};
+        presharedKeyFile = "${keys.preshared.signed}";
         allowedIPs = [
           "192.168.10.50/32"
           "dced:2718:5f06:718a::50/128"
@@ -81,7 +81,7 @@ in
       # @signed-int16
       {
         publicKey = "";
-        presharedKeyFile = ${keys.preshared.signed};
+        presharedKeyFile = "${keys.preshared.signed}";
         allowedIPs = [
           "192.168.10.51/32"
           "dced:2718:5f06:718a::51/128"
@@ -90,7 +90,7 @@ in
       # @signed-int32
       {
         publicKey = "";
-        presharedKeyFile = ${keys.preshared.signed};
+        presharedKeyFile = "${keys.preshared.signed}";
         allowedIPs = [
           "192.168.10.52/32"
           "dced:2718:5f06:718a::52/128"
@@ -99,7 +99,7 @@ in
       # @signed-int64
       {
         publicKey = "";
-        presharedKeyFile = ${keys.preshared.signed};
+        presharedKeyFile = "${keys.preshared.signed}";
         allowedIPs = [
           "192.168.10.53/32"
           "dced:2718:5f06:718a::53/128"
@@ -108,7 +108,7 @@ in
       # @unsigned-int8
       {
         publicKey = "";
-        presharedKeyFile = ${keys.preshared.unsigned};
+        presharedKeyFile = "${keys.preshared.unsigned}";
         allowedIPs = [
           "192.168.10.100/32"
           "dced:2718:5f06:718a::100/128"
@@ -119,7 +119,7 @@ in
       # @unsigned-int16
       {
         publicKey = "";
-        presharedKeyFile = ${keys.preshared.unsigned};
+        presharedKeyFile = "${keys.preshared.unsigned}";
         allowedIPs = [
           "192.168.10.101/32"
           "dced:2718:5f06:718a::101/128"
@@ -130,7 +130,7 @@ in
       # @unsigned-int32
       {
         publicKey = "QCg3hCNix8lMAw+l/icN7xRjmautUjMK6tqC+GzOg2I=";
-        presharedKeyFile = ${keys.preshared.unsigned};
+        presharedKeyFile = "${keys.preshared.unsigned}";
         allowedIPs = [
           "192.168.10.102/32"
           "dced:2718:5f06:718a::102/128"
@@ -144,37 +144,37 @@ in
       # @cutie-pony
       {
         publicKey = "";
-        presharedKeyFile = ${keys.preshared.twi};
+        presharedKeyFile = "${keys.preshared.twi}";
         allowedIPs = [ "192.168.10.150/32" "dced:2718:5f06:718a::150/128" ];
       }
       # @wolverine
       {
         publicKey = "";
-        presharedKeyFile = ${keys.preshared.twi};
+        presharedKeyFile = "${keys.preshared.twi}";
         allowedIPs = [ "192.168.10.151/32" "dced:2718:5f06:718a::151/128" ];
       }
       # @debik
       {
         publicKey = "";
-        presharedKeyFile = ${keys.preshared.twi};
+        presharedKeyFile = "${keys.preshared.twi}";
         allowedIPs = [ "192.168.10.152/32" "dced:2718:5f06:718a::152/128" ];
       }
       # @elizabeth
       {
         publicKey = "";
-        presharedKeyFile = ${keys.preshared.twi};
+        presharedKeyFile = "${keys.preshared.twi}";
         allowedIPs = [ "192.168.10.153/32" "dced:2718:5f06:718a::153/128" ];
       }
       # @morgana-android
       {
         publicKey = "";
-        presharedKeyFile = ${keys.preshared.twi};
+        presharedKeyFile = "${keys.preshared.twi}";
         allowedIPs = [ "192.168.10.250/32" "dced:2718:5f06:718a::250/128" ];
       }
       # @crimson1
       {
         publicKey = "";
-        presharedKeyFile = ${keys.preshared.twi};
+        presharedKeyFile = "${keys.preshared.twi}";
         allowedIPs = [ "192.168.10.251/32" "dced:2718:5f06:718a::251/128" ];
       }
       # --- Twi Network --- #
@@ -185,13 +185,13 @@ in
       # @pc
       {
         publicKey = "OZg74pRtgDUkQjINEOHM0fnzJsvbLyKFdx6HzIi1Tkg=";
-        presharedKeyFile = ${keys.preshared.julio};
+        presharedKeyFile = "${keys.preshared.julio}";
         allowedIPs = [ "10.64.10.10/32" "fd02:f8eb:7ca4:5f4c::10/128" ];
       }
       # @ipad
       {
         publicKey = "w7OuonhifNvieZajGNd6u5a/NwGTDB9iq5dYnPzqiUM=";
-        presharedKeyFile = ${keys.preshared.julio};
+        presharedKeyFile = "${keys.preshared.julio}";
         allowedIPs = [ "10.64.10.11/32" "fd02:f8eb:7ca4:5f4c::11/128" ];
       }
       # --- Julio --- #

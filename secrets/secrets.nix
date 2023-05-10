@@ -11,11 +11,11 @@ let
   };
 in
 {
-  "wireguard-client.age".publicKeys =              [ systems.unsigned-int32 ];
-  "wireguard-shared.age".publicKeys =              [ systems.unsigned-int32 systems.unsigned-int64 ];
-  "wireguard-server.age".publicKeys =              [ systems.unsigned-int64 ];
-  "wireguard0.age".publicKeys =                    [ systems.unsigned-int64 ];
-  "wireguard-shared_signed.age".publicKeys =       [ systems.unsigned-int64 ];
-  "wireguard-server-shared_twi.age".publicKeys =   [ systems.unsigned-int64 ];
+  "wireguard-client.age".publicKeys = [ systems.unsigned-int32 ];
+  "wireguard-shared.age".publicKeys = [ systems.unsigned-int32 systems.unsigned-int64 ];
+  "wireguard-server.age".publicKeys = [ systems.unsigned-int64 ];
+  "wireguard0.age".publicKeys = [ systems.unsigned-int64 ];
+  "wireguard-shared_signed.age".publicKeys = [ systems.unsigned-int64 ];
+  "wireguard-server-shared_twi.age".publicKeys = [ systems.unsigned-int64 ];
   "wireguard-server-shared_julio.age".publicKeys = [ systems.unsigned-int64 ];
 }

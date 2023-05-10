@@ -8,7 +8,7 @@ in
     wireguard-client.file = ./../../../secrets/wireguard-client.age;
     wireguard-shared.file = ./../../../secrets/wireguard-shared.age;
   };
-  
+
   services.wg-netmanager.enable = true;
   networking.wireguard.enable = true;
   networking.wg-quick.interfaces = {

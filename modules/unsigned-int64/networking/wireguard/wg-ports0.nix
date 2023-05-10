@@ -11,7 +11,7 @@ let
       signed = config.age.secrets.wireguard-shared_signed.path;
       twi = config.age.secrets.wireguard-shared_twi.path;
       julio = config.age.secrets.wireguard-server-shared_julio.path;
-    };  
+    };
   };
 in
 {
@@ -19,11 +19,11 @@ in
   networking.wg-quick.interfaces.wg-ports0 = {
     address = [ "172.168.10.1/24" ];
     listenPort = 51280;
-    privateKeyFile = ${keys.private};
+    privateKeyFile = "${keys.private}";
     peers = [
       {
         publicKey = "QCg3hCNix8lMAw+l/icN7xRjmautUjMK6tqC+GzOg2I=";
-        presharedKeyFile = ${keys.preshared.unsigned};
+        presharedKeyFile = "${keys.preshared.unsigned}";
         allowedIPs = [ "172.168.10.2/32" ];
       }
     ];

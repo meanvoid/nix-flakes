@@ -3,28 +3,13 @@
 {
   imports =
     [ ./hardware-configuration.nix ] ++
-    [ (import ./../../../modules/unsigned-int32/steam.nix) ] ++
-    (import ./../../../modules/unsigned-int32/powermanagment) ++
+    [ (import ./../../../modules/shared/desktop/gnome.nix) ] ++
+    (import ./../../../modules/unsigned-int32/environment) ++
+    (import ./../../../modules/unsigned-int32/networking) ++
+    (import ./../../../modules/unsigned-int32/programs) ++
     (import ./../../../modules/unsigned-int32/services) ++
-    (import ./../../../modules/unsigned-int32/networking);
-
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
-  nix = {
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-    settings = {
-      auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
-    };
-  };
-
+    (import ./../../../modules/unsigned-int32/virtualisation) ++
+    (import ./../../../modules/shared/settings);
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = with config.boot.kernelPackages; [ zenpower vendor-reset ];
@@ -38,10 +23,8 @@
         enable = true;
       };
       services.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
-      # secrets = {  }; TODO
       luks = {
         yubikeySupport = true;
-        # fido2Support = true;
         reusePassphrases = true;
         mitigateDMAAttacks = true;
         devices = {
@@ -100,46 +83,6 @@
     font = "${pkgs.terminus_font}/share/consolefonts/ter-u16n.psf.gz";
   };
 
-  hardware = {
-    cpu.amd = {
-      updateMicrocode = true;
-    };
-    nvidia = {
-      modesetting.enable = true;
-      powerManagement.enable = true;
-    };
-    firmware = with pkgs; [
-      linux-firmware
-    ];
-    bluetooth = {
-      enable = true;
-    };
-    pulseaudio = { enable = false; };
-    opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-      extraPackages = [
-        # AMD
-        pkgs.rocm-opencl-icd
-        pkgs.rocm-opencl-runtime
-
-        # VAAPI
-        pkgs.libva
-        pkgs.vaapiVdpau
-        pkgs.libvdpau-va-gl
-      ];
-      extraPackages32 = [
-        # VAAPI
-        pkgs.driversi686Linux.vaapiVdpau
-        pkgs.driversi686Linux.libvdpau-va-gl
-      ];
-    };
-    opentabletdriver = {
-      enable = true;
-      daemon.enable = true;
-    };
-  };
   sound = {
     enable = true;
     mediaKeys = {
@@ -160,9 +103,7 @@
     sudo = {
       enable = true;
       wheelNeedsPassword = true;
-      # Todo
     };
-    # Maybe migrate to doas
     doas = {
       enable = true;
       wheelNeedsPassword = true;
@@ -179,13 +120,10 @@
       yubico = {
         enable = true;
         id = "20693163";
-        mode = "client"; # TODO
-        control = "sufficient"; # TODO
+        mode = "client";
+        control = "sufficient";
       };
-      # ussh TODO
-      # services = {  }; TODO
     };
-    rtkit.enable = true;
   };
 
   networking = {
@@ -193,10 +131,8 @@
     vlans = {
       eth0 = {
         id = 1;
-        interface = "enp6s0";
+        interface = "enp7s0";
       };
-      # TODO
-      # hosts = { };
     };
     nat = {
       enable = true;
@@ -219,121 +155,6 @@
       allowedUDPPorts = [ 53 ];
       allowedTCPPorts = [ 53 80 443 25565 ];
     };
-  };
-  virtualisation = {
-    # writableStore = true;
-    # writableStoreUseTmpfs = true;
-    libvirtd = {
-      enable = true;
-      allowedBridges = [
-        "br0"
-        "virbr0"
-        "virbr1"
-        "vireth0"
-      ];
-      extraOptions = [
-        "--verbose"
-      ];
-      qemu = {
-        ovmf = { enable = true; packages = [ pkgs.OVMF.fd pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd ]; };
-        swtpm = { enable = true; };
-        runAsRoot = true;
-      };
-    };
-    # TODO look into ForwardPorts and fileSystems
-    # qemu = {
-    # virtioKeyboard = true;
-    # Look into TODO package = config.virtualisation.host.pkgs.qemu_kvm;
-    # diskInterface = "virtio";
-    # guestAgent.enable = true;
-    # };
-    podman = {
-      enable = true;
-      enableNvidia = true;
-      extraPackages = with pkgs; [ gvisor gvproxy tun2socks ];
-      # networkSocket = { enable = true; port = 2376; }; # TODO 
-      # dockerSocket.enable = true;
-      # defaultNetwork.settings # TODO
-      autoPrune = { enable = true; dates = "weekly"; };
-    };
-    docker = {
-      enable = true;
-      enableNvidia = true;
-      enableOnBoot = true;
-
-      daemon.settings = {
-        fixed-cidr-v6 = "fd00::/80";
-        ipv6 = true;
-      };
-      autoPrune = { enable = true; dates = "weekly"; };
-    };
-    lxc = { enable = true; };
-    lxd = { enable = true; recommendedSysctlSettings = true; };
-    waydroid.enable = true;
-  };
-  services = {
-    lvm.boot.thin.enable = true;
-    hardware = {
-      bolt.enable = true;
-      openrgb = {
-        enable = true;
-        motherboard = "amd";
-      };
-    };
-    xserver = {
-      enable = true;
-      videoDrivers = [ "nvidia" ];
-      layout = "us";
-      xkbModel = "evdev";
-      displayManager.gdm = {
-        enable = true;
-        autoSuspend = false;
-      };
-      desktopManager.gnome.enable = true;
-      libinput.enable = true;
-    };
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-    };
-    gnome = {
-      sushi.enable = true;
-      glib-networking.enable = true;
-      tracker.enable = true;
-      tracker-miners.enable = true;
-      gnome-keyring.enable = true;
-      at-spi2-core.enable = true;
-      core-developer-tools.enable = true;
-      core-utilities.enable = true;
-      gnome-settings-daemon.enable = true;
-      gnome-online-accounts.enable = true;
-      gnome-online-miners.enable = lib.mkDefault false;
-    };
-    printing = {
-      enable = true;
-    };
-    fstrim = {
-      enable = true;
-      interval = "weekly";
-    };
-    pcscd.enable = true;
-    flatpak.enable = true;
-    gvfs.enable = true;
-    # fwupd.enable = true; # todo
-  };
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "qt5ct";
-    style = "qt5ct-style";
   };
 
   programs = {
@@ -370,51 +191,6 @@
       enableSSHSupport = true;
     };
     dconf.enable = true;
-  };
-
-  users = {
-    mutableUsers = false;
-    motdFile = "/etc/motd.d";
-    groups = {
-      ashuramaru.gid = config.users.users.ashuramaru.uid;
-      meanrin.gid = config.users.users.meanrin.uid;
-
-      shared = {
-        gid = 911;
-        members = [ "ashuramaru" "meanrin" "jellyfin" ];
-      };
-      jellyfin = {
-        members = [ "ashuramaru" "meanrin" ];
-      };
-    };
-    users = {
-      ashuramaru = {
-        isNormalUser = true;
-        description = "Marisa";
-        home = "/home/ashuramaru";
-        uid = 1000;
-        initialHashedPassword =
-          "$6$79Eopfg.bX9kzgyR$mPzq3.dFGkCaX2NiAPiTqltBQ0b9gLpEPsX7YdKLyuMbvLssUlfFDiOhZ.FZ.AwS6JbXQ6AXB41Yq5QpJxWJ6/";
-        hashedPassword =
-          "$6$9BY1nlAvCe/S63yL$yoKImQ99aC8l.CBPqGGrr74mQPPGucug13efoGbBaF.LT9GNUYeOk8ZejZpJhnJjPRkaU0hJTYtplI1rkxVnY.";
-        extraGroups = [ "ashuramaru" "wheel" "networkmanager" "video" "audio" "storage" "docker" "podman" "libvirtd" "kvm" "qemu" ];
-      };
-      meanrin = {
-        isNormalUser = true;
-        description = "Alex";
-        home = "/home/meanrin";
-        uid = 1001;
-        initialHashedPassword =
-          "$6$Vyk8fqJUAWcfHcZ.$JrE0aK4.LSzpDlXNIHs9LFHyoaMXHFe9S0B66Kx8Wv0nVCnh7ACeeiTIkX95YjGoH0R8DavzSS/aSizJH1YgV0";
-        extraGroups = [ "meanrin" "wheel" "networkmanager" "video" "audio" "storage" "docker" "podman" "libvirtd" "kvm" "qemu" ];
-      };
-    };
-  };
-
-  systemd = {
-    tmpfiles.rules = [
-      "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
-    ];
   };
 
   environment = {
@@ -458,14 +234,6 @@
       yt-dlp
       spotdl
 
-      # GNOME software and extensions
-      gnome.gnome-boxes
-      gnome.gnome-tweaks
-      gnome.gnome-themes-extra
-      gnome.gnome-packagekit
-      gnome.adwaita-icon-theme
-      gnomeExtensions.appindicator
-
       # browser
       firefox
       thunderbird
@@ -489,27 +257,7 @@
       gst_all_1.gst-plugins-good
       gst_all_1.gst-plugins-base
       gst_all_1.gst-editing-services
-
     ];
-
-    localBinInPath = true;
-    sessionVariables = rec {
-      XDG_CACHE_HOME = "\${HOME}/.cache";
-      XDG_CONFIG_HOME = "\${HOME}/.config";
-      XDG_DATA_HOME = "\${HOME}/.local/share";
-      XDG_DATA_DIRS = [
-        "${XDG_DATA_HOME}/.icons"
-      ];
-      CUDA_PATH = "${pkgs.cudatoolkit}";
-      # PATH = [ # "${XDG_BIN_HOME}" ];
-    };
-    etc = {
-      "mdadm.conf".text = ''
-        HOMEHOST <ignore>
-        ARRAY /dev/md0 UUID=2d0be890:bc0f45fb:96a52424:865c564f
-        ARRAY /dev/md5 UUID=c672589e:b68e1eae:6d443de9:956ba431
-      '';
-    };
   };
 
   time.timeZone = "Europe/Kyiv";
