@@ -46,7 +46,7 @@ in {
     };
     extraOptions = {
       redis = {
-        host = "/run/redis/redis-nextcloud.sock";
+        host = "/run/redis-nextcloud/redis.sock";
         port = 0;
       };
       "memcache.local" = "\\OC\\Memcache\\Redis";
