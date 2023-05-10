@@ -7,12 +7,18 @@
 }: let
   path = ./../../../secrets;
 in {
-  # age.secrets.admin = {
-  #   file = "${path}/admin.age";
-  #   mode = "770";
-  #   owner = "nextcloud";
-  #   group = "nextcloud";
-  # };
+  age.secrets.admin = {
+    file = "${path}/admin.age";
+    mode = "770";
+    owner = "nextcloud";
+    group = "nextcloud";
+  };
+  age.secrets.dbpass = {
+    file = "${path}/dbpass.age";
+    mode = "770";
+    owner = "nextcloud";
+    group = "nextcloud";
+  };
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud26;
@@ -34,8 +40,9 @@ in {
       dbuser = "nextcloud";
       dbhost = "/run/postgresql";
       dbname = "nextcloud";
+      dbpassFile = config.age.secrets.dbpass.path;
       adminuser = "root";
-      adminpassFile = "${pkgs.writeText "adminpass" "test123"}";
+      adminpassFile = config.age.secrets.admin.path;
     };
     extraOptions = {
       redis = {
