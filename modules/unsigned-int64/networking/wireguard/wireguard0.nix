@@ -74,7 +74,7 @@ in {
       }
       # @signed-int8
       {
-        publicKey = "";
+        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
         presharedKeyFile = "${keys.preshared.signed}";
         allowedIPs = [
           "192.168.10.50/32"
@@ -83,7 +83,7 @@ in {
       }
       # @signed-int16
       {
-        publicKey = "";
+        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
         presharedKeyFile = "${keys.preshared.signed}";
         allowedIPs = [
           "192.168.10.51/32"
@@ -92,7 +92,7 @@ in {
       }
       # @signed-int32
       {
-        publicKey = "";
+        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
         presharedKeyFile = "${keys.preshared.signed}";
         allowedIPs = [
           "192.168.10.52/32"
@@ -101,7 +101,7 @@ in {
       }
       # @signed-int64
       {
-        publicKey = "";
+        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
         presharedKeyFile = "${keys.preshared.signed}";
         allowedIPs = [
           "192.168.10.53/32"
@@ -110,7 +110,7 @@ in {
       }
       # @unsigned-int8
       {
-        publicKey = "";
+        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
         presharedKeyFile = "${keys.preshared.unsigned}";
         allowedIPs = [
           "192.168.10.100/32"
@@ -121,7 +121,7 @@ in {
       }
       # @unsigned-int16
       {
-        publicKey = "";
+        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
         presharedKeyFile = "${keys.preshared.unsigned}";
         allowedIPs = [
           "192.168.10.101/32"
@@ -146,13 +146,13 @@ in {
       # --- Twi Network --- #
       # @cutie-pony
       {
-        publicKey = "";
+        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
         presharedKeyFile = "${keys.preshared.twi}";
         allowedIPs = ["192.168.10.150/32" "dced:2718:5f06:718a::150/128"];
       }
       # @wolverine
       {
-        publicKey = "";
+        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
         presharedKeyFile = "${keys.preshared.twi}";
         allowedIPs = ["192.168.10.151/32" "dced:2718:5f06:718a::151/128"];
       }
@@ -176,7 +176,7 @@ in {
       }
       # @crimson1
       {
-        publicKey = "";
+        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
         presharedKeyFile = "${keys.preshared.twi}";
         allowedIPs = ["192.168.10.251/32" "dced:2718:5f06:718a::251/128"];
       }
