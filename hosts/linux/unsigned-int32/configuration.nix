@@ -29,7 +29,6 @@
     kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = with config.boot.kernelPackages; [ zenpower vendor-reset ];
     kernelParams = [
-      # "ip=192.168.1.100:::::enp6s0:dhcp"
       "video=DP-1:2560x1440@120"
       "video=DP-2:2560x1440@120"
     ];
@@ -126,7 +125,6 @@
         pkgs.rocm-opencl-runtime
 
         # VAAPI
-        # pkgs.nvidia-vaapi-driver
         pkgs.libva
         pkgs.vaapiVdpau
         pkgs.libvdpau-va-gl
@@ -176,8 +174,6 @@
         "unix-user:ashuramaru"
         "unix-user:meanrin"
       ];
-      # Todo
-      # extraConfig = '' '';
     };
     pam = {
       yubico = {
@@ -273,8 +269,6 @@
     };
     lxc = { enable = true; };
     lxd = { enable = true; recommendedSysctlSettings = true; };
-    # resolution = { x = 1920; y = 1080; };
-    # useEFIBoot = true;
     waydroid.enable = true;
   };
   services = {
@@ -285,22 +279,6 @@
         enable = true;
         motherboard = "amd";
       };
-    };
-    udev = {
-      # TODO
-      packages = with pkgs; [
-        gnome.gnome-settings-daemon
-        gnome2.GConf
-        opentabletdriver
-      ];
-      extraRules = ''
-        	      # XP-Pen CT1060
-        		SUBSYSTEM=="hidraw", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="0932", MODE="0666"
-        		SUBSYSTEM=="usb", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="0932", MODE="0666"
-        		SUBSYSTEM=="hidraw", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="5201", MODE="0666"
-        		SUBSYSTEM=="usb", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="5201", MODE="0666"
-        		SUBSYSTEM=="input", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="5201", ENV{LIBINPUT_IGNORE_DEVICE}="1"=
-        	    '';
     };
     xserver = {
       enable = true;
@@ -320,33 +298,6 @@
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
-      # TODO
-    };
-    openssh = {
-      enable = true;
-      settings = {
-        UseDns = true;
-        passwordAuthentication = false;
-        kbdInteractiveAuthentication = true;
-        permitRootLogin = "prohibit-password";
-      };
-      ports = [ 22 52755 ];
-      listenAddresses = [
-        {
-          addr = "192.168.1.100";
-          port = 22;
-        }
-        {
-          addr = "0.0.0.0";
-          port = 52755;
-        }
-      ];
-      banner =
-        ''
-          	      Sex is not allowed
-          	      '';
-      openFirewall = true;
-      allowSFTP = true;
     };
     gnome = {
       sushi.enable = true;
@@ -376,14 +327,7 @@
 
   xdg.portal = {
     enable = true;
-    wlr = {
-      enable = true;
-      # TODO settings = {  };
-    };
-    # extraPortals = [
-    # pkgs.xdg-desktop-portal-gtk
-    # pkgs.xdg-desktop-portal-gnome
-    # ];
+    wlr.enable = true;
   };
 
   qt = {
@@ -454,7 +398,6 @@
         hashedPassword =
           "$6$9BY1nlAvCe/S63yL$yoKImQ99aC8l.CBPqGGrr74mQPPGucug13efoGbBaF.LT9GNUYeOk8ZejZpJhnJjPRkaU0hJTYtplI1rkxVnY.";
         extraGroups = [ "ashuramaru" "wheel" "networkmanager" "video" "audio" "storage" "docker" "podman" "libvirtd" "kvm" "qemu" ];
-        # openssh.authorizedKeys.keyFiles = [ "/etc/nixos/ssh/auth_ashuramaru" ];
       };
       meanrin = {
         isNormalUser = true;
@@ -464,7 +407,6 @@
         initialHashedPassword =
           "$6$Vyk8fqJUAWcfHcZ.$JrE0aK4.LSzpDlXNIHs9LFHyoaMXHFe9S0B66Kx8Wv0nVCnh7ACeeiTIkX95YjGoH0R8DavzSS/aSizJH1YgV0";
         extraGroups = [ "meanrin" "wheel" "networkmanager" "video" "audio" "storage" "docker" "podman" "libvirtd" "kvm" "qemu" ];
-        # openssh.authorizedKeys.keyFiles = [ "/root/" ];
       };
     };
   };
@@ -562,11 +504,11 @@
       # PATH = [ # "${XDG_BIN_HOME}" ];
     };
     etc = {
-      # TODO!!!!!!
-      "mdadm.conf".text = ''HOMEHOST <ignore>
-ARRAY /dev/md0 UUID=2d0be890:bc0f45fb:96a52424:865c564f
-ARRAY /dev/md5 UUID=c672589e:b68e1eae:6d443de9:956ba431
-'';
+      "mdadm.conf".text = ''
+        HOMEHOST <ignore>
+        ARRAY /dev/md0 UUID=2d0be890:bc0f45fb:96a52424:865c564f
+        ARRAY /dev/md5 UUID=c672589e:b68e1eae:6d443de9:956ba431
+      '';
     };
   };
 

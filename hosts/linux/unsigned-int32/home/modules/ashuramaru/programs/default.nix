@@ -1,4 +1,5 @@
 [
+  ./spotify.nix
   ./dev/vscode.nix
   ./dev/vim.nix
   ./utils/git.nix

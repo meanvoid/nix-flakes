@@ -1,6 +1,6 @@
 [
-  ./media/jellyfin.nix
-  ./nas/samba.nix
-  ./utils/flatpak.nix
-  ./utils/fonts.nix
+  ./openssh.nix
+  ./samba.nix
+  ./jellyfin.nix
+  ./utils/hddparm.nix
 ]

@@ -1,9 +1,8 @@
 { config, pkgs, lib, users, ... }:
 {
   imports =
-    [ (import ../../../../../modules/programs/spotify.nix) ] ++
-    (import ../../../../../modules/overlays) ++
-    (import ../../../../../modules/programs);
+    (import ../modules/shared/overlays) ++
+    (import ../modules/${users.marie}/programs);
   home = {
     username = "${users.marie}";
     packages = with pkgs; [
