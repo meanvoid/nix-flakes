@@ -35,7 +35,7 @@ in {
       dbhost = "/run/postgresql";
       dbname = "nextcloud";
       adminuser = "root";
-      adminpassFile = config.age.secrets.admin.path;
+      config.adminpassFile = "${pkgs.writeText "adminpass" "test123"}";
     };
     extraOptions = {
       redis = {
