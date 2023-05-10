@@ -3,7 +3,7 @@ let
   iptables = "${pkgs.iptables}/bin/iptables";
   ip6tables = "${pkgs.iptables}/bin/ip6tables";
   nft = "${pkgs.nftables}" /bin/nft;
-  path = ./../../../secrets;
+  path = ./../../../../secrets;
 in
 {
   age.secrets = {
