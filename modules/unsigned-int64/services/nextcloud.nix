@@ -1,8 +1,15 @@
 {
   config,
+  lib,
   pkgs,
+  agenix,
   ...
-}: {
+}: let
+  path = ./../../../secrets;
+in {
+  age.secrets = {
+    admin.file = "${path}/admin.age";
+  };
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud26;
