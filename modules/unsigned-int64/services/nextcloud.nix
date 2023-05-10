@@ -40,9 +40,7 @@ in {
     extraOptions = {
       redis = {
         host = "/run/redis/redis-nextcloud.sock";
-        port = 6379;
-        dbindex = 0;
-        timeout = 1.5;
+        port = 0;
       };
       "memcache.local" = "\\OC\\Memcache\\Redis";
       "memcache.distributed" = "\\OC\\Memcache\\Redis";
@@ -60,8 +58,8 @@ in {
 
   services.redis.servers.nextcloud = {
     enable = true;
+    port = 0;
     user = "nextcloud";
-    port = 6379;
   };
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
