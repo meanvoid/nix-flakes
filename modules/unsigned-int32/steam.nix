@@ -36,4 +36,3 @@
   programs.steam = { enable = true; remotePlay.openFirewall = true; };
   environment.sessionVariables = rec { STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d"; };
 }
-### !!! TODO add option with to use this in both home-manager and system configuration
