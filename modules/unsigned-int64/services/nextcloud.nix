@@ -23,10 +23,10 @@ in {
     home = "/var/lib/nextcloud";
     hostName = "cloud.tenjin-dk.com";
     https = true;
-    caching = {
-      redis = true;
-      apcu = false;
-    };
+    # caching = {
+      # redis = true;
+      # apcu = false;
+    # };
     maxUploadSize = "10G";
     config = {
       overwriteProtocol = "https";
@@ -45,9 +45,9 @@ in {
         dbindex = 0;
         timeout = 1.5;
       };
-      "memcache.local" = "\\OC\\Memcache\\Redis";
-      "memcache.distributed" = "\\OC\\Memcache\\Redis";
-      "memcache.locking" = "\\OC\\Memcache\\Redis";
+      # "memcache.local" = "\\OC\\Memcache\\Redis";
+      # "memcache.distributed" = "\\OC\\Memcache\\Redis";
+      # "memcache.locking" = "\\OC\\Memcache\\Redis";
     };
     phpOptions = {
       "opcache.memory_consumption" = "8096M";
