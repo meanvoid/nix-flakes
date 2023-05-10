@@ -4,7 +4,6 @@
   # boot.kernelParams = [ "video=efifb:off" ];
   # boot.kernelModules = [ "vfio-pci" ];
 
-  # Add binaries to path so that hooks can use it
   systemd.services.libvirtd = {
     path =
       let

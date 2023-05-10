@@ -62,7 +62,7 @@ in
       # --- Home Network --- #
       # @signed-int4
       {
-        publicKey = "";
+        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
         presharedKeyFile = "${keys.preshared.signed}";
         allowedIPs = [
           "192.168.10.50/32"
@@ -155,19 +155,19 @@ in
       }
       # @debik
       {
-        publicKey = "";
+        publicKey = "cXP5odCiB4NxISN2zJ0SUWqsp/W2oIYKOZglbKM1B3k=";
         presharedKeyFile = "${keys.preshared.twi}";
         allowedIPs = [ "192.168.10.152/32" "dced:2718:5f06:718a::152/128" ];
       }
       # @elizabeth
       {
-        publicKey = "";
+        publicKey = "ERVp/6DN6D1pmRN9qNsBbvF3CgFR0125xZlg3MYQ1AQ=";
         presharedKeyFile = "${keys.preshared.twi}";
         allowedIPs = [ "192.168.10.153/32" "dced:2718:5f06:718a::153/128" ];
       }
       # @morgana-android
       {
-        publicKey = "";
+        publicKey = "Esc/RqKeN7Q20RNx8T73obo0o/lJ/MoM9UqnE6+EPgM=";
         presharedKeyFile = "${keys.preshared.twi}";
         allowedIPs = [ "192.168.10.250/32" "dced:2718:5f06:718a::250/128" ];
       }
@@ -198,5 +198,4 @@ in
       ## --- Public IP access(For Losers) --- ##
     ];
   };
-
 }

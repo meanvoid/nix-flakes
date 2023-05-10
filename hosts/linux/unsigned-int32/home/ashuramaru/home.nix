@@ -32,7 +32,6 @@
       keepassxc
       rbw # bitwarden cli
 
-      #!!!
       # Games
       rpcs3
       yuzu-mainline
