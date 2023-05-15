@@ -32,6 +32,11 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "unstable";
     };
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix";
+      inputs.nixpkgs.follows = "unstable";
+    };
+
     nixpkgs-fmt.url = "github:nix-community/nixpkgs-fmt";
     ### --- modules --- ###
 
@@ -66,6 +71,7 @@
     agenix,
     doom-emacs,
     spicetify-nix,
+    aagl,
     ...
   } @ inputs: let
     users = {
@@ -80,7 +86,7 @@
     nixosConfigurations = (
       import ./hosts/linux {
         inherit (nixpkgs) lib;
-        inherit inputs self nixpkgs nur agenix users path home-manager spicetify-nix;
+        inherit inputs self nixpkgs nur agenix users path home-manager spicetify-nix aagl;
       }
     );
     darwinConfigurations = (

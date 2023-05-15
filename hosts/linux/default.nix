@@ -9,9 +9,12 @@
   path,
   home-manager,
   spicetify-nix,
+  aagl,
   ...
 }: let
   lib = nixpkgs.lib;
+  home = "unsigned-int32";
+  server = "unsigned-int64";
 in {
   unsigned-int32 = lib.nixosSystem {
     # Desktop profile
@@ -24,6 +27,7 @@ in {
       ./unsigned-int32/configuration.nix
       nur.nixosModules.nur
       agenix.nixosModules.default
+      aagl.nixosModules.default
 
       home-manager.nixosModules.home-manager
       {
@@ -38,7 +42,7 @@ in {
             "${userName}" = {imports = [./unsigned-int32/home/${userName}/home.nix];};
           })
           users);
-      }
+        } 
     ];
   };
 

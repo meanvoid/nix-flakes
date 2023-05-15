@@ -4,6 +4,7 @@
   config,
   pkgs,
   agenix,
+  aagl,
   users,
   path,
   ...
@@ -205,6 +206,9 @@
       enableSSHSupport = true;
     };
     dconf.enable = true;
+    anime-game-launcher.enable = true;
+    honkers-railway-launcher.enable = true;
+    honkers-launcher.enable = true;
   };
 
   environment = {

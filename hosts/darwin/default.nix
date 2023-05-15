@@ -34,7 +34,6 @@ in {
     inherit system;
     specialArgs = {inherit users inputs;};
     modules = [
-      # modules = lib.attrValues self.darwinModules ++ [
       # nix darwin module
       ./darwin/configuration.nix
       # home-manager module
