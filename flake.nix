@@ -69,9 +69,9 @@
     darwin,
     home-manager,
     agenix,
+    aagl,
     doom-emacs,
     spicetify-nix,
-    aagl,
     ...
   } @ inputs: let
     users = {
@@ -86,7 +86,7 @@
     nixosConfigurations = (
       import ./hosts/linux {
         inherit (nixpkgs) lib;
-        inherit inputs self nixpkgs nur agenix users path home-manager spicetify-nix aagl;
+        inherit inputs self nixpkgs nur agenix aagl users path home-manager spicetify-nix;
       }
     );
     darwinConfigurations = (

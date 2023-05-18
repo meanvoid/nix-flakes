@@ -20,7 +20,7 @@
         members = ["ashuramaru" "meanrin" "jellyfin"];
       };
       jellyfin = {
-        members = ["${users}"];
+        members = [ "ashuramaru" "meanrin" ];
       };
     };
     users = {

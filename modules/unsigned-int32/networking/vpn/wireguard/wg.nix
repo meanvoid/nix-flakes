@@ -9,8 +9,8 @@
   shared = config.age.secrets.wireguard-shared.path;
 in {
   age.secrets = {
-    wireguard-client.file = ./../../../secrets/wireguard-client.age;
-    wireguard-shared.file = ./../../../secrets/wireguard-shared.age;
+    wireguard-client.file = ./../../../../../secrets/wireguard-client.age;
+    wireguard-shared.file = ./../../../../../secrets/wireguard-shared.age;
   };
 
   services.wg-netmanager.enable = true;

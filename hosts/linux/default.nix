@@ -5,11 +5,11 @@
   nixpkgs,
   nur,
   agenix,
+  aagl,
   users,
   path,
   home-manager,
   spicetify-nix,
-  aagl,
   ...
 }: let
   lib = nixpkgs.lib;

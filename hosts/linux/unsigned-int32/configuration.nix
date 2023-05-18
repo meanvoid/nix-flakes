@@ -86,7 +86,7 @@
         enable = true;
         consoleMode = "keep";
         netbootxyz.enable = true;
-        memtest86.enable = true; # TODO
+        memtest86.enable = true;
         configurationLimit = 30;
       };
 
