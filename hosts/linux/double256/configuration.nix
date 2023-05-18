@@ -54,7 +54,7 @@
       LC_TELEPHONE = "uk_UA.UTF-8";
       LC_TIME = "uk_UA.UTF-8";
     };
-};
+  };
 
   services.xserver = {
     enable = true;

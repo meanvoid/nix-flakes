@@ -4,8 +4,8 @@
   inputs = {
     ### --- nixpkgs --- ###
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.follows = "unstable";
     nur.url = "github:nix-community/nur";
-    nixpkgs.follows = "unstable"; # desc: set nixos-unstable as default nixpkgs
     ### --- nixpkgs --- ###
 
     ### --- systems --- ###
@@ -36,8 +36,6 @@
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "unstable";
     };
-
-    nixpkgs-fmt.url = "github:nix-community/nixpkgs-fmt";
     ### --- modules --- ###
 
     ### --- overlays --- ###
@@ -53,10 +51,6 @@
     hyprland = {
       url = "github:vaxerski/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    comma = {
-      url = "github:nix-community/comma";
-      flake = false;
     };
     spicetify-nix.url = "github:the-argus/spicetify-nix";
     ### --- overlays --- ###
@@ -81,12 +75,66 @@
       kelly = "kellyreanimausu";
       morgana = "theultydespair";
     };
-    path = "/etc/nixos";
+    path = {
+      nixos = "/etc/nixos";
+      macos = "/etc/nixpkgs";
+      nonNix = "$HOME/.config/nixpkgs";
+    };
+    systems = {
+      nixos = {
+        vm = {
+          cpu = "x86_64-linux";
+          hostname = "unsigned-int8";
+        };
+        work = {
+          cpu = "x86_64-linux";
+          hostname = "unsigned-int16";
+        };
+        homeserver = {
+          cpu = "x86_64-linux";
+          hostname = "unsigned-int32";
+        };
+        server = {
+          cpu = "aarch64-linux";
+          hostname = "unsigned-int64";
+        };
+        asahi = {
+          cpu = "aarch64-linux";
+          hostname = "long-int32";
+        };
+        mausu = {
+          cpu = "x86_64-linux";
+          hostname = "double256";
+        };
+        morgana = {
+          cpu = "x86_64-linux";
+          hostname = "double512";
+        };
+      };
+      darwin = {
+        vm = {
+          cpu = "x86_64-darwin";
+          hostname = "signed-float8";
+        };
+        macmini = {
+          cpu = "aarch64-darwin";
+          hostname = "signed-float32";
+        };
+      };
+      nix = {
+        wsl = {
+          cpu = "x86_64-linux";
+          hostname = "sign-int32";
+        };
+        gentoo = {cpu = ["x86_64-linux" "aarch64-linux" "riscv"];};
+        arch = {cpu = ["x86_64-linux" "aarch64-linux"];};
+      };
+    };
   in {
     nixosConfigurations = (
       import ./hosts/linux {
         inherit (nixpkgs) lib;
-        inherit inputs self nixpkgs nur agenix aagl users path home-manager spicetify-nix;
+        inherit inputs self nixpkgs nur agenix users path home-manager spicetify-nix aagl;
       }
     );
     darwinConfigurations = (
@@ -95,6 +143,9 @@
         inherit inputs self darwin nixpkgs home-manager users;
       }
     );
+
+    # TODO use flake-utils to make forEachSystem in order to minimize repeatable stuff
+
     formatter = {
       x86_64-darwin = nixpkgs.legacyPackages.x86_64-darwin.alejandra;
       aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;

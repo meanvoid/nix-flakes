@@ -13,8 +13,6 @@
   ...
 }: let
   lib = nixpkgs.lib;
-  home = "unsigned-int32";
-  server = "unsigned-int64";
 in {
   unsigned-int32 = lib.nixosSystem {
     # Desktop profile
@@ -42,7 +40,7 @@ in {
             "${userName}" = {imports = [./unsigned-int32/home/${userName}/home.nix];};
           })
           users);
-        } 
+      }
     ];
   };
 
