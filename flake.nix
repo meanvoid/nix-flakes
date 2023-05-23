@@ -92,7 +92,7 @@
           };
         };
       packages = { 
-        default = pkgs.callPackage ./derivations/nixos/games/thcrap.nix {}; 
+        default = pkgs.callPackage ./derivations/nixos/games/thcrap.nix {};
       };
       formatter = nixpkgs.legacyPackages.${system}.alejandra;
       });
