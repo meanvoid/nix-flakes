@@ -213,15 +213,6 @@
 
   environment = {
     systemPackages = with pkgs; [
-      gnumake
-      gcc
-      autoconf
-      binutils
-      gperf
-      procps
-      zlib
-      m4
-
       # Networking
       curl
       wget
@@ -254,6 +245,7 @@
 
       # browser
       firefox
+
       thunderbird
 
       # Virt

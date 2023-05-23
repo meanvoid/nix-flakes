@@ -24,7 +24,7 @@
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/199a9d15-3187-44ed-9a41-1b965029caef";
     fsType = "btrfs";
-    options = ["subvol=nix-store" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2" "x-gvfs-show" "x-gvfs-name=nix-store"];
+    options = ["subvol=nix-store" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2"];
   };
 
   fileSystems."/etc/nixos" = {
@@ -36,13 +36,13 @@
   fileSystems."/var" = {
     device = "/dev/disk/by-uuid/199a9d15-3187-44ed-9a41-1b965029caef";
     fsType = "btrfs";
-    options = ["subvol=var" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2" "x-gvfs-show"];
+    options = ["subvol=var" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2"];
   };
 
   fileSystems."/Users" = {
     device = "/dev/disk/by-uuid/199a9d15-3187-44ed-9a41-1b965029caef";
     fsType = "btrfs";
-    options = ["subvol=Users" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2" "x-gvfs-show"];
+    options = ["subvol=Users" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2"];
   };
 
   fileSystems."/Users/alex" = {
@@ -78,13 +78,13 @@
   fileSystems."/home/chroot" = {
     device = "/dev/disk/by-uuid/199a9d15-3187-44ed-9a41-1b965029caef";
     fsType = "btrfs";
-    options = ["subvol=chroot" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2" "x-gvfs-show" "x-gvfs-name=chroot"];
+    options = ["subvol=chroot" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2"];
   };
 
   fileSystems."/home/tmp" = {
     device = "/dev/disk/by-uuid/199a9d15-3187-44ed-9a41-1b965029caef";
     fsType = "btrfs";
-    options = ["subvol=tmp" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2" "x-gvfs-show" "x-gvfs-name=tmpfs"];
+    options = ["subvol=tmp" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2"];
   };
 
   fileSystems."/Shared/games" = {

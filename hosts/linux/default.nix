@@ -5,14 +5,15 @@
   nixpkgs,
   nur,
   agenix,
-  aagl,
+  home-manager,
   users,
   path,
-  home-manager,
   spicetify-nix,
+  aagl,
+  flatpaks,
   ...
 }: let
-  lib = nixpkgs.lib;
+  ff = 2;
 in {
   unsigned-int32 = lib.nixosSystem {
     # Desktop profile
@@ -24,6 +25,7 @@ in {
     modules = [
       ./unsigned-int32/configuration.nix
       nur.nixosModules.nur
+
       agenix.nixosModules.default
       aagl.nixosModules.default
 
@@ -45,6 +47,7 @@ in {
   };
 
   unsigned-int64 = lib.nixosSystem {
+    # Server profile
     system = "aarch64-linux";
     specialArgs = {
       inherit inputs users path;

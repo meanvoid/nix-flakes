@@ -8,30 +8,10 @@
   users,
   ...
 }: let
-  inherit (darwin.lib) darwinSystem;
-  system = "aarch64-darwin";
-
-  # Todo move to overlay.nix
-  nixpkgsConfig = {
-    config = {allowUnfree = true;};
-    overlays = lib.singleton (
-      final: prev: (lib.optionalAttrs (prev.stdenv.system == "aarch64-darwin")
-        {
-          pkgs-x86 = import nixpkgs {
-            system = "x86_64-darwin";
-            inherit (nixpkgsConfig) config;
-          };
-
-          inherit
-            (final.pkgs-x86)
-            blender
-            ;
-        })
-    );
-  };
+    nixpkgsConfig = { config = {allowUnfree = true;}; };
 in {
-  unsigned-int8 = darwinSystem {
-    inherit system;
+  unsigned-int8 = lib.darwinSystem {
+    system = "aarch64-darwin";
     specialArgs = {inherit users inputs;};
     modules = [
       # nix darwin module
@@ -43,20 +23,8 @@ in {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {inherit users;};
-        home-manager.users.${users} = import ./home/home.nix;
+        home-manager.users.ashuramaru = import ./unsigned-int8/home/home.nix;
       }
     ];
   };
-
-  overlays =
-    lib.attrValues self.overlays
-    ++ nixpkgsConfig.overlays
-    ++ {
-      comma = final: prev: {
-        comma = {
-          inherit (inputs) comma;
-          inherit (prev) pkgs;
-        };
-      };
-    };
 }
