@@ -1,6 +1,6 @@
 {
   description = "meanvoid nix/nixos/darwin  nix flake configuration";
-
+  # Morgana was here
   inputs = {
     ### --- Declarations of flake inputs
     flake-utils.url = "github:numtide/flake-utils";
