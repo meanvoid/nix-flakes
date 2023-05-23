@@ -8,7 +8,7 @@
   users,
   ...
 }: let
-    nixpkgsConfig = { config = {allowUnfree = true;}; };
+  nixpkgsConfig = {config = {allowUnfree = true;};};
 in {
   unsigned-int8 = lib.darwinSystem {
     system = "aarch64-darwin";

@@ -57,50 +57,55 @@
     flake-utils,
     pre-commit-hooks,
     ...
-  } @ inputs: let 
-      inherit (flake-utils.lib) eachSystem eachDefaultSystem;
+  } @ inputs: let
+    inherit (flake-utils.lib) eachSystem eachDefaultSystem;
+    inherit (nixpkgs) lib;
+
+    commonAttrs = {
       inherit (nixpkgs) lib;
+      inherit inputs self nixpkgs;
+      inherit home-manager users path;
+    };
+    path = "/etc/nixos";
+    users = {
+      marie = "ashuramaru";
+      alex = "meanrin";
+      twi = "twithefurry";
+      kelly = "kellyreanimausu";
+      morgana = "theultydespair";
+    };
 
-      commonAttrs = {
-        inherit (nixpkgs) lib;
-        inherit inputs self nixpkgs;
-        inherit home-manager users path;
-      };
-      path = "/etc/nixos";
-      users = {
-        marie = "ashuramaru";
-        alex = "meanrin";
-        twi = "twithefurry";
-        kelly = "kellyreanimausu";
-        morgana = "theultydespair";
-      };
-
-      flakeOutput = eachDefaultSystem
+    flakeOutput =
+      eachDefaultSystem
       (system: let
-      pkgs = import nixpkgs {inherit system;}; 
+        pkgs = nixpkgs.legacyPackages.${system};
       in {
+      checks = {
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = ./.;
           hooks.alejandra.enable = true;
-        };
-        devShells = {
+        }; 
+      };
+      devShells = {
           default = pkgs.mkShell {
             inherit (self.checks.${system}.pre-commit-check) shellHook;
           };
         };
-        formatter = nixpkgs.legacyPackages.${system}.alejandra;
-      });
-
-    in
-      flakeOutput
-      // {
-        nixosConfigurations = let 
-          defaultAttrs = commonAttrs // { inherit nur flatpaks agenix aagl spicetify-nix; };
-        in 
-          import ./hosts/linux (defaultAttrs);
-        darwinConfigurations = let
-          defaultAttrs = commonAttrs // { inherit nix-darwin; };
-        in
-          import ./hosts/darwin (defaultAttrs);
+      packages = { 
+        default = pkgs.callPackage ./derivations/nixos/games/thcrap.nix {}; 
       };
+      formatter = nixpkgs.legacyPackages.${system}.alejandra;
+      });
+  in
+    flakeOutput
+    // {
+      nixosConfigurations = let
+        defaultAttrs = commonAttrs // {inherit nur flatpaks agenix aagl spicetify-nix;};
+      in
+        import ./hosts/linux defaultAttrs;
+      darwinConfigurations = let
+        defaultAttrs = commonAttrs // {inherit nix-darwin;};
+      in
+        import ./hosts/darwin defaultAttrs;
+    };
 }
