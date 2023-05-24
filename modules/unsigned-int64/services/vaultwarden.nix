@@ -5,11 +5,10 @@
 }: {
   services.vaultwarden = {
     enable = true;
-    dbBackend = "postgresql";
+    # dbBackend = "postgresql";
     package = pkgs.vaultwarden-postgresql;
     config = {
       domain = "https://bitwarden.tenjin-dk.com";
-      # databaseUrl = "";
       signupsAllowed = false;
       signupsVerify = true;
       signupsDomainsWhitelist = "tenjin-dk.com, riseup.net";
