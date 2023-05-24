@@ -8,7 +8,7 @@
     dbBackend = "postgresql";
     package = pkgs.vaultwarden-postgresql;
     config = {
-      domain = "https://bitwarden.tenjin-dk.com";
+      domain = "bitwarden.tenjin-dk.com";
       databaseUrl = "/run/postgresql";
       signupsAllowed = false;
       signupsVerify = true;
