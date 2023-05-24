@@ -8,8 +8,8 @@
     dbBackend = "postgresql";
     package = pkgs.vaultwarden-postgresql;
     config = {
-      domain = "bitwarden.tenjin-dk.com";
-      databaseUrl = "/run/postgresql";
+      domain = "https://bitwarden.tenjin-dk.com";
+      # databaseUrl = "";
       signupsAllowed = false;
       signupsVerify = true;
       signupsDomainsWhitelist = "tenjin-dk.com, riseup.net";
@@ -22,7 +22,7 @@
       rocketLog = "critical";
     };
   };
-  services.nginx.virtualHosts."${toString config.services.vaultwarden.config.domain}" = {
+  services.nginx.virtualHosts."bitwarden.tenjin-dk.com" = {
     enableACME = true;
     forceSSL = true;
     locations."/" = {
