@@ -5,6 +5,7 @@
 }: {
   services.vaultwarden = {
     enable = true;
+    dbBackend = "postgresqll";
     backupDir = "/var/lib/bitwarden_rs/backups";
     package = pkgs.vaultwarden-postgresql;
     config = {
@@ -16,16 +17,16 @@
       websocketEnabled = true;
       websocketAddress = "0.0.0.0";
       websoketPort = "3012";
-      smtpHost = "smtp.riseup.net";
-      smtpFrom = "cloud-noreply@riseup.net";
-      smtpPort = 587;
-      smtpSsl = true;
-      smtpTimeout = 15;
       enableDbWal = false;
       rocketPort = 8812;
       rocketLog = "critical";
     };
-    dbBackend = "postgresql";
-    # environmentFile = "/root/secrets/vaultwarden/conf.env";
+  };
+  services.nginx.virtualHosts.${config.services.vaultwarden.config.domain} = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:${toString config.services.vaultwarden.config.rocketPort}";
+    };
   };
 }
