@@ -3,14 +3,15 @@
   pkgs,
   lib,
   agenix,
+  path,
   ...
 }: let
   private = config.age.secrets.wireguard-client.path;
   shared = config.age.secrets.wireguard-shared.path;
 in {
   age.secrets = {
-    wireguard-client.file = ./../../../../../secrets/wireguard-client.age;
-    wireguard-shared.file = ./../../../../../secrets/wireguard-shared.age;
+    wireguard-client.file = path + /secrets/wireguard-client.age;
+    wireguard-shared.file = path + /secrets/wireguard-shared.age;
   };
 
   services.wg-netmanager.enable = true;

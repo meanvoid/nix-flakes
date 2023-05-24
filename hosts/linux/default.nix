@@ -25,9 +25,7 @@
       home-manager.users = lib.mkMerge (lib.mapAttrsToList
         (user: userName: {
           "${userName}" = {
-            imports = [
-              ././${hostName}/home/${userName}/home.nix
-            ];
+            imports = [(./. + "/${hostName}/home/${userName}/home.nix")];
           };
         })
         users);
@@ -59,7 +57,7 @@
         inherit inputs users path;
         host = {inherit hostName;};
       };
-      modules = [././${hostName}/configuration.nix] ++ sharedModules;
+      modules = [(./. + "/${hostName}/configuration.nix")] ++ sharedModules;
     };
 in {
   unsigned-int32 = mkSystemConfig {

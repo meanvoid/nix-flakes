@@ -65,7 +65,7 @@
       inherit inputs self nixpkgs;
       inherit home-manager users path;
     };
-    path = "/etc/nixos";
+    path = ./.;
     users = {
       marie = "ashuramaru";
       alex = "meanrin";
@@ -77,6 +77,7 @@
       eachDefaultSystem
       (system: let
         pkgs = nixpkgs.legacyPackages.${system};
+        thPkg = pkgs.callPackage ./derivations/thcrap.nix {};
       in {
         checks = {
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
@@ -90,8 +91,8 @@
           };
         };
         packages = {
-          default = pkgs.hello;
-          thcrap = pkgs.callPackage ./derivations/thcrap.nix {};
+          default = thPkg;
+          thcrap-nix = thPkg;
         };
         formatter = nixpkgs.legacyPackages.${system}.alejandra;
       });

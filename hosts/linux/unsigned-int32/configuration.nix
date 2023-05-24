@@ -8,10 +8,18 @@
   users,
   path,
   ...
-}: {
+}: let
+  hostName = {inherit config;};
+
+  modules = map (
+    name: (import path + "/modules/${hostName}/${name}") ["environment" "networking" "programs" "services" "virtualisation"]
+  );
+in {
   imports =
-    [./hardware-configuration.nix]
-    ++ [(import ./../../../modules/shared/desktop/gnome.nix)]
+    [
+      ./hardware-configuration.nix
+      (path + "/modules/shared/desktop/gnome.nix")
+    ]
     ++ (import ./../../../modules/unsigned-int32/environment)
     ++ (import ./../../../modules/unsigned-int32/networking)
     ++ (import ./../../../modules/unsigned-int32/programs)

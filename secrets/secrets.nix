@@ -18,5 +18,4 @@ in {
   "wireguard-server-shared_twi.age".publicKeys = [systems.unsigned-int64];
   "wireguard-server-shared_julio.age".publicKeys = [systems.unsigned-int64];
   "admin.age".publicKeys = [systems.unsigned-int64];
-  "dbpass.age".publicKeys = [systems.unsigned-int64];
 }

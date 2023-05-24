@@ -34,7 +34,7 @@
           mangohud
           gamescope
           steamtinkerlaunch
-          (pkgs.callPackage ../../../derivations/thcrap.nix {})
+          (pkgs.callPackage (path + "/derivations/thcrap.nix") {})
         ];
     };
   };
