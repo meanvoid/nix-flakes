@@ -4,12 +4,14 @@
   lib,
   users,
   ...
-}: {
+}: let
+  inherit (users) marie;
+in {
   imports =
     (import ../modules/shared/overlays)
-    ++ (import ../modules/${users.marie}/programs);
+    ++ (import ../modules/${marie}/programs);
   home = {
-    username = "${users.marie}";
+    username = "${marie}";
     packages = with pkgs; [
       # Audio
       easyeffects

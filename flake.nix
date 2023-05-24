@@ -93,7 +93,7 @@
           default = pkgs.hello;
           thcrap = pkgs.callPackage ./derivations/thcrap.nix {};
         };
-        formatter = pkgs.alejandra;
+        formatter = nixpkgs.legacyPackages.${system}.alejandra;
       });
   in
     flakeOutput

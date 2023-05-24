@@ -6,8 +6,6 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./filesystems.nix
-    ./networking.nix
   ];
   boot = {
     kernelModules = ["kvm-amd"];
