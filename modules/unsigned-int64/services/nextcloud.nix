@@ -13,14 +13,9 @@ in {
     owner = "nextcloud";
     group = "nextcloud";
   };
-  age.secrets.dbpass = {
-    file = "${path}/dbpass.age";
-    mode = "770";
-    owner = "nextcloud";
-    group = "nextcloud";
-  };
   services.nextcloud = {
     enable = true;
+    database.createLocally = true;
     package = pkgs.nextcloud26;
     extraApps = with pkgs.nextcloud26Packages.apps; {
       inherit tasks polls notes mail news contacts calendar deck bookmarks keeweb;
@@ -37,10 +32,6 @@ in {
       overwriteProtocol = "https";
       defaultPhoneRegion = "UA";
       dbtype = "pgsql";
-      dbuser = "nextcloud";
-      dbhost = "/run/postgresql";
-      dbname = "nextcloud";
-      dbpassFile = config.age.secrets.dbpass.path;
       adminuser = "root";
       adminpassFile = config.age.secrets.admin.path;
     };
@@ -58,11 +49,6 @@ in {
       "opcache.interned_strings_buffer" = "16";
     };
   };
-  systemd.services.nextcloud-setup = {
-    requires = ["postgresql.service"];
-    after = ["postgresql.service"];
-  };
-
   services.redis.servers.nextcloud = {
     enable = true;
     port = 0;

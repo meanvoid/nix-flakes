@@ -8,16 +8,16 @@
     enable = true;
     enableJIT = true;
     ensureDatabases = [
-      "nextcloud"
+      # "nextcloud"
       "vaultwarden"
     ];
     ensureUsers = [
-      {
-        name = "nextcloud";
-        ensurePermissions = {
-          "DATABASE nextcloud" = "ALL PRIVILEGES";
-        };
-      }
+      # {
+      # name = "nextcloud";
+      # ensurePermissions = {
+      # "DATABASE nextcloud" = "ALL PRIVILEGES";
+      # };
+      # }
       {
         name = "superuser";
         ensurePermissions = {
