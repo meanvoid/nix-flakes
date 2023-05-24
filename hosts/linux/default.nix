@@ -38,7 +38,7 @@ in {
         };
         home-manager.users = lib.mkMerge (lib.mapAttrsToList
           (user: userName: {
-            "${userName}" = {imports = [./unsigned-int32/home/${userName}/home.nix];};
+            "${userName}" = {imports = [./home/${userName}/home.nix];};
           })
           users);
       }
