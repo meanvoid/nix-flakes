@@ -25,7 +25,7 @@
       rocketPort = 8812;
       rocketLog = "critical";
     };
-    dbBackend = "sqlite";
-    environmentFile = "/root/secrets/vaultwarden/conf.env";
+    dbBackend = "postgresql";
+    # environmentFile = "/root/secrets/vaultwarden/conf.env";
   };
 }
