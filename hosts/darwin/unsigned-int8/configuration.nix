@@ -5,9 +5,9 @@
   users,
   ...
 }: let
-sex = 32;
+  sex = 32;
 in {
-  imports = [ ./rosetta.nix ];
+  imports = [./rosetta.nix];
   # Nix configuration ------------------------------------------------------------------------------
   nix = {
     package = pkgs.nix;
@@ -83,7 +83,7 @@ in {
       # FFmpeg and codecs
       ffmpeg_6
     ];
-    rosettaPackages = with pkgs; [ blender ];
+    rosettaPackages = with pkgs; [blender];
   };
 
   # Homebrew
@@ -94,7 +94,6 @@ in {
       upgrade = true;
       cleanup = "zap";
     };
-    # brews = [  ];
 
     casks = ["firefox" "spotify" "steam" "krita"];
   };

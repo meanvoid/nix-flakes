@@ -91,26 +91,14 @@
         };
         packages = {
           default = pkgs.hello;
-          thcrap-nix = pkgs.callPackage ./derivations/thcrap.nix {};
+          thcrap = pkgs.callPackage ./derivations/thcrap.nix {};
         };
-        formatter = nixpkgs.legacyPackages.${system}.alejandra;
+        formatter = pkgs.alejandra;
       });
   in
     flakeOutput
     // {
-      overlays = {
-        # overlay for installing x86_64-darwin packages with rosetta2
-        x86_64pkgs = x86_64-list: final: prev: let
-          isSilicon = prev.stdenv.system == "aarch64-darwin";
-        in
-          lib.optionalAttrs isSilicon (builtins.listToAttrs (
-              map (pkg: {
-                name = pkg;
-                value = final.pkgs-x86.${pkg};
-              })
-            )
-            x86_64-list);
-      };
+      # overlays = { default = []; };
       nixosConfigurations = let
         defaultAttrs = commonAttrs // {inherit nur flatpaks agenix aagl spicetify-nix;};
       in
@@ -120,7 +108,6 @@
           commonAttrs
           // {
             inherit darwin;
-            inherit (self.overlays) x86_64pkgs;
           };
       in
         import ./hosts/darwin defaultAttrs;

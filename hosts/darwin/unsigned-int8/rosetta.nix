@@ -1,13 +1,15 @@
-{ lib, config, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   system = config.system.stateVersion;
-  x86pkgs = import pkgs.path { 
-    config = { allowUnfree = true; }; 
+  x86pkgs = import pkgs.path {
+    config = {allowUnfree = true;};
     system = "x86_64-darwin";
   };
-in
-{
+in {
   options.environment.rosettaPackages = lib.mkOption {
     default = [];
     type = lib.types.listOf lib.types.package;
@@ -16,9 +18,9 @@ in
 
   config = lib.mkIf (system == "aarch64-darwin") {
     nixpkgs.overlays = [
-      (self: super: 
-        { 
-          pkgs = self // { inherit (x86pkgs) ${builtins.concatStringsSep " " config.environment.rosettaPackages}; };
+      (
+        self: super: {
+          pkgs = self // {inherit (x86pkgs) ${builtins.concatStringsSep " " config.environment.rosettaPackages};};
         }
       )
     ];
