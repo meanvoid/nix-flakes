@@ -5,7 +5,7 @@
 }: {
   services.vaultwarden = {
     enable = true;
-    dbBackend = "postgresqll";
+    dbBackend = "postgresql";
     backupDir = "/var/lib/bitwarden_rs/backups";
     package = pkgs.vaultwarden-postgresql;
     config = {
