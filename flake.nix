@@ -1,6 +1,5 @@
 {
   description = "meanvoid nix/nixos/darwin  nix flake configuration";
-  # Morgana was here
   inputs = {
     ### --- Declarations of flake inputs
     flake-utils.url = "github:numtide/flake-utils";
@@ -12,7 +11,7 @@
     nur.url = "github:nix-community/nur";
 
     ### --- system specific
-    nix-darwin.url = "github:lnl7/nix-darwin/master";
+    darwin.url = "github:lnl7/nix-darwin/master";
     wsl.url = "github:nix-community/nixos-wsl";
     nixgl.url = "github:guibou/nixGL";
 
@@ -48,7 +47,7 @@
     self,
     nixpkgs,
     nur,
-    nix-darwin,
+    darwin,
     home-manager,
     agenix,
     flatpaks,
@@ -74,37 +73,55 @@
       kelly = "kellyreanimausu";
       morgana = "theultydespair";
     };
-
     flakeOutput =
       eachDefaultSystem
       (system: let
         pkgs = nixpkgs.legacyPackages.${system};
       in {
-      checks = {
-        pre-commit-check = pre-commit-hooks.lib.${system}.run {
-          src = ./.;
-          hooks.alejandra.enable = true;
-        }; 
-      };
-      devShells = {
+        checks = {
+          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks.alejandra.enable = true;
+          };
+        };
+        devShells = {
           default = pkgs.mkShell {
             inherit (self.checks.${system}.pre-commit-check) shellHook;
           };
         };
-      packages = { 
-        default = pkgs.callPackage ./derivations/nixos/games/thcrap.nix {};
-      };
-      formatter = nixpkgs.legacyPackages.${system}.alejandra;
+        packages = {
+          default = pkgs.hello;
+          thcrap-nix = pkgs.callPackage ./derivations/thcrap.nix {};
+        };
+        formatter = nixpkgs.legacyPackages.${system}.alejandra;
       });
   in
     flakeOutput
     // {
+      overlays = {
+        # overlay for installing x86_64-darwin packages with rosetta2
+        x86_64pkgs = x86_64-list: final: prev: let
+          isSilicon = prev.stdenv.system == "aarch64-darwin";
+        in
+          lib.optionalAttrs isSilicon (builtins.listToAttrs (
+              map (pkg: {
+                name = pkg;
+                value = final.pkgs-x86.${pkg};
+              })
+            )
+            x86_64-list);
+      };
       nixosConfigurations = let
         defaultAttrs = commonAttrs // {inherit nur flatpaks agenix aagl spicetify-nix;};
       in
         import ./hosts/linux defaultAttrs;
       darwinConfigurations = let
-        defaultAttrs = commonAttrs // {inherit nix-darwin;};
+        defaultAttrs =
+          commonAttrs
+          // {
+            inherit darwin;
+            inherit (self.overlays) x86_64pkgs;
+          };
       in
         import ./hosts/darwin defaultAttrs;
     };

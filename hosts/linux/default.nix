@@ -13,7 +13,6 @@
   flatpaks,
   ...
 }: let
-  ff = 2;
 in {
   unsigned-int32 = lib.nixosSystem {
     # Desktop profile

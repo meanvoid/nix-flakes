@@ -10,12 +10,12 @@
 }: let
   nixpkgsConfig = {config = {allowUnfree = true;};};
 in {
-  unsigned-int8 = lib.darwinSystem {
+  unsigned-int8 = darwin.lib.darwinSystem {
     system = "aarch64-darwin";
     specialArgs = {inherit users inputs;};
     modules = [
       # nix darwin module
-      ./darwin/configuration.nix
+      ./unsigned-int8/configuration.nix
       # home-manager module
       home-manager.darwinModules.home-manager
       {
@@ -23,7 +23,7 @@ in {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {inherit users;};
-        home-manager.users.ashuramaru = import ./unsigned-int8/home/home.nix;
+        home-manager.users.ashuramaru = import ./home/home.nix;
       }
     ];
   };

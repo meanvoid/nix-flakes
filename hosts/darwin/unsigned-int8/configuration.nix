@@ -4,7 +4,10 @@
   config,
   users,
   ...
-}: {
+}: let
+sex = 32;
+in {
+  imports = [ ./rosetta.nix ];
   # Nix configuration ------------------------------------------------------------------------------
   nix = {
     package = pkgs.nix;
@@ -80,6 +83,7 @@
       # FFmpeg and codecs
       ffmpeg_6
     ];
+    rosettaPackages = with pkgs; [ blender ];
   };
 
   # Homebrew

@@ -1,5 +1,4 @@
-# TODO Move to isolated file ( for now we need cuda system-wide)
-{pkgs ? import <nixpkgs> {}}:
+{pkgs, ...}:
 (pkgs.buildFHSUserEnv {
   name = "cuda-env";
   targetPkgs = pkgs:
@@ -35,7 +34,7 @@
   runScript = "bash";
   profile = ''
     export CUDA_PATH=${pkgs.cudatoolkit}
-    # export LD_LIBRARY_PATH=${pkgs.linuxPackages.nvidia_x11}/lib
+    export LD_LIBRARY_PATH=${pkgs.linuxPackages.nvidia_x11}/lib
     export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
     export EXTRA_CCFLAGS="-I/usr/include"
   '';
