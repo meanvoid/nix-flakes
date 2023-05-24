@@ -4,3 +4,4 @@ test
 result
 hosts/result
 hosts/darwin/result
+.pre-commit-config.yaml
