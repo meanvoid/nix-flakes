@@ -28,6 +28,6 @@
   };
   services.postgresqlBackup = {
     enable = true;
-    databases = ["nextcloud"];
+    databases = ["nextcloud" "vaultwarden"];
   };
 }
