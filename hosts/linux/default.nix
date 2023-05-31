@@ -87,7 +87,7 @@ in {
   unsigned-int128 = mkSystemConfig {
     hostName = "unsigned-int128";
     system = "x86_64-linux";
-    useHomeManager = true;
+    # useHomeManager = true;
     useAagl = true;
     useFlatpak = true;
     modules = [];

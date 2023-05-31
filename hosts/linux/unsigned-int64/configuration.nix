@@ -179,10 +179,8 @@
           # cloudflare
           "1.1.1.1"
         ];
+        interface = "wireguard0";
       };
-      extraConfig = ''
-        interface=wireguard0
-      '';
     };
   };
   programs = {
