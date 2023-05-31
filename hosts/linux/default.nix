@@ -42,19 +42,29 @@
     modules ? [],
     ...
   }: let
+    defaults =
+      [
+        {
+          config = {
+            nixpkgs.config.allowUnfree = lib.mkDefault true;
+            services.flatpak.enable = lib.mkDefault useFlatpak;
+          };
+        }
+        agenix.nixosModules.default
+      ]
+      ++ modules;
     sharedModules = lib.concatLists [
       (lib.optional useNur nur.nixosModules.nur)
       (lib.optional useAagl aagl.nixosModules.default)
       (lib.optional useFlatpak flatpaks.nixosModules.default)
       (lib.optionals useHomeManager (homeManagerModules hostName))
-      [agenix.nixosModules.default]
-      modules
+      defaults
     ];
   in
     lib.nixosSystem {
       inherit system;
       specialArgs = {
-        inherit inputs users path;
+        inherit users path;
         host = {inherit hostName;};
       };
       modules = [(./. + "/${hostName}/configuration.nix")] ++ sharedModules;

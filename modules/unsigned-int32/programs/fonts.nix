@@ -17,7 +17,6 @@
     ubuntu_font_family
     roboto
     roboto-mono
-    ricty
     powerline-symbols
     wqy_zenhei
     mplus-outline-fonts.githubRelease

@@ -4,6 +4,20 @@
   pkgs,
   ...
 }: {
+  console = {
+    earlySetup = false;
+    keyMap = "us";
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-u32b.psf.gz";
+  };
+
+  sound = {
+    enable = true;
+    mediaKeys = {
+      enable = true;
+      volumeStep = "5%";
+    };
+  };
+
   hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.opentabletdriver = {

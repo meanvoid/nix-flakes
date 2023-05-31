@@ -3,12 +3,13 @@
   pkgs,
   lib,
   agenix,
+  path,
   ...
 }: {
   imports =
     [./hardware-configuration.nix]
-    ++ (import ./../../../modules/unsigned-int64/networking)
-    ++ (import ./../../../modules/unsigned-int64/services);
+    ++ (import (path + "/modules/unsigned-int64/networking"))
+    ++ (import (path + "/modules/unsigned-int64/services"));
 
   nix = {
     gc = {

@@ -9,111 +9,24 @@
   path,
   ...
 }: let
-  hostName = {inherit config;};
+  hostName = "unsigned-int32";
+  importModule = moduleName: let
+    dir = path + "/modules/${hostName}";
+  in
+    import (dir + "/${moduleName}");
 
-  modules = map (
-    name: (import path + "/modules/${hostName}/${name}") ["environment" "networking" "programs" "services" "virtualisation"]
-  );
+  hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
 in {
   imports =
-    [
-      ./hardware-configuration.nix
-      (path + "/modules/shared/desktop/gnome.nix")
-    ]
-    ++ (import ./../../../modules/unsigned-int32/environment)
-    ++ (import ./../../../modules/unsigned-int32/networking)
-    ++ (import ./../../../modules/unsigned-int32/programs)
-    ++ (import ./../../../modules/unsigned-int32/services)
-    ++ (import ./../../../modules/unsigned-int32/virtualisation)
-    ++ (import ./../../../modules/shared/settings);
-  boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
-    extraModulePackages = with config.boot.kernelPackages; [zenpower vendor-reset];
-    kernelParams = [
-      "video=DP-1:2560x1440@120"
-      "video=DP-2:2560x1440@120"
+    [./hardware-configuration.nix]
+    ++ [(path + "/modules/shared/desktop/gnome.nix")]
+    ++ hostModules [
+      "environment"
+      "networking"
+      "programs"
+      "services"
+      "virtualisation"
     ];
-
-    initrd = {
-      network = {
-        enable = true;
-      };
-      services.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
-      luks = {
-        yubikeySupport = true;
-        reusePassphrases = true;
-        mitigateDMAAttacks = true;
-        devices = {
-          "redpilled" = {
-            device = "/dev/md0";
-            preLVM = true;
-            allowDiscards = true;
-            bypassWorkqueues = true;
-            yubikey = {
-              slot = 2;
-              twoFactor = true;
-              gracePeriod = 30;
-              keyLength = 64;
-              saltLength = 64;
-              storage = {
-                device = "/dev/nvme0n1p1";
-                fsType = "vfat";
-                path = "/crypt-storage/default_slot0";
-              };
-            };
-            crypttabExtraOpts = ["fido2-device=auto"];
-          };
-          "based" = {
-            device = "/dev/md5";
-            bypassWorkqueues = true;
-            yubikey = {
-              slot = 2;
-              twoFactor = true;
-              gracePeriod = 30;
-              keyLength = 64;
-              saltLength = 64;
-              storage = {
-                device = "/dev/nvme0n1p1";
-                fsType = "vfat";
-                path = "/crypt-storage/hdd_slot0";
-              };
-            };
-            crypttabExtraOpts = ["fido2-device=auto"];
-          };
-        };
-      };
-    };
-
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
-      };
-      generationsDir = {copyKernels = true;};
-      systemd-boot = {
-        enable = true;
-        consoleMode = "keep";
-        netbootxyz.enable = true;
-        memtest86.enable = true;
-        configurationLimit = 30;
-      };
-
-      timeout = 30;
-    };
-  };
-  console = {
-    earlySetup = false;
-    keyMap = "us";
-    font = "${pkgs.terminus_font}/share/consolefonts/ter-u16n.psf.gz";
-  };
-
-  sound = {
-    enable = true;
-    mediaKeys = {
-      enable = true;
-      volumeStep = "5%";
-    };
-  };
 
   security = {
     wrappers = {
@@ -214,9 +127,6 @@ in {
       enableSSHSupport = true;
     };
     dconf.enable = true;
-    anime-game-launcher.enable = true;
-    honkers-railway-launcher.enable = true;
-    honkers-launcher.enable = true;
   };
 
   environment = {
@@ -253,7 +163,6 @@ in {
 
       # browser
       firefox
-
       thunderbird
 
       # Virt

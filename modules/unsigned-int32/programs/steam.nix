@@ -2,6 +2,8 @@
   config,
   pkgs,
   lib,
+  aagl,
+  path,
   ...
 }: {
   nixpkgs.config.packageOverrides = pkgs: {
@@ -38,6 +40,11 @@
         ];
     };
   };
+
+  programs.anime-game-launcher.enable = true;
+  programs.honkers-railway-launcher.enable = true;
+  programs.honkers-launcher.enable = true;
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
