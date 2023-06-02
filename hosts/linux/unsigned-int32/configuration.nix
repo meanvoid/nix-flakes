@@ -18,8 +18,10 @@
   hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
 in {
   imports =
-    [./hardware-configuration.nix]
-    ++ [(path + "/modules/shared/desktop/gnome.nix")]
+    [
+      ./hardware-configuration.nix
+      (path + "/modules/shared/desktop/gnome.nix")
+    ]
     ++ hostModules [
       "environment"
       "networking"
