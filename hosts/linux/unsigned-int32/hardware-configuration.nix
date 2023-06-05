@@ -12,15 +12,18 @@
     kernelModules = ["kvm-amd" "zenpower" "dm-cache" "dm-cache-smq" "dm-persistent-data" "dm-bio-prison" "dm-clone" "dm-crypt" "dm-writecache" "dm-mirror" "dm-snapshot"];
     extraModulePackages = with config.boot.kernelPackages; [zenpower vendor-reset];
     kernelParams = [
-      "video=DP-1:2560x1440@120"
-      "video=DP-2:2560x1440@120"
+      "video=DP-1:2560x1440@60"
+      "video=DP-2:2560x1440@60"
+      "video=DP-3:2560x1440@60"
+      "video=DP-4:2560x1440@60"
     ];
+    blacklistedKernelModules = ["i915" "amdgpu"];
     supportedFilesystems = ["xfs" "ntfs"];
   };
   boot.loader = {
     systemd-boot = {
       enable = true;
-      consoleMode = "auto";
+      consoleMode = "max";
       netbootxyz.enable = true;
       memtest86.enable = true;
       configurationLimit = 30;
@@ -75,10 +78,9 @@
         };
       };
     };
-    network.enable = true; #!!!
-    availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "uas" "sd_mod" "r8169"];
+    network.enable = true;
+    availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "uas" "sd_mod" "r8169" "nvidia"];
     kernelModules = ["dm-snapshot" "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "dm-cache" "dm-cache-smq" "dm-cache-mq" "dm-cache-cleaner"];
-
     services.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
   };
 

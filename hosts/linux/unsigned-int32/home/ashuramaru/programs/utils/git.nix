@@ -8,12 +8,11 @@
     enable = true;
     userName = "Marie";
     userEmail = "ashuramaru@tenjin-dk.com";
-    aliases = {
-      c = "commit";
-      co = "checkout";
-      a = "add";
-      s = "status";
-      b = "branch";
-    };
+  };
+  programs.gh = {
+    enable = true;
+    enableGitCredentialHelper = true;
+    settings.git_protocol = "ssh";
+    extensions = [];
   };
 }

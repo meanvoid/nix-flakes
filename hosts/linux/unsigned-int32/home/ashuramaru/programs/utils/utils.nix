@@ -12,4 +12,5 @@
     enable = true;
     settings = {show_program-path = true;};
   };
+  services.keepassxc.enable = true;
 }

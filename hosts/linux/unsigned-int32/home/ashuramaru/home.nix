@@ -8,13 +8,13 @@
   inherit (users) marie;
 in {
   imports =
-    (import ../modules/shared/overlays)
-    ++ (import ../modules/${marie}/programs);
+    [./services/easyeffects.nix]
+    ++ (import ../modules/overlays)
+    ++ (import ./programs);
   home = {
     username = "${marie}";
     packages = with pkgs; [
       # Audio
-      easyeffects
       audacity
 
       # Working with graphics
@@ -32,11 +32,9 @@ in {
       element-desktop
 
       # Utils
-      gallery-dl
       ani-cli
       thefuck
       mullvad
-      keepassxc
       rbw # bitwarden cli
 
       # Games

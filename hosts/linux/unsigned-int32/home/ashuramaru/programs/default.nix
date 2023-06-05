@@ -1,5 +1,6 @@
 [
-  ./spotify.nix
+  ./misc/spotify.nix
+  ./misc/gallery-dl.nix
   ./dev/vscode.nix
   ./dev/vim.nix
   ./utils/git.nix

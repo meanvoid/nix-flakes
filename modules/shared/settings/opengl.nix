@@ -12,22 +12,22 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    extraPackages = [
+    extraPackages = with pkgs; [
       # AMD
-      pkgs.rocm-opencl-icd
-      pkgs.rocm-opencl-runtime
+      rocm-opencl-icd
+      rocm-opencl-runtime
       # VAAPI
-      pkgs.libva
-      pkgs.vaapiVdpau
-      pkgs.libvdpau-va-gl
+      libva
+      vaapiVdpau
+      libvdpau-va-gl
     ];
-    extraPackages32 = [
+    extraPackages32 = with pkgs.driversi686Linux; [
       # VAAPI
-      pkgs.driversi686Linux.vaapiVdpau
-      pkgs.driversi686Linux.libvdpau-va-gl
+      vaapiVdpau
+      libvdpau-va-gl
     ];
   };
-  systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
+  systemd.tmpfiles.rules = with pkgs; [
+    "L+    /opt/rocm/hip   -    -    -     -    ${hip}"
   ];
 }

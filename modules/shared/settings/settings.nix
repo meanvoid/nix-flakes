@@ -5,9 +5,11 @@
   ...
 }: {
   console = {
-    earlySetup = false;
+    earlySetup = true;
     keyMap = "us";
-    font = "${pkgs.terminus_font}/share/consolefonts/ter-u32b.psf.gz";
+    # font = "${pkgs.terminus_font}/share/consolefonts/ter-u32b.psf.gz";
+    # font = "${pkgs.tamzen}/share/consolefonts/Tamzen8x16.psf";
+    packages = with pkgs; [tamzen terminus_font];
   };
 
   sound = {
@@ -39,7 +41,6 @@
       interval = "weekly";
     };
     pcscd.enable = true;
-    flatpak.enable = true;
     gvfs.enable = true;
   };
   security.rtkit.enable = true;

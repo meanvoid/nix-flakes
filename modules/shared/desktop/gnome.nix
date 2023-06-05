@@ -18,12 +18,14 @@
     gnome-online-miners.enable = lib.mkDefault false;
   };
   services.xserver = {
-    displayManager.gdm = {
-      enable = true;
-      autoSuspend = false;
-    };
+    enable = true;
+    displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
-    libinput.enable = true;
+    libinput = {
+      enable = true;
+      mouse.accelProfile = "flat";
+      mouse.accelSpeed = "0";
+    };
   };
 
   xdg.portal = {
@@ -35,6 +37,7 @@
     platformTheme = "qt5ct";
     style = "qt5ct-style";
   };
+  programs.gnome-terminal.enable = true;
   environment.systemPackages = with pkgs; [
     gnome.gnome-boxes
     gnome.gnome-tweaks

@@ -76,7 +76,7 @@ in {
     useHomeManager = true;
     useNur = true;
     useAagl = true;
-    useFlatpak = true;
+    useFlatpak = false;
     modules = [];
   };
   unsigned-int64 = mkSystemConfig {

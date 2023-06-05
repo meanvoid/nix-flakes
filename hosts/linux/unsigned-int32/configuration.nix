@@ -22,6 +22,7 @@ in {
       ./hardware-configuration.nix
       (path + "/modules/shared/desktop/gnome.nix")
     ]
+    ++ import (path + "/modules/shared/settings")
     ++ hostModules [
       "environment"
       "networking"
