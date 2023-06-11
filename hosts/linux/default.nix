@@ -76,8 +76,18 @@ in {
     useHomeManager = true;
     useNur = true;
     useAagl = true;
-    useFlatpak = false;
-    modules = [];
+    useFlatpak = true;
+    modules = [
+      {
+        services.flatpak = {
+          remotes = {
+            "flathub" = "https://flathub.org/repo/flathub.flatpakrepo";
+            "flathub-beta" = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+          };
+          packages = ["flathub:org.blender.Blender"];
+        };
+      }
+    ];
   };
   unsigned-int64 = mkSystemConfig {
     hostName = "unsigned-int64";

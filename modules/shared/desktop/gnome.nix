@@ -38,11 +38,39 @@
     style = "qt5ct-style";
   };
   programs.gnome-terminal.enable = true;
+  programs.firefox.nativeMessagingHosts.gsconnect = true;
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.gnomeExtensions.gsconnect;
+  };
   environment.systemPackages = with pkgs; [
+    adw-gtk3
+    adwaita-qt
+    adwaita-qt6
+    theme-obsidian2
+    lounge-gtk-theme
+    capitaine-cursors
+    catppuccin-gtk
+    catppuccin-kde
+    catppuccin-kvantum
+    libsForQt5.breeze-icons
+    libsForQt5.breeze-gtk
+    libsForQt5.breeze-qt5
+    sierra-breeze-enhanced
+    lightly-qt
+    lightly-boehs
     gnome.gnome-boxes
     gnome.gnome-tweaks
     gnome.gnome-themes-extra
     gnome.adwaita-icon-theme
     gnomeExtensions.appindicator
+    gnomeExtensions.zoom-wayland-extension
+    gnomeExtensions.pop-shell
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.aylurs-widgets
+    gnomeExtensions.pin-app-folders-to-dash
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.arcmenu
+    gradience
   ];
 }

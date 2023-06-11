@@ -3,6 +3,7 @@
   pkgs,
   lib,
   users,
+  flatpaks,
   ...
 }: let
   inherit (users) marie;
@@ -14,6 +15,7 @@ in {
   home = {
     username = "${marie}";
     packages = with pkgs; [
+      qbittorrent
       # Audio
       audacity
 
@@ -21,7 +23,6 @@ in {
       krita
       gimp
       inkscape
-      blender
       godot
 
       # Productivity
@@ -40,6 +41,8 @@ in {
       # Games
       rpcs3
       yuzu-mainline
+      ryujinx
+      prismlauncher
     ];
     stateVersion = "23.05";
   };

@@ -95,7 +95,14 @@ in {
       allowedTCPPorts = [53 80 443 25565];
     };
   };
-
+  services = {
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      openFirewall = true;
+    };
+  };
   programs = {
     neovim = {
       enable = true;
@@ -128,6 +135,14 @@ in {
       enable = true;
       pinentryFlavor = "curses";
       enableSSHSupport = true;
+    };
+    gamemode = {
+      enable = true;
+      enableRenice = true;
+      settings.custom = {
+        start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+        end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+      };
     };
     dconf.enable = true;
   };
@@ -162,7 +177,8 @@ in {
       lm_sensors
       libva-utils
       yt-dlp
-      spotdl
+      gallery-dl
+      mangohud
 
       # browser
       firefox

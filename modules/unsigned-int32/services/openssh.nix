@@ -7,9 +7,9 @@
     enable = true;
     settings = {
       UseDns = true;
-      passwordAuthentication = false;
-      kbdInteractiveAuthentication = true;
-      permitRootLogin = "prohibit-password";
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = true;
+      PermitRootLogin = "prohibit-password";
     };
     ports = [22 52755];
     listenAddresses = [

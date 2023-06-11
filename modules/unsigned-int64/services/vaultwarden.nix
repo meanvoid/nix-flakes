@@ -1,8 +1,11 @@
 {
   config,
+  lib,
   pkgs,
   ...
-}: {
+}: let
+  domain = "bitwarden.tenjin-dk.com";
+in {
   services.vaultwarden = {
     enable = true;
     package = pkgs.vaultwarden-postgresql;
@@ -19,7 +22,7 @@
       rocketLog = "critical";
     };
   };
-  services.nginx.virtualHosts."bitwarden.tenjin-dk.com" = {
+  services.nginx.virtualHosts."${domain}" = {
     enableACME = true;
     forceSSL = true;
     locations."/" = {
