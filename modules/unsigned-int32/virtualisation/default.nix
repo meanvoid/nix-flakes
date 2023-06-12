@@ -1,11 +1,6 @@
 [
-  ./docker.nix
-  ./podman.nix
-  ./libvirtd.nix
+  ./containers.nix
+  ./hyperv.nix
   ./lxc.nix
-  ./lxd.nix
-  ./podman.nix
-  ./qemu.nix
-  ./waydroid.nix
-  ./xen.nix
+  ./android.nix
 ]

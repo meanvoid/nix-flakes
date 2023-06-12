@@ -2,10 +2,8 @@
   config,
   pkgs,
   lib,
-  agenix,
   ...
 }: let
-  var = import ./default.nix {inherit config;};
   iptables = "${pkgs.iptables}/bin/iptables";
   ip6tables = "${pkgs.iptables}/bin/ip6tables";
   nft = "${pkgs.nftables}" /bin/nft;
@@ -20,7 +18,7 @@
     };
   };
 in {
-  imports = [./default.nix];
+  imports = [./wireguard.nix];
   networking.wg-quick.interfaces.wireguard0 = {
     address = [
       # Private
@@ -31,12 +29,14 @@ in {
       "fd02:f8eb:7ca4:5f4c::1/64"
     ];
     listenPort = 51820;
-    privateKeyFile = "${keys.private}";
+    privateKeyFile = keys.private;
     postUp = ''
       # Drop incoming SSH traffic on wireguard0 interface
       ${iptables} -I INPUT -p tcp --dport 22 -i wireguard0 -j DROP
+
       # Allow incoming SSH traffic on wg-ports0 interface only for source IP range
       ${iptables} -I INPUT -p tcp --dport 22 -i wg-ports0 -m iprange --src-range 172.168.1.50-172.168.1.254 -j ACCEPT
+
       # Allow incoming SSH traffic on wireguard0 interface only for source IP range
       ${iptables} -I INPUT -p tcp --dport 22 -i wireguard0 -m iprange --src-range 192.168.10.100-192.168.10.200 -j ACCEPT
 
@@ -66,7 +66,7 @@ in {
       # @signed-int4
       {
         publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = "${keys.preshared.signed}";
+        presharedKeyFile = keys.preshared.signed;
         allowedIPs = [
           "192.168.10.50/32"
           "dced:2718:5f06:718a::50/128"
@@ -75,7 +75,7 @@ in {
       # @signed-int8
       {
         publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = "${keys.preshared.signed}";
+        presharedKeyFile = keys.preshared.signed;
         allowedIPs = [
           "192.168.10.50/32"
           "dced:2718:5f06:718a::50/128"
@@ -84,7 +84,7 @@ in {
       # @signed-int16
       {
         publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = "${keys.preshared.signed}";
+        presharedKeyFile = keys.preshared.signed;
         allowedIPs = [
           "192.168.10.51/32"
           "dced:2718:5f06:718a::51/128"
@@ -93,7 +93,7 @@ in {
       # @signed-int32
       {
         publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = "${keys.preshared.signed}";
+        presharedKeyFile = keys.preshared.signed;
         allowedIPs = [
           "192.168.10.52/32"
           "dced:2718:5f06:718a::52/128"
@@ -102,7 +102,7 @@ in {
       # @signed-int64
       {
         publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = "${keys.preshared.signed}";
+        presharedKeyFile = keys.preshared.signed;
         allowedIPs = [
           "192.168.10.53/32"
           "dced:2718:5f06:718a::53/128"
@@ -111,7 +111,7 @@ in {
       # @unsigned-int8
       {
         publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = "${keys.preshared.unsigned}";
+        presharedKeyFile = keys.preshared.unsigned;
         allowedIPs = [
           "192.168.10.100/32"
           "dced:2718:5f06:718a::100/128"
@@ -122,7 +122,7 @@ in {
       # @unsigned-int16
       {
         publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = "${keys.preshared.unsigned}";
+        presharedKeyFile = keys.preshared.unsigned;
         allowedIPs = [
           "192.168.10.101/32"
           "dced:2718:5f06:718a::101/128"
@@ -133,7 +133,7 @@ in {
       # @unsigned-int32
       {
         publicKey = "QCg3hCNix8lMAw+l/icN7xRjmautUjMK6tqC+GzOg2I=";
-        presharedKeyFile = "${keys.preshared.unsigned}";
+        presharedKeyFile = keys.preshared.unsigned;
         allowedIPs = [
           "192.168.10.102/32"
           "dced:2718:5f06:718a::102/128"
@@ -147,37 +147,37 @@ in {
       # @cutie-pony
       {
         publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = "${keys.preshared.twi}";
+        presharedKeyFile = keys.preshared.twi;
         allowedIPs = ["192.168.10.150/32" "dced:2718:5f06:718a::150/128"];
       }
       # @wolverine
       {
         publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = "${keys.preshared.twi}";
+        presharedKeyFile = keys.preshared.twi;
         allowedIPs = ["192.168.10.151/32" "dced:2718:5f06:718a::151/128"];
       }
       # @debik
       {
         publicKey = "cXP5odCiB4NxISN2zJ0SUWqsp/W2oIYKOZglbKM1B3k=";
-        presharedKeyFile = "${keys.preshared.twi}";
+        presharedKeyFile = keys.preshared.twi;
         allowedIPs = ["192.168.10.152/32" "dced:2718:5f06:718a::152/128"];
       }
       # @elizabeth
       {
         publicKey = "ERVp/6DN6D1pmRN9qNsBbvF3CgFR0125xZlg3MYQ1AQ=";
-        presharedKeyFile = "${keys.preshared.twi}";
+        presharedKeyFile = keys.preshared.twi;
         allowedIPs = ["192.168.10.153/32" "dced:2718:5f06:718a::153/128"];
       }
       # @morgana-android
       {
         publicKey = "Esc/RqKeN7Q20RNx8T73obo0o/lJ/MoM9UqnE6+EPgM=";
-        presharedKeyFile = "${keys.preshared.twi}";
+        presharedKeyFile = keys.preshared.twi;
         allowedIPs = ["192.168.10.250/32" "dced:2718:5f06:718a::250/128"];
       }
       # @crimson1
       {
         publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = "${keys.preshared.twi}";
+        presharedKeyFile = keys.preshared.twi;
         allowedIPs = ["192.168.10.251/32" "dced:2718:5f06:718a::251/128"];
       }
       # --- Twi Network --- #
@@ -188,13 +188,13 @@ in {
       # @pc
       {
         publicKey = "OZg74pRtgDUkQjINEOHM0fnzJsvbLyKFdx6HzIi1Tkg=";
-        presharedKeyFile = "${keys.preshared.julio}";
+        presharedKeyFile = keys.preshared.julio;
         allowedIPs = ["10.64.10.10/32" "fd02:f8eb:7ca4:5f4c::10/128"];
       }
       # @ipad
       {
         publicKey = "w7OuonhifNvieZajGNd6u5a/NwGTDB9iq5dYnPzqiUM=";
-        presharedKeyFile = "${keys.preshared.julio}";
+        presharedKeyFile = keys.preshared.julio;
         allowedIPs = ["10.64.10.11/32" "fd02:f8eb:7ca4:5f4c::11/128"];
       }
       # --- Julio --- #

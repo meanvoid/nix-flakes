@@ -38,7 +38,7 @@
           "read only" = "no";
           "directory mask" = "0770";
           "valid users" = "@shared";
-          "force group" = "shared"; #!!! change to shared
+          "force group" = "shared";
           "inherit permissions" = "yes";
         };
         marie = {
