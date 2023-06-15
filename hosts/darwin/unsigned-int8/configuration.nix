@@ -1,12 +1,10 @@
 {
-  pkgs,
   lib,
   config,
+  pkgs,
   users,
   ...
-}: let
-  sex = 32;
-in {
+}: {
   imports = [./rosetta.nix];
   # Nix configuration ------------------------------------------------------------------------------
   nix = {

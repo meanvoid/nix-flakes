@@ -99,7 +99,6 @@
   in
     flakeOutput
     // {
-      # overlays = { default = []; };
       nixosConfigurations = let
         defaultAttrs =
           commonAttrs
@@ -107,7 +106,7 @@
             inherit nur flatpaks agenix aagl spicetify-nix;
           };
       in
-        import ./hosts/linux defaultAttrs;
+        import ./hosts defaultAttrs;
       darwinConfigurations = let
         defaultAttrs =
           commonAttrs

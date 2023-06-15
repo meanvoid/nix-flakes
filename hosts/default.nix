@@ -1,20 +1,25 @@
 {
-  config,
   lib,
-  pkgs,
+  inputs,
+  self,
+  nixpkgs,
+  nur,
+  agenix,
+  home-manager,
+  flatpaks,
+  aagl,
+  spicetify-nix,
+  users,
+  path,
   ...
 }: let
-  mkSystemLinux = import ./mkSystemLinux.nix;
-  mkSystemDarwin = import ./mkSystemDarwin.nix;
-in {
-  unsigned-int8 = mkSystemDarwin {
-    hostName = "unsigned-int8";
-    system = "aarch64-darwin";
-    useHomeManager = true;
-    modules = [];
+  mkSystemConfig = import ./mkSystemLinux.nix {
+    inherit lib inputs self nixpkgs nur agenix;
+    inherit home-manager flatpaks aagl spicetify-nix;
+    inherit users path;
   };
-
-  unsigned-int32 = mkSystemLinux {
+in {
+  unsigned-int32 = mkSystemConfig {
     hostName = "unsigned-int32";
     system = "x86_64-linux";
     useHomeManager = true;
@@ -33,12 +38,12 @@ in {
       }
     ];
   };
-  unsigned-int64 = mkSystemLinux {
+  unsigned-int64 = mkSystemConfig {
     hostName = "unsigned-int64";
     system = "aarch64-linux";
     modules = [];
   };
-  unsigned-int128 = mkSystemLinux {
+  unsigned-int128 = mkSystemConfig {
     hostName = "unsigned-int128";
     system = "x86_64-linux";
     useAagl = true;

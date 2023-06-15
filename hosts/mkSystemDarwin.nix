@@ -1,33 +1,38 @@
 {
   lib,
-  darwin,
-  home-manager,
   inputs,
+  self,
+  nixpkgs,
+  darwin,
+  nur,
+  home-manager,
   users,
+  path,
   ...
 }: {
-  mkSystemDarwin = {
-    hostName,
-    system,
-    useHomeManager ? false,
-    modules ? [],
-    ...
-  }: let
-    defaults =
-      [
-        # Add your default configurations for Darwin here
-      ]
-      ++ modules;
+  hostName,
+  system,
+  useHomeManager ? false,
+  modules ? [],
+  ...
+}: let
+  defaults =
+    [
+      {
+        config = {
+          nixpkgs.config.allowUnfree = lib.mkDefault true;
+        };
+      }
+    ]
+    ++ modules;
 
-    sharedModules = lib.concatLists [
-      # Add shared Darwin modules here
-      (lib.optional useHomeManager home-manager.darwinModules.home-manager)
-      defaults
-    ];
-  in
-    darwin.lib.darwinSystem {
-      inherit system;
-      specialArgs = {inherit users inputs;};
-      modules = [(../. + "/${hostName}/configuration.nix")] ++ sharedModules;
-    };
-}
+  sharedModules = lib.concatLists [
+    (lib.optional useHomeManager (homeManagerModules hostName))
+    defaults
+  ];
+in
+  darwin.lib.darwinSystem {
+    inherit system;
+    specialArgs = {inherit users inputs;};
+    modules = [(./. + "/${hostName}/configuration.nix")] ++ sharedModules;
+  }

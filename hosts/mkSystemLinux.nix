@@ -1,9 +1,7 @@
 {
   lib,
   inputs,
-  self,
   nixpkgs,
-  darwin,
   nur,
   agenix,
   home-manager,
@@ -13,27 +11,14 @@
   aagl,
   flatpaks,
   ...
-}: {
-  homeManagerModules = hostName: [
-    home-manager.nixosModules.home-manager
-    {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.extraSpecialArgs = {
-        inherit users path spicetify-nix;
-        host = {inherit hostName;};
-      };
-      home-manager.users = lib.mkMerge (lib.mapAttrsToList
-        (user: userName: {
-          "${userName}" = {
-            imports = [(./. + "/${hostName}/home/${userName}/home.nix")];
-          };
-        })
-        users);
-    }
-  ];
-
-  mkSystemConfig = {
+}: let
+  homeManagerModules = import ./homeManagerModules.nix {
+    inherit lib nixpkgs nur;
+    inherit home-manager spicetify-nix flatpaks;
+    inherit users path;
+  };
+in
+  {
     hostName,
     system,
     useHomeManager ? false,
@@ -69,5 +54,4 @@
         host = {inherit hostName;};
       };
       modules = [(./. + "/${hostName}/configuration.nix")] ++ sharedModules;
-    };
-}
+    }
