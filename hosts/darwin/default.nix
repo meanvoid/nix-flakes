@@ -5,7 +5,6 @@
   nixpkgs,
   darwin,
   home-manager,
-  users,
   path,
   ...
 }: let
@@ -20,6 +19,10 @@ in {
     hostName = "unsigned-int8";
     system = "aarch64-darwin";
     useHomeManager = true;
+    users = {
+      marie = "ashuramaru";
+      alex = "meanrin";
+    };
     modules = [];
   };
 }

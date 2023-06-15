@@ -10,14 +10,13 @@
   flatpaks,
   aagl,
   spicetify-nix,
-  users,
   path,
   ...
 }: let
   systems = import ./mkSystemConfig.nix {
     inherit lib inputs self nixpkgs darwin nur agenix;
     inherit home-manager flatpaks aagl spicetify-nix;
-    inherit users path;
+    inherit path;
   };
   inherit (systems) mkSystemConfig;
 in {
@@ -28,6 +27,7 @@ in {
     useNur = true;
     useAagl = true;
     useFlatpak = true;
+    users = ["ashuramaru" "meanrin" "theultydespair"];
     modules = [
       {
         services.flatpak = {
@@ -43,13 +43,12 @@ in {
   unsigned-int64 = mkSystemConfig.linux {
     hostName = "unsigned-int64";
     system = "aarch64-linux";
-    modules = [];
   };
   unsigned-int128 = mkSystemConfig.linux {
     hostName = "unsigned-int128";
     system = "x86_64-linux";
     useAagl = true;
     useFlatpak = true;
-    modules = [];
+    users = ["theultydespair"];
   };
 }

@@ -2,17 +2,23 @@
   lib,
   inputs,
   nixpkgs,
+  darwin,
   nur,
   agenix,
   home-manager,
   flatpaks,
   aagl,
   spicetify-nix,
-  users,
   path,
-  darwin,
   ...
-}: {
+}: let
+  homeManager = import ./homeManagerModules.nix {
+    inherit lib nixpkgs nur;
+    inherit home-manager spicetify-nix flatpaks;
+    inherit path;
+  };
+  inherit (homeManager) homeManagerModules;
+in {
   mkSystemConfig = {
     linux = {
       hostName,
@@ -21,14 +27,10 @@
       useNur ? false,
       useAagl ? false,
       useFlatpak ? false,
+      users ? [],
       modules ? [],
       ...
     } @ args: let
-      homeManagerModules = import ./homeManagerModules.nix {
-        inherit lib nixpkgs nur;
-        inherit home-manager spicetify-nix flatpaks;
-        inherit users path;
-      };
       defaults =
         [
           {
@@ -44,7 +46,7 @@
         (lib.optional useNur nur.nixosModules.nur)
         (lib.optional useAagl aagl.nixosModules.default)
         (lib.optional useFlatpak flatpaks.nixosModules.default)
-        (lib.optionals useHomeManager (homeManagerModules.homeManagerModulesLinux hostName))
+        (lib.optionals useHomeManager (homeManagerModules.nixos hostName users))
         defaults
       ];
     in
@@ -61,14 +63,10 @@
       hostName,
       system,
       useHomeManager ? false,
+      users ? [],
       modules ? [],
       ...
     } @ args: let
-      homeManagerModules = import ./homeManagerModules.nix {
-        inherit lib nixpkgs darwin nur;
-        inherit home-manager;
-        inherit users path;
-      };
       defaults =
         [
           {
@@ -79,7 +77,7 @@
         ]
         ++ modules;
       sharedModules = lib.concatLists [
-        (lib.optional useHomeManager (homeManagerModules.homeManagerModulesDarwin hostName))
+        (lib.optional useHomeManager (homeManagerModules.darwin hostName users))
         defaults
       ];
     in

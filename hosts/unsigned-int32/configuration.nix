@@ -5,7 +5,6 @@
   pkgs,
   agenix,
   aagl,
-  users,
   path,
   ...
 }: let

@@ -2,18 +2,15 @@
   config,
   pkgs,
   lib,
-  users,
   flatpaks,
   ...
-}: let
-  inherit (users) marie;
-in {
+}: {
   imports =
     [./services/easyeffects.nix]
-    ++ (import ../modules/overlays)
+    ++ (import ../overlays)
     ++ (import ./programs);
   home = {
-    username = "${marie}";
+    username = "ashuramaru";
     packages = with pkgs; [
       qbittorrent
       # Audio

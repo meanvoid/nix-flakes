@@ -6,8 +6,8 @@
   ...
 }: {
   home = {
-    username = "${users.alex}";
-    homeDirectory = "/home/${users.alex}";
+    username = "meanrin";
+    homeDirectory = "/home/meanrin";
     packages = with pkgs; [
       rsync
     ];

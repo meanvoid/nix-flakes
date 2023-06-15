@@ -60,19 +60,19 @@
     inherit (flake-utils.lib) eachSystem eachDefaultSystem;
     inherit (nixpkgs) lib;
 
+    path = ./.;
+
     commonAttrs = {
       inherit (nixpkgs) lib;
-      inherit inputs self nixpkgs;
-      inherit home-manager users path;
+      inherit inputs self nixpkgs darwin;
+      inherit home-manager path;
     };
-    path = ./.;
-    users = {
-      marie = "ashuramaru";
-      alex = "meanrin";
-      twi = "twithefurry";
-      kelly = "kellyreanimausu";
-      morgana = "theultydespair";
+    nixosAttrs = {
+      inherit nur agenix;
+      inherit flatpaks aagl spicetify-nix;
     };
+    outputAttrs = commonAttrs // nixosAttrs;
+
     flakeOutput =
       eachDefaultSystem
       (system: let
@@ -99,22 +99,7 @@
   in
     flakeOutput
     // {
-      nixosConfigurations = let
-        defaultAttrs =
-          commonAttrs
-          // {
-            inherit nur flatpaks agenix aagl spicetify-nix darwin;
-          };
-      in
-        import (path + /hosts) defaultAttrs;
-      darwinConfigurations = let
-        defaultAttrs =
-          commonAttrs
-          // {
-            inherit darwin;
-          };
-      in
-        import (path + /hosts/darwin) defaultAttrs;
-      nixopsConfigurations.default = {inherit nixpkgs;};
+      nixosConfigurations = import (path + /hosts) outputAttrs;
+      darwinConfigurations = import (path + /hosts/darwin) commonAttrs;
     };
 }
