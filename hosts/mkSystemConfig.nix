@@ -31,6 +31,7 @@ in {
       modules ? [],
       ...
     } @ args: let
+      hostname = hostName;
       defaults =
         [
           {
@@ -53,7 +54,7 @@ in {
       lib.nixosSystem {
         inherit system;
         specialArgs = {
-          inherit users path;
+          inherit hostname users path;
           host = {inherit hostName;};
         };
         modules = [(path + "/hosts/${hostName}/configuration.nix")] ++ sharedModules;

@@ -5,12 +5,13 @@
   pkgs,
   agenix,
   aagl,
+  hostname,
+  users,
   path,
   ...
 }: let
-  hostName = "unsigned-int32";
   importModule = moduleName: let
-    dir = path + "/modules/${hostName}";
+    dir = path + "/modules/${hostname}";
   in
     import (dir + "/${moduleName}");
 
@@ -51,8 +52,6 @@ in {
       enable = true;
       adminIdentities = [
         "unix-group:wheel"
-        "unix-user:ashuramaru"
-        "unix-user:meanrin"
       ];
     };
     pam = {
