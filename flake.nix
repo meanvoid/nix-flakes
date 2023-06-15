@@ -101,7 +101,11 @@
     // {
       # overlays = { default = []; };
       nixosConfigurations = let
-        defaultAttrs = commonAttrs // {inherit nur flatpaks agenix aagl spicetify-nix;};
+        defaultAttrs =
+          commonAttrs
+          // {
+            inherit nur flatpaks agenix aagl spicetify-nix;
+          };
       in
         import ./hosts/linux defaultAttrs;
       darwinConfigurations = let
@@ -112,5 +116,6 @@
           };
       in
         import ./hosts/darwin defaultAttrs;
+      nixopsConfigurations.default = {inherit nixpkgs;};
     };
 }

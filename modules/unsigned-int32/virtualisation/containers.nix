@@ -29,6 +29,6 @@ in {
       dates = "weekly";
     };
   };
-  users.groups.docker.members = admins;
-  users.groups.podman.members = admins;
+  users.groups.docker.members = ["meanrin" "ashuramaru"];
+  users.groups.podman.members = config.users.groups.docker.members;
 }

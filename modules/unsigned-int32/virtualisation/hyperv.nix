@@ -45,10 +45,10 @@ in {
   };
   virtualisation.spiceUSBRedirection.enable = true;
 
-  users.groups.vboxusers.members = admins;
-  users.groups.qemu.members = admins;
-  users.groups.libvirtd.members = admins;
-  users.groups.kvm.members = admins;
+  users.groups.libvirtd.members = ["ashuramaru" "meanrin"];
+  users.groups.kvm.members = config.users.groups.libvirtd.members;
+  users.groups.vboxusers.members = config.users.groups.libvirtd.members;
+  users.groups.qemu.members = config.users.groups.libvirtd.members;
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;

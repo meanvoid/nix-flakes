@@ -43,6 +43,10 @@ in {
       yuzu-mainline
       ryujinx
       prismlauncher
+
+      # Python
+      python311Full
+      conda
     ];
     stateVersion = "23.05";
   };
