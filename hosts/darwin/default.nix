@@ -11,7 +11,7 @@
   systems = import (path + /hosts/mkSystemConfig.nix) {
     inherit (nixpkgs) lib;
     inherit inputs self nixpkgs darwin;
-    inherit home-manager users path;
+    inherit home-manager path;
   };
   inherit (systems) mkSystemConfig;
 in {
@@ -19,10 +19,7 @@ in {
     hostName = "unsigned-int8";
     system = "aarch64-darwin";
     useHomeManager = true;
-    users = {
-      marie = "ashuramaru";
-      alex = "meanrin";
-    };
+    users = ["ashuramaru" "meanrin"];
     modules = [];
   };
 }

@@ -12,6 +12,8 @@
     openFirewall = true;
   };
   users.groups.media.members = ["ashuramaru" "meanrin"];
-  users.groups.jellyfin.members = ["ashuramaru" "meanrin" "${users.morgana}" "${users.kelly}" "${users.twi}"];
-  users.users.jellyfin.extraGroups = ["media"];
+
+  users.groups.shared.members = ["ashuramaru" "meanrin" "jellyfin"];
+  users.groups.jellyfin.members = ["ashuramaru" "meanrin"];
+  users.users.jellyfin.extraGroups = ["media" "users"];
 }

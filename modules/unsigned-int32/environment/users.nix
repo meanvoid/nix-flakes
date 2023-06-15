@@ -2,79 +2,50 @@
   config,
   lib,
   pkgs,
-  users,
   ...
-}: let
-  inherit (users) marie alex morgana kelly twi;
-in {
+}: {
   users = {
     mutableUsers = false;
-    motdFile = "/etc/motd.d";
+    motdFile = "/etc/motd";
     groups = {
-      "${marie}" = {
-        gid = config.users.users.${marie}.uid;
-        members = ["${marie}"];
+      ashuramaru = {
+        gid = config.users.users.ashuramaru.uid;
+        members = ["ashuramaru"];
       };
-      "${alex}" = {
-        gid = config.users.users.${alex}.uid;
-        members = ["${alex}"];
+      meanrin = {
+        gid = config.users.users.meanrin.uid;
+        members = ["meanrin"];
       };
-      "${kelly}" = {
-        gid = config.users.users.${kelly}.uid;
-        members = ["${kelly}"];
+      theultydespair = {
+        gid = config.users.users.theultydespair.uid;
+        members = ["theultydespair"];
       };
-      "${morgana}" = {
-        gid = config.users.users.${morgana}.uid;
-        members = ["${morgana}"];
-      };
-      "${twi}" = {
-        gid = config.users.users.${twi}.uid;
-        members = ["${twi}"];
-      };
-
-      shared.members = ["${marie}" "${alex}" "jellyfin"];
     };
     users = {
-      "${users.marie}" = {
+      ashuramaru = {
         isNormalUser = true;
         description = "Marisa";
-        home = "/home/${users.marie}";
+        home = "/home/ashuramaru";
         uid = 1000;
         initialHashedPassword = "$6$79Eopfg.bX9kzgyR$mPzq3.dFGkCaX2NiAPiTqltBQ0b9gLpEPsX7YdKLyuMbvLssUlfFDiOhZ.FZ.AwS6JbXQ6AXB41Yq5QpJxWJ6/";
         hashedPassword = "$6$9BY1nlAvCe/S63yL$yoKImQ99aC8l.CBPqGGrr74mQPPGucug13efoGbBaF.LT9GNUYeOk8ZejZpJhnJjPRkaU0hJTYtplI1rkxVnY.";
         extraGroups = ["wheel" "networkmanager" "video" "audio" "storage"];
       };
-      "${users.alex}" = {
+      meanrin = {
         isNormalUser = true;
         description = "Alex";
-        home = "/home/${users.alex}";
+        home = "/home/meanrin";
         uid = 1001;
         initialHashedPassword = "$6$Vyk8fqJUAWcfHcZ.$JrE0aK4.LSzpDlXNIHs9LFHyoaMXHFe9S0B66Kx8Wv0nVCnh7ACeeiTIkX95YjGoH0R8DavzSS/aSizJH1YgV0";
         extraGroups = ["wheel" "networkmanager" "video" "audio" "storage"];
       };
-      "${users.kelly}" = {
+      theultydespair = {
         isNormalUser = true;
-        description = "Kelly";
-        home = "/home/${users.kelly}";
-        uid = 1002;
+        description = "Morgana no Okami";
+        home = "/home/theultydespair";
+        uid = 1500;
         initialHashedPassword = "";
-        extraGroups = ["podman"];
-      };
-      "${users.morgana}" = {
-        isNormalUser = true;
-        description = "Morgana";
-        home = "/home/${users.morgana}";
-        uid = 1003;
-        initialHashedPassword = "";
-        extraGroups = ["podman"];
-      };
-      "${users.twi}" = {
-        isNormalUser = true;
-        description = "Twi";
-        home = "/home/${users.twi}";
-        uid = 1004;
-        initialHashedPassword = "";
-        extraGroups = ["podman"];
+        extraGroups = ["shared" "jellyfin"];
       };
     };
   };

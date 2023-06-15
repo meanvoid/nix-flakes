@@ -24,7 +24,7 @@ in {
     ovmf = {
       enable = true;
       packages = [
-        pkgs.OVMF.fd
+        pkgs.OVMFFull.fd
         pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd
       ];
     };
@@ -44,11 +44,17 @@ in {
     };
   };
   virtualisation.spiceUSBRedirection.enable = true;
+  services = {
+    spice-webdavd.enable = true;
+    spice-vdagentd.enable = true;
+  };
 
-  users.groups.libvirtd.members = ["ashuramaru" "meanrin"];
-  users.groups.kvm.members = config.users.groups.libvirtd.members;
-  users.groups.vboxusers.members = config.users.groups.libvirtd.members;
-  users.groups.qemu.members = config.users.groups.libvirtd.members;
+  users.groups = {
+    kvm.members = admins;
+    libvirtd.members = admins;
+    qemu.members = admins;
+    vboxusers.members = admins;
+  };
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;

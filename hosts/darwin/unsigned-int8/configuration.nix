@@ -4,8 +4,6 @@
   pkgs,
   ...
 }: {
-  imports = [./rosetta.nix];
-  # Nix configuration ------------------------------------------------------------------------------
   nix = {
     package = pkgs.nix;
     settings = {
