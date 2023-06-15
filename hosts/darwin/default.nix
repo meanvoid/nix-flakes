@@ -9,15 +9,16 @@
   path,
   ...
 }: let
-  mkSystemConfig = import (path + /hosts/mkSystemDarwin.nix) {
+  systems = import (path + /hosts/mkSystemConfig.nix) {
     inherit (nixpkgs) lib;
     inherit inputs self nixpkgs darwin;
     inherit home-manager users path;
   };
+  inherit (systems) mkSystemConfig;
 in {
-  unsigned-int8 = mkSystemConfig {
+  unsigned-int8 = mkSystemConfig.darwin {
     hostName = "unsigned-int8";
-    system = "x86_64-linux";
+    system = "aarch64-darwin";
     useHomeManager = true;
     modules = [];
   };

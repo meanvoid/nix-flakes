@@ -103,10 +103,10 @@
         defaultAttrs =
           commonAttrs
           // {
-            inherit nur flatpaks agenix aagl spicetify-nix;
+            inherit nur flatpaks agenix aagl spicetify-nix darwin;
           };
       in
-        import ./hosts defaultAttrs;
+        import (path + /hosts) defaultAttrs;
       darwinConfigurations = let
         defaultAttrs =
           commonAttrs
@@ -114,7 +114,7 @@
             inherit darwin;
           };
       in
-        import ./hosts/darwin defaultAttrs;
+        import (path + /hosts/darwin) defaultAttrs;
       nixopsConfigurations.default = {inherit nixpkgs;};
     };
 }

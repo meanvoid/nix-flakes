@@ -3,6 +3,7 @@
   inputs,
   self,
   nixpkgs,
+  darwin,
   nur,
   agenix,
   home-manager,
@@ -13,13 +14,14 @@
   path,
   ...
 }: let
-  mkSystemConfig = import ./mkSystemLinux.nix {
-    inherit lib inputs self nixpkgs nur agenix;
+  systems = import ./mkSystemConfig.nix {
+    inherit lib inputs self nixpkgs darwin nur agenix;
     inherit home-manager flatpaks aagl spicetify-nix;
     inherit users path;
   };
+  inherit (systems) mkSystemConfig;
 in {
-  unsigned-int32 = mkSystemConfig {
+  unsigned-int32 = mkSystemConfig.linux {
     hostName = "unsigned-int32";
     system = "x86_64-linux";
     useHomeManager = true;
@@ -38,12 +40,12 @@ in {
       }
     ];
   };
-  unsigned-int64 = mkSystemConfig {
+  unsigned-int64 = mkSystemConfig.linux {
     hostName = "unsigned-int64";
     system = "aarch64-linux";
     modules = [];
   };
-  unsigned-int128 = mkSystemConfig {
+  unsigned-int128 = mkSystemConfig.linux {
     hostName = "unsigned-int128";
     system = "x86_64-linux";
     useAagl = true;
