@@ -1,93 +1,105 @@
 {
   description = "meanvoid nix/nixos/darwin  nix flake configuration";
-
   inputs = {
-    ### --- nixpkgs --- ###
+    ### --- Declarations of flake inputs
+    flake-utils.url = "github:numtide/flake-utils";
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+
+    ### --- nixpkgs channel
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.follows = "unstable";
     nur.url = "github:nix-community/nur";
-    nixpkgs.follows = "unstable"; # desc: set nixos-unstable as default nixpkgs
-    ### --- nixpkgs --- ###
 
-    ### --- systems --- ###
-    darwin = {
-      url = "github:lnl7/nix-darwin/master";
-      inputs.nixpkgs.follows = "unstable";
-    };
-    wsl = {
-      url = "github:nix-community/nixos-wsl";
-      inputs.nixpkgs.follows = "unstable";
-    };
-    ### --- systems --- ###
+    ### --- system specific
+    darwin.url = "github:lnl7/nix-darwin/master";
+    wsl.url = "github:nix-community/nixos-wsl";
+    nixgl.url = "github:guibou/nixGL";
 
-    ### --- modules --- ###
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "unstable";
-    };
-    nixgl = {
-      url = "github:guibou/nixGL";
-      inputs.nixpkgs.follows = "unstable";
-    };
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "unstable";
-    };
-    nixpkgs-fmt.url = "github:nix-community/nixpkgs-fmt";
-    ### --- modules --- ###
+    ### --- system modules
+    agenix.url = "github:ryantm/agenix";
+    flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
 
-    ### --- overlays --- ###
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      flake = false;
-    };
-    doom-emacs = {
-      url = "github:nix-community/nix-doom-emacs";
-      inputs.nixpkgs.follows = "unstable";
-      inputs.emacs-overlay.follows = "emacs-overlay";
-    };
-    hyprland = {
-      url = "github:vaxerski/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    comma = {
-      url = "github:nix-community/comma";
-      flake = false;
-    };
+    ### --- user specific modules
+    home-manager.url = "github:nix-community/home-manager";
+    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
-    ### --- overlays --- ###
+
+    ### --- overlays
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    hyprland.url = "github:vaxerski/Hyprland";
+    doom-emacs.url = "github:nix-community/nix-doom-emacs";
+
+    ### --- de-duplication
+    nix-darwin.inputs.nixpkgs.follows = "unstable";
+    wsl.inputs.nixpkgs.follows = "unstable";
+    home-manager.inputs.nixpkgs.follows = "unstable";
+    nixgl.inputs.nixpkgs.follows = "unstable";
+    agenix.inputs.nixpkgs.follows = "unstable";
+    aagl.inputs.nixpkgs.follows = "unstable";
+    doom-emacs.inputs.nixpkgs.follows = "unstable";
+    hyprland.inputs.nixpkgs.follows = "unstable";
+    pre-commit-hooks.inputs.nixpkgs.follows = "unstable";
+
+    doom-emacs.inputs.emacs-overlay.follows = "emacs-overlay";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , nur
-    , darwin
-    , home-manager
-    , agenix
-    , doom-emacs
-    , spicetify-nix
-    , ...
-    }@inputs:
-    let
-      users = {
-        marie = "ashuramaru";
-        alex = "meanrin";
-      };
-      #!!! remove
-      path = "/etc/nixos";
-    in
-    {
-      nixosConfigurations = (
-        import ./hosts/linux {
-          inherit (nixpkgs) lib;
-          inherit inputs self nixpkgs nur agenix users path home-manager spicetify-nix;
-        }
-      );
-      darwinConfigurations = (
-        import ./hosts/darwin {
-          inherit (nixpkgs) lib;
-          inherit inputs self darwin nixpkgs home-manager users;
-        }
-      );
+  outputs = {
+    self,
+    nixpkgs,
+    nur,
+    darwin,
+    home-manager,
+    agenix,
+    flatpaks,
+    aagl,
+    spicetify-nix,
+    flake-utils,
+    pre-commit-hooks,
+    ...
+  } @ inputs: let
+    inherit (flake-utils.lib) eachSystem eachDefaultSystem;
+    inherit (nixpkgs) lib;
+
+    path = ./.;
+
+    commonAttrs = {
+      inherit (nixpkgs) lib;
+      inherit inputs self nixpkgs darwin;
+      inherit home-manager path;
+    };
+    nixosAttrs = {
+      inherit nur agenix;
+      inherit flatpaks aagl spicetify-nix;
+    };
+    outputAttrs = commonAttrs // nixosAttrs;
+
+    flakeOutput =
+      eachDefaultSystem
+      (system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+        thPkg = pkgs.callPackage ./derivations/thcrap.nix {};
+      in {
+        checks = {
+          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks.alejandra.enable = true;
+          };
+        };
+        devShells = {
+          default = pkgs.mkShell {
+            inherit (self.checks.${system}.pre-commit-check) shellHook;
+          };
+        };
+        packages = {
+          default = thPkg;
+          thcrap-nix = thPkg;
+        };
+        formatter = nixpkgs.legacyPackages.${system}.alejandra;
+      });
+  in
+    flakeOutput
+    // {
+      nixosConfigurations = import (path + /hosts) outputAttrs;
+      darwinConfigurations = import (path + /hosts/darwin) commonAttrs;
     };
 }

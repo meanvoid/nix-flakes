@@ -1,23 +1,24 @@
 name: "nix build"
 on:
-# TODO: create own runer
-#  push:
-#    branches:
-#      - master
-#  pull_request:
-#    branches:
-#      - master
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        device_name: [unsigned-int32, unsigned-int64]
+        device_name: [
+          unsigned-int32, 
+          unsigned-int64
+        ]
     steps:
     - uses: actions/checkout@v3
     - uses: cachix/install-nix-action@v20
-      with:
-       cachix_auth_token: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      with: 
        github_access_token: ${{ secrets.ACCESS_TOKEN }}
     - run: nix build --no-link --print-out-paths .#nixosConfigurations.${{ matrix.device_name }}.config.system.build.toplevel

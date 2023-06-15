@@ -1,4 +1,0 @@
-[
-  ./vaultwarden.nix
-  ./nextcloud.nix
-]
