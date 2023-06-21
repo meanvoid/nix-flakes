@@ -8,7 +8,7 @@
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelModules = ["kvm-amd" "zenpower" "dm-cache" "dm-cache-smq" "dm-persistent-data" "dm-bio-prison" "dm-clone" "dm-crypt" "dm-writecache" "dm-mirror" "dm-snapshot"];
     extraModulePackages = with config.boot.kernelPackages; [zenpower vendor-reset];
     kernelParams = [
@@ -79,7 +79,7 @@
       };
     };
     network.enable = true;
-    availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "uas" "sd_mod" "r8169" "nvidia"];
+    availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "uas" "sd_mod" "r8169"];
     kernelModules = ["dm-snapshot" "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "dm-cache" "dm-cache-smq" "dm-cache-mq" "dm-cache-cleaner"];
     services.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
   };
@@ -180,6 +180,8 @@
     fsType = "ext4";
     options = ["noatime"];
   };
-  networking.interfaces.enp7s0.useDHCP = lib.mkDefault true;
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs = {
+    hostPlatform = lib.mkDefault "x86_64-linux";
+  };
+  hardware.enableRedistributableFirmware = true;
 }

@@ -21,6 +21,7 @@ in {
     [
       ./hardware-configuration.nix
       (path + "/modules/shared/desktop/gnome.nix")
+      (path + "/modules/shared/desktop/hyprland.nix")
     ]
     ++ import (path + "/modules/shared/settings")
     ++ hostModules [
@@ -30,7 +31,6 @@ in {
       "services"
       "virtualisation"
     ];
-
   security = {
     wrappers = {
       doas = {
@@ -55,17 +55,38 @@ in {
       ];
     };
     pam = {
+      services = {
+        login = {
+          showMotd = true;
+          sshAgentAuth = true;
+          enableGnomeKeyring = true;
+          enableKwallet = true;
+          u2fAuth = true;
+        };
+        sudo = {
+          sshAgentAuth = true;
+          u2fAuth = true;
+        };
+        sshd = {
+          showMotd = true;
+          sshAgentAuth = true;
+          u2fAuth = true;
+          enableGnomeKeyring = true;
+          enableKwallet = true;
+        };
+      };
       yubico = {
         enable = true;
         id = "20693163";
         mode = "client";
         control = "sufficient";
-      };
+      }; 
     };
   };
 
   networking = {
     hostName = "unsigned-int32";
+    interfaces.enp7s0.useDHCP = lib.mkDefault true;
     vlans = {
       eth0 = {
         id = 1;
@@ -93,114 +114,24 @@ in {
       allowedTCPPorts = [53 80 443 25565];
     };
   };
-  services = {
-    printing.enable = true;
-    avahi = {
-      enable = true;
-      nssmdns = true;
-      openFirewall = true;
-    };
-  };
-  programs = {
-    neovim = {
-      enable = true;
-      viAlias = true;
-      vimAlias = true;
-    };
-    htop = {
-      enable = true;
-      package = pkgs.htop-vim;
-      settings = {
-        hide_kernel_threads = true;
-        hide_userland_threads = true;
-      };
-    };
-    git = {
-      enable = true;
-      lfs.enable = true;
-      config = {
-        init = {
-          defaultBranch = "main";
-        };
-        url = {
-          "https://github.com/" = {
-            insteadOf = ["gh:" "github:"];
-          };
-        };
-      };
-    };
-    gnupg.agent = {
-      enable = true;
-      pinentryFlavor = "curses";
-      enableSSHSupport = true;
-    };
-    gamemode = {
-      enable = true;
-      enableRenice = true;
-      settings.custom = {
-        start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
-        end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
-      };
-    };
-    dconf.enable = true;
-  };
 
   environment = {
     systemPackages = with pkgs; [
       # Networking
-      curl
-      wget
       dig
       finger_bsd
       nmap
 
-      # Compressing/Decompressing
-      zip
-      unzip
-      rar
-      unrar
-      lz4
-
       # Utils
       distrobox
-      util-linux
-      neofetch
-      hyfetch
-      nvtop
       zenith-nvidia
-      pciutils
-      usbutils
-      nvme-cli
-      fio # I/O tester
-      lm_sensors
-      libva-utils
-      yt-dlp
-      gallery-dl
-      mangohud
-
-      # browser
-      firefox
-      thunderbird
 
       # Virt
       virt-top
       virt-manager
 
-      # FFMPEG/ENC/DEC
-      ffmpeg_6-full
-      imagemagick
-      mpv
-      mpd
-      gst_all_1.gstreamer
-      gst_all_1.gst-vaapi
-      gst_all_1.gstreamermm
-      gst_all_1.gst-devtools
-      gst_all_1.gst-rtsp-server
-      gst_all_1.gst-plugins-bad
-      gst_all_1.gst-plugins-ugly
-      gst_all_1.gst-plugins-good
-      gst_all_1.gst-plugins-base
-      gst_all_1.gst-editing-services
+      # yubico
+      yubioath-flutter
     ];
   };
 

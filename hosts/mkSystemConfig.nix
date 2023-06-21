@@ -9,21 +9,28 @@
   flatpaks,
   aagl,
   spicetify-nix,
+  hyprland,
   path,
   ...
 }: let
   homeManager = import ./homeManagerModules.nix {
-    inherit lib nixpkgs nur;
+    inherit lib inputs nixpkgs nur;
     inherit home-manager spicetify-nix flatpaks;
     inherit path;
   };
   inherit (homeManager) homeManagerModules;
+  cfg = {
+    nixpkgs.config = {
+      allowUnfree = lib.mkDefault true;
+    };
+  };
 in {
   mkSystemConfig = {
     linux = {
       hostName,
       system,
       useHomeManager ? false,
+      useHyprland ? false,
       useNur ? false,
       useAagl ? false,
       useFlatpak ? false,
@@ -34,16 +41,12 @@ in {
       hostname = hostName;
       defaults =
         [
-          {
-            config = {
-              nixpkgs.config.allowUnfree = lib.mkDefault true;
-              services.flatpak.enable = lib.mkDefault useFlatpak;
-            };
-          }
+          {config = cfg;}
           agenix.nixosModules.default
         ]
         ++ modules;
       sharedModules = lib.concatLists [
+        (lib.optional useHyprland hyprland.nixosModules.default)
         (lib.optional useNur nur.nixosModules.nur)
         (lib.optional useAagl aagl.nixosModules.default)
         (lib.optional useFlatpak flatpaks.nixosModules.default)

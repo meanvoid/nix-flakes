@@ -27,7 +27,7 @@ in {
       redis = true;
       apcu = false;
     };
-    maxUploadSize = "10G";
+    maxUploadSize = "150G";
     config = {
       overwriteProtocol = "https";
       defaultPhoneRegion = "UA";
@@ -47,6 +47,9 @@ in {
     phpOptions = {
       "opcache.memory_consumption" = "8096M";
       "opcache.interned_strings_buffer" = "16";
+      "file_uploads" = "on";
+      "upload_max_filesize" = "150G";
+      "max_file_uploads" = "100000";
     };
   };
   services.redis.servers.nextcloud = {
@@ -54,8 +57,20 @@ in {
     port = 0;
     user = "nextcloud";
   };
-  services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
-    forceSSL = true;
-    enableACME = true;
+  services.onlyoffice = {
+    enable = true;
+    hostname = "localhost";
+  };
+  services.nginx.virtualHosts = {
+    "${config.services.nextcloud.hostName}" = {
+      forceSSL = true;
+      enableACME = true;
+    };
+    "localhost".listen = [ 
+      { 
+        addr = "127.0.0.1"; 
+        port = 8080; 
+      } 
+    ];
   };
 }

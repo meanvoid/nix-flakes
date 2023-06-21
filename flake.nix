@@ -25,8 +25,9 @@
     spicetify-nix.url = "github:the-argus/spicetify-nix";
 
     ### --- overlays
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
-    hyprland.url = "github:vaxerski/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland";
     doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
     ### --- de-duplication
@@ -46,10 +47,11 @@
   outputs = {
     self,
     nixpkgs,
-    nur,
     darwin,
-    home-manager,
+    hyprland,
+    nur,
     agenix,
+    home-manager,
     flatpaks,
     aagl,
     spicetify-nix,
@@ -68,7 +70,7 @@
       inherit home-manager path;
     };
     nixosAttrs = {
-      inherit nur agenix;
+      inherit nur hyprland agenix;
       inherit flatpaks aagl spicetify-nix;
     };
     outputAttrs = commonAttrs // nixosAttrs;

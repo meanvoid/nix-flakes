@@ -1,8 +1,8 @@
 {
+  lib,
+  inputs,
   config,
   pkgs,
-  lib,
-  flatpaks,
   ...
 }: {
   imports =

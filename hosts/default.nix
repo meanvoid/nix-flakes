@@ -10,12 +10,13 @@
   flatpaks,
   aagl,
   spicetify-nix,
+  hyprland,
   path,
   ...
 }: let
   systems = import ./mkSystemConfig.nix {
     inherit lib inputs self nixpkgs darwin nur agenix;
-    inherit home-manager flatpaks aagl spicetify-nix;
+    inherit home-manager flatpaks aagl spicetify-nix hyprland;
     inherit path;
   };
   inherit (systems) mkSystemConfig;
@@ -24,13 +25,15 @@ in {
     hostName = "unsigned-int32";
     system = "x86_64-linux";
     useHomeManager = true;
+    useHyprland = true;
     useNur = true;
     useAagl = true;
     useFlatpak = true;
-    users = ["ashuramaru" "meanrin" "theultydespair"];
+    users = ["ashuramaru" "meanrin"];
     modules = [
       {
         services.flatpak = {
+          enable = true;
           remotes = {
             "flathub" = "https://flathub.org/repo/flathub.flatpakrepo";
             "flathub-beta" = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";

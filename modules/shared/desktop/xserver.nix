@@ -6,7 +6,9 @@
 }: {
   services.xserver = {
     enable = true;
-    videoDrivers = ["nvidia"];
+    videoDrivers = [
+      "amdgpu"
+    ];
     layout = "us";
     xkbModel = "evdev";
   };

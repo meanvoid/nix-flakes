@@ -1,6 +1,7 @@
 {
   lib,
   nixpkgs,
+  inputs,
   nur,
   home-manager,
   spicetify-nix,
@@ -15,7 +16,8 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
-          inherit users path spicetify-nix;
+          inherit inputs users path;
+          inherit nur spicetify-nix flatpaks;
           host = {
             inherit hostName;
           };

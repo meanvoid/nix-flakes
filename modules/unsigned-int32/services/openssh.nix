@@ -26,9 +26,6 @@
         port = 52755;
       }
     ];
-    banner = ''
-      Sex is not allowed
-    '';
     openFirewall = true;
     allowSFTP = true;
   };

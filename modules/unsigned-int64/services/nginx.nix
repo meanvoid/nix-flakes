@@ -21,6 +21,7 @@
     sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
 
     commonHttpConfig = ''
+      client_body_buffer_size 512k;
       # Add HSTS header with preloading to HTTPS requests.
       # Adding this header to HTTP requests is discouraged
       map $scheme $hsts_header {

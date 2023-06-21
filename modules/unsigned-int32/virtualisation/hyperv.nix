@@ -31,18 +31,6 @@ in {
     swtpm = {enable = true;};
     runAsRoot = true;
   };
-  virtualisation.virtualbox = {
-    host = {
-      enable = true;
-      enableHardening = true;
-      addNetworkInterface = true;
-      enableExtensionPack = true;
-    };
-    guest = {
-      enable = true;
-      x11 = true;
-    };
-  };
   virtualisation.spiceUSBRedirection.enable = true;
   services = {
     spice-webdavd.enable = true;
@@ -53,7 +41,6 @@ in {
     kvm.members = admins;
     libvirtd.members = admins;
     qemu.members = admins;
-    vboxusers.members = admins;
   };
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;

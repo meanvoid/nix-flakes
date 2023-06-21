@@ -6,7 +6,9 @@
 }: {
   users = {
     mutableUsers = false;
-    motdFile = "/etc/motd";
+    motd = ''
+      ${pkgs.neofetch}/bin/neofetch
+    '';
     groups = {
       ashuramaru = {
         gid = config.users.users.ashuramaru.uid;
@@ -15,10 +17,6 @@
       meanrin = {
         gid = config.users.users.meanrin.uid;
         members = ["meanrin"];
-      };
-      theultydespair = {
-        gid = config.users.users.theultydespair.uid;
-        members = ["theultydespair"];
       };
     };
     users = {
@@ -38,14 +36,6 @@
         uid = 1001;
         initialHashedPassword = "$6$Vyk8fqJUAWcfHcZ.$JrE0aK4.LSzpDlXNIHs9LFHyoaMXHFe9S0B66Kx8Wv0nVCnh7ACeeiTIkX95YjGoH0R8DavzSS/aSizJH1YgV0";
         extraGroups = ["wheel" "networkmanager" "video" "audio" "storage"];
-      };
-      theultydespair = {
-        isNormalUser = true;
-        description = "Morgana no Okami";
-        home = "/home/theultydespair";
-        uid = 1500;
-        initialHashedPassword = "";
-        extraGroups = ["shared" "jellyfin"];
       };
     };
   };

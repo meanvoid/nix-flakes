@@ -7,8 +7,6 @@
   console = {
     earlySetup = true;
     keyMap = "us";
-    # font = "${pkgs.terminus_font}/share/consolefonts/ter-u32b.psf.gz";
-    # font = "${pkgs.tamzen}/share/consolefonts/Tamzen8x16.psf";
     packages = with pkgs; [tamzen terminus_font];
   };
 
@@ -34,14 +32,122 @@
     };
   };
   services = {
-    lvm.boot.thin.enable = true;
-    printing.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+     jack.enable = true;
+    };
+    printing = {
+      enable = true;
+      drivers = with pkgs; [
+        gutenprint
+      ];
+      browsing = true;
+    };
+    avahi = {
+      enable = true;
+      publish = {
+        enable = true;
+        userServices = true;
+      };
+      nssmdns = true;
+      openFirewall = true;
+    };
     fstrim = {
       enable = true;
       interval = "weekly";
     };
+    lvm.boot.thin.enable = true;
     pcscd.enable = true;
     gvfs.enable = true;
   };
+  environment.systemPackages =
+    (with pkgs; [
+      curl
+      wget
+
+      zip
+      unzip
+      rar
+      unrar
+      lz4
+
+      util-linux
+      neofetch
+      hyfetch
+      nvtop
+      pciutils
+      usbutils
+      nvme-cli
+      libva-utils
+
+      fio
+      lm_sensors
+
+      xclip
+      wl-clipboard
+      wl-clipboard-x11
+
+      firefox
+      thunderbird
+
+      ffmpeg_6-full
+      imagemagick
+      mpv
+      mpd
+    ])
+    ++ (with pkgs.gst_all_1; [
+      gstreamer
+      gst-vaapi
+      gstreamermm
+      gst-devtools
+      gst-rtsp-server
+      gst-plugins-bad
+      gst-plugins-ugly
+      gst-plugins-good
+      gst-plugins-base
+      gst-editing-services
+    ]);
   security.rtkit.enable = true;
+  programs = {
+    neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+    };
+    htop = {
+      enable = true;
+      package = pkgs.htop-vim;
+      settings = {
+        hide_kernel_threads = true;
+        hide_userland_threads = true;
+      };
+    };
+    git = {
+      enable = true;
+      lfs.enable = true;
+      config = {
+        init = {
+          defaultBranch = "main";
+        };
+        url = {
+          "https://github.com/" = {
+            insteadOf = ["gh:" "github:"];
+          };
+        };
+      };
+    };
+    gnupg.agent = {
+      enable = true;
+      pinentryFlavor = "curses";
+      enableSSHSupport = true;
+    };
+    nix-index = {
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+    dconf.enable = true;
+  };
 }

@@ -16,10 +16,14 @@
     gnome-settings-daemon.enable = true;
     gnome-online-accounts.enable = true;
     gnome-online-miners.enable = lib.mkDefault false;
+    gnome-remote-desktop.enable = true;
   };
   services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
+    displayManager.gdm = {
+      enable = true;
+      debug = true;
+      autoSuspend = false;
+    };
     desktopManager.gnome.enable = true;
     libinput = {
       enable = true;
@@ -27,7 +31,6 @@
       mouse.accelSpeed = "0";
     };
   };
-
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -37,40 +40,48 @@
     platformTheme = "qt5ct";
     style = "qt5ct-style";
   };
-  programs.gnome-terminal.enable = true;
-  programs.firefox.nativeMessagingHosts.gsconnect = true;
-  programs.kdeconnect = {
-    enable = true;
-    package = pkgs.gnomeExtensions.gsconnect;
+  programs = {
+    gnome-terminal.enable = true;
+    calls.enable = true;
+    firefox.nativeMessagingHosts.gsconnect = true;
+    kdeconnect = {
+      enable = true;
+      package = pkgs.gnomeExtensions.gsconnect;
+    };
   };
-  environment.systemPackages = with pkgs; [
-    adw-gtk3
-    adwaita-qt
-    adwaita-qt6
-    theme-obsidian2
-    lounge-gtk-theme
-    capitaine-cursors
-    catppuccin-gtk
-    catppuccin-kde
-    catppuccin-kvantum
-    libsForQt5.breeze-icons
-    libsForQt5.breeze-gtk
-    libsForQt5.breeze-qt5
-    sierra-breeze-enhanced
-    lightly-qt
-    lightly-boehs
-    gnome.gnome-boxes
-    gnome.gnome-tweaks
-    gnome.gnome-themes-extra
-    gnome.adwaita-icon-theme
-    gnomeExtensions.appindicator
-    gnomeExtensions.zoom-wayland-extension
-    gnomeExtensions.pop-shell
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.aylurs-widgets
-    gnomeExtensions.pin-app-folders-to-dash
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.arcmenu
-    gradience
-  ];
+
+  environment.systemPackages =
+    (with pkgs; [
+      adw-gtk3
+      adwaita-qt
+      adwaita-qt6
+      theme-obsidian2
+      lounge-gtk-theme
+      capitaine-cursors
+      catppuccin-gtk
+      catppuccin-kde
+      catppuccin-kvantum
+      libsForQt5.breeze-icons
+      libsForQt5.breeze-gtk
+      libsForQt5.breeze-qt5
+      sierra-breeze-enhanced
+      lightly-qt
+      lightly-boehs
+      gradience
+    ])
+    ++ (with pkgs.gnome; [
+      gnome-boxes
+      gnome-tweaks
+      gnome-themes-extra
+      adwaita-icon-theme
+    ])
+    ++ (with pkgs.gnomeExtensions; [
+      appindicator
+      pop-shell
+      blur-my-shell
+      aylurs-widgets
+      pin-app-folders-to-dash
+      dash-to-dock
+      arcmenu
+    ]);
 }
