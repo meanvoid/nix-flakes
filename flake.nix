@@ -63,7 +63,7 @@
       inherit inputs self nixpkgs darwin;
       inherit home-manager path;
     };
-    nixosAttrs = { 
+    nixosAttrs = {
       inherit nur hyprland agenix;
       inherit flatpaks aagl spicetify-nix;
     };
