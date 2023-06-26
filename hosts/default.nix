@@ -32,6 +32,7 @@ in {
     users = ["ashuramaru" "meanrin"];
     modules = [
       {
+        
         services.flatpak = {
           enable = true;
           remotes = {

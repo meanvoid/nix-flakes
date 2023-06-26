@@ -6,14 +6,11 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     ### --- nixpkgs channel
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.follows = "unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/nur";
 
     ### --- system specific
     darwin.url = "github:lnl7/nix-darwin/master";
-    wsl.url = "github:nix-community/nixos-wsl";
-    nixgl.url = "github:guibou/nixGL";
 
     ### --- system modules
     agenix.url = "github:ryantm/agenix";
@@ -31,16 +28,13 @@
     doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
     ### --- de-duplication
-    nix-darwin.inputs.nixpkgs.follows = "unstable";
-    wsl.inputs.nixpkgs.follows = "unstable";
-    home-manager.inputs.nixpkgs.follows = "unstable";
-    nixgl.inputs.nixpkgs.follows = "unstable";
-    agenix.inputs.nixpkgs.follows = "unstable";
-    aagl.inputs.nixpkgs.follows = "unstable";
-    doom-emacs.inputs.nixpkgs.follows = "unstable";
-    hyprland.inputs.nixpkgs.follows = "unstable";
-    pre-commit-hooks.inputs.nixpkgs.follows = "unstable";
-
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    aagl.inputs.nixpkgs.follows = "nixpkgs";
+    doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.emacs-overlay.follows = "emacs-overlay";
   };
 
@@ -69,7 +63,7 @@
       inherit inputs self nixpkgs darwin;
       inherit home-manager path;
     };
-    nixosAttrs = {
+    nixosAttrs = { 
       inherit nur hyprland agenix;
       inherit flatpaks aagl spicetify-nix;
     };

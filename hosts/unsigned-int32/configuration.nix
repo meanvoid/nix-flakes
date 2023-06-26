@@ -8,6 +8,7 @@
   hostname,
   users,
   path,
+  nur,
   ...
 }: let
   importModule = moduleName: let
