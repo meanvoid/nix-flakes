@@ -15,7 +15,6 @@
       {id = "gcknhkkoolaabfmlnjonogaaifnjlfnp";} # foxyproxy
       {id = "oboonakemofpalcgghocfoadofidjkkk";} # keepassxc
       {id = "nngceckbapebfimnlniiiahkandclblb";} # bitwarden
-      {id = "njdfdhgcmkocbgbhcioffdbicglldapd";} # localcdn
       {id = "fmkadmapgofadopljbjfkapdkoienihi";} # react devtools
       {id = "lmhkpmbekcpmknklioeibfkpmmfibljd";} # redux devtools
       {id = "nhdogjmejiglipccpnnnanhbledajbpd";} # vuejs devtools

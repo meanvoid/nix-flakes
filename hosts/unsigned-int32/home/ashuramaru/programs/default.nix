@@ -9,5 +9,6 @@
   ./utils/git.nix
   ./utils/gpg.nix
   ./utils/bashrc.nix
+  ./utils/zshrc.nix
   ./utils/utils.nix
 ]
