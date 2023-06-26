@@ -92,7 +92,6 @@ in {
       ms-vscode.makefile-tools # cbuild
       llvm-vs-code-extensions.vscode-clangd # clang
       cschlosser.doxdocgen # doxygen
-      vadimcn.vscode-lldb # llvm
 
       # Dotnet Utils
       ms-dotnettools.vscode-dotnet-runtime
