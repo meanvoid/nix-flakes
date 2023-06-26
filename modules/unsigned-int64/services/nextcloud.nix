@@ -3,6 +3,7 @@
   lib,
   pkgs,
   agenix,
+  path,
   ...
 }: let
 in {
@@ -15,9 +16,9 @@ in {
   services.nextcloud = {
     enable = true;
     database.createLocally = true;
-    package = pkgs.nextcloud26;
-    extraApps = with pkgs.nextcloud26Packages.apps; {
-      inherit tasks polls notes mail news contacts calendar deck bookmarks keeweb;
+    package = pkgs.nextcloud27;
+    extraApps = with pkgs.nextcloud27Packages.apps; {
+      inherit tasks polls notes mail news contacts calendar deck bookmarks;
     };
     extraAppsEnable = true;
     hostName = "cloud.tenjin-dk.com";
@@ -26,7 +27,7 @@ in {
       redis = true;
       apcu = false;
     };
-    maxUploadSize = "150G";
+    maxUploadSize = "500G";
     config = {
       overwriteProtocol = "https";
       defaultPhoneRegion = "UA";
@@ -47,8 +48,8 @@ in {
       "opcache.memory_consumption" = "8096M";
       "opcache.interned_strings_buffer" = "16";
       "file_uploads" = "on";
-      "upload_max_filesize" = "150G";
-      "max_file_uploads" = "100000";
+      "upload_max_filesize" = "500G";
+      "max_file_uploads" = "10000000";
     };
   };
   services.redis.servers.nextcloud = {
@@ -56,20 +57,8 @@ in {
     port = 0;
     user = "nextcloud";
   };
-  services.onlyoffice = {
-    enable = true;
-    hostname = "localhost";
-  };
-  services.nginx.virtualHosts = {
-    "${config.services.nextcloud.hostName}" = {
-      forceSSL = true;
-      enableACME = true;
-    };
-    "localhost".listen = [
-      {
-        addr = "127.0.0.1";
-        port = 8080;
-      }
-    ];
+  services.nginx.virtualHosts."${config.services.nextcloud.hostName}" = {
+    forceSSL = true;
+    enableACME = true;
   };
 }
