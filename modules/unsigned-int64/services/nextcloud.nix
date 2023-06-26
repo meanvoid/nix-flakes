@@ -5,10 +5,9 @@
   agenix,
   ...
 }: let
-  path = ./../../../secrets;
 in {
   age.secrets.admin = {
-    file = "${path}/admin.age";
+    file = path + /secrets/admin.age;
     mode = "770";
     owner = "nextcloud";
     group = "nextcloud";
@@ -66,11 +65,11 @@ in {
       forceSSL = true;
       enableACME = true;
     };
-    "localhost".listen = [ 
-      { 
-        addr = "127.0.0.1"; 
-        port = 8080; 
-      } 
+    "localhost".listen = [
+      {
+        addr = "127.0.0.1";
+        port = 8080;
+      }
     ];
   };
 }

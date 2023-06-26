@@ -80,7 +80,7 @@ in {
         id = "20693163";
         mode = "client";
         control = "sufficient";
-      }; 
+      };
     };
   };
 

@@ -1,5 +1,7 @@
 [
   ./chromium.nix
+  ./firefox.nix
+  ./misc/flatpak.nix
   ./misc/spotify.nix
   ./misc/gallery-dl.nix
   ./dev/vscode.nix

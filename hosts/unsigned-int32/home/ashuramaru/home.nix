@@ -11,40 +11,48 @@
     ++ (import ./programs);
   home = {
     username = "ashuramaru";
-    packages = with pkgs; [
-      qbittorrent
-      # Audio
-      audacity
+    packages =
+      (with pkgs; [
+        qbittorrent
+        # Audio
+        audacity
 
-      # Working with graphics
-      krita
-      gimp
-      inkscape
-      godot
+        # Working with graphics
+        krita
+        gimp
+        inkscape
+        godot
+        kdenlive
 
-      # Productivity
-      libreoffice-fresh
+        # Productivity
+        libreoffice-fresh
 
-      # Socials
-      tdesktop
-      element-desktop
+        # Socials
+        tdesktop
+        element-desktop
 
-      # Utils
-      ani-cli
-      thefuck
-      mullvad
-      rbw # bitwarden cli
+        # Utils
+        ani-cli
+        thefuck
+        mullvad
+        rbw # bitwarden cli
 
-      # Games
-      rpcs3
-      yuzu-mainline
-      ryujinx
-      prismlauncher
+        # Games
+        rpcs3
+        yuzu-mainline
+        ryujinx
+        prismlauncher
 
-      # Python
-      python311Full
-      conda
-    ];
+        # Python
+        python311Full
+        conda
+        android-studio
+      ])
+      ++ (with pkgs.jetbrains; [
+        idea-ultimate
+        rider
+        datagrip
+      ]);
     stateVersion = "23.05";
   };
 }

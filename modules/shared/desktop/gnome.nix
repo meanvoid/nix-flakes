@@ -18,6 +18,7 @@
     gnome-online-miners.enable = lib.mkDefault false;
     gnome-remote-desktop.enable = true;
   };
+  programs.ssh.askPassword = lib.mkForce "${pkgs.gnome.seahorse}/libexec/seahorse/ssh-askpass}";
   services.xserver = {
     displayManager.gdm = {
       enable = true;
@@ -25,6 +26,7 @@
       autoSuspend = false;
     };
     desktopManager.gnome.enable = true;
+    desktopManager.plasma5.enable = true;
     libinput = {
       enable = true;
       mouse.accelProfile = "flat";
@@ -61,13 +63,17 @@
       catppuccin-gtk
       catppuccin-kde
       catppuccin-kvantum
-      libsForQt5.breeze-icons
-      libsForQt5.breeze-gtk
-      libsForQt5.breeze-qt5
       sierra-breeze-enhanced
       lightly-qt
       lightly-boehs
       gradience
+      gparted
+    ])
+    ++ (with pkgs.libsForQt5; [
+      breeze-icons
+      breeze-gtk
+      breeze-qt5
+      filelight
     ])
     ++ (with pkgs.gnome; [
       gnome-boxes
@@ -84,4 +90,17 @@
       dash-to-dock
       arcmenu
     ]);
+  environment.gnome.excludePackages = with pkgs; [
+    gnome-console
+  ];
+  environment.plasma5.excludePackages = with pkgs.libsForQt5; [
+    elisa
+    khelpcenter
+    # spectacle
+  ];
 }
+# 0444617517
+# 0444617504
+# 0444579677
+#0442478789 94
+

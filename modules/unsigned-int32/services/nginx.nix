@@ -8,7 +8,7 @@
 }: {
   age.secrets.njalla-api-token = {
     file = path + /secrets/njalla-api-token.age;
-    path = "/var/lib/njalla";
+    path = "/var/lib/njalla/";
     mode = "770";
     owner = "acme";
     group = "acme";
@@ -17,7 +17,7 @@
   security.acme = {
     acceptTerms = true;
     defaults = {
-      email = "ashuramaru@tenjin-dk.com";
+      email = "ashuramaru@riseup.net";
       dnsResolver = "1.1.1.1:53";
       dnsProvider = "njalla";
       credentialsFile = config.age.secrets.njalla-api-token.path;
@@ -39,7 +39,6 @@
           https   "max-age=31536000; includeSubdomains; preload";
       }
       add_header Strict-Transport-Security $hsts_header;
-      #add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
       add_header 'Referrer-Policy' 'origin-when-cross-origin';
       add_header X-Frame-Options DENY;
       add_header X-Content-Type-Options nosniff;

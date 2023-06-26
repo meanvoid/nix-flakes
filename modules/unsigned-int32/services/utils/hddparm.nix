@@ -9,7 +9,7 @@ in {
   powerManagement.enable = true;
   powerManagement.powerUpCommands = ''
     ${pkgs.bash}/bin/bash -c '
-      ${pkgs.hdparm}/sbin/hdparm -S 9 -B 127 $(
+      ${pkgs.hdparm}/sbin/hdparm -S 50 -B 127 $(
         ${pkgs.utillinux}/bin/lsblk -dnp -o name,rota |
         ${pkgs.gnugrep}/bin/grep '.*\s1' |
         ${pkgs.coreutils}/bin/cut -d ' ' -f 1
