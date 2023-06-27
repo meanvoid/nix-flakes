@@ -116,6 +116,7 @@
             definedAliases = ["@protondb"];
           };
         };
+        default = "SearXNG";
       };
     };
   };

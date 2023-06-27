@@ -134,6 +134,9 @@ in {
       # yubico
       yubioath-flutter
     ];
+    shells = with pkgs; [zsh bash fish];
+    pathsToLink = ["/share/zsh"];
+    binsh = "${pkgs.dash}/bin/dash";
   };
 
   time.timeZone = "Europe/Kyiv";

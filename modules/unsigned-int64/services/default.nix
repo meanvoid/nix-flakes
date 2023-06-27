@@ -1,4 +1,5 @@
 [
+  ./fail2ban.nix
   ./postgresql.nix
   ./nginx.nix
   ./nextcloud.nix

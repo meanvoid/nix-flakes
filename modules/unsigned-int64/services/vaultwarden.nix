@@ -13,7 +13,7 @@ in {
       domain = "https://bitwarden.tenjin-dk.com";
       signupsAllowed = false;
       signupsVerify = true;
-      signupsDomainsWhitelist = "tenjin-dk.com, riseup.net";
+      signupsDomainsWhitelist = "tenjin-dk.com, riseup.net, meanrin.cat";
       websocketEnabled = true;
       websocketAddress = "0.0.0.0";
       websoketPort = "3012";
