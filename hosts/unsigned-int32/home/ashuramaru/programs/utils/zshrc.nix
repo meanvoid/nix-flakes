@@ -74,7 +74,7 @@
     };
     initExtra = ''
       source ${pkgs.spaceship-prompt}/share/zsh/site-functions/prompt_spaceship_setup
-      source
+
       autoload -U promptinit; promptinit
       SPACESHIP_PROMPT_ORDER=(
         user

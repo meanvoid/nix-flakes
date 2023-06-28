@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  services.fail2ban.enable = {
+  services.fail2ban = {
     enable = true;
     maxretry = 3;
     ignoreIP = [
