@@ -7,7 +7,7 @@
   programs.gallery-dl = {
     enable = true;
     settings = {
-      extractor.base-directory = "~/Downloads";
+      extractor.base-directory = "~/Downloads/gallery-dl";
     };
   };
 }
