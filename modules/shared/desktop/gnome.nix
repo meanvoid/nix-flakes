@@ -18,7 +18,8 @@
     gnome-online-miners.enable = lib.mkDefault false;
     gnome-remote-desktop.enable = true;
   };
-  # programs.ssh.askPassword = lib.mkForce "${pkgs.gnome.seahorse}/libexec/seahorse/ssh-askpass}";
+  programs.ssh.askPassword = lib.mkForce "${pkgs.gnome.seahorse}/libexec/seahorse/ssh-askpass}";
+
   services.xserver = {
     displayManager.gdm = {
       enable = true;
@@ -92,9 +93,4 @@
   environment.gnome.excludePackages = with pkgs; [
     gnome-console
   ];
-  # environment.plasma5.excludePackages = with pkgs.libsForQt5; [
-  # elisa
-  # khelpcenter
-  # spectacle
-  # ];
 }
