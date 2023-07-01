@@ -39,7 +39,7 @@
       isNormalUser = true;
       home = "/Users/fumono";
       description = "Fumono";
-      initiialHashedPassword = "";
+      initialHashedPassword = "";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHBeBj6thLiVFNGZI1NuTHKIPvh332Szad2zsgjdzhR mc-server"
       ];
