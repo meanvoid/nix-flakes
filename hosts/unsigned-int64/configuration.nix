@@ -18,6 +18,7 @@ in {
     [
       ./hardware-configuration.nix
       ./config.nix
+      (path + "/modules/unsigned-int64/environment/users.nix")
     ]
     ++ hostModules [
       "networking"
