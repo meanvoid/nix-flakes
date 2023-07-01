@@ -47,11 +47,4 @@ in {
     hostName = "unsigned-int64";
     system = "x86_64-linux";
   };
-  unsigned-int128 = mkSystemConfig.linux {
-    hostName = "unsigned-int128";
-    system = "x86_64-linux";
-    useAagl = true;
-    useFlatpak = true;
-    users = ["theultydespair"];
-  };
 }
