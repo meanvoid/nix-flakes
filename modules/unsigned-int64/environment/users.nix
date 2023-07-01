@@ -20,7 +20,7 @@
     };
     ashuramaru = {
       isNormalUser = true;
-      home = "/home/ashuramaru";
+      home = "/Users/ashuramaru";
       description = "Marie";
       initialHashedPassword = "";
       extraGroups = ["wheel"];
@@ -33,12 +33,21 @@
     };
     meanrin = {
       isNormalUser = true;
-      home = "/home/meanrin";
+      home = "/Users/meanrin";
       description = "Alex";
       initialHashedPassword = "";
       extraGroups = ["wheel"];
       openssh.authorizedKeys.keys = [
         "sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBCzoNOzhhF9uYDu7CbuzVRJ2K6dClXLrEoJrQvIYjnxHTBMqKuByi9M2HEmkpGO+a3H3WjeeXfqjH2CwZJ97jmIAAAAEc3NoOg== meanrin@outlook.com"
+      ];
+    };
+    fumono = {
+      isNormalUser = true;
+      home = "/Users/fumono";
+      description = "Fumono";
+      initiialHashedPassword = "";
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHBeBj6thLiVFNGZI1NuTHKIPvh332Szad2zsgjdzhR mc-server"
       ];
     };
   };
