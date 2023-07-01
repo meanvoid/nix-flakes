@@ -21,7 +21,6 @@
     oxygen
     khelpcenter
     konsole
-    plasma-browser-integratio
     print-manager
   ];
 }

@@ -13,7 +13,6 @@
     preshared = {
       unsigned = config.age.secrets.wireguard-shared.path;
       signed = config.age.secrets.wireguard-shared_signed.path;
-      twi = config.age.secrets.wireguard-shared_twi.path;
       julio = config.age.secrets.wireguard-server-shared_julio.path;
     };
   };
@@ -63,33 +62,6 @@ in {
     peers = [
       ## --- Private Network(For bazed people) --- ##
       # --- Home Network --- #
-      # @signed-int4
-      {
-        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = keys.preshared.signed;
-        allowedIPs = [
-          "192.168.10.50/32"
-          "dced:2718:5f06:718a::50/128"
-        ];
-      }
-      # @signed-int8
-      {
-        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = keys.preshared.signed;
-        allowedIPs = [
-          "192.168.10.50/32"
-          "dced:2718:5f06:718a::50/128"
-        ];
-      }
-      # @signed-int16
-      {
-        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = keys.preshared.signed;
-        allowedIPs = [
-          "192.168.10.51/32"
-          "dced:2718:5f06:718a::51/128"
-        ];
-      }
       # @signed-int32
       {
         publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
@@ -108,28 +80,6 @@ in {
           "dced:2718:5f06:718a::53/128"
         ];
       }
-      # @unsigned-int8
-      {
-        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = keys.preshared.unsigned;
-        allowedIPs = [
-          "192.168.10.100/32"
-          "dced:2718:5f06:718a::100/128"
-          "10.64.10.2/24"
-          "fd02:f8eb:7ca4:5f4c::2/64"
-        ];
-      }
-      # @unsigned-int16
-      {
-        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = keys.preshared.unsigned;
-        allowedIPs = [
-          "192.168.10.101/32"
-          "dced:2718:5f06:718a::101/128"
-          "10.64.10.3/24"
-          "fd02:f8eb:7ca4:5f4c::3/64"
-        ];
-      }
       # @unsigned-int32
       {
         publicKey = "QCg3hCNix8lMAw+l/icN7xRjmautUjMK6tqC+GzOg2I=";
@@ -142,45 +92,6 @@ in {
         ];
       }
       # --- Home Network --- #
-
-      # --- Twi Network --- #
-      # @cutie-pony
-      {
-        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = keys.preshared.twi;
-        allowedIPs = ["192.168.10.150/32" "dced:2718:5f06:718a::150/128"];
-      }
-      # @wolverine
-      {
-        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = keys.preshared.twi;
-        allowedIPs = ["192.168.10.151/32" "dced:2718:5f06:718a::151/128"];
-      }
-      # @debik
-      {
-        publicKey = "cXP5odCiB4NxISN2zJ0SUWqsp/W2oIYKOZglbKM1B3k=";
-        presharedKeyFile = keys.preshared.twi;
-        allowedIPs = ["192.168.10.152/32" "dced:2718:5f06:718a::152/128"];
-      }
-      # @elizabeth
-      {
-        publicKey = "ERVp/6DN6D1pmRN9qNsBbvF3CgFR0125xZlg3MYQ1AQ=";
-        presharedKeyFile = keys.preshared.twi;
-        allowedIPs = ["192.168.10.153/32" "dced:2718:5f06:718a::153/128"];
-      }
-      # @morgana-android
-      {
-        publicKey = "Esc/RqKeN7Q20RNx8T73obo0o/lJ/MoM9UqnE6+EPgM=";
-        presharedKeyFile = keys.preshared.twi;
-        allowedIPs = ["192.168.10.250/32" "dced:2718:5f06:718a::250/128"];
-      }
-      # @crimson1
-      {
-        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = keys.preshared.twi;
-        allowedIPs = ["192.168.10.251/32" "dced:2718:5f06:718a::251/128"];
-      }
-      # --- Twi Network --- #
       ## --- Private IP access(For bazed people) --- ##
 
       ## --- Public IP access(For Losers) --- ##
