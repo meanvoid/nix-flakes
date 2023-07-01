@@ -65,22 +65,39 @@
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/1dee0a10-a4ac-40e3-9285-1c259392a9fe";
+    device = "/dev/disk/by-uuid/9e69ada5-accc-42e4-a5a2-1ca96cc809ef";
     fsType = "btrfs";
     options = ["subvol=root" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
-
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/218C-2E9F";
+    device = "/dev/disk/by-uuid/51C8-021D";
     fsType = "vfat";
   };
-
   fileSystems."/var" = {
-    device = "/dev/disk/by-uuid/1dee0a10-a4ac-40e3-9285-1c259392a9fe";
+    device = "/dev/disk/by-uuid/9e69ada5-accc-42e4-a5a2-1ca96cc809ef";
     fsType = "btrfs";
     options = ["subvol=var" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
-
+  fileSystems."/nix/store" = {
+    device = "/dev/disk/by-uuid/9e69ada5-accc-42e4-a5a2-1ca96cc809ef";
+    fsType = "btrfs";
+    options = ["subvol=store" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+  };
+  fileSystems."/Users/ashuramaru" = {
+    device = "/dev/disk/by-uuid/6370d7f5-37e0-4abc-8dfa-9e9537461425";
+    fsType = "ext4";
+    options = ["noatime"];
+  };
+  fileSystems."/Users/meanrin" = {
+    device = "/dev/disk/by-uuid/7063614c-f483-4f6a-9ba4-f5fea21719bd";
+    fsType = "ext4";
+    options = ["noatime"];
+  };
+  fileSystems."/Users/fumono" = {
+    device = "/dev/disk/by-uuid/a4207ed4-5016-4f43-9ef0-a2aff6552389";
+    fsType = "ext4";
+    options = ["noatime"];
+  };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = lib.mkDefault true;
   zramSwap.enable = true;
