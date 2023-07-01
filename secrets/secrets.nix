@@ -5,7 +5,6 @@ let
   };
   systems = {
     unsigned-int8 = "";
-    unsigned-int16 = "";
     unsigned-int32 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILn6KuA2ztDSI2vFwOgZlmvEik4pkVJ1pvIKBMo6rh/4";
     unsigned-int64 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEuPO55kimOLcT8ZcF6jmLSq0ET9YcKa1gqvTpGEoTR1";
   };

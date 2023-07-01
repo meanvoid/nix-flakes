@@ -45,7 +45,7 @@ in {
   };
   unsigned-int64 = mkSystemConfig.linux {
     hostName = "unsigned-int64";
-    system = "aarch64-linux";
+    system = "x86_64-linux";
   };
   unsigned-int128 = mkSystemConfig.linux {
     hostName = "unsigned-int128";

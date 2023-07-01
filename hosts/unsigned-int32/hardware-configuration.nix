@@ -180,8 +180,6 @@
     fsType = "ext4";
     options = ["noatime"];
   };
-  nixpkgs = {
-    hostPlatform = lib.mkDefault "x86_64-linux";
-  };
-  hardware.enableRedistributableFirmware = true;
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.enableRedistributableFirmware = lib.mkDefault true;
 }
