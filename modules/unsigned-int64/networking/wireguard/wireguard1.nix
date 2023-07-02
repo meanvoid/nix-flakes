@@ -12,8 +12,8 @@
   preshared = config.age.secrets.wireguard-shared.path;
   fumono = config.age.secrets.wireguard-shared_fumono.path;
 in {
+  imports = [./secrets.nix];
   networking.wg-quick.interfaces.wireguard1 = {
-    imports = [./secrets.nix];
     address = ["172.168.10.1/24"];
     listenPort = 51280;
     privateKeyFile = private;
