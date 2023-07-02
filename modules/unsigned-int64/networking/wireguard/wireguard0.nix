@@ -71,10 +71,6 @@ in {
         publicKey = "Xkf+7uF5pySGc+zCrl2f+lrpn34fs6FW1XUfo32TKng=";
         presharedKeyFile = preshared;
         allowedIPs = [
-          # Private
-          "192.168.254.100/32"
-          "dced:2718:5f06:321a::100/128"
-          # Home
           "192.168.10.100/32"
           "dced:2718:5f06:718a::100/128"
         ];
