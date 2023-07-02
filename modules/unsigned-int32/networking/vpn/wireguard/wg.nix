@@ -19,7 +19,7 @@ in {
   networking.wg-quick.interfaces = {
     wireguard0 = {
       autostart = false;
-      address = ["192.168.10.100/24" "dced:2718:5f06:718a::1/64"];
+      address = ["192.168.10.100/24" "191.168.254.100/24" "dced:2718:5f06:718a::100/64" "dced:2718:5f06:321a::100/64"];
       dns = ["192.168.10.1" "dced:2718:5f06:718a::1"];
       privateKeyFile = private;
       peers = [
