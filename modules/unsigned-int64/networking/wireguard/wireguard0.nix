@@ -8,19 +8,17 @@
   ip6tables = "${pkgs.iptables}/bin/ip6tables";
   nft = "${pkgs.nftables}" /bin/nft;
 
-  keys = {
-    private = config.age.secrets.wireguard0-server.path;
-    preshared = {
-      unsigned = config.age.secrets.wireguard-shared.path;
-      signed = config.age.secrets.wireguard-shared_signed.path;
-      julio = config.age.secrets.wireguard-server-shared_julio.path;
-    };
-  };
+  private = config.age.secrets.wireguard-server.path;
+  preshared = config.age.secrets.wireguard-shared.path;
+  preshared.fumono = config.age.secrets.wireguard-shared-fumono.path;
 in {
-  imports = [./wireguard.nix];
+  imports = [./secrets.nix];
   networking.wg-quick.interfaces.wireguard0 = {
     address = [
       # Private
+      "192.168.254.1/24"
+      "dced:2718:5f06:321a::1/64"
+      # Home
       "192.168.10.1/24"
       "dced:2718:5f06:718a::1/64"
       # public
@@ -28,7 +26,7 @@ in {
       "fd02:f8eb:7ca4:5f4c::1/64"
     ];
     listenPort = 51820;
-    privateKeyFile = keys.private;
+    privateKeyFile = private;
     postUp = ''
       # Drop incoming SSH traffic on wireguard0 interface
       ${iptables} -I INPUT -p tcp --dport 22 -i wireguard0 -j DROP
@@ -62,54 +60,21 @@ in {
     peers = [
       ## --- Private Network(For bazed people) --- ##
       # --- Home Network --- #
-      # @signed-int32
       {
-        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = keys.preshared.signed;
+        # root@unsigned-int32
+        publicKey = "Xkf+7uF5pySGc+zCrl2f+lrpn34fs6FW1XUfo32TKng=";
+        presharedKeyFile = preshared;
         allowedIPs = [
-          "192.168.10.52/32"
-          "dced:2718:5f06:718a::52/128"
-        ];
-      }
-      # @signed-int64
-      {
-        publicKey = "zFTuWJDVNXRMQqI/jNkwMYxWJeA5CYjuTpFOzmY+2C8=";
-        presharedKeyFile = keys.preshared.signed;
-        allowedIPs = [
-          "192.168.10.53/32"
-          "dced:2718:5f06:718a::53/128"
-        ];
-      }
-      # @unsigned-int32
-      {
-        publicKey = "QCg3hCNix8lMAw+l/icN7xRjmautUjMK6tqC+GzOg2I=";
-        presharedKeyFile = keys.preshared.unsigned;
-        allowedIPs = [
-          "192.168.10.102/32"
-          "dced:2718:5f06:718a::102/128"
-          "10.64.10.4/24"
-          "fd02:f8eb:7ca4:5f4c::4/64"
+          # Private
+          "192.168.254.100/32"
+          "dced:2718:5f06:321a::100/128"
+          # Home
+          "192.168.10.100/32"
+          "dced:2718:5f06:718a::100/128"
         ];
       }
       # --- Home Network --- #
       ## --- Private IP access(For bazed people) --- ##
-
-      ## --- Public IP access(For Losers) --- ##
-      # --- Julio --- #
-      # @pc
-      {
-        publicKey = "OZg74pRtgDUkQjINEOHM0fnzJsvbLyKFdx6HzIi1Tkg=";
-        presharedKeyFile = keys.preshared.julio;
-        allowedIPs = ["10.64.10.10/32" "fd02:f8eb:7ca4:5f4c::10/128"];
-      }
-      # @ipad
-      {
-        publicKey = "w7OuonhifNvieZajGNd6u5a/NwGTDB9iq5dYnPzqiUM=";
-        presharedKeyFile = keys.preshared.julio;
-        allowedIPs = ["10.64.10.11/32" "fd02:f8eb:7ca4:5f4c::11/128"];
-      }
-      # --- Julio --- #
-      ## --- Public IP access(For Losers) --- ##
     ];
   };
 }

@@ -2,8 +2,16 @@
   config,
   pkgs,
   lib,
+  agenix,
   ...
 }: {
+  age.secrets.proxy = {
+    file = path + /secrets/proxy.age;
+    mode = "770";
+    owner = "3proxy";
+    group = "3proxy";
+  };
+
   services._3proxy = {
     enable = true;
     services = [
@@ -14,7 +22,7 @@
         acl = [
           {
             rule = "allow";
-            users = ["ashuramaru" "marie" "alex"];
+            users = ["ashuramaru" "marie" "alex" "fumono"];
           }
         ];
       }
@@ -25,17 +33,11 @@
         acl = [
           {
             rule = "allow";
-            users = ["tgsk"];
+            users = ["ashuramaru" "marie" "alex" "fumono"];
           }
         ];
       }
     ];
-    usersFile = "/etc/3proxy.passwd";
-  };
-
-  environment.etc = {
-    "3proxy.passwd".text = ''
-      ashuramaru:CR:$1$QTVyohcO$6UdQloxPbBb/w01QWFpmL/
-    '';
+    usersFile = config.age.secrets.proxy.path;
   };
 }
