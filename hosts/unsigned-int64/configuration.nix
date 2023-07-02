@@ -19,13 +19,10 @@ in {
       ./hardware-configuration.nix
       ./config.nix
       (path + "/modules/unsigned-int64/environment/users.nix")
-      (path + "/modules/unsigned-int64/services/fail2ban.nix")
-      (path + "/modules/unsigned-int64/services/nginx.nix")
-      (path + "/modules/unsigned-int64/services/nextcloud.nix")
     ]
     ++ hostModules [
       "networking"
-      # "services"
+      "services"
     ];
 
   environment = {
