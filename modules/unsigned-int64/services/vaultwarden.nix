@@ -38,8 +38,7 @@ in {
       signupsDomainsWhitelist = "fumoposting.com, tenjin-dk.com, riseup.net, meanrin.cat";
 
       smtpHost = "127.0.0.1";
-      smtpPort = 587;
-      smtpSSL = true;
+      smtpPort = 25;
       smtpFrom = "no-reply@cloud.tenjin-dk.com";
       smtpFromName = "[tenjin-dk.com] bitwarden server";
     };
