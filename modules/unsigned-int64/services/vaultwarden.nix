@@ -37,7 +37,6 @@ in {
       signupsVerify = true;
       signupsDomainsWhitelist = "fumoposting.com, tenjin-dk.com, riseup.net, meanrin.cat";
 
-      useSendmail = true;
       smtpHost = "127.0.0.1";
       smtpPort = 587;
       smtpFrom = "no-reply@cloud.tenjin-dk.com";
