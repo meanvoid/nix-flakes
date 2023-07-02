@@ -3,9 +3,7 @@
   lib,
   pkgs,
   ...
-}: let
-  x = 5;
-in {
+}: {
   services.grafana = {
     enable = true;
     domain = "grafana.tenjin-dk.com";

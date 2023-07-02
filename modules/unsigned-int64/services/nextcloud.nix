@@ -17,8 +17,11 @@ in {
     enable = true;
     database.createLocally = true;
     package = pkgs.nextcloud27;
-    extraApps = with pkgs.nextcloud27Packages.apps; {
-      inherit tasks polls notes mail news contacts calendar deck bookmarks;
+    extraApps = with config.services.nextcloud.package.packages.apps; {
+      inherit bookmarks calendar contacts deck tasks polls forms;
+      inherit files_texteditor files_markdown groupfoulders previewgenerator onlyoffice;
+      inherit mail maps news notes;
+      inherit notify_push;
     };
     extraAppsEnable = true;
     hostName = "cloud.tenjin-dk.com";
