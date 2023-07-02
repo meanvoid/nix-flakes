@@ -39,6 +39,6 @@
         ];
       }
     ];
-    usersFile = config.age.secrets.proxy.path;
+    usersFile = "cat ${config.age.secrets.proxy.path}";
   };
 }
