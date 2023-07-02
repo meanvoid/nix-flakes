@@ -9,8 +9,8 @@
   age.secrets.mail = {
     file = path + /secrets/mail.age;
     mode = 644;
-    owner = mail;
-    group = mail;
+    owner = "mail";
+    group = "mail";
   };
   users.groups.mail = {
     gid = config.users.users.mail.uid;
