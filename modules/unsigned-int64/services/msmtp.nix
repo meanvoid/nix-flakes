@@ -31,7 +31,7 @@
         host = "antila.uberspace.de";
         user = "no-reply@cloud.tenjin-dk.com";
         from = "no-reply@cloud.tenjin-dk.com";
-        passwordeval = "cat ${config.age.secrets.mail.path}";
+        passwordeval = "cat ${toString config.age.secrets.mail.path}";
       };
     };
   };
