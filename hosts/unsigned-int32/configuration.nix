@@ -98,7 +98,7 @@ in {
     nat = {
       enable = true;
       enableIPv6 = true;
-      externalInterface = "eth0";
+      externalInterface = "enp7s0";
       internalInterfaces = ["ve-+" "ports0"];
     };
     networkmanager = {

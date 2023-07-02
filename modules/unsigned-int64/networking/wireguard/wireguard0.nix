@@ -4,10 +4,6 @@
   lib,
   ...
 }: let
-  iptables = "${pkgs.iptables}/bin/iptables";
-  ip6tables = "${pkgs.iptables}/bin/ip6tables";
-  nft = "${pkgs.nftables}" /bin/nft;
-
   private = config.age.secrets.wireguard-server.path;
   preshared = config.age.secrets.wireguard-shared.path;
   fumono = config.age.secrets.wireguard-shared_fumono.path;
@@ -29,32 +25,42 @@ in {
     privateKeyFile = private;
     postUp = ''
       # Drop incoming SSH traffic on wireguard0 interface
-      ${iptables} -I INPUT -p tcp --dport 22 -i wireguard0 -j DROP
+      ${pkgs.iptables}/bin/iptables -I INPUT -p tcp --dport 22 -i wireguard0 -j DROP
 
       # Allow incoming SSH traffic on wireguard1 interface only for source IP range
-      ${iptables} -I INPUT -p tcp --dport 22 -i wireguard1 -m iprange --src-range 172.168.1.50-172.168.1.254 -j ACCEPT
+      ${pkgs.iptables}/bin/iptables -I INPUT -p tcp --dport 22 -i wireguard1 -m iprange --src-range 172.168.1.50-172.168.1.254 -j ACCEPT
 
       # Allow incoming SSH traffic on wireguard0 interface only for source IP range
-      ${iptables} -I INPUT -p tcp --dport 22 -i wireguard0 -m iprange --src-range 192.168.10.100-192.168.10.200 -j ACCEPT
+      ${pkgs.iptables}/bin/iptables -I INPUT -p tcp --dport 22 -i wireguard0 -m iprange --src-range 192.168.10.100-192.168.10.200 -j ACCEPT
 
       # Allow traffic from wireguard0 interface
-      ${iptables} -A FORWARD -i wireguard0 -j ACCEPT
+      ${pkgs.iptables}/bin/iptables -A FORWARD -i wireguard0 -j ACCEPT
 
       # NAT rules for IPv4 and IPv6 traffic
-      ${iptables} -t nat -A POSTROUTING -s 10.64.10.1/24 -o enp4s0 -j MASQUERADE
-      ${iptables} -t nat -A POSTROUTING -s 192.168.10.1/24 -o enp4s0 -j MASQUERADE
-      ${ip6tables} -t nat -A POSTROUTING -s fd02:f8eb:7ca4:5f4c::1/64 -o enp4s0 -j MASQUERADE
-      ${ip6tables} -t nat -A POSTROUTING -s dced:2718:5f06:718a::1/64 -o enp4s0 -j MASQUERADE
+      ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.64.10.1/24 -o enp4s0 -j MASQUERADE
+      ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 192.168.10.1/24 -o enp4s0 -j MASQUERADE
+      ${pkgs.ip6tables}/bin/ip6tables -t nat -A POSTROUTING -s fd02:f8eb:7ca4:5f4c::1/64 -o enp4s0 -j MASQUERADE
+      ${pkgs.ip6tables}/bin/ip6tables -t nat -A POSTROUTING -s dced:2718:5f06:718a::1/64 -o enp4s0 -j MASQUERADE
     '';
     preDown = ''
+      # Drop incoming SSH traffic on wireguard0 interface
+      ${pkgs.iptables}/bin/iptables -D INPUT -p tcp --dport 22 -i wireguard0 -j DROP
+
+      # Allow incoming SSH traffic on wireguard1 interface only for source IP range
+      ${pkgs.iptables}/bin/iptables -D INPUT -p tcp --dport 22 -i wireguard1 -m iprange --src-range 172.168.1.50-172.168.1.254 -j ACCEPT
+
+      # Allow incoming SSH traffic on wireguard0 interface only for source IP range
+      ${pkgs.iptables}/bin/iptables -D INPUT -p tcp --dport 22 -i wireguard0 -m iprange --src-range 192.168.10.100-192.168.10.200 -j ACCEPT
+
+
       # Block traffic from wireguard0 interface
-      ${iptables} -D FORWARD -i wireguard0 -j ACCEPT
+      ${pkgs.iptables}/bin/iptables -D FORWARD -i wireguard0 -j ACCEPT
 
       # NAT rules for IPv4 and IPv6 traffic
-      ${iptables} -t nat -D POSTROUTING -s 10.64.10.1/24 -o enp4s0 -j MASQUERADE
-      ${iptables} -t nat -D POSTROUTING -s 192.168.10.1/24 -o enp4s0 -j MASQUERADE
-      ${ip6tables} -t nat -D POSTROUTING -s fd02:f8eb:7ca4:5f4c::1/64 -o enp4s0 -j MASQUERADE
-      ${ip6tables} -t nat -D POSTROUTING -s dced:2718:5f06:718a::1/64 -o enp4s0 -j MASQUERADE
+      ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.64.10.1/24 -o enp4s0 -j MASQUERADE
+      ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 192.168.10.1/24 -o enp4s0 -j MASQUERADE
+      ${pkgs.ip6tables}/bin/ip6tables -t nat -D POSTROUTING -s fd02:f8eb:7ca4:5f4c::1/64 -o enp4s0 -j MASQUERADE
+      ${pkgs.ip6tables}/bin/ip6tables -t nat -D POSTROUTING -s dced:2718:5f06:718a::1/64 -o enp4s0 -j MASQUERADE
     '';
 
     peers = [
