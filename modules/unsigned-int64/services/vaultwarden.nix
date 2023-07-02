@@ -37,10 +37,10 @@ in {
       signupsVerify = true;
       signupsDomainsWhitelist = "fumoposting.com, tenjin-dk.com, riseup.net, meanrin.cat";
 
+      useSendmail = true;
       smtpHost = "127.0.0.1";
-      smtpPort = 25;
       smtpFrom = "no-reply@cloud.tenjin-dk.com";
-      smtpFromName = "[tenjin-dk.com] bitwarden server";
+      smtpFromName = "<Admin bitwarden.tenjin-dk.com>";
     };
   };
   services.nginx.virtualHosts."${domain}" = {
