@@ -23,6 +23,7 @@ in {
     ++ hostModules [
       "networking"
       "services"
+      "virtualisation"
     ];
 
   environment = {
