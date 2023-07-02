@@ -24,7 +24,7 @@ in {
       privateKeyFile = private;
       peers = [
         {
-          publicKey = "UJNTai8BfRY0w0lYtxyiM+Azcv8rGdWPrPw7Afj1oHk=";
+          publicKey = "YnPzt3UDhMI2D6+af+JKhN+5rF1v/imfcDBcZ3k6r0A=";
           presharedKeyFile = shared;
           allowedIPs = ["0.0.0.0/0" "::/0"];
           endpoint = "tenjin-dk.com:51820";
