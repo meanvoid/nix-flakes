@@ -10,7 +10,7 @@
 
   private = config.age.secrets.wireguard-server.path;
   preshared = config.age.secrets.wireguard-shared.path;
-  preshared.fumono = config.age.secrets.wireguard-shared-fumono.path;
+  fumono = config.age.secrets.wireguard-shared_fumono.path;
 in {
   imports = [./secrets.nix];
   networking.wg-quick.interfaces.wireguard0 = {
