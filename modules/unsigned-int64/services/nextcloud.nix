@@ -43,6 +43,8 @@ in {
         host = "/run/redis-nextcloud/redis.sock";
         port = 0;
       };
+      mail_smtpmode = "sendmail";
+      mail_sendmailmode = "pipe";
       "memcache.local" = "\\OC\\Memcache\\Redis";
       "memcache.distributed" = "\\OC\\Memcache\\Redis";
       "memcache.locking" = "\\OC\\Memcache\\Redis";
