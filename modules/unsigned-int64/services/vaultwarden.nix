@@ -39,6 +39,7 @@ in {
 
       useSendmail = true;
       smtpHost = "127.0.0.1";
+      smtpPort = 587;
       smtpFrom = "no-reply@cloud.tenjin-dk.com";
       smtpFromName = "<Admin bitwarden.tenjin-dk.com>";
     };
