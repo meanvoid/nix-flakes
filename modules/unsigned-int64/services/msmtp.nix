@@ -25,7 +25,7 @@
   programs.msmtp = {
     enable = true;
     accounts = {
-      "no-reply@cloud.tenjin-dk.com" = {
+      default = {
         auth = true;
         tls = true;
         host = "antila.uberspace.de";
