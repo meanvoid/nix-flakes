@@ -28,7 +28,6 @@
       default = {
         auth = true;
         tls = true;
-        tlsStarttls = true;
         port = 587;
         host = "antila.uberspace.de";
         from = "no-reply@cloud.tenjin-dk.com";
