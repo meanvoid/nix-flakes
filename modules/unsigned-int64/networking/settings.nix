@@ -40,7 +40,7 @@
     nat = {
       enable = true;
       enableIPv6 = true;
-      externalInterface = "eth0";
+      externalInterface = "enp4s0";
       internalInterfaces = ["wireguard0"];
     };
     firewall = {
