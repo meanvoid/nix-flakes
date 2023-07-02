@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  private = config.age.secrets.wireguard-server.path;
+  private = config.age.secrets.wireguard0-server.path;
   preshared = config.age.secrets.wireguard-shared.path;
   fumono = config.age.secrets.wireguard-shared_fumono.path;
 in {
