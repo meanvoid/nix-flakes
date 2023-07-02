@@ -26,11 +26,10 @@
     enable = true;
     accounts = {
       default = {
-        auth = true;
         tls = true;
         host = "antila.uberspace.de";
         user = "no-reply@cloud.tenjin-dk.com";
-        from = "no-reply@cloud.tenjin-dk.com";
+        from = "no-reply@cloud-tenjin-dk.com";
         passwordeval = "cat ${toString config.age.secrets.mail.path}";
       };
     };
