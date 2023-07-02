@@ -8,7 +8,8 @@
 }: {
   age.secrets.proxy = {
     file = path + /secrets/proxy.age;
-    mode = "0777";
+    path = "/etc/3proxy.conf";
+    mode = "777";
     owner = "root";
     group = "root";
   };
@@ -39,6 +40,6 @@
         ];
       }
     ];
-    usersFile = "cat ${config.age.secrets.proxy.path}";
+    usersFile = "/etc/3proxy.conf";
   };
 }
