@@ -40,6 +40,7 @@ in {
       smtpHost = "antila.uberspace.de";
       smtpSecurity = "starttls";
       smtpPort = 587;
+      smtpAuthMechanism = "Login";
       smtpUsername = "no-reply@cloud.tenjin-dk.com";
       smtpFrom = "no-reply@cloud.tenjin-dk.com";
       smtpFromName = "<Admin bitwarden.tenjin-dk.com>";
