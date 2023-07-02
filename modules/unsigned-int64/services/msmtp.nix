@@ -8,7 +8,7 @@
 }: {
   age.secrets.mail = {
     file = path + /secrets/mail.age;
-    mode = 644;
+    mode = "644";
     owner = "mail";
     group = "mail";
   };
