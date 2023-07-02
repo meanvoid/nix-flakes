@@ -15,7 +15,7 @@ in {
   "wireguard-shared_fumono.age".publicKeys = [systems.unsigned-int32 systems.unsigned-int64];
 
   "njalla-api-token.age".publicKeys = [systems.unsigned-int32 systems.unsigned-int64];
-  "mail.age".publicKeys = [systems.unsigned-int32 systems.unsigned-itn64];
+  "mail.age".publicKeys = [systems.unsigned-int32 systems.unsigned-int64];
   "proxy.age".publicKeys = [systems.unsigned-int64];
   "admin.age".publicKeys = [systems.unsigned-int64];
   "vaultwarden-env.age".publicKeys = [systems.unsigned-int64];
