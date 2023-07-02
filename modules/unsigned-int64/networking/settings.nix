@@ -7,8 +7,8 @@
   networking = {
     hostName = "unsigned-int64";
     interfaces = {
-      "enp4s0" = {
-        name = "enp4s0";
+      "eth0" = {
+        name = "eth0";
         useDHCP = lib.mkDefault true;
         ipv4.addresses = [
           {
@@ -26,11 +26,11 @@
     };
     defaultGateway = {
       address = "78.46.45.193";
-      interface = "enp4s0";
+      interface = "eth0";
     };
     defaultGateway6 = {
       address = "fe80::1";
-      interface = "enp4s0";
+      interface = "eth0";
     };
     nameservers = [
       "127.0.0.1"
@@ -40,7 +40,7 @@
     nat = {
       enable = true;
       enableIPv6 = true;
-      externalInterface = "enp4s0";
+      externalInterface = "eth0";
       internalInterfaces = ["wireguard0" "wireguard1"];
     };
     firewall = {
