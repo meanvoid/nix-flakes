@@ -20,7 +20,7 @@ in {
     enable = true;
     package = pkgs.vaultwarden-postgresql;
     environmentFile = config.age.secrets.vaultwarden-env.path;
-
+    dbBackend = "postgresql";
     config = {
       domain = "https://bitwarden.tenjin-dk.com";
       rocketAddress = "127.0.0.1";
@@ -30,7 +30,6 @@ in {
       websocketEnabled = true;
       websocketAddress = "0.0.0.0";
       websocketPort = "3012";
-
       enableDbWal = true;
 
       signupsAllowed = false;
