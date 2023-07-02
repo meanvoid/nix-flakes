@@ -8,9 +8,9 @@
 }: {
   age.secrets.proxy = {
     file = path + /secrets/proxy.age;
-    mode = "770";
-    owner = "3proxy";
-    group = "3proxy";
+    mode = "0644";
+    owner = "root";
+    group = "root";
   };
 
   services._3proxy = {
