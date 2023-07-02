@@ -19,7 +19,6 @@ in {
   services.vaultwarden = {
     enable = true;
     package = pkgs.vaultwarden-postgresql;
-    backupDir = "/var/lib/backup/bitwarden";
     environmentFile = config.age.secrets.vaultwarden-env.path;
 
     config = {
