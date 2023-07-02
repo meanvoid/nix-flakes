@@ -92,19 +92,21 @@ in {
         PermitRootLogin = "prohibit-password";
       };
     };
-    # dnsmasq = {
-    #   enable = true;
-    #   settings = {
-    #     server = [
-    #       # adguard dns
-    #       "94.140.14.14"
-    #       "94.140.15.15"
-    #       # cloudflare
-    #       "1.1.1.1"
-    #     ];
-    #     interface = "wireguard0";
-    #   };
-    # };
+    dnsmasq = {
+      enable = true;
+      settings = {
+        server = [
+          # adguard dns
+          "94.140.14.14"
+          "94.140.15.15"
+          # cloudflare
+          "1.1.1.1"
+        ];
+      };
+      extraConfig = ''
+        interface=wireguard0
+      '';
+    };
     pcscd.enable = true;
   };
   programs = {
