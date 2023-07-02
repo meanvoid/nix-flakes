@@ -37,8 +37,12 @@ in {
       signupsVerify = true;
       signupsDomainsWhitelist = "fumoposting.com, tenjin-dk.com, riseup.net, meanrin.cat";
 
-      useSendmail = true;
-      sendmailCommand = "${pkgs.system-sendmail}/bin/sendmail";
+      smtpHost = "antila.uberspace.de";
+      smtpSecurity = "starttls";
+      smtpPort = 587;
+      smtpAuthMechanism = "Login";
+      smtpUsername = "no-reply@cloud.tenjin-dk.com";
+      smtpFrom = "no-reply@cloud.tenjin-dk.com";
       smtpFromName = "<Admin bitwarden.tenjin-dk.com>";
     };
   };
