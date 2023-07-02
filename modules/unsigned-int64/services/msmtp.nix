@@ -25,13 +25,13 @@
   programs.msmtp = {
     enable = true;
     accounts = {
-      default = {
+      "no-reply@cloud.tenjin-dk.com" = {
         auth = true;
         tls = true;
-        from = "no-reply@cloud.tenjin-dk.com";
         host = "antila.uberspace.de";
         user = "no-reply@cloud.tenjin-dk.com";
-        passwordeval = config.age.secrets.mail.path;
+        from = "no-reply@cloud.tenjin-dk.com";
+        passwordeval = "cat ${config.age.secrets.mail.path}";
       };
     };
   };
