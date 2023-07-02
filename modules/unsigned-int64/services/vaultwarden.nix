@@ -43,7 +43,7 @@ in {
       smtpAuthMechanism = "Login";
       smtpUsername = "no-reply@cloud.tenjin-dk.com";
       smtpFrom = "no-reply@cloud.tenjin-dk.com";
-      smtpFromName = "<Admin bitwarden.tenjin-dk.com>";
+      smtpFromName = "Admin of bitwarden.tenjin-dk.com";
     };
   };
   services.nginx.virtualHosts."${domain}" = {
