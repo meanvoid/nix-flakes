@@ -3,6 +3,7 @@
   pkgs,
   lib,
   agenix,
+  path,
   ...
 }: {
   age.secrets.proxy = {
