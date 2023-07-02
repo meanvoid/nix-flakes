@@ -3,6 +3,7 @@
   config,
   pkgs,
   agenix,
+  path,
   ...
 }: let
   domain = "bitwarden.tenjin-dk.com";
