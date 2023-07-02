@@ -3,6 +3,7 @@
   config,
   pkgs,
   agenix,
+  path,
   ...
 }: {
   age.secrets = {
