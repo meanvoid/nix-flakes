@@ -8,7 +8,7 @@
     hostName = "unsigned-int64";
     interfaces = {
       "enp4s0" = {
-        name = "eth0";
+        name = "enp4s0";
         useDHCP = lib.mkDefault true;
         ipv4.addresses = [
           {
