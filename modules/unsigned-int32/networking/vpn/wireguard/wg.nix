@@ -24,7 +24,7 @@ in {
       privateKeyFile = private;
       peers = [
         {
-          publicKey = "HU4h1/FqzNs5C6Vo5bXKVEE2bDq5PQe2LgINZywcpic=";
+          publicKey = "UJNTai8BfRY0w0lYtxyiM+Azcv8rGdWPrPw7Afj1oHk=";
           presharedKeyFile = shared;
           allowedIPs = ["0.0.0.0/0" "::/0"];
           endpoint = "tenjin-dk.com:51820";
@@ -32,12 +32,12 @@ in {
         }
       ];
     };
-    mesh0 = {
+    ports0 = {
       address = ["172.168.10.2/24"];
       privateKeyFile = private;
       peers = [
         {
-          publicKey = "7mwL4c31JhxE5Sgu97wyWyLOGo45Q9wItw2KRB1LTyc=";
+          publicKey = "UJNTai8BfRY0w0lYtxyiM+Azcv8rGdWPrPw7Afj1oHk=";
           presharedKeyFile = shared;
           allowedIPs = ["172.168.10.1/32"];
           endpoint = "tenjin-dk.com:51280";
