@@ -11,11 +11,11 @@
         enable_gzip = true;
         enforce_domain = true;
         protocol = "https";
-        serve_from_sub_path = true;
         domain = "metrics.tenjin-dk.com";
-        root_url = "%(protocol)s://%(domain)s:%(http_port)s/grafana";
         http_addr = "127.0.0.1";
         http_port = 2301;
+        root_url = "%(protocol)s://%(domain)s:%(http_port)s/grafana/";
+        serve_from_sub_path = true;
       };
     };
   };
@@ -34,9 +34,15 @@
     "${config.services.grafana.settings.server.domain}" = {
       enableACME = true;
       forceSSL = true;
-      locations."/grafana/" = {
-        proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
-        proxyWebsockets = true;
+      locations = {
+        "/grafana/" = {
+          proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
+          proxyWebsockets = true;
+        };
+        "/grafana/api/live/" = {
+          proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
+          proxyWebsockets = true;
+        };
       };
     };
   };
