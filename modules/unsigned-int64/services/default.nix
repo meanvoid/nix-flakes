@@ -5,4 +5,5 @@
   ./nginx.nix
   ./nextcloud.nix
   ./vaultwarden.nix
+  ./grafana.nix
 ]

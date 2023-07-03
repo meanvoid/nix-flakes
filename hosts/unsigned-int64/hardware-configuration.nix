@@ -107,12 +107,13 @@
   };
   services.btrfs.autoScrub = {
     enable = true;
-    interval = "weekly";
+    interval = "monthly";
     fileSystems = [
       "/"
       "/var"
     ];
   };
+
   environment.etc."mdadm.conf".text = ''
     ARRAY /dev/md0 metadata=1.2 name=unsigned-int64:root UUID=9d2eb299:64ccc453:1bb22e59:7db34504
   '';
