@@ -21,4 +21,5 @@ in {
   "proxy.age".publicKeys = [systems.unsigned-int64];
   "admin.age".publicKeys = [systems.unsigned-int64];
   "vaultwarden-env.age".publicKeys = [systems.unsigned-int64];
+  "grafana_pgsql.age".publicKeys = [systems.unsigned-int64];
 }
