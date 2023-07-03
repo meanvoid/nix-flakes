@@ -10,8 +10,8 @@
       server = {
         enable_gzip = true;
         enforce_domain = true;
-        # protocol = "http";
-        # domain = "metrics.tenjin-dk.com";
+        protocol = "http";
+        domain = "metrics.tenjin-dk.com";
         http_addr = "127.0.0.1";
         http_port = 2301;
         root_url = "%(protocol)s://%(domain)s:%(http_port)s/grafana/";
