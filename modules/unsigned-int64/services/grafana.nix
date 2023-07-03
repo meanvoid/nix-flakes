@@ -32,7 +32,7 @@
         name = "grafana";
         user = "grafana";
         password = "$__file{${config.age.secrets.grafana_pgsql.path}}";
-        ssl_mode = "verify-full";
+        ssl_mode = "disable";
         host = "127.0.0.1:5432";
       };
     };
