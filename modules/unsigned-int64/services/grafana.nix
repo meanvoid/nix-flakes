@@ -28,7 +28,7 @@
         serve_from_sub_path = true;
       };
       database = {
-        type = "postgresql";
+        type = "postgres";
         name = "grafana";
         user = "grafana";
         password = "$__file{${config.age.secrets.grafana_pgsql.path}}";
