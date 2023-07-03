@@ -6,9 +6,18 @@
 }: {
   services.grafana = {
     enable = true;
-    domain = "grafana.tenjin-dk.com";
-    addr = "127.0.0.1";
-    port = 2342;
+    settings = {
+      server = {
+        enable_gzip = true;
+        enforce_domain = true;
+        protocol = "https";
+        domain = "tenjin-dk.com/grafana";
+        serve_from_sub_path = true;
+        root_url = "%(protocol)s://%(domain)s:%(http_port)s/grafana";
+        http_addr = "127.0.0.1";
+        http_port = 2301;
+      };
+    };
   };
   services.prometheus = {
     enable = true;
