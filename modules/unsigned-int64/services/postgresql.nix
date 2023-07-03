@@ -9,6 +9,7 @@
     enableJIT = true;
     ensureDatabases = [
       "vaultwarden"
+      "grafana"
     ];
     ensureUsers = [
       {
@@ -23,10 +24,16 @@
           "DATABASE vaultwarden" = "ALL PRIVILEGES";
         };
       }
+      {
+        name = "grafana";
+        ensurePermissions = {
+          "DATABASE grafana" = "ALL PRIVILEGES";
+        };
+      }
     ];
   };
   services.postgresqlBackup = {
     enable = true;
-    databases = ["nextcloud" "vaultwarden"];
+    databases = ["nextcloud" "vaultwarden" "grafana"];
   };
 }
