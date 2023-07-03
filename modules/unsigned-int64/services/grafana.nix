@@ -12,7 +12,7 @@
         enforce_domain = true;
         protocol = "https";
         serve_from_sub_path = true;
-        domain = "tenjin-dk.com/grafana";
+        domain = "metrics.tenjin-dk.com";
         root_url = "%(protocol)s://%(domain)s:%(http_port)s/grafana";
         http_addr = "127.0.0.1";
         http_port = 2301;
@@ -34,7 +34,7 @@
     "${config.services.grafana.settings.server.domain}" = {
       enableACME = true;
       forceSSL = true;
-      locations."/" = {
+      locations."/grafana/" = {
         proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
         proxyWebsockets = true;
       };
