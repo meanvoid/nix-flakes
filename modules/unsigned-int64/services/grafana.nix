@@ -10,7 +10,7 @@
       server = {
         enable_gzip = true;
         enforce_domain = true;
-        protocol = "https";
+        protocol = "http";
         domain = "metrics.tenjin-dk.com";
         http_addr = "127.0.0.1";
         http_port = 2301;
