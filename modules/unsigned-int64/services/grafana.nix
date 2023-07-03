@@ -7,7 +7,7 @@
   services.grafana = {
     enable = true;
     domain = "grafana.tenjin-dk.com";
-    addr = 127.0 .0 .1;
+    addr = "127.0.0.1";
     port = 2342;
   };
   services.prometheus = {
