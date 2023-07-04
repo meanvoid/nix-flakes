@@ -28,13 +28,22 @@
         serve_from_sub_path = true;
       };
       database = {
-        type = "postgres";
+        type2 = "postgres";
         name = "grafana";
         user = "grafana";
         password = "$__file{${config.age.secrets.grafana_pgsql.path}}";
         ssl_mode = "disable";
         host = "127.0.0.1:5432";
         log_queries = true;
+      };
+      smtp = {
+        enable = true;
+        host = "antila.uberspace.de";
+        user = "no-reply@cloud.tenjin-dk.com";
+        password = "$__file{${config.age.secrets.mail.path}}";
+        from_address = "no-reply@cloud.tenjin-dk.com";
+        from_name = "grafana notifyer";
+        ehlo_identity = "metrics.tenjin-dk.com";
       };
     };
   };
