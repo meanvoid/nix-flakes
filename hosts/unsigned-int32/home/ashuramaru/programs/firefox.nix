@@ -19,15 +19,20 @@
         mullvad
         darkreader
         tampermonkey
+
         # bypass-paywalls-clean
         user-agent-string-switcher
         web-archives
+
         # devtools
         angular-devtools
         react-devtools
         reduxdevtools
         vue-js-devtools
+
         # utils
+        video-downloadhelper
+        plasma-integration
         stylus
         steam-database
         search-by-image
@@ -39,6 +44,9 @@
         return-youtube-dislikes
         old-reddit-redirect
         reddit-enhancement-suite
+
+        # Dictionaries
+        ukrainian-dictionary
       ];
       search = {
         engines = {

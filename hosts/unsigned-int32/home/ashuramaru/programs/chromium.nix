@@ -30,6 +30,7 @@
       {id = "nljkibfhlpcnanjgbnlnbjecgicbjkge";} # downthemall
       {id = "ohnjgmpcibpbafdlkimncjhflgedgpam";} # 4chanX
       {id = "hkgfoiooedgoejojocmhlaklaeopbecg";} # picture in picture
+      {id = "jgejdcdoeeabklepnkdbglgccjpdgpmf";} # old twitter layout
       {
         id = "dcpihecpambacapedldabdbpakmachpb"; # bypass paywalls
         updateUrl = "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/src/updates/updates.xml";
