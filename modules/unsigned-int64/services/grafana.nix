@@ -208,14 +208,6 @@
         proxyPass = "http://127.0.0.1:${toString config.services.prometheus.port}";
         proxyWebsockets = true;
       };
-      "/loki/" = {
-        proxyPass = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}";
-        proxyWebsockets = true;
-      };
-      "/loki/api/v1/push" = {
-        proxyPass = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
-        proxyWebsockets = true;
-      };
     };
   };
 }
