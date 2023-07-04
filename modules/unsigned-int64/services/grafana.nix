@@ -54,8 +54,8 @@
   };
   services.prometheus = {
     enable = true;
-    # webExternalUrl = "metrics.tenjin-dk.com";
-    # webConfigFile = path + /modules/unsigned-int64/services/config.yml;
+    webExternalUrl = "/metrics/";
+    webConfigFile = path + /modules/unsigned-int64/services/config.yml;
     port = 9001;
     exporters = {
       node = {
@@ -85,6 +85,10 @@
       };
       "/grafana/api/live/" = {
         proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
+        proxyWebsockets = true;
+      };
+      "/metrics/" = {
+        proxyPass = "http://127.0.0.1:${toString config.services.prometheus.port}";
         proxyWebsockets = true;
       };
     };
