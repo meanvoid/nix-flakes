@@ -62,12 +62,9 @@
       inherit (nixpkgs) lib;
       inherit inputs self nixpkgs darwin;
       inherit home-manager path;
-    };
-    nixosAttrs = {
       inherit nur hyprland agenix;
       inherit flatpaks aagl spicetify-nix;
     };
-    outputAttrs = commonAttrs // nixosAttrs;
 
     flakeOutput =
       eachDefaultSystem
@@ -95,7 +92,7 @@
   in
     flakeOutput
     // {
-      nixosConfigurations = import (path + /hosts) outputAttrs;
+      nixosConfigurations = import (path + /hosts) commonAttrs;
       darwinConfigurations = import (path + /hosts/darwin) commonAttrs;
     };
 }
