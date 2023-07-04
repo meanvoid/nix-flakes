@@ -5,7 +5,22 @@
   ...
 }: {
   users.mutableUsers = false;
+  user.groups = {
+    ashuramaru.gid = config.users.users.ashuramaru.uid;
+    meanrin.gid = config.users.users.meanrin.uid;
+    fumono.gid = config.users.users.fumono.uid;
+    minecraft = {
+      gid = config.users.users.minecraft.uid;
+      members = ["ashuramaru" "fumono"];
+    };
+  };
   users.users = {
+    minecraft = {
+      uid = 5333;
+      isSystemUser = true;
+      group = "minecraft";
+      extraGroups = ["ashuramaru" "fumono"];
+    };
     root = {
       initialHashedPassword = "";
       openssh.authorizedKeys.keys = [
