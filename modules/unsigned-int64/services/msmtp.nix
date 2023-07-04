@@ -14,13 +14,13 @@
   };
   users.groups.mail = {
     gid = config.users.users.mail.uid;
-    members = ["nextcloud" "vaultwarden"];
+    members = ["nextcloud" "vaultwarden" "grafana"];
   };
   users.users.mail = {
     uid = 4322;
     isSystemUser = true;
     group = "mail";
-    extraGroups = ["nextcloud" "vaultwarden"];
+    extraGroups = ["nextcloud" "vaultwarden" "grafana"];
   };
   programs.msmtp = {
     enable = true;
