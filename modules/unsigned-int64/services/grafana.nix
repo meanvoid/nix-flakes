@@ -88,7 +88,7 @@
       {
         job_name = "grafana";
         metrics_path = "/grafana/metrics";
-        static_configs = [{targets = ["http://localhost:${toString config.services.grafana.settings.server.http_port}"];}];
+        static_configs = [{targets = ["http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}"];}];
       }
     ];
   };
