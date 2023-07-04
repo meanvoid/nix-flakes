@@ -1,0 +1,4 @@
+basic_auth_users:
+  admin: $2y$10$VO.gcZauYcGP9F49YzjPxuMNiXQbMNABDq0TdnKQ2bADYe4zDUE4m%
+  ashuramaru: $2y$10$ijd9/QkKB3cHtGscqvcJuumro2mP6d6o3leBiF9ZoNi6rAzG6WzyS%
+  meanrin: $2y$10$RC7YAyxZzgiWqlbCZ0M8KeuPmLeDBqUvnGHGUJAcVpxosTL6jtgwm%
