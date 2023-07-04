@@ -65,6 +65,7 @@
         enable = true;
         enabledCollectors = [
           "systemd"
+          "prometheus"
         ];
         port = 9100;
       };
