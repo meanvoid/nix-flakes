@@ -78,6 +78,10 @@
     };
     scrapeConfigs = [
       {
+        job_name = "prometheus";
+        static_configs = [{targets = ["127.0.0.1:${toString config.services.prometheus.port}"];}];
+      }
+      {
         job_name = "unsigned-int64";
         static_configs = [{targets = ["127.0.0.1:${toString config.services.prometheus.exporters.node.port}"];}];
       }
@@ -85,8 +89,10 @@
         job_name = "wireguard";
         static_configs = [{targets = ["127.0.0.1:${toString config.services.prometheus.exporters.wireguard.port}"];}];
       }
-      {job_name = "grafana";}
-      {job_name = "prometheus";}
+      {
+        job_name = "grafana";
+        static_configs = [{targets = ["127.0.0.1:${toString config.services.grafana.settings.server.http_port}"];}];
+      }
     ];
   };
   services.loki = {
