@@ -65,6 +65,7 @@
         enable = true;
         enabledCollectors = [
           "systemd"
+          "grafana"
           "logind"
         ];
         port = 9100;
