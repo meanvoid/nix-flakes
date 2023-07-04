@@ -66,7 +66,6 @@
         enabledCollectors = [
           "systemd"
           "logind"
-          "prometheus-simple"
         ];
         port = 9100;
       };
