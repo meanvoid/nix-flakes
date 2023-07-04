@@ -16,6 +16,7 @@
       extensions = with config.nur.repos.rycee.firefox-addons; [
         # necessity
         ublock-origin
+        canvasblocker
         mullvad
         darkreader
         tampermonkey
@@ -31,6 +32,7 @@
         vue-js-devtools
 
         # utils
+        sponsorblock
         video-downloadhelper
         plasma-integration
         stylus
