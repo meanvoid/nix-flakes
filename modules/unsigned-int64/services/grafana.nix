@@ -57,7 +57,7 @@
   };
   services.prometheus = {
     enable = true;
-    webExternalUrl = "/metrics/${toString config.services.prometheus.scrapeConfigs.job_name}";
+    webExternalUrl = "/metrics/unsigned-int64";
     webConfigFile = path + /modules/unsigned-int64/services/config.yml;
     port = 9000;
     exporters = {
@@ -204,7 +204,7 @@
         proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
         proxyWebsockets = true;
       };
-      "/metrics/${toString config.services.prometheus.scrapeConfigs.job_name}" = {
+      "/metrics/unsgined-int64" = {
         proxyPass = "http://127.0.0.1:${toString config.services.prometheus.port}";
         proxyWebsockets = true;
       };
