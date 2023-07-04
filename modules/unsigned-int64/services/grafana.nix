@@ -45,6 +45,11 @@
         from_name = "grafana notifyer";
         ehlo_identity = "metrics.tenjin-dk.com";
       };
+      user = {
+        verify_email_enabled = true;
+        default_theme = true;
+        default_language = "en_us";
+      };
     };
   };
   services.prometheus = {
