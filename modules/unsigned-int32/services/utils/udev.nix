@@ -8,6 +8,7 @@
       gnome.gnome-settings-daemon
       gnome2.GConf
       opentabletdriver
+      yubikey-personalization
     ];
     extraRules = ''
       # XP-Pen CT1060

@@ -80,7 +80,7 @@ in {
           }
         ]
         ++ modules;
-      sharedModules = lib.concatLists [
+      sharedModules = lib.flatten [
         (lib.optional useHomeManager (homeManagerModules.darwin hostName users))
         defaults
       ];

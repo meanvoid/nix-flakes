@@ -57,7 +57,7 @@
   };
   services.prometheus = {
     enable = true;
-    webExternalUrl = "/metrics/";
+    webExternalUrl = "/metrics/${toString config.services.prometheus.scrapeConfigs.job_name}";
     webConfigFile = path + /modules/unsigned-int64/services/config.yml;
     port = 9000;
     exporters = {
@@ -83,7 +83,7 @@
   services.loki = {
     enable = true;
     configuration = {
-      server.http_listen_port = 3030;
+      server.http_listen_port = 3100;
       auth_enabled = false;
 
       ingester = {
@@ -204,7 +204,7 @@
         proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
         proxyWebsockets = true;
       };
-      "/metrics/" = {
+      "/metrics/${toString config.services.prometheus.scrapeConfigs.job_name}" = {
         proxyPass = "http://127.0.0.1:${toString config.services.prometheus.port}";
         proxyWebsockets = true;
       };

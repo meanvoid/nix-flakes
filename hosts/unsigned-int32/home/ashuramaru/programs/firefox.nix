@@ -49,6 +49,7 @@
         ukrainian-dictionary
       ];
       search = {
+        force = true;
         engines = {
           "Nix Packages" = {
             urls = [
