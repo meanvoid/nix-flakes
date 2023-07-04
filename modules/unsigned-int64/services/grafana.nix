@@ -54,7 +54,7 @@
   };
   services.prometheus = {
     enable = true;
-    webExternalUrl = "metrics.tenjin-dk.com/prometheus";
+    webExternalUrl = "metrics.tenjin-dk.com/prometheus/";
     webConfigFile = path + /modules/unsigned-int64/services/config.yml;
     port = 9001;
     exporters = {
@@ -87,7 +87,7 @@
         proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
         proxyWebsockets = true;
       };
-      "/prometheus" = {
+      "/prometheus/" = {
         proxyPass = "http://127.0.0.1:${toString config.services.prometheus.port}";
         proxyWebsockets = true;
       };
