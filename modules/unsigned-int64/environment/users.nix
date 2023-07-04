@@ -40,6 +40,7 @@
       home = "/Users/fumono";
       description = "Fumono";
       initialHashedPassword = "";
+      extraGroups = ["docker" "podman"];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHBeBj6thLiVFNGZI1NuTHKIPvh332Szad2zsgjdzhR mc-server"
       ];
