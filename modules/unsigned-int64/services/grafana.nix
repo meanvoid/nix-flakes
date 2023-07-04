@@ -65,10 +65,14 @@
         enable = true;
         enabledCollectors = [
           "systemd"
-          "grafana"
           "logind"
         ];
         port = 9100;
+      };
+      wireguard = {
+        enable = true;
+        withRemoteIp = true;
+        port = 9101;
       };
     };
     scrapeConfigs = [
@@ -76,7 +80,10 @@
         job_name = "unsigned-int64";
         static_configs = [
           {
-            targets = ["127.0.0.1:${toString config.services.prometheus.exporters.node.port}"];
+            targets = [
+              "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
+              "127.0.0.1:${toString config.services.prometheus.exporters.wireugard.port}"
+            ];
           }
         ];
       }
