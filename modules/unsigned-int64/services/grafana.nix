@@ -78,10 +78,6 @@
     };
     scrapeConfigs = [
       {
-        job_name = "prometheus";
-        static_configs = [{targets = ["127.0.0.1:${toString config.services.prometheus.port}"];}];
-      }
-      {
         job_name = "unsigned-int64";
         static_configs = [{targets = ["127.0.0.1:${toString config.services.prometheus.exporters.node.port}"];}];
       }
@@ -91,7 +87,8 @@
       }
       {
         job_name = "grafana";
-        static_configs = [{targets = ["127.0.0.1:${toString config.services.grafana.settings.server.http_port}"];}];
+        metrics_path = "/grafana/metrics";
+        static_configs = [{targets = ["http://localhost:${toString config.services.grafana.settings.server.http_port}"];}];
       }
     ];
   };
