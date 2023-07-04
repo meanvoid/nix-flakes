@@ -5,7 +5,7 @@
   ...
 }: {
   users.mutableUsers = false;
-  user.groups = {
+  users.groups = {
     ashuramaru.gid = config.users.users.ashuramaru.uid;
     meanrin.gid = config.users.users.meanrin.uid;
     fumono.gid = config.users.users.fumono.uid;
@@ -42,7 +42,6 @@
       ];
     };
     meanrin = {
-      uid = 1010;
       isNormalUser = true;
       home = "/Users/meanrin";
       description = "Alex";
@@ -53,7 +52,6 @@
       ];
     };
     fumono = {
-      uid = 1020;
       isNormalUser = true;
       home = "/Users/fumono";
       description = "Fumono";
