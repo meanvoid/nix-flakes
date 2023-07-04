@@ -62,6 +62,16 @@
         port = 9002;
       };
     };
+    scrapeConfigs = [
+      {
+        job_name = "unsigned-int64";
+        static_configs = [
+          {
+            targets = ["127.0.0.1:${toString config.services.prometheus.exporters.node.port}"];
+          }
+        ];
+      }
+    ];
   };
   services.nginx.virtualHosts."${config.services.grafana.settings.server.domain}" = {
     enableACME = true;
