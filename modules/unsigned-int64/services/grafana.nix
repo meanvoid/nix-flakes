@@ -85,6 +85,8 @@
         job_name = "wireguard";
         static_configs = [{targets = ["127.0.0.1:${toString config.services.prometheus.exporters.wireguard.port}"];}];
       }
+      {job_name = "grafana";}
+      {job_name = "prometheus";}
     ];
   };
   services.loki = {
