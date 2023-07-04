@@ -72,20 +72,18 @@
       wireguard = {
         enable = true;
         withRemoteIp = true;
+        singleSubnetPerField = true;
         port = 9101;
       };
     };
     scrapeConfigs = [
       {
         job_name = "unsigned-int64";
-        static_configs = [
-          {
-            targets = [
-              "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
-              "127.0.0.1:${toString config.services.prometheus.exporters.wireguard.port}"
-            ];
-          }
-        ];
+        static_configs = [{targets = ["127.0.0.1:${toString config.services.prometheus.exporters.node.port}"];}];
+      }
+      {
+        job_name = "wireguard";
+        static_configs = [{targets = ["127.0.0.1:${toString config.services.prometheus.exporters.wireguard.port}"];}];
       }
     ];
   };
