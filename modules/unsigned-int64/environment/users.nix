@@ -36,7 +36,7 @@
       home = "/Users/ashuramaru";
       description = "Marie";
       initialHashedPassword = "";
-      extraGroups = ["wheel"];
+      extraGroups = ["wheel" "minecraft"];
       openssh.authorizedKeys.keys = [
         "sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBNR1p1OviZgAkv5xQ10NTLOusPT8pQUG2qCTpO3AhmxaZM2mWNePVNqPnjxNHjWN+a/FcZ5on74QZQJtwXI5m80AAAAOc3NoOnJlbW90ZS1kc2E= email:ashuramaru@tenjin-dk.com id:ashuramaru@unsigned-int32"
       ];
@@ -56,7 +56,7 @@
       home = "/Users/fumono";
       description = "Fumono";
       initialHashedPassword = "";
-      extraGroups = ["docker" "podman"];
+      extraGroups = ["docker" "podman" "minecraft"];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHBeBj6thLiVFNGZI1NuTHKIPvh332Szad2zsgjdzhR mc-server"
       ];
