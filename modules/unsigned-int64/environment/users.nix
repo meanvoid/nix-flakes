@@ -32,6 +32,7 @@
     };
     ashuramaru = {
       isNormalUser = true;
+      uid = 1000;
       home = "/Users/ashuramaru";
       description = "Marie";
       initialHashedPassword = "";
@@ -41,6 +42,7 @@
       ];
     };
     meanrin = {
+      uid = 1010;
       isNormalUser = true;
       home = "/Users/meanrin";
       description = "Alex";
@@ -51,6 +53,7 @@
       ];
     };
     fumono = {
+      uid = 1020;
       isNormalUser = true;
       home = "/Users/fumono";
       description = "Fumono";
