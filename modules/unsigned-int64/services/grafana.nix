@@ -82,7 +82,7 @@
           {
             targets = [
               "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
-              "127.0.0.1:${toString config.services.prometheus.exporters.wireugard.port}"
+              "127.0.0.1:${toString config.services.prometheus.exporters.wireguard.port}"
             ];
           }
         ];
