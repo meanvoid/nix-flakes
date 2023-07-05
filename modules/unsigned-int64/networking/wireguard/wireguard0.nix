@@ -72,12 +72,6 @@ in {
         presharedKeyFile = preshared;
         allowedIPs = ["192.168.10.100/32" "dced:2718:5f06:718a::100/128"];
       }
-      {
-        # meanrin@unsigned-int8
-        publicKey = "";
-        presharedKeyFFile = preshared;
-        allowedIPs = ["192.168.10.7/32" "dced:2718:5f06:718a::7/128"];
-      }
       # --- Home Network --- #
       ## --- Private IP access(For bazed people) --- ##
     ];
