@@ -22,4 +22,5 @@ in {
   "admin.age".publicKeys = [systems.unsigned-int64];
   "vaultwarden-env.age".publicKeys = [systems.unsigned-int64];
   "grafana_pgsql.age".publicKeys = [systems.unsigned-int64];
+  "prometheus.age".publicKeys = [systems.unsigned-int64];
 }
