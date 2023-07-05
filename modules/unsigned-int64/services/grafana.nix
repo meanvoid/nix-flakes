@@ -13,13 +13,6 @@
     owner = "grafana";
     group = "grafana";
   };
-  age.secrets.prometheus = {
-    file = path + /secrets/prometheus.age;
-    path = "/var/lib/backup/prometheus.pass";
-    mode = "0640";
-    owner = "prometheus";
-    group = "prometheus";
-  };
 
   services.grafana = {
     enable = true;
@@ -65,7 +58,7 @@
   services.prometheus = {
     enable = true;
     webExternalUrl = "/metrics/";
-    webConfigFile = path + /modules/unsigned-int64/services/config.yml;
+    # webConfigFile = path + /modules/unsigned-int64/services/config.yml;
     port = 9000;
     exporters = {
       node = {
@@ -99,11 +92,6 @@
       }
       {
         job_name = "prometheus";
-        scrape_interval = "5s";
-        basic_auth = {
-          username = "admin";
-          password_file = "${toString config.age.secrets.prometheus.path}";
-        };
         static_configs = [{targets = ["127.0.0.1:${toString config.services.prometheus.port}"];}];
       }
     ];
