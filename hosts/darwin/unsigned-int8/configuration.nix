@@ -29,56 +29,51 @@
       '';
   };
 
-  users.users."${users.marie}" = {
-    home = "/Users/${users.marie}";
+  users.users.ashuramaru = {
+    home = "/Users/ashuramaru";
     shell = pkgs.zsh;
   };
-
+  users.users.meanrin = {
+    home = "/Users/meanrin";
+    shell = pkgs.zsh;
+  };
   networking = {
     computerName = "unsigned-int8";
     hostName = "unsigned-int8";
   };
 
-  # Services
-  services = {nix-daemon = {enable = true;};};
+  services = {
+    nix-daemon.enable = true;
+  };
 
-  # Programs
   programs = {
-    zsh = {enable = true;};
-    # nix-index = { enable = true; };
+    zsh.enable = true;
+    nix-index.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
 
   # Environment
   environment = {
-    variables = {
-      EDITOR = "nano";
-      VISUAL = "nano";
-    };
     systemPackages = with pkgs; [
-      # Cli
-      git # git because git on mac sucks
-      openssh # same as git
-      wget # no wget??
-      htop # default
-      neofetch # cool
+      # Networking
+      wget
+      nmap
+      dig
+
+      # Essentials
+      htop
+      neofetch
       tmux
       screen
 
-      # Basic utils
+      # Utils
+      gnupg
       coreutils
       binutils
-
-      # Emacs
-      fd
-      ripgrep
-
-      # Vim
-      neovim
-
-      # FFmpeg and codecs
-      ffmpeg_6
     ];
-    rosettaPackages = with pkgs; [blender];
   };
 
   # Homebrew
@@ -89,14 +84,26 @@
       upgrade = true;
       cleanup = "zap";
     };
-
-    casks = ["firefox" "spotify" "steam" "krita"];
+    brews = [
+      "openssh"
+      "git"
+      "openjdk@17"
+    ];
+    casks = [
+      "firefox"
+      "spotify"
+      "steam"
+      "krita"
+      "blender"
+      "prismlauncher"
+    ];
   };
 
   # Fonts
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
+      monocraft
       source-code-pro
       font-awesome
       recursive
@@ -116,7 +123,6 @@
       # remapCapsLockToEscape = true;
     };
   };
-  # Security/PAM and etc
   security = {
     pam = {
       enableSudoTouchIdAuth = true;

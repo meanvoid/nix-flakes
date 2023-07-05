@@ -14,7 +14,7 @@
   ...
 }: let
   homeManager = import ./homeManagerModules.nix {
-    inherit lib inputs nixpkgs nur;
+    inherit lib inputs nixpkgs darwin nur;
     inherit home-manager spicetify-nix flatpaks;
     inherit path;
   };
@@ -71,13 +71,10 @@ in {
       modules ? [],
       ...
     } @ args: let
+      hostname = hostName;
       defaults =
         [
-          {
-            config = {
-              nixpkgs.config.allowUnfree = lib.mkDefault true;
-            };
-          }
+          {config = cfg;}
         ]
         ++ modules;
       sharedModules = lib.flatten [
@@ -87,7 +84,10 @@ in {
     in
       darwin.lib.darwinSystem {
         inherit system;
-        specialArgs = {inherit users inputs;};
+        specialArgs = {
+          inherit inputs hostname users path;
+          inherit darwin nixpkgs;
+        };
         modules = [(path + /hosts/darwin/${hostName}/configuration.nix)] ++ sharedModules;
       };
   };
