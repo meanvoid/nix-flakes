@@ -1,11 +1,15 @@
 {
+  lib,
   config,
   pkgs,
-  lib,
+  darwin,
   users,
+  path,
   ...
 }: {
-  imports = [./programs.nix];
+  imports =
+    [./programs.nix]
+    ++ (import (path + /hosts/darwin/unsigned-int8/home/ashuramaru/programs));
   home = {
     # Todo move every package to different files
 
@@ -21,8 +25,6 @@
 
       # Games
       chiaki # Playstation RemotePlay but FOSS
-      # Prod
-      blender # 3D Editor
       gimp
 
       # yubico shit

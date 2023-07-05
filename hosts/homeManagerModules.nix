@@ -3,6 +3,7 @@
   nixpkgs,
   inputs,
   nur,
+  darwin,
   home-manager,
   spicetify-nix,
   flatpaks,
@@ -38,10 +39,8 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
-          inherit users path;
-          host = {
-            inherit hostName;
-          };
+          inherit inputs darwin users path;
+          host = {inherit hostName;};
         };
         home-manager.users = lib.mkMerge (map
           (userName: {
