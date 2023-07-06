@@ -35,6 +35,7 @@ in {
       useNur ? false,
       useAagl ? false,
       useFlatpak ? false,
+      useVscodeServer ? false,
       users ? [],
       modules ? [],
       ...
