@@ -48,12 +48,12 @@
     '';
     virtualHosts."static.minecraft" = {
       serverName = "static.minecraft";
-      # listen = [
-      #   {
-      #     addr = "127.0.0.1";
-      #     port = 8880;
-      #   }
-      # ];
+      listen = [
+        {
+          addr = "127.0.0.1";
+          port = 8880;
+        }
+      ];
       locations."/files/" = {
         proxyPass = "http://static.minecraft";
         root = "/var/lib/minecraft/static";
