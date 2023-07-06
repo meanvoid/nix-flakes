@@ -12,6 +12,7 @@
   spicetify-nix,
   hyprland,
   path,
+  vscode-server,
   ...
 }: let
   systems = import ./mkSystemConfig.nix {
