@@ -47,13 +47,13 @@ in {
           agenix.nixosModules.default
         ]
         ++ modules;
-      sharedModules = lib.concatLists [
+      sharedModules = lib.flatten [
         (lib.optional useHyprland hyprland.nixosModules.default)
         (lib.optional useNur nur.nixosModules.nur)
         (lib.optional useAagl aagl.nixosModules.default)
         (lib.optional useFlatpak flatpaks.nixosModules.default)
-        (lib.optionals useHomeManager (homeManagerModules.nixos hostName users))
         (lib.optionals useVscodeServer vscode-server.nixosModules.default)
+        (lib.optionals useHomeManager (homeManagerModules.nixos hostName users))
         defaults
       ];
     in
