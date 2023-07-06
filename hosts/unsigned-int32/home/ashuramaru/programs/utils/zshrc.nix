@@ -13,9 +13,6 @@
     autocd = true;
     shellAliases = {
       _ = "sudo";
-      arch = "distrobox enter Arch";
-      gentoo = "distrobox enter Gentoo";
-      void = "distrobox enter Void";
       ls = "ls --color";
       lt = "ls --human-readable --size -1 -S --classify";
       ll = "ls -al";
@@ -48,9 +45,9 @@
       nowdate = "date +'%d-%m-%Y'";
       fastping = "ping -c 100 -s .10";
       ytmp4 = "yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'";
-      arch = "distrobox enter arch";
-      void = "distrbox enter void";
-      gentoo = "distrobox enter gentoo";
+      arch = "distrobox enter Arch";
+      void = "distrbox enter Void";
+      gentoo = "distrobox enter Gentoo";
       s = "sudo";
       update = "nix flake update /etc/nixos";
       check = "nix flake check";
