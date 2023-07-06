@@ -18,7 +18,7 @@
   systems = import ./mkSystemConfig.nix {
     inherit lib inputs self nixpkgs darwin nur agenix;
     inherit home-manager flatpaks aagl spicetify-nix hyprland;
-    inherit path;
+    inherit path vscode-server;
   };
   inherit (systems) mkSystemConfig;
 in {
