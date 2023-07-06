@@ -52,11 +52,10 @@
       enableACME = true;
       root = "/var/lib/minecraft";
       locations."/static/" = {
-        root = "/static";
         extraConfig = ''
           autoindex on;
-          # autoindex_exact_size off;
-          # autoindex_localtime on;
+          autoindex_exact_size off;
+          autoindex_localtime on;
         '';
       };
     };
