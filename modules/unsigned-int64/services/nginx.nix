@@ -46,8 +46,7 @@
       add_header X-XSS-Protection "1; mode=block";
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
-    virtualHosts."static.minecraft" = {
-      serverName = "static.minecraft";
+    virtualHosts."localhost" = {
       listen = [
         {
           addr = "127.0.0.1";
@@ -55,7 +54,7 @@
         }
       ];
       locations."/files/" = {
-        proxyPass = "http://static.minecraft";
+        proxyPass = "http://localhost:8880";
         root = "/var/lib/minecraft/static";
         extraConfig = ''
           sendfile on;
