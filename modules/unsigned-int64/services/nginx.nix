@@ -48,14 +48,14 @@
     '';
     virtualHosts."fumoposting.com" = {
       serverName = "fumoposting.com";
+      addSSL = true;
+      enableACME = true;
       listen = [
         {
           port = 8080;
         }
       ];
       locations."/static" = {
-        enableACME = true;
-        addSSL = true;
         root = "/var/lib/minecraft/static";
         extraConfig = ''
           autoindex on;
