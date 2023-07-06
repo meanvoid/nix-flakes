@@ -46,11 +46,16 @@
       add_header X-XSS-Protection "1; mode=block";
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
-    virtualHosts.static_files = {
+    virtualHosts."static.minecraft" = {
       locations."/files/" = {
         proxyPass = "http://static.minecraft";
-        proxyWebsockets = true;
         root = "/var/lib/minecraft/static";
+        listen = [
+          {
+            addr = "127.0.0.1";
+            port = 8880;
+          }
+        ];
         extraConfig = ''
           sendfile on;
           sendfile_max_chunk 100m;
