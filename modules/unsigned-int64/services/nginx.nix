@@ -50,11 +50,6 @@
       serverName = "fumoposting.com";
       addSSL = true;
       enableACME = true;
-      listen = [
-        {
-          port = 8080;
-        }
-      ];
       locations."/static" = {
         root = "/var/lib/minecraft/static";
         extraConfig = ''
