@@ -11,6 +11,7 @@
   spicetify-nix,
   hyprland,
   path,
+  vscode-server,
   ...
 }: let
   homeManager = import ./homeManagerModules.nix {
@@ -51,6 +52,7 @@ in {
         (lib.optional useAagl aagl.nixosModules.default)
         (lib.optional useFlatpak flatpaks.nixosModules.default)
         (lib.optionals useHomeManager (homeManagerModules.nixos hostName users))
+        (lib.optionals useVscodeServer vscode-server.nixosModules.default)
         defaults
       ];
     in

@@ -124,6 +124,7 @@ in {
         interface = "wireguard0";
       };
     };
+    vscode-server.enable = true;
     pcscd.enable = true;
   };
   programs = {

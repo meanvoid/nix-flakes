@@ -26,6 +26,7 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     hyprland.url = "github:hyprwm/Hyprland";
     doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
 
     ### --- de-duplication
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -51,6 +52,7 @@
     spicetify-nix,
     flake-utils,
     pre-commit-hooks,
+    vscode-server,
     ...
   } @ inputs: let
     inherit (flake-utils.lib) eachSystem eachDefaultSystem;
@@ -64,6 +66,7 @@
       inherit home-manager path;
       inherit nur hyprland agenix;
       inherit flatpaks aagl spicetify-nix;
+      inherit vscode-server;
     };
 
     flakeOutput =
