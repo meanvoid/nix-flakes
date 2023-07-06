@@ -54,7 +54,7 @@
           port = 80;
         }
       ];
-      locations."/files/".root = "/var/lib/minecraft/static";
+      locations."/files/".root = "/var/www/minecraft/static";
     };
   };
 }
