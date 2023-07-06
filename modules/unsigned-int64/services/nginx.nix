@@ -50,11 +50,10 @@
       listen = [
         {
           addr = "127.0.0.1";
-          port = 8880;
+          port = 80;
         }
       ];
       locations."/files/" = {
-        proxyPass = "http://localhost:8880";
         root = "/var/lib/minecraft/static";
         extraConfig = ''
           sendfile on;
