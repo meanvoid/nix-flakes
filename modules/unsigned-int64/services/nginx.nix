@@ -50,8 +50,8 @@
       serverName = "fumoposting.com";
       addSSL = true;
       enableACME = true;
-      root = "/var/lib/minecraft";
       locations."/static/" = {
+        root = "/var/lib/minecraft/static";
         extraConfig = ''
           autoindex on;
           autoindex_exact_size off;
