@@ -47,7 +47,7 @@
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
     virtualHosts."localhost" = {
-      root = "/var/lib/minecraft/static";
+      root = "/var/www/minecraft/static";
       listen = [
         {
           addr = "127.0.0.1";
