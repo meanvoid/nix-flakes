@@ -11,8 +11,6 @@
     [./programs.nix]
     ++ (import (path + /hosts/darwin/unsigned-int8/home/ashuramaru/programs));
   home = {
-    # Todo move every package to different files
-
     packages = with pkgs; [
       # Make macos useful
       iina # frontend for ffmpeg
@@ -29,6 +27,8 @@
 
       # yubico shit
       yubikey-manager
+
+      thefuck
     ];
     stateVersion = "23.05";
   };

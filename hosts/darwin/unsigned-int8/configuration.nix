@@ -100,6 +100,7 @@
       "krita"
       "blender"
       "prismlauncher"
+      "alt-tab"
     ];
   };
 
