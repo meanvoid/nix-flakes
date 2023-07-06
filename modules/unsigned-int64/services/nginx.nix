@@ -46,19 +46,24 @@
       add_header X-XSS-Protection "1; mode=block";
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
-    virtualHosts."localhost" = {
-      root = "/var/www/minecraft/";
+    virtualHosts."fumoposting.com" = {
+      serverName = "fumoposting.com";
       listen = [
         {
-          addr = "0.0.0.0";
-          port = 8880;
+          port = 8080;
         }
       ];
-      locations."/".extraConfig = ''
-        autoindex on;
-        try_files $uri $uri/ =404;
-      '';
-      locations."/files/".root = "/static";
+      locations."/static" = {
+        enableACME = true;
+        addSSL = true;
+        root = "/var/lib/minecraft/static";
+        extraConfig = ''
+          autoindex on;
+          autoindex_exact_size off;
+          autoindex_localtime on;
+          # try_files ${config.virtualHosts."fumoposting.com".serverName} ${config.virtualHosts."fumoposting.com".serverName}/ =404;
+        '';
+      };
     };
   };
 }

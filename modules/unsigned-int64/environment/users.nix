@@ -11,7 +11,7 @@
     fumono.gid = config.users.users.fumono.uid;
     minecraft = {
       gid = config.users.users.minecraft.uid;
-      members = ["ashuramaru" "fumono"];
+      members = ["ashuramaru" "fumono" "nginx"];
     };
   };
   users.users = {
@@ -19,7 +19,7 @@
       uid = 5333;
       isSystemUser = true;
       group = "minecraft";
-      extraGroups = ["ashuramaru" "fumono"];
+      extraGroups = ["ashuramaru" "fumono" "nginx"];
     };
     root = {
       initialHashedPassword = "";
