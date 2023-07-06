@@ -27,7 +27,7 @@ in {
     hostName = "unsigned-int8";
     system = "aarch64-darwin";
     useHomeManager = true;
-    users = ["ashuramaru"];
+    users = ["ashuramaru" "meanrin"];
     modules = [];
   };
 }

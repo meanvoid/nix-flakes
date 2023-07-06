@@ -46,5 +46,17 @@
       add_header X-XSS-Protection "1; mode=block";
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
+    virtualHosts.static_files = {
+      locations."/files/" = {
+        proxyPass = "http://static.minecraft";
+        proxyWebsockets = true;
+        root = "/var/lib/minecraft/static";
+        extraConfig = ''
+          sendfile on;
+          sendfile_max_chunk 100m;
+          tcp_nopush on;
+        '';
+      };
+    };
   };
 }
