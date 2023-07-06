@@ -13,6 +13,7 @@
       gid = config.users.users.minecraft.uid;
       members = ["ashuramaru" "fumono" "nginx"];
     };
+    nginx.members = ["minecraft"];
   };
   users.users = {
     minecraft = {
@@ -21,6 +22,7 @@
       group = "minecraft";
       extraGroups = ["ashuramaru" "fumono" "nginx"];
     };
+    nginx.extraGroups = ["minecraft"];
     root = {
       initialHashedPassword = "";
       openssh.authorizedKeys.keys = [
