@@ -50,18 +50,18 @@
       locations."/files/" = {
         proxyPass = "http://static.minecraft";
         root = "/var/lib/minecraft/static";
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 8880;
-          }
-        ];
         extraConfig = ''
           sendfile on;
           sendfile_max_chunk 100m;
           tcp_nopush on;
         '';
       };
+      listen = [
+        {
+          addr = "127.0.0.1";
+          port = 8880;
+        }
+      ];
     };
   };
 }
