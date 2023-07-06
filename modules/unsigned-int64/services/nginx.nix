@@ -47,14 +47,18 @@
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
     virtualHosts."localhost" = {
-      root = "/var/www/minecraft/static";
+      root = "/var/www/minecraft/";
       listen = [
         {
           addr = "127.0.0.1";
-          port = 80;
+          port = 8880;
         }
       ];
-      locations."/files/".root = "/var/www/minecraft/static";
+      locations."/".extraConfig = ''
+        autoindex on;
+        try_files $uri $uri/ =404;
+      '';
+      locations."/files/".root = "/static";
     };
   };
 }
