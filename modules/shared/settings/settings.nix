@@ -148,6 +148,12 @@
       enableBashIntegration = true;
       enableZshIntegration = true;
     };
+    tmux = {
+      enable = true;
+      keyMode = "vi";
+      resizeAmount = 10;
+      escapeTime = 250;
+    };
     dconf.enable = true;
   };
 }

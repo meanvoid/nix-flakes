@@ -49,6 +49,12 @@
   programs = {
     zsh.enable = true;
     nix-index.enable = true;
+    tmux = {
+      enable = true;
+      keyMode = "vi";
+      resizeAmount = 10;
+      escapeTime = 250;
+    };
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -66,11 +72,9 @@
       # Essentials
       htop
       neofetch
-      tmux
       screen
 
       # Utils
-      gnupg
       coreutils
       binutils
     ];
