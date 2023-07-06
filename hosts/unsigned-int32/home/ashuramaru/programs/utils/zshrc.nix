@@ -12,6 +12,10 @@
     syntaxHighlighting.enable = true;
     autocd = true;
     shellAliases = {
+      _ = "sudo";
+      arch = "distrobox enter Arch";
+      gentoo = "distrobox enter Gentoo";
+      void = "distrobox enter Void";
       ls = "ls --color";
       lt = "ls --human-readable --size -1 -S --classify";
       ll = "ls -al";
