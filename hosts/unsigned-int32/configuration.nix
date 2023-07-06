@@ -116,7 +116,9 @@ in {
       allowedTCPPorts = [53 80 443 25565];
     };
   };
-
+  services = {
+    vscode-server.enable = true;
+  };
   environment = {
     systemPackages = with pkgs; [
       # Networking

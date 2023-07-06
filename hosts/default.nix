@@ -29,6 +29,7 @@ in {
     useNur = true;
     useAagl = true;
     useFlatpak = true;
+    useVscodeServer = true;
     users = ["ashuramaru" "meanrin"];
     modules = [
       {
@@ -46,5 +47,6 @@ in {
   unsigned-int64 = mkSystemConfig.linux {
     hostName = "unsigned-int64";
     system = "x86_64-linux";
+    useVscodeServer = true;
   };
 }
