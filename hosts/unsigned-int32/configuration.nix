@@ -9,6 +9,7 @@
   users,
   path,
   nur,
+  vscode-server,
   ...
 }: let
   importModule = moduleName: let
