@@ -47,20 +47,14 @@
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
     virtualHosts."localhost" = {
+      root = "/var/lib/minecraft/static";
       listen = [
         {
           addr = "127.0.0.1";
           port = 80;
         }
       ];
-      locations."/files/" = {
-        root = "/var/lib/minecraft/static";
-        extraConfig = ''
-          sendfile on;
-          sendfile_max_chunk 100m;
-          tcp_nopush on;
-        '';
-      };
+      locations."/files/".root = "/var/lib/minecraft/static";
     };
   };
 }
