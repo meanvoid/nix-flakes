@@ -56,7 +56,6 @@
           autoindex on;
           autoindex_exact_size off;
           autoindex_localtime on;
-          # try_files ${config.virtualHosts."fumoposting.com".serverName} ${config.virtualHosts."fumoposting.com".serverName}/ =404;
         '';
       };
     };
