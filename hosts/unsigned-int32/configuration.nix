@@ -89,17 +89,17 @@ in {
 
   networking = {
     hostName = "unsigned-int32";
-    interfaces.enp7s0.useDHCP = lib.mkDefault true;
+    interfaces.enp6s0.useDHCP = lib.mkDefault true;
     vlans = {
       eth0 = {
         id = 1;
-        interface = "enp7s0";
+        interface = "enp6s0";
       };
     };
     nat = {
       enable = true;
       enableIPv6 = true;
-      externalInterface = "enp7s0";
+      externalInterface = "enp6s0";
       internalInterfaces = ["ve-+" "ports0"];
     };
     networkmanager = {
