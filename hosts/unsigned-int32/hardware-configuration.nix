@@ -162,6 +162,7 @@
       "/Users"
       "/Users/marie"
       "/Users/alex"
+      "/Shared/games"
     ];
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
