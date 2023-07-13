@@ -11,6 +11,11 @@
       "flathub" = "https://flathub.org/repo/flathub.flatpakrepo";
       "flathub-beta" = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
     };
+    packages = [
+      "org.kde.Platform/x86_64/5.15-22.08"
+      "org.kde.PlatformTheme.QGnomePlatform/x86_64/5.15-22.08"
+      "org.kde.WaylandDecoration.QGnomePlatform-decoration/x86_64/5.15-22.08"
+    ];
   };
   system.fsPackages = [pkgs.bindfs];
   fileSystems =
