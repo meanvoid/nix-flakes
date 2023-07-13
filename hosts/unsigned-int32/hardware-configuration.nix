@@ -146,19 +146,7 @@
     device = "/dev/disk/by-uuid/199a9d15-3187-44ed-9a41-1b965029caef";
     fsType = "btrfs";
     options = ["subvol=Users/alex" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2"];
-  };
-
-  fileSystems."/home/chroot" = {
-    device = "/dev/disk/by-uuid/199a9d15-3187-44ed-9a41-1b965029caef";
-    fsType = "btrfs";
-    options = ["subvol=chroot" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2"];
-  };
-
-  fileSystems."/home/tmp" = {
-    device = "/dev/disk/by-uuid/199a9d15-3187-44ed-9a41-1b965029caef";
-    fsType = "btrfs";
-    options = ["subvol=tmp" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2"];
-  };
+  }; 
 
   fileSystems."/Shared/games" = {
     device = "/dev/disk/by-uuid/199a9d15-3187-44ed-9a41-1b965029caef";
@@ -166,10 +154,6 @@
     options = ["subvol=Gaymes" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2" "x-gvfs-show"];
   };
 
-  fileSystems."/efi" = {
-    device = "/dev/disk/by-uuid/8B3E-8D34";
-    fsType = "vfat";
-  };
   fileSystems."/Shared/media" = {
     device = "/dev/hddpool/media";
     fsType = "ext4";
