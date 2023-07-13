@@ -146,7 +146,7 @@
     device = "/dev/disk/by-uuid/199a9d15-3187-44ed-9a41-1b965029caef";
     fsType = "btrfs";
     options = ["subvol=Users/alex" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2"];
-  }; 
+  };
 
   fileSystems."/Shared/games" = {
     device = "/dev/disk/by-uuid/199a9d15-3187-44ed-9a41-1b965029caef";
