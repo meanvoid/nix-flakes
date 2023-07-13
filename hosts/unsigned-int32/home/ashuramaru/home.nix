@@ -15,7 +15,7 @@
       (with pkgs; [
         qbittorrent
         # Audio
-        audacity
+        tenacity
 
         # Working with graphics
         krita
@@ -38,9 +38,22 @@
         rbw # bitwarden cli
 
         # Games
-        rpcs3
+        xemu
+        flycast
+        # Nintendo
+        citra-canary
+        mgba
+        dolphin-emu
+        cemu
         yuzu-mainline
         ryujinx
+
+        # Sony
+        duckstation
+        pcsx2
+        ppsspp
+        rpcs3
+
         prismlauncher
 
         # Python
