@@ -2,8 +2,16 @@
   config,
   lib,
   pkgs,
+  flatpaks,
   ...
 }: {
+  services.flatpak = {
+    enable = true;
+    remotes = {
+      "flathub" = "https://flathub.org/repo/flathub.flatpakrepo";
+      "flathub-beta" = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+    };
+  };
   system.fsPackages = [pkgs.bindfs];
   fileSystems =
     lib.mapAttrs
