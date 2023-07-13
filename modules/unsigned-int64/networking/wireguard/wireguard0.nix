@@ -70,9 +70,26 @@ in {
         # root@unsigned-int32
         publicKey = "Xkf+7uF5pySGc+zCrl2f+lrpn34fs6FW1XUfo32TKng=";
         presharedKeyFile = preshared;
-        allowedIPs = ["192.168.10.100/32" "dced:2718:5f06:718a::100/128"];
+        allowedIPs = [
+          "192.168.10.100/32"
+          "192.168.254.100/32" 
+          
+          "dced:2718:5f06:718a::100/128"
+          "dced:2718:5f06:321a::10/128" 
+        ];
       }
       # --- Home Network --- #
+      
+      # --- Others ---  #
+      {
+        publicKey = "CSDtM49xF0EMPGgQIKtu88ZxtFmHYUYRnNxGjd+RMzA=";
+        presharedKeyFile = preshared;
+        allowedIPs = [
+          "192.168.254.10/32"
+          "dced:2718:5f06:321a::10/128"
+        ];
+      }
+      # --- Others --- #
       ## --- Private IP access(For bazed people) --- ##
     ];
   };
