@@ -15,7 +15,6 @@
       # KDE/Qt
       "flathub:com.github.tchx84.Flatseal/x86_64/stable"
       "flathub:org.kde.index/x86_64/stable"
-      "flathub:org.kde.dolphin/x86_64/stable"
       "flathub:org.kde.kdenlive/x86_64/stable"
       "flathub:de.shorsh.discord-screenaudio/x86_64/stable"
 
@@ -49,7 +48,6 @@
       "flathub:org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/22.08"
 
       # Utils
-      "flathub:org.gtk.Gtk3theme.Adwaita/x86_64/3.22"
       "flathub:org.gtk.Gtk3theme.Adwaita-dark/x86_64/3.22"
       "flathub:org.gtk.Gtk3theme.adw-gtk3-dark/x86_64/3.22"
       "flathub:org.gtk.Gtk3theme.Catppuccin-Mocha-Lavender/x86_64/3.22"
