@@ -41,7 +41,11 @@
       enable = true;
       enableIPv6 = true;
       externalInterface = "eth0";
-      internalInterfaces = ["wireguard0" "wireguard1"];
+      internalInterfaces = [
+        "wireguard0"
+        "wireguard1"
+        "ve-+"
+      ];
     };
     firewall = {
       enable = true;
