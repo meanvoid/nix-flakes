@@ -12,7 +12,7 @@
       "flathub-beta" = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
     };
     packages = [
-      "flathub:org.kde.Platform/x86_64/stable"
+      "flathub:org.kde.Platform/x86_64/5.15-22.08"
     ];
   };
   system.fsPackages = [pkgs.bindfs];
