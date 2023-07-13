@@ -136,18 +136,6 @@
     options = ["subvol=home" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2"];
   };
 
-  fileSystems."/home/ashuramaru" = {
-    device = "/dev/disk/by-uuid/199a9d15-3187-44ed-9a41-1b965029caef";
-    fsType = "btrfs";
-    options = ["subvol=Users/marie" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2"];
-  };
-
-  fileSystems."/home/meanrin" = {
-    device = "/dev/disk/by-uuid/199a9d15-3187-44ed-9a41-1b965029caef";
-    fsType = "btrfs";
-    options = ["subvol=Users/alex" "noatime" "compress-force=zstd:9" "discard=async" "space_cache=v2"];
-  };
-
   fileSystems."/Shared/games" = {
     device = "/dev/disk/by-uuid/199a9d15-3187-44ed-9a41-1b965029caef";
     fsType = "btrfs";
@@ -163,6 +151,18 @@
     device = "/dev/hddpool/backup";
     fsType = "ext4";
     options = ["noatime"];
+  };
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "monthly";
+    fileSystems = [
+      "/"
+      "/nix"
+      "/var"
+      "/Users"
+      "/Users/marie"
+      "/Users/alex"
+    ];
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = lib.mkDefault true;
