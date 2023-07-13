@@ -22,7 +22,7 @@
       # Desktop
       "flathub:com.discordapp.Discord/x86_64/stable"
       "flathub:com.github.Matoking.protontricks/x86_64/stable"
-      "flathub-beta:com.nextcloud.desktopclient.nextcloud/x86_64/stable"
+      "flathub:com.nextcloud.desktopclient.nextcloud/x86_64/stable"
       "flathub:io.github.arunsivaramanneo.GPUViewer/x86_64/stable"
       "flathub:io.gitlab.theevilskeleton.Upscaler/x86_64/stable"
 
@@ -31,11 +31,10 @@
       "flathub:com.obsproject.Studio.Plugin.GStreamerVaapi/x86_64/stable"
       "flathub:com.obsproject.Studio.Plugin.Gstreamer/x86_64/stable"
       "flathub:com.obsproject.Studio.Plugin.InputOverlay/x86_64/stable"
-      "flathub:com.obsproject.Studio.Plugin.NVFBC/x86_64/stable"
       "flathub:com.obsproject.Studio.Plugin.OBSVkCapture/x86_64/stable"
       "flathub:com.obsproject.Studio.Plugin.SceneSwitcher/x86_64/stable"
       "flathub:com.obsproject.Studio.Plugin.WebSocket/x86_64/stable"
-      "flathub:org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/stable"
+      "flathub:org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/22.08"
 
       # Gaming
       "flathub:com.usebottles.bottles/x86_64/stable"
@@ -46,13 +45,14 @@
       "flathub:com.valvesoftware.Steam.CompatibilityTool.Proton-GE/x86_64/stable"
 
       # Vulkan utils
-      "flathub:org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/stable"
-      "flathub:org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/stable"
+      "flathub:org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08"
+      "flathub:org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/22.08"
 
       # Utils
-      "flathub:org.gtk.Gtk3theme.Adwaita-dark/x86_64/stable"
-      "flathub:org.gtk.Gtk3theme.adw-gtk3-dark/x86_64/stable"
-      "flathub:org.gtk.Gtk3theme.Catppuccin-Mocha-Lavender/x86_64/stable"
+      "flathub:org.gtk.Gtk3theme.Adwaita/x86_64/3.22"
+      "flathub:org.gtk.Gtk3theme.Adwaita-dark/x86_64/3.22"
+      "flathub:org.gtk.Gtk3theme.adw-gtk3-dark/x86_64/3.22"
+      "flathub:org.gtk.Gtk3theme.Catppuccin-Mocha-Lavender/x86_64/3.22"
     ];
   };
 }
