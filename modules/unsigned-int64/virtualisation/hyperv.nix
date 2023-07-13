@@ -24,8 +24,7 @@ in {
     ovmf = {
       enable = true;
       packages = [
-        pkgs.OVMFFull.fd
-        pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd
+        pkgs.OVMFFull.fd 
       ];
     };
     swtpm = {enable = true;};
