@@ -73,6 +73,7 @@
       breeze-icons
       breeze-gtk
       breeze-qt5
+      dolphin
       filelight
     ])
     ++ (with pkgs.gnome; [
