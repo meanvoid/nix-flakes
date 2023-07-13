@@ -54,8 +54,8 @@
         end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
       };
     };
-    anime-game-launcher.enable = true;
-    honkers-railway-launcher.enable = true;
+    anime-game-launcher.enable = lib.mkDefault false;
+    honkers-railway-launcher.enable = lib.mkDefault false;
     honkers-launcher.enable = lib.mkDefault false;
   };
   environment.sessionVariables = rec {STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";};
