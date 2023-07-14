@@ -24,7 +24,7 @@ in {
     ovmf = {
       enable = true;
       packages = [
-        pkgs.OVMFFull.fd 
+        pkgs.OVMFFull.fd
       ];
     };
     swtpm = {enable = true;};
