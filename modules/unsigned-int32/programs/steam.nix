@@ -40,6 +40,14 @@
         ];
     };
   };
+  environment.systemPackages =
+    (with pkgs; [
+      winetricks
+    ])
+    ++ (with pkgs.wineWowPackages; [
+      stagingFull
+      waylandFull
+    ]);
 
   programs = {
     steam = {

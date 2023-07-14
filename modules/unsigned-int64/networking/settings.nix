@@ -45,12 +45,13 @@
         "wireguard0"
         "wireguard1"
         "ve-+"
+        ""
       ];
     };
     firewall = {
       enable = true;
-      allowedUDPPorts = [53 1080 3128 51280 51820];
-      allowedTCPPorts = [53 80 443 1080 3128 12800 25565];
+      allowedUDPPorts = [53 1080 3128 25565 51280 51820];
+      allowedTCPPorts = [53 80 443 1080 3128 25565];
     };
   };
 }

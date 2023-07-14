@@ -42,6 +42,7 @@
       "flathub:net.davidotek.pupgui2/x86_64/stable"
       "flathub:com.valvesoftware.Steam.CompatibilityTool.Proton/x86_64/stable"
       "flathub:com.valvesoftware.Steam.CompatibilityTool.Proton-GE/x86_64/stable"
+      "flathub:com.valvesoftware.Steam.Utility.gamescope/x86_64/stable"
 
       # Vulkan utils
       "flathub:org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08"
