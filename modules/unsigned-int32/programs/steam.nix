@@ -62,7 +62,7 @@
         end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
       };
     };
-    anime-game-launcher.enable = lib.mkDefault false;
+    anime-game-launcher.enable = lib.mkDefault true;
     honkers-railway-launcher.enable = lib.mkDefault false;
     honkers-launcher.enable = lib.mkDefault false;
   };
