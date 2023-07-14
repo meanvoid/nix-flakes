@@ -65,6 +65,7 @@
         idea-ultimate
         rider
         datagrip
+        pycharm-community
       ]);
     stateVersion = "23.05";
   };
