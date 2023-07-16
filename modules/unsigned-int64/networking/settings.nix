@@ -50,8 +50,9 @@
       ];
     };
     firewall = {
-      enable = false;
+      enable = true;
       allowedUDPPorts = [
+        # dns
         53
         67
         # Proxy
@@ -63,7 +64,18 @@
         51280
         51820
       ];
-      allowedTCPPorts = [53 80 443 1080 3128 25565];
+      allowedTCPPorts = [
+        # dns
+        53
+        # Http
+        80
+        443
+        # Proxy
+        1080
+        3128
+        # minecraft
+        25565
+      ];
     };
   };
 }
