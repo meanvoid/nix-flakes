@@ -86,7 +86,7 @@ in {
     openssh = {
       enable = true;
       allowSFTP = true;
-      openFirewall = true;
+      # openFirewall = true;
       settings = {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = true;
