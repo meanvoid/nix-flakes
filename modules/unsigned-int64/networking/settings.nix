@@ -51,31 +51,31 @@
     };
     firewall = {
       enable = true;
-      # allowedUDPPorts = [
-      #   # dns
-      #   53
-      #   67
-      #   # Proxy
-      #   1080
-      #   3128
-      #   # Minecraft
-      #   25565
-      #   # Wireguard
-      #   51280
-      #   51820
-      # ];
-      # allowedTCPPorts = [
-      #   # dns
-      #   53
-      #   # Http
-      #   80
-      #   443
-      #   # Proxy
-      #   1080
-      #   3128
-      #   # minecraft
-      #   25565
-      # ];
+      allowedUDPPorts = [
+        # dns
+        53
+        67
+        # Proxy
+        1080
+        3128
+        # Minecraft
+        25565
+        # Wireguard
+        51280
+        51820
+      ];
+      allowedTCPPorts = [
+        # dns
+        53
+        # Http
+        80
+        443
+        # Proxy
+        1080
+        3128
+        # minecraft
+        25565
+      ];
     };
   };
 }
