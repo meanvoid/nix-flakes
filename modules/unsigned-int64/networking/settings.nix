@@ -42,11 +42,9 @@
       enableIPv6 = true;
       externalInterface = "eth0";
       internalInterfaces = [
-        "wireguard0"
-        "wireguard1"
-        "docker0"
         "ve-+"
-        ""
+        "virbr0"
+        "wireguard1"
       ];
     };
     firewall = {
@@ -55,6 +53,7 @@
         # dns
         53
         67
+        68
         # Proxy
         1080
         3128
@@ -67,6 +66,8 @@
       allowedTCPPorts = [
         # dns
         53
+        67
+        68
         # Http
         80
         443
