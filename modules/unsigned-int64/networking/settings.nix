@@ -44,6 +44,7 @@
       internalInterfaces = [
         "ve-+"
         "virbr0"
+        "wireguard0"
         "wireguard1"
       ];
     };
