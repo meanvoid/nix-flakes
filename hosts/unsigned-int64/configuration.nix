@@ -90,7 +90,7 @@ in {
       settings = {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = true;
-        PermitRootLogin = "prohibit-password";
+        PermitRootLogin = "prohibit-password"; 
       };
       listenAddresses = [
         {addr = "0.0.0.0"; port = 57255;}
