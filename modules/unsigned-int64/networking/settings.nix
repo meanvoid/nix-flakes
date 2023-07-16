@@ -67,8 +67,6 @@
       allowedTCPPorts = [
         # dns
         53
-        67
-        68
         # Http
         80
         443
@@ -77,11 +75,7 @@
         3128
         # minecraft
         25565
-      ];
-      # extraStopCommands = ''
-        # ${pkgs.iptables}/bin/iptables -F
-        # ${pkgs.iptables}/bin/ip6tables -F
-      # '';
+      ]; 
     };
   };
 }
