@@ -44,13 +44,25 @@
       internalInterfaces = [
         "wireguard0"
         "wireguard1"
+        "docker0"
         "ve-+"
         ""
       ];
     };
     firewall = {
       enable = true;
-      allowedUDPPorts = [53 1080 3128 25565 51280 51820];
+      allowedUDPPorts = [
+        53
+        67
+        # Proxy
+        1080 
+        3128
+        # Minecraft
+        25565
+        # Wireguard
+        51280 
+        51820
+      ];
       allowedTCPPorts = [53 80 443 1080 3128 25565];
     };
   };

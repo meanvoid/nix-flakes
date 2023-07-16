@@ -101,6 +101,7 @@ in {
     };
     dnsmasq = {
       enable = true;
+      resolveLocalQueries = true;
       settings = {
         server = [
           # adguard dns
