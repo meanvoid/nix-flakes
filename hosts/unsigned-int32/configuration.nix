@@ -113,13 +113,11 @@ in {
     firewall = {
       enable = true;
       allowPing = true;
-      allowedUDPPorts = [53];
+      allowedUDPPorts = [53 25565];
       allowedTCPPorts = [53 80 443 25565];
     };
   };
-  services = {
-    vscode-server.enable = true;
-  };
+  services.vscode-server.enable = true;
   environment = {
     systemPackages = with pkgs; [
       # Networking
