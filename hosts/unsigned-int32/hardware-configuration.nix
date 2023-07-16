@@ -17,6 +17,14 @@
       "video=DP-3:2560x1440@60"
       "video=DP-4:2560x1440@60"
     ];
+    swraid = {
+      enable = true;
+      mdadmConf = ''
+        HOMEHOST <ignore>
+        ARRAY /dev/md0 UUID=2d0be890:bc0f45fb:96a52424:865c564f
+        ARRAY /dev/md5 UUID=c672589e:b68e1eae:6d443de9:956ba431
+      '';
+    };
     blacklistedKernelModules = ["i915" "amdgpu"];
     supportedFilesystems = ["xfs" "ntfs"];
   };
@@ -81,7 +89,6 @@
     network.enable = true;
     availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "uas" "sd_mod" "r8169"];
     kernelModules = ["dm-snapshot" "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "dm-cache" "dm-cache-smq" "dm-cache-mq" "dm-cache-cleaner"];
-    services.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
   };
 
   fileSystems."/" = {
