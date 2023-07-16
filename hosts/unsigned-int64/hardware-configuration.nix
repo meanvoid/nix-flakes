@@ -13,6 +13,12 @@
     kernelModules = ["kvm-amd" "dm-cache" "dm-cache-smq" "dm-persistent-data" "dm-bio-prison" "dm-clone" "dm-crypt" "dm-writecache" "dm-mirror" "dm-snapshot"];
     extraModulePackages = with config.boot.kernelPackages; [vendor-reset];
     supportedFilesystems = ["xfs"];
+    swraid = {
+      enable = true;
+      mdadmConf = ''
+        ARRAY /dev/md0 metadata=1.2 name=unsigned-int64:root UUID=9d2eb299:64ccc453:1bb22e59:7db34504
+      '';
+    };
   };
   boot.loader = {
     efi = {
@@ -112,9 +118,5 @@
       "/"
       "/var"
     ];
-  };
-
-  environment.etc."mdadm.conf".text = ''
-    ARRAY /dev/md0 metadata=1.2 name=unsigned-int64:root UUID=9d2eb299:64ccc453:1bb22e59:7db34504
-  '';
+  }; 
 }
