@@ -37,7 +37,6 @@
   boot.initrd = {
     availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "uas" "sd_mod" "igc"];
     kernelModules = ["dm-snapshot" "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "dm-cache" "dm-cache-smq" "dm-cache-mq" "dm-cache-cleaner"];
-    services.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
     network = {
       enable = true;
       ssh = {
