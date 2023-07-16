@@ -76,6 +76,10 @@
         # minecraft
         25565
       ];
+      extraStopCommands = ''
+        ${pkgs.iptables}/bin/iptables -F
+        ${pkgs.iptables}/bin/ip6tables -F
+      '';
     };
   };
 }
