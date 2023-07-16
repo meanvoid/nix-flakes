@@ -55,12 +55,12 @@
         53
         67
         # Proxy
-        1080 
+        1080
         3128
         # Minecraft
         25565
         # Wireguard
-        51280 
+        51280
         51820
       ];
       allowedTCPPorts = [53 80 443 1080 3128 25565];

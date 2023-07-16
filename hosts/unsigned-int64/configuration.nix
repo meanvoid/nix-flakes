@@ -92,12 +92,12 @@ in {
         KbdInteractiveAuthentication = true;
         PermitRootLogin = "prohibit-password";
       };
-      listenAddresses = [
-        {
-          addr = "0.0.0.0";
-          port = 57255;
-        } 
-      ];
+      # listenAddresses = [
+      #   {
+      #     addr = "0.0.0.0";
+      #     port = 57255;
+      #   }
+      # ];
     };
     dnsmasq = {
       enable = true;
