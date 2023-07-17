@@ -94,7 +94,7 @@ in {
       ## --- Private IP access(For bazed people) --- ##
       {
         publicKey = "w7OuonhifNvieZajGNd6u5a/NwGTDB9iq5dYnPzqiUM=";
-        presharedKeyFile =;
+        presharedKeyFile = jul;
         allowedIPs = [
           "10.64.10.10/32"
           "fd02:f8eb:7ca4:5f4c::10/128"
