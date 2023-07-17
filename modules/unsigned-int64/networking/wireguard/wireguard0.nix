@@ -100,6 +100,22 @@ in {
           "fd02:f8eb:7ca4:5f4c::10/128"
         ];
       }
+      {
+        publicKey = "OZg74pRtgDUkQjINEOHM0fnzJsvbLyKFdx6HzIi1Tkg=";
+        presharedKeyFile = jul;
+        allowedIPs = [
+          "10.64.10.11/32"
+          "fd02:f8eb:7ca4:5f4c::11/128"
+        ];
+      }
+      {
+        publicKey = "Iyv40J9Vue+FHNTIkNYd+ddUdmr2/eAtR71RIW9OqGk=";
+        presharedKeyFile = jul;
+        allowedIPs = [
+          "10.64.10.12/32"
+          "fd02:f8eb:7ca4:5f4c::12/128"
+        ];
+      }
     ];
   };
 }
