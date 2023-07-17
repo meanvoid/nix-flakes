@@ -15,6 +15,7 @@ in {
   "wireguard0-server.age".publicKeys = matrix;
   "wireguard-shared.age".publicKeys = matrix;
   "wireguard-shared_fumono.age".publicKeys = matrix;
+  "wireguard-shared_jul.age".publicKeys = matrix;
 
   "njalla-api-token.age".publicKeys = matrix;
   "mail.age".publicKeys = matrix;
