@@ -7,6 +7,7 @@
   private = config.age.secrets.wireguard0-server.path;
   preshared = config.age.secrets.wireguard-shared.path;
   fumono = config.age.secrets.wireguard-shared_fumono.path;
+  jul = config.age.secrets.wireguard-shared_jul.path;
 in {
   imports = [./secrets.nix];
   networking.wg-quick.interfaces.wireguard0 = {
@@ -83,7 +84,7 @@ in {
       # --- Others ---  #
       {
         publicKey = "CSDtM49xF0EMPGgQIKtu88ZxtFmHYUYRnNxGjd+RMzA=";
-        presharedKeyFile = preshared;
+        presharedKeyFile = fumono;
         allowedIPs = [
           "192.168.254.10/32"
           "dced:2718:5f06:321a::10/128"
@@ -91,6 +92,14 @@ in {
       }
       # --- Others --- #
       ## --- Private IP access(For bazed people) --- ##
+      {
+        publicKey = "w7OuonhifNvieZajGNd6u5a/NwGTDB9iq5dYnPzqiUM=";
+        presharedKeyFile =;
+        allowedIPs = [
+          "10.64.10.10/32"
+          "fd02:f8eb:7ca4:5f4c::10/128"
+        ];
+      }
     ];
   };
 }
