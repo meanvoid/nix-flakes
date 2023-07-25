@@ -104,7 +104,7 @@
     options = ["noatime"];
   };
   fileSystems."/var/lib/minecraft/snapshots" = {
-    device = "u357064-sub3@176.9.161.53:/snapshots";
+    device = "u357064-sub3@u357064.your-storagebox.de:/snapshots";
     fsType = "sshfs";
     options = [
       "allow_other"
