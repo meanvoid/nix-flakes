@@ -112,7 +112,6 @@
       "gid=5333"
       "_netdev"
       "x-systemd.automount"
-      "Port=23"
 
       # SSH options
       "reconnect"
