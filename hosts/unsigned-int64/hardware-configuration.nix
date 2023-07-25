@@ -67,6 +67,8 @@
     };
   };
 
+  system.fsPackages = [pkgs.sshfs];
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/9e69ada5-accc-42e4-a5a2-1ca96cc809ef";
     fsType = "btrfs";
@@ -100,6 +102,22 @@
     device = "/dev/disk/by-uuid/a4207ed4-5016-4f43-9ef0-a2aff6552389";
     fsType = "ext4";
     options = ["noatime"];
+  };
+  fileSystems."/var/lib/minecraft/snapshots" = {
+    device = "u357064-sub3@u357064.your-storagebox.de:/snapshots";
+    fsType = "sshfs";
+    options = [
+      "allow_other"
+      "uid=5333"
+      "gid=5333"
+      "_netdev"
+      "x-systemd.automount"
+
+      # SSH options
+      "reconnect"
+      "ServerAliveInterval=15"
+      "IdentityFile=/var/minecraft/secrets/fastbackup_ed25519"
+    ];
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = lib.mkDefault true;
