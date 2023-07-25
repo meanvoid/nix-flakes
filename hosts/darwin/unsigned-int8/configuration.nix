@@ -51,9 +51,6 @@
     nix-index.enable = true;
     tmux = {
       enable = true;
-      keyMode = "vi";
-      resizeAmount = 10;
-      escapeTime = 250;
     };
     gnupg.agent = {
       enable = true;
@@ -91,7 +88,9 @@
     brews = [
       "openssh"
       "git"
+      "openjdk"
       "openjdk@17"
+      "openjdk@8"
     ];
     casks = [
       "firefox"
