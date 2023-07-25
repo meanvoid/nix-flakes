@@ -119,8 +119,6 @@
       # SSH options
 
       "Port=23"
-      "AddressFamily=inet"
-      "IdentitiesOnly=yes"
       "IdentityFile=/root/secrets/fastbackup_ed25519"
     ];
   };
