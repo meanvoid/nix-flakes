@@ -104,22 +104,22 @@
     options = ["noatime"];
   };
   fileSystems."/var/lib/minecraft/snapshots" = {
-    device = "u357064-sub3@u357064.your-storagebox.de:/snapshots";
+    device = "u357064-sub3@u357064.your-storagebox.de:snapshots";
     fsType = "sshfs";
     options = [
-      "allow_root"
-      "uid=5333"
-      "gid=5333"
-      "port=23"
+      "allow_other"
       "_netdev"
       "auto_unmount"
       "x-systemd.automount"
 
       # SSH options
-      "reconnect"
+      "uid=5333"
+      "gid=5333"
+      "Port=23"
       "ServerAliveInterval=15"
-      "IdentityFile=/var/minecraft/secrets/fastbackup_ed25519"
+      "IdentitiesOnly=yes"
       "AddressFamily=inet"
+      "IdentityFile=/var/minecraft/secrets/fastbackup_ed25519"
     ];
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
