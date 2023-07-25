@@ -60,8 +60,10 @@ in {
       lib.nixosSystem {
         inherit system;
         specialArgs = {
-          inherit hostname users path;
-          host = {inherit hostName;};
+          inherit inputs hostname users path;
+          host = {
+            inherit hostName;
+          };
         };
         modules = [(path + "/hosts/${hostName}/configuration.nix")] ++ sharedModules;
       };
@@ -88,8 +90,11 @@ in {
       darwin.lib.darwinSystem {
         inherit system;
         specialArgs = {
-          inherit inputs hostname users path;
+          inherit inputs users path;
           inherit darwin nixpkgs;
+          host = {
+            inherit hostName;
+          };
         };
         modules = [(path + /hosts/darwin/${hostName}/configuration.nix)] ++ sharedModules;
       };

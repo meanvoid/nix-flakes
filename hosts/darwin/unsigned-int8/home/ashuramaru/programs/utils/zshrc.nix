@@ -8,9 +8,9 @@
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    enableSyntaxHighlighting = true;
     enableVteIntegration = true;
     autocd = true;
+    syntaxHighlighting.enable = true;
     shellAliases = {
       ls = "ls --color";
       lt = "ls --human-readable --size -1 -S --classify";

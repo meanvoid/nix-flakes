@@ -7,13 +7,15 @@
   path,
   ...
 }: {
-  imports =
-    [./programs.nix]
-    ++ (import (path + /hosts/darwin/unsigned-int8/home/ashuramaru/programs));
+  imports = []
+    ++ (import (path + /hosts/darwin/unsigned-int8/home/ashuramaru/programs/utils))
+    ++ (import (path + /hosts/darwin/unsigned-int8/home/ashuramaru/programs/dev));
   home = {
     packages = with pkgs; [
       # Make macos useful
       iina # frontend for ffmpeg
+
+      jetbrains.pycharm-community
 
       # Basado anudo rettopirrudu
       qbittorrent
@@ -22,6 +24,7 @@
       discord
 
       # Games
+      rectangle
       chiaki # Playstation RemotePlay but FOSS
       gimp
 
