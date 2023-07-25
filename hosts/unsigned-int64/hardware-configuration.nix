@@ -104,7 +104,7 @@
     options = ["noatime"];
   };
   fileSystems."/var/lib/minecraft/snapshots" = {
-    device = "u357064-sub3@u357064.your-storagebox.de:/snapshots";
+    device = "u357064-sub3@176.9.161.53:/snapshots";
     fsType = "sshfs";
     options = [
       "allow_other"
@@ -112,6 +112,7 @@
       "gid=5333"
       "_netdev"
       "x-systemd.automount"
+      "Port=23"
 
       # SSH options
       "reconnect"
