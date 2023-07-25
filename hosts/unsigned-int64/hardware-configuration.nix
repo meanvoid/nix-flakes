@@ -107,16 +107,19 @@
     device = "u357064-sub3@u357064.your-storagebox.de:/snapshots";
     fsType = "sshfs";
     options = [
-      "allow_other"
+      "allow_root"
       "uid=5333"
       "gid=5333"
       "_netdev"
+      "auto_unmount"
       "x-systemd.automount"
 
       # SSH options
       "reconnect"
       "ServerAliveInterval=15"
       "IdentityFile=/var/minecraft/secrets/fastbackup_ed25519"
+      (builtins.replaceStrings [" "] ["\\040"]
+        "ssh_command=${pkgs.openssh}/bin/ssh -x -a -oClearAllForwardings=yes -oServerAliveInterval=15 -oIdentityFile=/var/minecraft/secrets/fastbackup_ed25519 -4 u357064-sub3@u357064.your-storagebox.de -s sftp")
     ];
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
