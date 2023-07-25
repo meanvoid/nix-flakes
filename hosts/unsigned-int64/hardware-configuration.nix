@@ -109,16 +109,16 @@
     options = [
       "allow_other"
       "_netdev"
-      "auto_unmount"
       "x-systemd.automount"
 
       # SSH options
-      "uid=5333"
-      "gid=5333"
+      "uidfile=/var/lib/minecraft/secrets/uid"
+      "gidfile=/var/lib/minecraft/secrets/gid"
+      "idmap=file"
+
       "Port=23"
-      "ServerAliveInterval=15"
-      "IdentitiesOnly=yes"
       "AddressFamily=inet"
+      "IdentitiesOnly=yes"
       "IdentityFile=/var/minecraft/secrets/fastbackup_ed25519"
     ];
   };
