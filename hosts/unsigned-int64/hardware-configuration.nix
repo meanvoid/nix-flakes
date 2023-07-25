@@ -103,7 +103,8 @@
     fsType = "ext4";
     options = ["noatime"];
   };
-  fileSystems."/var/lib/minecraft/snapshots" = {
+  # fileSystems."/var/lib/minecraft/snapshots" = {
+  fileSystems."/mnt/snapshots" = {
     device = "u357064-sub3@u357064.your-storagebox.de:snapshots";
     fsType = "sshfs";
     options = [
@@ -120,7 +121,7 @@
       "Port=23"
       "AddressFamily=inet"
       "IdentitiesOnly=yes"
-      "IdentityFile=/var/lib/minecraft/secrets/fastbackup_ed25519"
+      "IdentityFile=/root/secrets/fastbackup_ed25519"
     ];
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
