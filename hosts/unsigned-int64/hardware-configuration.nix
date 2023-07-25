@@ -103,8 +103,7 @@
     fsType = "ext4";
     options = ["noatime"];
   };
-  # fileSystems."/var/lib/minecraft/snapshots" = {
-  fileSystems."/mnt/snapshots" = {
+  fileSystems."/var/lib/minecraft/snapshots" = {
     device = "u357064-sub3@u357064.your-storagebox.de:snapshots";
     fsType = "sshfs";
     options = [
