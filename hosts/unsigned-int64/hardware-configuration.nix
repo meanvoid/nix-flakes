@@ -119,7 +119,7 @@
       "Port=23"
       "AddressFamily=inet"
       "IdentitiesOnly=yes"
-      "IdentityFile=/var/minecraft/secrets/fastbackup_ed25519"
+      "IdentityFile=/var/lib/minecraft/secrets/fastbackup_ed25519"
     ];
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
