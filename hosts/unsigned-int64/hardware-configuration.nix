@@ -108,13 +108,14 @@
     fsType = "sshfs";
     options = [
       "allow_other"
+      "uidfile=/var/lib/minecraft/secrets/uid"
+      "gidfile=/var/lib/minecraft/secrets/gid"
+      "idmap=file"
+
       "_netdev"
       "x-systemd.automount"
 
       # SSH options
-      "uidfile=/var/lib/minecraft/secrets/uid"
-      "gidfile=/var/lib/minecraft/secrets/gid"
-      "idmap=file"
 
       "Port=23"
       "AddressFamily=inet"
