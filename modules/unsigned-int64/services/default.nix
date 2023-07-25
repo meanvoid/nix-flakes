@@ -1,9 +1,9 @@
 [
-  # ./msmtp.nix
-  # ./fail2ban.nix
-  # ./postgresql.nix
+  ./msmtp.nix
+  ./fail2ban.nix
+  ./postgresql.nix
   ./nginx.nix
-  # ./nextcloud.nix
+  ./nextcloud.nix
   # ./vaultwarden.nix
   # ./grafana.nix
 ]

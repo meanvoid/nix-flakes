@@ -108,8 +108,8 @@
     fsType = "sshfs";
     options = [
       "allow_other"
-      "uidfile=/var/lib/minecraft/secrets/uid"
-      "gidfile=/var/lib/minecraft/secrets/gid"
+      "uidfile=/root/secrets/uid"
+      "gidfile=/root/secrets/gid"
       "idmap=file"
 
       "_netdev"
