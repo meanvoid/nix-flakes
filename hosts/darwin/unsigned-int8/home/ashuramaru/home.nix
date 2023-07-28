@@ -7,7 +7,8 @@
   path,
   ...
 }: {
-  imports = []
+  imports =
+    []
     ++ (import (path + /hosts/darwin/unsigned-int8/home/ashuramaru/programs/utils))
     ++ (import (path + /hosts/darwin/unsigned-int8/home/ashuramaru/programs/dev));
   home = {

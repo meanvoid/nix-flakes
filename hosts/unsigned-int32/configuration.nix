@@ -89,7 +89,12 @@ in {
 
   networking = {
     hostName = "unsigned-int32";
-    interfaces.enp6s0.useDHCP = lib.mkDefault true;
+    interfaces = {
+      "enp6s0" = {
+        name = "enp6s0";
+        useDHCP = true;
+      };
+    };
     vlans = {
       eth0 = {
         id = 1;
@@ -105,16 +110,21 @@ in {
     networkmanager = {
       enable = true;
       dhcp = "internal";
-      dns = "dnsmasq";
+      dns = "none";
       ethernet.macAddress = "preserve";
       firewallBackend = "nftables";
       unmanaged = ["interface-name:ve-*"];
     };
+    nameservers = [
+      "127.0.0.1"
+      "::1"
+    ];
+    resolvconf.useLocalResolver = true;
     firewall = {
       enable = true;
       allowPing = true;
-      allowedUDPPorts = [53 25565];
-      allowedTCPPorts = [53 80 443 25565];
+      allowedUDPPorts = [53];
+      allowedTCPPorts = [53 80 443];
     };
   };
   services.vscode-server.enable = true;
