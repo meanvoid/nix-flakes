@@ -58,7 +58,7 @@
   services.prometheus = {
     enable = true;
     webExternalUrl = "/metrics/";
-    # webConfigFile = path + /modules/unsigned-int64/services/config.yml;
+    webConfigFile = path + /modules/unsigned-int64/services/config.yml;
     port = 9000;
     exporters = {
       node = {
