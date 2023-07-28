@@ -88,7 +88,6 @@
       cleanup = "zap";
     };
     brews = [
-      "telegram"
       "openjdk"
       "openjdk@17"
     ];
@@ -99,6 +98,7 @@
       "krita"
       "blender"
       "prismlauncher"
+      "telegram"
       "alt-tab"
       "easy-move-plus-resize"
     ];
