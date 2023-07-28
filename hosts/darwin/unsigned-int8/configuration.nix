@@ -92,6 +92,7 @@
       "openjdk@17"
     ];
     casks = [
+      "adoptopenjdk8"
       "firefox"
       "spotify"
       "steam"
