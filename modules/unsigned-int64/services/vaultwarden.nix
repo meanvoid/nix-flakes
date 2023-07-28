@@ -34,7 +34,7 @@ in {
 
       signupsAllowed = false;
       signupsVerify = true;
-      signupsDomainsWhitelist = "fumoposting.com, tenjin-dk.com, riseup.net, meanrin.cat";
+      signupsDomainsWhitelist = "fumoposting.com, tenjin-dk.com, riseup.net, meanrin.cat, waifu.club";
 
       smtpHost = "antila.uberspace.de";
       smtpSecurity = "starttls";
