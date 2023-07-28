@@ -68,15 +68,25 @@ in {
       ## --- Private Network(For bazed people) --- ##
       # --- Home Network --- #
       {
+        # root@unsigned-int8
+        publicKey = "ySyIkUGgUHBLZ7RYH/Oetg+V/+ocWpgnf1PyfVRAkXA=";
+        presharedKeyFile = preshared;
+        allowedIPs = [
+          "192.168.10.50/32"
+          "192.168.254.50/32"
+          "dced:2718:5f06:718a::50/128"
+          "dced:2718:5f06:321a::50/128"
+        ];
+      }
+      {
         # root@unsigned-int32
         publicKey = "Xkf+7uF5pySGc+zCrl2f+lrpn34fs6FW1XUfo32TKng=";
         presharedKeyFile = preshared;
         allowedIPs = [
           "192.168.10.100/32"
           "192.168.254.100/32"
-
           "dced:2718:5f06:718a::100/128"
-          "dced:2718:5f06:321a::10/128"
+          "dced:2718:5f06:321a::100/128"
         ];
       }
       # --- Home Network --- #

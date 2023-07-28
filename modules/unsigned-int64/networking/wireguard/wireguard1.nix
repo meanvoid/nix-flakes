@@ -38,6 +38,12 @@ in {
         presharedKeyFile = preshared;
         allowedIPs = ["172.168.10.3/32"];
       }
+      {
+        # root@unsigned-int8
+        publicKey = "znpZ26tP+y+aF/LoOT4TyLXqBNt9wuZKK0ktnk18GHA=";
+        presharedKeyFile = preshared;
+        allowedIPs = ["172.168.10.4/32"];
+      }
     ];
   };
 }
