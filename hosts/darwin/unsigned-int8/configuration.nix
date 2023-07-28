@@ -92,14 +92,15 @@
       "openjdk@17"
     ];
     casks = [
-      "adoptopenjdk8"
       "firefox"
       "spotify"
       "steam"
       "krita"
       "blender"
+      "chiaki"
       "prismlauncher"
       "telegram"
+      "iina"
       "alt-tab"
       "easy-move-plus-resize"
     ];
