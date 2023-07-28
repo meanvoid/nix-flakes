@@ -100,6 +100,7 @@
       "blender"
       "prismlauncher"
       "alt-tab"
+      "easy-move-plus-resize"
     ];
   };
 
