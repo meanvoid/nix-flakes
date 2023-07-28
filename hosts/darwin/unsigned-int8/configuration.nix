@@ -74,6 +74,8 @@
       # Utils
       coreutils
       binutils
+      openssh
+      git
     ];
   };
 
@@ -86,11 +88,9 @@
       cleanup = "zap";
     };
     brews = [
-      "openssh"
-      "git"
+      "telegram"
       "openjdk"
       "openjdk@17"
-      "openjdk@8"
     ];
     casks = [
       "firefox"
