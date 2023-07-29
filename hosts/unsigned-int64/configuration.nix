@@ -136,9 +136,9 @@ in {
           # cloudflare
           "1.1.1.1"
         ];
-        addn-hosts = toString pkgs.writeText "hosts.conf" ''
-          172.168.10.1 rcon.fumoposting.com
-        '';
+        addn-hosts = [
+          "172.168.10.1 rcon.fumoposting.com"
+        ];
       };
     };
     vscode-server.enable = true;
