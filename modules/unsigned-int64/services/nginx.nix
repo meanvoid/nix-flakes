@@ -57,5 +57,10 @@
         '';
       };
     };
+    virtualHosts."rcon.fumoposting.com" = {
+      serverName = "rcon.fumoposting.com";
+      sslCertificate = "/etc/ssl/certs/rcon.fumoposting.com.crt";
+      sslCertificateKey = "/etc/ssl/certs/rcon.fumoposting.com.key";
+    };
   };
 }
