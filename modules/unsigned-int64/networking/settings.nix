@@ -37,6 +37,9 @@
       "::1"
       "1.1.1.1" # cloudflare
     ];
+    extraHosts = ''
+      172.168.10.1 rcon.fumoposting.com
+    '';
     nat = {
       enable = true;
       enableIPv6 = true;
