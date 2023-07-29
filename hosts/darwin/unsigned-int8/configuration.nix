@@ -101,6 +101,7 @@
       "prismlauncher"
       "telegram"
       "iina"
+      "nextcloud"
       "alt-tab"
       "easy-move-plus-resize"
     ];

@@ -89,6 +89,7 @@ in {
 
   networking = {
     hostName = "unsigned-int32";
+    hostId = "ab5d64f5";
     interfaces = {
       "enp6s0" = {
         name = "enp6s0";
