@@ -118,6 +118,10 @@ in {
       enable = true;
       resolveLocalQueries = true;
       settings = {
+        interface = [
+          "wireguard0"
+          "wireguard1"
+        ];
         server = [
           # blahdns
           "78.46.244.143"
@@ -132,8 +136,10 @@ in {
           # cloudflare
           "1.1.1.1"
         ];
-        interface = "wireguard0";
       };
+      addn-hosts = pkgs.writeText "hosts.conf" ''
+        172.168.10.1 rcon.fumoposting.com
+      '';
     };
     vscode-server.enable = true;
     pcscd.enable = true;
