@@ -65,14 +65,13 @@
       listen = [
         {
           addr = "172.168.10.1";
-          port = 4326;
-          ssl = true;
-        }
-        {
-          addr = "172.168.10.1";
           port = 4327;
         }
       ];
+      locations."/" = {
+        proxyPass = "http://172.168.10.1:4326";
+        proxyWebsockets = true;
+      };
     };
   };
 }
