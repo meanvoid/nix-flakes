@@ -65,10 +65,7 @@
       enableCryptodisk = true;
       zfsSupport = true;
       device = "nodev";
-      memtest86 = {
-        enable = true;
-        params = ["maxcpus=16"];
-      };
+      memtest86.enable = true;
       ipxe = {
         demo = ''
           #!ipxe
