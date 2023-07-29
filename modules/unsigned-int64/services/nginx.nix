@@ -67,7 +67,7 @@
         proxyWebsockets = true;
       };
       locations."/ws" = {
-        proxtPass = "http://172.168.10.1:4327";
+        proxyPass = "http://172.168.10.1:4327";
         proxyWebsockets = true;
       };
     };
