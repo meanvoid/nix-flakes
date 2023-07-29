@@ -62,6 +62,17 @@
       addSSL = true;
       sslCertificate = "/var/lib/scerts/rcon.fumoposting.com.crt";
       sslCertificateKey = "/var/lib/scerts/rcon.fumoposting.com.key";
+      liten = [
+        {
+          addr = "172.168.10.1";
+          port = 4326;
+          ssl = true;
+        }
+        {
+          addr = "172.168.10.1";
+          port = 4327;
+        }
+      ];
       locations."/" = {
         proxyPass = "http://172.168.10.1:4326";
         proxyWebsockets = true;
