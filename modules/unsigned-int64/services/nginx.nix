@@ -66,7 +66,7 @@
         proxyPass = "http://172.168.10.1:4326";
         proxyWebsockets = true;
       };
-      locations."/ws" = {
+      locations."/wsconfig" = {
         proxyPass = "http://172.168.10.1:4327";
         proxyWebsockets = true;
       };
