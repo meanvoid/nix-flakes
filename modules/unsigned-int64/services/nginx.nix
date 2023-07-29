@@ -59,8 +59,9 @@
     };
     virtualHosts."rcon.fumoposting.com" = {
       serverName = "rcon.fumoposting.com";
-      sslCertificate = "/etc/ssl/certs/rcon.fumoposting.com.crt";
-      sslCertificateKey = "/etc/ssl/certs/rcon.fumoposting.com.key";
+      addSSL = true;
+      sslCertificate = "/var/lib/scerts/rcon.fumoposting.com.crt";
+      sslCertificateKey = "/var/lib/scerts/rcon.fumoposting.com.key";
       locations."/" = {
         proxyPass = "http://172.168.10.1:4326";
         proxyWebsockets = true;
