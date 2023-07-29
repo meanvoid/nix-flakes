@@ -9,9 +9,10 @@
     ashuramaru.gid = config.users.users.ashuramaru.uid;
     meanrin.gid = config.users.users.meanrin.uid;
     fumono.gid = config.users.users.fumono.uid;
+    matthew.gid = config.users.users.matthew.uid;
     minecraft = {
       gid = config.users.users.minecraft.uid;
-      members = ["ashuramaru" "fumono" "nginx"];
+      members = ["ashuramaru" "fumono" "matthew" "nginx"];
     };
     nginx.members = ["minecraft"];
   };
@@ -61,6 +62,16 @@
       extraGroups = ["fumono" "docker" "podman" "minecraft"];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHBeBj6thLiVFNGZI1NuTHKIPvh332Szad2zsgjdzhR mc-server"
+      ];
+    };
+    matthew = {
+      isNormalUser = true;
+      home = "/Users/matthew";
+      description = "Matthew";
+      initialHashedPassword = "";
+      extraGroups = ["matthew" "docker" "minecraft"];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOXxoCOvJCc0Z7JvOOTKJfYv1yF/uEVYR4CLmoybOpn9 tot4llynotmatt@gmail.com"
       ];
     };
   };

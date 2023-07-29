@@ -92,6 +92,9 @@ in {
         KbdInteractiveAuthentication = true;
         PermitRootLogin = "prohibit-password";
       };
+      extraConfig = ''
+        ServerAliveInterval 1800
+      '';
       listenAddresses = [
         {
           addr = "0.0.0.0";
