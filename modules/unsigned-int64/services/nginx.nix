@@ -62,7 +62,7 @@
       addSSL = true;
       sslCertificate = "/var/lib/scerts/rcon.fumoposting.com.crt";
       sslCertificateKey = "/var/lib/scerts/rcon.fumoposting.com.key";
-      liten = [
+      listen = [
         {
           addr = "172.168.10.1";
           port = 4327;
