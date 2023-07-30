@@ -80,10 +80,10 @@
           path = "/boot";
         }
         {
-          path = "/boot-mirrored";
+          devices = ["nodev"];
           efiSysMountPoint = "/boot-mirrored";
           efiBootloaderId = "nixos-fsId1";
-          devices = ["nodev"];
+          path = "/boot-mirrored";
         }
       ];
     };
@@ -112,7 +112,39 @@
       reusePassphrases = true;
       mitigateDMAAttacks = true;
       devices = {
-        "toChange" = {
+        "root_pool0" = {
+          device = "/dev/md5";
+          bypassWorkqueues = true;
+          yubikey = {
+            slot = 2;
+            twoFactor = true;
+            gracePeriod = 30;
+            keyLength = 64;
+            saltLength = 64;
+            storage = {
+              device = "/dev/nvme0n1p1";
+              fsType = "vfat";
+              path = "/crypt-storage/nvme0n1p2_keyslot0";
+            };
+          };
+        };
+        "root_pool1" = {
+          device = "/dev/md5";
+          bypassWorkqueues = true;
+          yubikey = {
+            slot = 2;
+            twoFactor = true;
+            gracePeriod = 30;
+            keyLength = 64;
+            saltLength = 64;
+            storage = {
+              device = "/dev/nvme0n1p1";
+              fsType = "vfat";
+              path = "/crypt-storage/nvme1n1p2_keyslot0";
+            };
+          };
+        };
+        "hddpool" = {
           device = "/dev/md5";
           bypassWorkqueues = true;
           yubikey = {

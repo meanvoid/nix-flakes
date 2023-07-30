@@ -10,9 +10,10 @@
     meanrin.gid = config.users.users.meanrin.uid;
     fumono.gid = config.users.users.fumono.uid;
     matthew.gid = config.users.users.matthew.uid;
+    jalemi.gid = config.users.users.jalemi.uid;
     minecraft = {
       gid = config.users.users.minecraft.uid;
-      members = ["ashuramaru" "fumono" "matthew" "nginx"];
+      members = ["ashuramaru" "fumono" "matthew" "jalemi" "nginx"];
     };
     nginx.members = ["minecraft"];
   };
@@ -72,6 +73,16 @@
       extraGroups = ["matthew" "docker" "minecraft"];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOXxoCOvJCc0Z7JvOOTKJfYv1yF/uEVYR4CLmoybOpn9 tot4llynotmatt@gmail.com"
+      ];
+    };
+    jalemi = {
+      isNormalUser = true;
+      home = "/Users/jalemi";
+      description = "Jalemi";
+      initialHashedPassword = "";
+      extraGroups = ["jalemi" "docker" "minecraft"];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM7Y6rWriIoPAs/4UwyR6idg+qoltoMqpzrFfRxvfNl8 jolym@DESKTOP-8ABNMG9"
       ];
     };
   };
