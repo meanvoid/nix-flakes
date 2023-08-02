@@ -23,15 +23,14 @@ in {
     [
       ./hardware-configuration.nix
       (path + "/modules/shared/desktop/gnome.nix")
-      (path + "/modules/shared/desktop/hyprland.nix")
     ]
     ++ import (path + "/modules/shared/settings")
     ++ hostModules [
       "environment"
-      # "networking"
-      # "programs"
-      # "services"
-      # "virtualisation"
+      "networking"
+      "programs"
+      "services"
+      "virtualisation"
     ];
   security = {
     wrappers = {
