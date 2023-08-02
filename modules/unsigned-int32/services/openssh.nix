@@ -11,7 +11,7 @@
       KbdInteractiveAuthentication = true;
       PermitRootLogin = "prohibit-password";
     };
-    ports = [22 52755];
+    ports = [22 57255];
     listenAddresses = [
       {
         addr = "192.168.1.100";

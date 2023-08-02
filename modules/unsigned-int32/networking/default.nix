@@ -1,3 +1,3 @@
 [
-  ./vpn/wireguard/wg.nix
+  # ./vpn/wireguard/wg.nix
 ]
