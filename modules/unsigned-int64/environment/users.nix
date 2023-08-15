@@ -85,5 +85,15 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM7Y6rWriIoPAs/4UwyR6idg+qoltoMqpzrFfRxvfNl8 jolym@DESKTOP-8ABNMG9"
       ];
     };
+    solonka = {
+      isNormalUser = true;
+      home = "/Users/solonka";
+      description = "Sonja";
+      initialHashedPassword = "";
+      extraGroups = ["Sonja" "docker" "minecraft"];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGkp/XreM7mGl/zxLTk7HF50hcKxyDhh04SQThHjpDD7 solonkamay@gmail.com"
+      ];
+    };
   };
 }

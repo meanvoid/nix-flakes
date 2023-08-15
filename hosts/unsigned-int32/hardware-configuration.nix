@@ -93,58 +93,26 @@
     timeout = 30;
   };
 
-  ### ------------------------------------ ###
+  ### ----------------BOOT------------------- ###
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/DC98-BC3C";
     fsType = "vfat";
-    options = ["nofail"];
   };
-  fileSystems."/boot-mirrored" = {
+
+  fileSystems."/boot-fallback" = {
     device = "/dev/disk/by-uuid/DC29-4C99";
     fsType = "vfat";
-    options = ["nofail"];
   };
-  ### ------------------------------------ ###
+  ### ----------------BOOT------------------- ###
 
   boot.initrd = {
+    ### ---------------------LUKS--------------------- ###
     luks = {
       yubikeySupport = true;
       reusePassphrases = true;
       mitigateDMAAttacks = true;
       devices = {
-        "root_pool0" = {
-          device = "/dev/md5";
-          bypassWorkqueues = true;
-          yubikey = {
-            slot = 2;
-            twoFactor = true;
-            gracePeriod = 30;
-            keyLength = 64;
-            saltLength = 64;
-            storage = {
-              device = "/dev/nvme0n1p1";
-              fsType = "vfat";
-              path = "/crypt-storage/nvme0n1p2_keyslot0";
-            };
-          };
-        };
-        "root_pool1" = {
-          device = "/dev/md5";
-          bypassWorkqueues = true;
-          yubikey = {
-            slot = 2;
-            twoFactor = true;
-            gracePeriod = 30;
-            keyLength = 64;
-            saltLength = 64;
-            storage = {
-              device = "/dev/nvme0n1p1";
-              fsType = "vfat";
-              path = "/crypt-storage/nvme1n1p2_keyslot0";
-            };
-          };
-        };
-        "hddpool" = {
+        "md5" = {
           device = "/dev/md5";
           bypassWorkqueues = true;
           yubikey = {
@@ -162,17 +130,13 @@
         };
       };
     };
+    ### ---------------------LUKS--------------------- ###
+
     network.enable = true;
     availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "uas" "sd_mod" "r8169"];
     kernelModules = ["dm-snapshot" "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "dm-cache" "dm-cache-smq" "dm-cache-mq" "dm-cache-cleaner"];
   };
-  boot.zfs = {
-    requestEncryptionCredentials = ["zpool"];
-    extraPools = ["zpool"];
-    passwordTimeout = 300;
-    forceImportRoot = false;
-    devNodes = "/dev/disk/by-id";
-  };
+  boot.zfs.forceImportRoot = false;
   services.zfs = {
     expandOnBoot = ["zpool"];
     trim = {
@@ -185,31 +149,50 @@
       interval = "weekly";
     };
   };
-  ### ---------------tmpfs root------------------- ###
+  ### ---------------zpool root------------------- ###
   fileSystems."/" = {
-    device = "rootfs";
-    fsType = "tmpfs";
-    options = ["defaults" "size=12G" "mode=755"];
+    device = "zpool/root";
+    fsType = "zfs";
   };
-  fileSystems."/etc/nixos" = {
-    device = "/nix/persist/etc/nixos";
+
+  fileSystems."/var" = {
+    device = "zpool/var";
+    fsType = "zfs";
+  };
+
+  fileSystems."/var/lib" = {
+    device = "zpool/var/lib";
+    fsType = "zfs";
+  };
+
+  fileSystems."/Users" = {
+    device = "zpool/Users";
+    fsType = "zfs";
+  };
+
+  fileSystems."/Users/alex" = {
+    device = "zpool/Users/alex";
+    fsType = "zfs";
+  };
+
+  fileSystems."/Users/marie" = {
+    device = "zpool/Users/marie";
+    fsType = "zfs";
+  };
+
+  fileSystems."/home/alex" = {
+    device = "/Users/alex";
     fsType = "none";
     options = ["bind"];
   };
 
-  fileSystems."/var/log" = {
-    device = "/nix/persist/var/log";
+  fileSystems."/home/marie" = {
+    device = "/Users/marie";
     fsType = "none";
     options = ["bind"];
   };
-  # retreive journlactl
-  environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
-  # ssh keys
-  environment.etc."ssh/ssh_host_rsa_key".source = "/nix/persist/etc/ssh/ssh_host_rsa_key";
-  environment.etc."ssh/ssh_host_rsa_key.pub".source = "/nix/persist/etc/ssh/ssh_host_rsa_key.pub";
-  environment.etc."ssh/ssh_host_ed25519_key".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key";
-  environment.etc."ssh/ssh_host_ed25519_key.pub".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key.pub";
-  ### ---------------tmpfs root------------------- ###
+
+  ### ---------------zpool root------------------- ###
 
   ### ---------------/dev/md5-------------------- ###
   fileSystems."/Shared/media" = {
