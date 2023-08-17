@@ -222,7 +222,7 @@
         };
       };
     };
-    "${config.services.prometheus.webExternaUrl}" = {
+    "${config.services.prometheus.webExternalUrl}" = {
       addSSL = true;
       sslCertificate = "/var/lib/scerts/prom.metrics.com/prom.metrics.com.crt";
       sslCertificateKey = "/var/lib/scerts/prom.metrics.com/prom.metrics.com.key";
