@@ -57,7 +57,8 @@
   };
   services.prometheus = {
     enable = true;
-    webExternalUrl = "http://prom.metrics.com/";
+    listenAddress = "172.168.10.1";
+    webExternalUrl = "prom.metrics.com";
     port = 9000;
     exporters = {
       node = {
@@ -221,8 +222,7 @@
         };
       };
     };
-    "prom.metrics.com" = {
-      serverName = "prom.metrics.com";
+    "${config.services.prometheus.webExternaUrl}" = {
       addSSL = true;
       sslCertificate = "/var/lib/scerts/prom.metrics.com/prom.metrics.com.crt";
       sslCertificateKey = "/var/lib/scerts/prom.metrics.com/prom.metrics.com.key";
