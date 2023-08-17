@@ -57,8 +57,7 @@
   };
   services.prometheus = {
     enable = true;
-    listenAddress = "172.168.10.1";
-    webExternalUrl = "prom.metrics.com/metrics/";
+    webExternalUrl = "http://prom.metrics.com/";
     port = 9000;
     exporters = {
       node = {
@@ -227,7 +226,7 @@
       addSSL = true;
       sslCertificate = "/var/lib/scerts/prom.metrics.com/prom.metrics.com.crt";
       sslCertificateKey = "/var/lib/scerts/prom.metrics.com/prom.metrics.com.key";
-      locations."/metrics/" = {
+      locations."/" = {
         proxyPass = "http://172.168.10.1:${toString config.services.prometheus.port}";
         proxyWebsockets = true;
       };
