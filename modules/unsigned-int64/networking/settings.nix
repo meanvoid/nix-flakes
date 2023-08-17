@@ -81,6 +81,9 @@
         # ssh
         57255
       ];
+      interfaces."wireguard1" = {
+        allowedTCPPorts = [9000];
+      };
     };
   };
 }
