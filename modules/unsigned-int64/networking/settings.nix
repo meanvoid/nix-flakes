@@ -39,6 +39,7 @@
     ];
     extraHosts = ''
       172.168.10.1 rcon.fumoposting.com
+      172.168.10.1 prom.tenjin-dk.com
     '';
     nat = {
       enable = true;
