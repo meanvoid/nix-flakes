@@ -222,10 +222,10 @@
         };
       };
     };
-    "prom.metrics.com" = {
+    "prom.tenjin-dk.com" = {
       addSSL = true;
-      sslCertificate = "/var/lib/scerts/prom.metrics.com/prom.metrics.com.crt";
-      sslCertificateKey = "/var/lib/scerts/prom.metrics.com/prom.metrics.com.key";
+      sslCertificate = "/var/lib/scerts/prom.tenjin-dk.com/prom.tenjin-dk.com.crt";
+      sslCertificateKey = "/var/lib/scerts/prom.tenjin-dk.com/prom.metrics.comprom.tenjin-dk.com.key";
       locations."/" = {
         proxyPass = "http://172.168.10.1:${toString config.services.prometheus.port}";
         proxyWebsockets = true;
