@@ -57,8 +57,8 @@
   };
   services.prometheus = {
     enable = true;
+    listenAddress = "172.168.10.1";
     webExternalUrl = "/metrics/";
-    webConfigFile = path + /modules/unsigned-int64/services/config.yml;
     port = 9000;
     exporters = {
       node = {
@@ -66,6 +66,9 @@
         enabledCollectors = [
           "systemd"
           "logind"
+          "mountstats"
+          "ethtool"
+          "sysctl"
         ];
         port = 9100;
       };
@@ -89,10 +92,6 @@
         job_name = "grafana";
         metrics_path = "/grafana/metrics";
         static_configs = [{targets = ["127.0.0.1:${toString config.services.grafana.settings.server.http_port}"];}];
-      }
-      {
-        job_name = "prometheus";
-        static_configs = [{targets = ["127.0.0.1:${toString config.services.prometheus.port}"];}];
       }
     ];
   };
@@ -208,21 +207,19 @@
     };
   };
 
-  services.nginx.virtualHosts."${config.services.grafana.settings.server.domain}" = {
-    enableACME = true;
-    forceSSL = true;
-    locations = {
-      "/grafana/" = {
-        proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
-        proxyWebsockets = true;
-      };
-      "/grafana/api/live/" = {
-        proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
-        proxyWebsockets = true;
-      };
-      "/metrics/" = {
-        proxyPass = "http://127.0.0.1:${toString config.services.prometheus.port}";
-        proxyWebsockets = true;
+  services.nginx.virtualHosts = {
+    "${config.services.grafana.settings.server.domain}" = {
+      enableACME = true;
+      forceSSL = true;
+      locations = {
+        "/grafana/" = {
+          proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
+          proxyWebsockets = true;
+        };
+        "/grafana/api/live/" = {
+          proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
+          proxyWebsockets = true;
+        };
       };
     };
   };
