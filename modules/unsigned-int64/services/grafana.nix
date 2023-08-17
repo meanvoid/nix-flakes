@@ -93,6 +93,11 @@
         metrics_path = "/grafana/metrics";
         static_configs = [{targets = ["127.0.0.1:${toString config.services.grafana.settings.server.http_port}"];}];
       }
+      {
+        job_name = "prometheus";
+        metrics_path = "/metrics";
+        static_configs = [{targets = ["172.168.10.1:${toString config.services.prometheus.port}"];}];
+      }
     ];
   };
   services.loki = {
