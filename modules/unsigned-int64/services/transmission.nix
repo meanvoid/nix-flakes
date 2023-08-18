@@ -19,8 +19,8 @@
       rpc-host-whitelist = "lib.tenjin-dk.com";
     };
   };
-  users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono"];
-  users.users.transmission.extraGroups = ["ashuramaru" "meanrin" "fumono"];
+  users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono" "transimission"];
+  users.users.transmission.extraGroups = ["ashuramaru" "meanrin" "fumono" "transimission"];
   services.nginx.virtualHosts."lib.tenjin-dk.com" = {
     addSSL = true;
     sslCertificate = "/var/lib/scerts/lib.tenjin-dk.com/lib.tenjin-dk.com.crt";
