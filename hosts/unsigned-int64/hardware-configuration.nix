@@ -5,7 +5,9 @@
   modulesPath,
   path,
   ...
-}: {
+}: let
+  automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+in {
   imports = [(modulesPath + "/profiles/qemu-guest.nix")];
 
   boot = {
@@ -106,19 +108,15 @@
   };
 
   # SMB/NAS/CIFS
-  fileSystems = let
-    automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-  in {
-    "/var/lib/transmission" = {
-      device = "//u357064-sub1.your-storagebox.de/u357064-sub1";
-      fsType = "cifs";
-      options = ["${automount_opts},credentials=/root/secrets/u357064-sub1"];
-    };
-    "/var/backup/system" = {
-      device = "//u357064-sub2.your-storagebox.de/u357064-sub2";
-      fsType = "cifs";
-      options = ["${automount_opts},credentials=/root/secrets/u357064-sub2"];
-    };
+  fileSystems."/var/lib/transmission" = {
+    device = "//u357064-sub1.your-storagebox.de/u357064-sub1";
+    fsType = "cifs";
+    options = ["${automount_opts},credentials=/root/secrets/u357064-sub1"];
+  };
+  fileSystems."/var/backup/system" = {
+    device = "//u357064-sub2.your-storagebox.de/u357064-sub2";
+    fsType = "cifs";
+    options = ["${automount_opts},credentials=/root/secrets/u357064-sub2"];
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
