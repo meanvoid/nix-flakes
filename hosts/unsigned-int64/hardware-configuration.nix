@@ -68,6 +68,7 @@
   };
 
   system.fsPackages = [pkgs.sshfs];
+  environment.systemPackages = [pkgs.cifs-utils];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/9e69ada5-accc-42e4-a5a2-1ca96cc809ef";
@@ -103,6 +104,23 @@
     fsType = "ext4";
     options = ["noatime"];
   };
+
+  # SMB/NAS/CIFS
+  fileSystems = let
+    automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+  in {
+    "/var/lib/transmission" = {
+      device = "//u357064-sub1.your-storagebox.de/u357064-sub1";
+      fsType = "cifs";
+      options = ["${automount_opts},credentials=/root/secrets/u357064-sub1"];
+    };
+    "/var/backup/system" = {
+      device = "//u357064-sub2.your-storagebox.de/u357064-sub2";
+      fsType = "cifs";
+      options = ["${automount_opts},credentials=/root/secrets/u357064-sub2"];
+    };
+  };
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = lib.mkDefault true;
   zramSwap.enable = true;
