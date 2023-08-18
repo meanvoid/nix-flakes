@@ -13,6 +13,8 @@
       watch-dir = "${config.services.transmission.home}/watch-dir";
       rpc-bind-address = "0.0.0.0";
       rpc-port = 18765;
+      rpc-whitelist-enabled = true;
+      rpc-host-whitelist = "172.168.10.0/24";
     };
   };
   users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono"];
