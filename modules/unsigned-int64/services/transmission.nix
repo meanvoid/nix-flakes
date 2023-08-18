@@ -7,7 +7,6 @@
   services.transmission = {
     enable = true;
     openPeerPorts = true;
-    home = "/var/lib/transmission";
     settings = {
       utp-enabled = true; # to not forget
       watch-dir-enabled = true;
