@@ -113,6 +113,11 @@ in {
     fsType = "cifs";
     options = ["${automount_opts},credentials=/root/secrets/u357064-sub1,uid=70,gid=70"];
   };
+  fileSystems."/mnt/media" = {
+    device = "//u357064-sub1.your-storagebox.de/u357064-sub1/Media";
+    fsType = "cifs";
+    options = ["${automount_opts},credentials=/root/secrets/u357064-sub1,uid=986,gid=986"];
+  };
   fileSystems."/var/backup/system" = {
     device = "//u357064-sub2.your-storagebox.de/u357064-sub2";
     fsType = "cifs";
