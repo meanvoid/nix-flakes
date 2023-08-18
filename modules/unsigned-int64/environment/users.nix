@@ -11,9 +11,10 @@
     fumono.gid = config.users.users.fumono.uid;
     matthew.gid = config.users.users.matthew.uid;
     jalemi.gid = config.users.users.jalemi.uid;
+    solonka.gid = config.users.users.solonka.uid;
     minecraft = {
       gid = config.users.users.minecraft.uid;
-      members = ["ashuramaru" "fumono" "matthew" "jalemi" "nginx"];
+      members = ["ashuramaru" "fumono" "matthew" "jalemi" "solonka" "nginx"];
     };
     nginx.members = ["minecraft"];
   };
