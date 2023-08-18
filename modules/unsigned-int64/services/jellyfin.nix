@@ -11,10 +11,8 @@
     group = "jellyfin";
     openFirewall = true;
   };
-  users.groups.media.members = ["ashuramaru" "meanrin"];
-  users.groups.shared.members = ["ashuramaru" "meanrin" "jellyfin"];
   users.groups.jellyfin.members = ["ashuramaru" "meanrin"];
-  users.users.jellyfin.extraGroups = ["media" "users"];
+  users.users.jellyfin.extraGroups = ["ashuramaru" "meanrin"];
 
   services.nginx.virtualHosts."media.tenjin-dk.com" = {
     enableACME = true;

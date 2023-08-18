@@ -1,8 +1,6 @@
 [
   ./openssh.nix
-  # ./samba.nix
-  # ./nginx.nix
-  # ./jellyfin.nix
+  ./samba.nix
   ./utils/hddparm.nix
   ./utils/udev.nix
 ]
