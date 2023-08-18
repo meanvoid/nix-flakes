@@ -10,6 +10,7 @@
     settings = {
       utp-enabled = true; # to not forget
       watch-dir-enabled = true;
+      watch-dir = "watch-dir";
       rpc-bind-address = "0.0.0.0";
       rpc-port = 18765;
     };
