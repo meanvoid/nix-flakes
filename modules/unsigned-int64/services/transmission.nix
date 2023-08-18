@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  ...
 }: {
   services.transmission = {
     enable = true;
