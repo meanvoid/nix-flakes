@@ -15,6 +15,8 @@
       rpc-port = 18765;
       rpc-whitelist-enabled = true;
       rpc-whitelist = "127.0.0.1,172.168.10.*";
+      rpc-host-whitelist-enabled = true;
+      rpc-host-whitelist = "lib.tenjin-dk.com";
     };
   };
   users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono"];
