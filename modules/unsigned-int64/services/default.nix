@@ -6,4 +6,5 @@
   ./nextcloud.nix
   ./vaultwarden.nix
   ./grafana.nix
+  ./jellyfin
 ]
