@@ -8,7 +8,7 @@
   ...
 }: {
   imports =
-    []
+    [./vscode.nix]
     ++ (import (path + /modules/shared/home/ashuramaru/programs/utils))
     ++ (import (path + /modules/shared/home/ashuramaru/programs/dev))
     ++ (import (path + /modules/shared/home/ashuramaru/programs/misc));
