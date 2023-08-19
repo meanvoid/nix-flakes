@@ -17,7 +17,6 @@
       # Utils
       ani-cli
       thefuck
-      mullvad
 
       # Python
       python311Full
