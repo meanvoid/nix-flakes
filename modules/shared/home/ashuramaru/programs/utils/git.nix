@@ -24,7 +24,7 @@
   };
   programs.gh = {
     enable = true;
-    enableGitCredentialHelper = true;
+    gitCredentialHelper.enable = true;
     settings.git_protocol = "ssh";
   };
   programs.git-credential-oauth.enable = true;
