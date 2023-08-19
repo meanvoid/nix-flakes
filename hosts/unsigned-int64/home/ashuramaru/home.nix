@@ -1,10 +1,8 @@
 {
   lib,
+  inputs,
   config,
   pkgs,
-  darwin,
-  users,
-  path,
   ...
 }: {
   imports =
@@ -13,27 +11,17 @@
     ++ (import (path + /modules/shared/home/ashuramaru/programs/dev))
     ++ (import (path + /modules/shared/home/ashuramaru/programs/misc));
   home = {
+    username = "ashuramaru";
     packages = with pkgs; [
-      # Make macos useful
-      iina # frontend for ffmpeg
-
-      jetbrains.pycharm-community
-
-      # Basado anudo rettopirrudu
-      qbittorrent
-
-      # Society(Scary)
-      discord
-
-      # Games
-      rectangle
-      chiaki # Playstation RemotePlay but FOSS
-      gimp
-
-      # yubico shit
-      yubikey-manager
-
+      # Utils
+      ani-cli
       thefuck
+      mullvad
+
+      # Python
+      python311Full
+      conda
+      android-studio
     ];
     stateVersion = "23.05";
   };

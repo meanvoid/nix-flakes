@@ -7,8 +7,10 @@
 }: {
   imports =
     [./services/easyeffects.nix]
-    ++ (import ../overlays)
-    ++ (import ./programs);
+    ++ (import (path + /hosts/unsigned-int32/home/ashuramaru/programs))
+    ++ (import (path + /modules/shared/home/ashuramaru/programs/utils))
+    ++ (import (path + /modules/shared/home/ashuramaru/programs/dev))
+    ++ (import (path + /modules/shared/home/ashuramaru/programs/misc));
   home = {
     username = "ashuramaru";
     packages =
