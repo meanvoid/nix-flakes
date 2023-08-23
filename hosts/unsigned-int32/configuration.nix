@@ -29,6 +29,7 @@ in {
       (path + "/modules/shared/settings/nvidia.nix")
       (path + "/modules/shared/settings/firmware.nix")
       (path + "/modules/shared/settings/settings.nix")
+      (path + "/modules/shared/settings/config.nix")
     ]
     ++ hostModules [
       "environment"
