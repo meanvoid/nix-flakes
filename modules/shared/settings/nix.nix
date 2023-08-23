@@ -8,7 +8,7 @@
   nix = {
     gc = {
       automatic = true;
-      interval = "weekly";
+      dates = "weekly";
       options = "--delete-older-than 30d";
     };
     settings = {

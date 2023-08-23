@@ -6,10 +6,21 @@
   hostname,
   ...
 }: {
+  nixpkgs.config.allowUnfree = true;
+  nix = {
+    gc = {
+      automatic = true;
+      interval.Day = 7;
+      options = "--delete-older-than 30d";
+    };
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = ["nix-command" "flakes"];
+    };
+  };
   imports =
     [
       (path + "/modules/shared/desktop/fonts.nix")
-      (path + "/modules/shared/settings/nix.nix")
       (path + "/modules/shared/settings/config.nix")
     ]
     ++ (import (path + "/modules/${hostname}/environment"))
