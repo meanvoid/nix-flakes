@@ -38,40 +38,7 @@
       gst-plugins-base
       gst-editing-services
     ]);
-
   programs = {
-    neovim = {
-      enable = true;
-      viAlias = true;
-      vimAlias = true;
-    };
-    htop = {
-      enable = true;
-      package = pkgs.htop-vim;
-      settings = {
-        hide_kernel_threads = true;
-        hide_userland_threads = true;
-      };
-    };
-    git = {
-      enable = true;
-      lfs.enable = true;
-      config = {
-        init = {
-          defaultBranch = "main";
-        };
-        url = {
-          "https://github.com/" = {
-            insteadOf = ["gh:" "github:"];
-          };
-        };
-      };
-    };
-    gnupg.agent = {
-      enable = true;
-      pinentryFlavor = "curses";
-      enableSSHSupport = true;
-    };
     nix-index = {
       enableBashIntegration = true;
       enableZshIntegration = true;
