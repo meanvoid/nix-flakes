@@ -5,24 +5,15 @@
   path,
   hostname,
   ...
-}: let
-  importModule = moduleName: let
-    dir = path + "/modules/${hostname}";
-  in
-    import (dir + "/${moduleName}");
-
-  hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
-in {
+}: {
   imports =
     [
       (path + "/modules/shared/desktop/fonts.nix")
       (path + "/modules/shared/settings/nix.nix")
       (path + "/modules/shared/settings/config.nix")
     ]
-    ++ hostModules [
-      "environment"
-      "programs"
-    ];
+    ++ (import (path + "/modules/${hostname}/environment"))
+    ++ (import (path + "/modules/${hostname}/programs"));
 
   security = {
     pam = {
