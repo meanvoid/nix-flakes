@@ -65,6 +65,9 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # Networking
+    finger_bsd
+
     util-linux
 
     pciutils

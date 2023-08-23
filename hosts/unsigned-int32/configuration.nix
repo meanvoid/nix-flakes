@@ -134,15 +134,6 @@ in {
   services.vscode-server.enable = true;
   environment = {
     systemPackages = with pkgs; [
-      # Networking
-      dig
-      finger_bsd
-      nmap
-
-      # Utils
-      distrobox
-      zenith-nvidia
-
       # Virt
       virt-top
       virt-manager
