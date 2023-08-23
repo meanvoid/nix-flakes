@@ -96,6 +96,12 @@
         hide_userland_threads = true;
       };
     };
+    tmux = {
+      enable = true;
+      keyMode = "vi";
+      resizeAmount = 10;
+      escapeTime = 250;
+    };
     git = {
       enable = true;
       lfs.enable = true;

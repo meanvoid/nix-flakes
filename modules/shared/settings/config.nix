@@ -38,12 +38,4 @@
       gst-plugins-base
       gst-editing-services
     ]);
-  programs = {
-    tmux = {
-      enable = true;
-      keyMode = "vi";
-      resizeAmount = 10;
-      escapeTime = 250;
-    };
-  };
 }
