@@ -13,7 +13,6 @@
     zip
     unzip
     rar
-    unrar
     lz4
 
     # utils
