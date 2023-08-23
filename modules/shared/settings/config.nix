@@ -39,10 +39,6 @@
       gst-editing-services
     ]);
   programs = {
-    nix-index = {
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-    };
     tmux = {
       enable = true;
       keyMode = "vi";

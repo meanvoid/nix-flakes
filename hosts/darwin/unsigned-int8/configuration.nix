@@ -36,7 +36,11 @@
       git
     ];
   };
-
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+  programs.nix-index.enable = true;
   services.nix-daemon.enable = true;
   # System configuration
   system = {

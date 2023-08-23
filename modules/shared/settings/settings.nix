@@ -115,6 +115,10 @@
       pinentryFlavor = "curses";
       enableSSHSupport = true;
     };
+    nix-index = {
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
   };
   security.rtkit.enable = true;
   programs.dconf.enable = true;
