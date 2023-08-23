@@ -4,11 +4,6 @@
   pkgs,
   ...
 }: {
-  hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
-    modesetting.enable = true;
-    powerManagement.enable = true;
-  };
   hardware.opengl = {
     enable = true;
     driSupport = true;

@@ -18,8 +18,10 @@ in {
   imports =
     [
       ./hardware-configuration.nix
-      ./config.nix
       (path + "/modules/unsigned-int64/environment/users.nix")
+      (path + "/modules/shared/settings/opengl.nix")
+      (path + "/modules/shared/settings/nix.nix")
+      (path + "/modules/shared/settings/firmware.nix")
     ]
     ++ hostModules [
       "networking"
