@@ -22,6 +22,8 @@ in {
       (path + "/modules/shared/settings/opengl.nix")
       (path + "/modules/shared/settings/nix.nix")
       (path + "/modules/shared/settings/firmware.nix")
+      (path + "/modules/shared/settings/settings.nix")
+      (path + "/modules/shared/settings/config.nix")
     ]
     ++ hostModules [
       "networking"
@@ -30,38 +32,6 @@ in {
     ];
 
   environment = {
-    systemPackages =
-      (with pkgs; [
-        # Networking
-        curl
-        wget
-
-        # Utils
-        distrobox
-        neofetch
-        hyfetch
-        nvme-cli
-
-        # Benchmarking
-        fio
-        lm_sensors
-
-        # Media encoding/decoding
-        ffmpeg_6-full
-        imagemagick
-        mpv
-        mpd
-      ])
-      ++ (with pkgs.gst_all_1; [
-        gstreamer
-        gst-vaapi
-        gstreamermm
-        gst-devtools
-        gst-rtsp-server
-        gst-plugins-good
-        gst-plugins-base
-        gst-editing-services
-      ]);
     shells = with pkgs; [zsh bash fish];
     pathsToLink = ["/share/zsh"];
     binsh = "${pkgs.dash}/bin/dash";
