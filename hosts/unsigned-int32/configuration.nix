@@ -23,8 +23,12 @@ in {
     [
       ./hardware-configuration.nix
       (path + "/modules/shared/desktop/gnome.nix")
+      (path + "/modules/shared/settings/opengl.nix")
+      (path + "/modules/shared/settings/nix.nix")
+      (path + "/modules/shared/settings/nvidia.nix")
+      (path + "/modules/shared/settings/firmware.nix")
+      (path + "/modules/shared/settings/settings.nix")
     ]
-    ++ import (path + "/modules/shared/settings")
     ++ hostModules [
       "environment"
       "networking"
