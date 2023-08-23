@@ -64,24 +64,37 @@
     gvfs.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    # Networking
-    finger_bsd
+  environment.systemPackages =
+    (with pkgs; [
+      # Networking
+      finger_bsd
 
-    util-linux
+      util-linux
 
-    pciutils
-    usbutils
-    nvme-cli
-    libva-utils
+      pciutils
+      usbutils
+      nvme-cli
+      libva-utils
 
-    fio
-    lm_sensors
+      fio
+      lm_sensors
 
-    xclip
-    wl-clipboard
-    wl-clipboard-x11
-  ];
+      xclip
+      wl-clipboard
+      wl-clipboard-x11
+    ])
+    ++ (with pkgs.gst_all_1; [
+      gstreamer
+      gst-vaapi
+      gstreamermm
+      gst-devtools
+      gst-rtsp-server
+      gst-plugins-bad
+      gst-plugins-ugly
+      gst-plugins-good
+      gst-plugins-base
+      gst-editing-services
+    ]);
   programs = {
     neovim = {
       enable = true;

@@ -4,38 +4,25 @@
   pkgs,
   ...
 }: {
-  environment.systemPackages =
-    (with pkgs; [
-      curl
-      wget
-      nmap
-      dig
+  environment.systemPackages = with pkgs; [
+    curl
+    wget
+    nmap
+    dig
 
-      zip
-      unzip
-      rar
-      unrar
-      lz4
+    zip
+    unzip
+    rar
+    unrar
+    lz4
 
-      # utils
-      neofetch
-      hyfetch
+    # utils
+    neofetch
+    hyfetch
 
-      ffmpeg_6-full
-      imagemagick
-      mpv
-      mpd
-    ])
-    ++ (with pkgs.gst_all_1; [
-      gstreamer
-      gst-vaapi
-      gstreamermm
-      gst-devtools
-      gst-rtsp-server
-      gst-plugins-bad
-      gst-plugins-ugly
-      gst-plugins-good
-      gst-plugins-base
-      gst-editing-services
-    ]);
+    ffmpeg_6-full
+    imagemagick
+    mpv
+    mpd
+  ];
 }
