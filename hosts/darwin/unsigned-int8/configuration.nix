@@ -2,75 +2,42 @@
   lib,
   config,
   pkgs,
+  path,
+  hostname,
   ...
-}: {
-  nix = {
-    package = pkgs.nix;
-    settings = {
-      substituters = [
-        "https://cache.nixos.org/"
-      ];
-      trusted-users = [
-        "@admin"
-      ];
+}: let
+  importModule = moduleName: let
+    dir = path + "/modules/${hostname}";
+  in
+    import (dir + "/${moduleName}");
+
+  hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
+in {
+  imports =
+    [
+      (path + "/modules/shared/desktop/fonts.nix")
+      (path + "/modules/shared/settings/nix.nix")
+      (path + "/modules/shared/settings/config.nix")
+    ]
+    ++ hostModules [
+      "environment"
+      "programs"
+    ];
+
+  security = {
+    pam = {
+      enableSudoTouchIdAuth = true;
     };
-    gc = {
-      automatic = true;
-      interval.Day = 7;
-      options = "--delete-older-than 7d";
-    };
-    extraOptions =
-      ''
-        auto-optimise-store = true
-        experimental-features = nix-command flakes
-      ''
-      + lib.optionalString (pkgs.system == "aarch64-darwin") ''
-        extra-platforms = x86_64-darwin aarch64-darwin
-      '';
   };
 
-  users.users.ashuramaru = {
-    home = "/Users/ashuramaru";
-    shell = pkgs.zsh;
-  };
-  users.users.meanrin = {
-    home = "/Users/meanrin";
-    shell = pkgs.zsh;
-  };
   networking = {
-    computerName = "unsigned-int8";
-    hostName = "unsigned-int8";
-  };
-
-  services = {
-    nix-daemon.enable = true;
-  };
-
-  programs = {
-    zsh.enable = true;
-    nix-index.enable = true;
-    tmux = {
-      enable = true;
-    };
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
+    computerName = "${hostname}";
+    hostName = "${hostname}";
   };
 
   # Environment
   environment = {
     systemPackages = with pkgs; [
-      # Networking
-      wget
-      nmap
-      dig
-
-      # Essentials
-      htop
-      neofetch
-      screen
-
       # Utils
       coreutils
       binutils
@@ -79,61 +46,11 @@
     ];
   };
 
-  # Homebrew
-  homebrew = {
-    enable = true;
-    onActivation = {
-      autoUpdate = true;
-      upgrade = true;
-      cleanup = "zap";
-    };
-    brews = [
-      "openjdk"
-      "openjdk@17"
-    ];
-    casks = [
-      "firefox"
-      "spotify"
-      "steam"
-      "krita"
-      "blender"
-      "chiaki"
-      "prismlauncher"
-      "telegram"
-      "iina"
-      "nextcloud"
-      "alt-tab"
-      "easy-move-plus-resize"
-    ];
-  };
-
-  # Fonts
-  fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [
-      monocraft
-      source-code-pro
-      font-awesome
-      recursive
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "JetBrainsMono"
-        ];
-      })
-    ];
-  };
-
+  services.nix-daemon.enable = true;
   # System configuration
   system = {
     keyboard = {
       enableKeyMapping = true;
-      # remapCapsLockToEscape = true;
-    };
-  };
-  security = {
-    pam = {
-      enableSudoTouchIdAuth = true;
     };
   };
 }

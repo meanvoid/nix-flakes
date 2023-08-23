@@ -33,18 +33,8 @@ in {
     systemPackages =
       (with pkgs; [
         # Networking
-        dig
-        finger_bsd
-        nmap
         curl
         wget
-
-        # Archives
-        zip
-        unzip
-        rar
-        unrar
-        lz4
 
         # Utils
         distrobox
