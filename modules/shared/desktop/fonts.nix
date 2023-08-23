@@ -21,10 +21,14 @@
     wqy_zenhei
     mplus-outline-fonts.githubRelease
     ipafont
+    monocraft
     migmix
     iosevka
     inconsolata-lgc
     cascadia-code
+    source-code-pro
+    font-awesome
+    recursive
     (nerdfonts.override {
       fonts = [
         "FiraCode"
