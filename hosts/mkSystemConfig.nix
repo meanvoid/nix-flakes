@@ -90,7 +90,7 @@ in {
       darwin.lib.darwinSystem {
         inherit system;
         specialArgs = {
-          inherit inputs users path;
+          inherit inputs hostname users path;
           inherit darwin nixpkgs;
           host = {
             inherit hostName;
