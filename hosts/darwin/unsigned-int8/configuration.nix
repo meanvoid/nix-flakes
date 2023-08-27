@@ -45,6 +45,7 @@
       binutils
       openssh
       git
+      python310Full
     ];
   };
   programs.gnupg.agent = {
