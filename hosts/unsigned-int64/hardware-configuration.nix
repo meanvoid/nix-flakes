@@ -123,6 +123,11 @@ in {
     fsType = "cifs";
     options = ["${automount_opts},credentials=/root/secrets/u357064-sub2"];
   };
+  fileSystems."/var/lib/minecraft/backup" = {
+    device = "//u357064-sub3.your-storagebox.de/u357064-sub3";
+    fsType = "cifs";
+    options = ["${automount_opts},credentials=/root/secrets/u357064-sub3"];
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = lib.mkDefault true;
