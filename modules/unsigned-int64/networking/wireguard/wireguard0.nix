@@ -68,6 +68,17 @@ in {
       ## --- Private Network(For bazed people) --- ##
       # --- Home Network --- #
       {
+        # root@signed-int64 pixel7pro
+        publicKey = "WxQNVRD5zwzal95wUuSMZbx8Nl0cvKoa/5ICdTYDBnw=";
+        presharedKeyFile = preshared;
+        allowedIPs = [
+          "192.168.10.24/32"
+          "192.168.254.24/32"
+          "dced:2718:5f06:718a::24/128"
+          "dced:2718:5f06:321a::24/128"
+        ];
+      }
+      {
         # root@unsigned-int8
         publicKey = "ySyIkUGgUHBLZ7RYH/Oetg+V/+ocWpgnf1PyfVRAkXA=";
         presharedKeyFile = preshared;
