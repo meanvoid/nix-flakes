@@ -49,6 +49,8 @@ in {
     extensions = with vscode-marketplace; [
       # lang and lsp support
       ms-python.python # python
+      ms-python.vscode-pylance
+      ms-toolsai.jupyter
       ms-dotnettools.csharp # csharp
       ms-vscode.cpptools # cpp
       rust-lang.rust-analyzer # rust
