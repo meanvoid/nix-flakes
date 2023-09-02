@@ -24,13 +24,7 @@
     enable = true;
     daemon.enable = true;
   };
-  services.hardware = {
-    bolt.enable = true;
-    openrgb = {
-      enable = true;
-      motherboard = "amd";
-    };
-  };
+  services.hardware.bolt.enable = true;
   services = {
     pipewire = {
       enable = true;
