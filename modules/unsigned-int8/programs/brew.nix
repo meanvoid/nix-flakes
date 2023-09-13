@@ -14,7 +14,6 @@
     taps = [
       "homebrew/cask"
       "homebrew/cask-versions"
-      "adoptopenjdk/openjdk"
     ];
     brews = [
       "winetricks"
