@@ -22,7 +22,6 @@
     ];
     casks = [
       "wine-staging"
-      "adoptopenjdk8"
       "firefox"
       "spotify"
       "steam"
