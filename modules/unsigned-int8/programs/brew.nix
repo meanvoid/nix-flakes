@@ -11,9 +11,14 @@
       upgrade = true;
       cleanup = "zap";
     };
+    taps = [
+      "homebrew/cask"
+      "homebrew/cask-versions"
+    ];
     brews = [
       "winetricks"
       "openjdk"
+      "openjdk@8"
       "openjdk@17"
     ];
     casks = [
