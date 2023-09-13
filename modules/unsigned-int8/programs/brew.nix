@@ -14,15 +14,16 @@
     taps = [
       "homebrew/cask"
       "homebrew/cask-versions"
+      "adoptopenjdk/openjdk"
     ];
     brews = [
       "winetricks"
       "openjdk"
-      "openjdk@8"
       "openjdk@17"
     ];
     casks = [
       "wine-staging"
+      "adoptopenjdk8"
       "firefox"
       "spotify"
       "steam"
