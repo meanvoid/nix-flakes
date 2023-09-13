@@ -50,6 +50,10 @@ in {
     system = "x86_64-linux";
     useHomeManager = true;
     useVscodeServer = true;
-    users = ["ashuramaru" "meanrin" "fumono"];
+    users = [
+      "ashuramaru"
+      "meanrin"
+      "fumono"
+    ];
   };
 }

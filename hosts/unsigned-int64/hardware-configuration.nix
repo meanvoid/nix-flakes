@@ -8,19 +8,11 @@
 }: let
   automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
 in {
-  imports = [(modulesPath + "/profiles/qemu-guest.nix")];
-
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod;
     kernelModules = ["kvm-amd" "dm-cache" "dm-cache-smq" "dm-persistent-data" "dm-bio-prison" "dm-clone" "dm-crypt" "dm-writecache" "dm-mirror" "dm-snapshot"];
     extraModulePackages = with config.boot.kernelPackages; [vendor-reset];
     supportedFilesystems = ["xfs"];
-    swraid = {
-      enable = true;
-      mdadmConf = ''
-        ARRAY /dev/md0 metadata=1.2 name=unsigned-int64:root UUID=9d2eb299:64ccc453:1bb22e59:7db34504
-      '';
-    };
   };
   boot.loader = {
     efi = {
@@ -72,39 +64,29 @@ in {
   system.fsPackages = [pkgs.sshfs];
   environment.systemPackages = [pkgs.cifs-utils];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/9e69ada5-accc-42e4-a5a2-1ca96cc809ef";
-    fsType = "btrfs";
-    options = ["subvol=root" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
-  };
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/51C8-021D";
     fsType = "vfat";
   };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/9e69ada5-accc-42e4-a5a2-1ca96cc809ef";
+    fsType = "btrfs";
+    options = ["subvol=/root" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+  };
   fileSystems."/var" = {
     device = "/dev/disk/by-uuid/9e69ada5-accc-42e4-a5a2-1ca96cc809ef";
     fsType = "btrfs";
-    options = ["subvol=var" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = ["subvol=/var" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
-  fileSystems."/nix/store" = {
+  fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/9e69ada5-accc-42e4-a5a2-1ca96cc809ef";
     fsType = "btrfs";
-    options = ["subvol=store" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = ["subvol=/nix" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
-  fileSystems."/Users/ashuramaru" = {
-    device = "/dev/disk/by-uuid/6370d7f5-37e0-4abc-8dfa-9e9537461425";
-    fsType = "ext4";
-    options = ["noatime"];
-  };
-  fileSystems."/Users/meanrin" = {
-    device = "/dev/disk/by-uuid/7063614c-f483-4f6a-9ba4-f5fea21719bd";
-    fsType = "ext4";
-    options = ["noatime"];
-  };
-  fileSystems."/Users/fumono" = {
-    device = "/dev/disk/by-uuid/a4207ed4-5016-4f43-9ef0-a2aff6552389";
-    fsType = "ext4";
-    options = ["noatime"];
+  fileSystems."/Users" = {
+    device = "/dev/disk/by-uuid/9e69ada5-accc-42e4-a5a2-1ca96cc809ef";
+    fsType = "btrfs";
+    options = ["subvol=/Users" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
 
   # SMB/NAS/CIFS
@@ -143,7 +125,6 @@ in {
     interval = "monthly";
     fileSystems = [
       "/"
-      "/var"
     ];
   };
 }
