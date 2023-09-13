@@ -44,10 +44,7 @@ in {
     };
     rtkit.enable = true;
   };
-  services = {
-    vscode-server.enable = true;
-    pcscd.enable = true;
-  };
+  services.vscode-server.enable = true;
   programs = {
     gnupg.agent = {
       enable = true;
