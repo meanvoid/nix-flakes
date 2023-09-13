@@ -123,7 +123,6 @@ in {
       dbaeumer.vscode-eslint # eslint
       jasonnutter.search-node-modules # search trough node_modules
       christian-kohler.npm-intellisense # npm intellisense
-      wallabyjs.quokka-vscode # quokkajs
       prisma.prisma # nodejs.prisma
       wix.vscode-import-cost
       vue.volar

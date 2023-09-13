@@ -12,10 +12,12 @@
       cleanup = "zap";
     };
     brews = [
+      "winetricks"
       "openjdk"
       "openjdk@17"
     ];
     casks = [
+      "wine-staging"
       "firefox"
       "spotify"
       "steam"
