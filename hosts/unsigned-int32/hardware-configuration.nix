@@ -149,8 +149,8 @@
     fsType = "btrfs";
     options = ["subvol=Users" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
-  fileSystems."/home" = {
-    device = "/Users";
+  fileSystems."/home/ashuramaru" = {
+    device = "/Users/marie";
     options = [ "bind" ];
   };
   ### ---------------/dev/nvme2n1p2-------------------- ###
