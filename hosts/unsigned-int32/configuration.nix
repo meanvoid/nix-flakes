@@ -64,18 +64,16 @@ in {
     pam = {
       services = {
         login = {
-          showMotd = true;
           sshAgentAuth = true;
+          u2fAuth = true;
           enableGnomeKeyring = true;
           enableKwallet = true;
-          u2fAuth = true;
         };
         sudo = {
           sshAgentAuth = true;
           u2fAuth = true;
         };
         sshd = {
-          showMotd = true;
           sshAgentAuth = true;
           u2fAuth = true;
           enableGnomeKeyring = true;
@@ -90,33 +88,29 @@ in {
       };
     };
   };
-
   networking = {
     hostName = "unsigned-int32";
     hostId = "ab5d64f5";
     interfaces = {
-      "enp6s0" = {
-        name = "enp6s0";
+      "enp57s0" = {
+        name = "enp57s0";
         useDHCP = true;
       };
-    };
-    vlans = {
-      eth0 = {
-        id = 1;
-        interface = "enp6s0";
+      "enp59s0" = {
+        name = "enp59s0";
+        useDHCP = true;
       };
     };
     nat = {
       enable = true;
       enableIPv6 = true;
-      externalInterface = "enp6s0";
-      internalInterfaces = ["ve-+" "ports0"];
+      externalInterface = "enp59s0";
+      internalInterfaces = ["ve-+"];
     };
     networkmanager = {
       enable = true;
       dhcp = "internal";
-      dns = "none";
-      ethernet.macAddress = "preserve";
+      dns = "dnsmasq";
       firewallBackend = "nftables";
       unmanaged = ["interface-name:ve-*"];
     };

@@ -14,8 +14,8 @@ stdenv.mkDerivation {
     # https://github.com/tactikauan/thcrap-steam-proton-wrapper
     owner = "tactikauan";
     repo = "thcrap-steam-proton-wrapper";
-    rev = "0dee52f7f1db4c9e1eeccac6c880bc3e8b1b973f";
-    sha256 = "0vxbkx5ig1zngsxlj06kms0cvk7f8bsb3j0sq0hy8s2ag67vxy3w";
+    rev = "519e82ca48709cfa71b02bb24c33647307f8eb50";
+    sha256 = "0py1f0xa17cn3388zv8kv2lycnvnssn7xbmk1z7q983yci9kv6ki";
   };
   buildInputs = [bash subversion];
   nativeBuildInputs = [makeWrapper];

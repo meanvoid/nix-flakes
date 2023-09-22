@@ -7,9 +7,6 @@
   programs.zsh.enable = true;
   users = {
     mutableUsers = false;
-    motd = ''
-      ${pkgs.neofetch}/bin/neofetch
-    '';
     groups = {
       ashuramaru = {
         gid = config.users.users.ashuramaru.uid;
@@ -28,7 +25,7 @@
       };
       ashuramaru = {
         isNormalUser = true;
-        description = "Marisa Kirisame";
+        description = "Maria Levjewa";
         home = "/Users/marie";
         uid = 1000;
         initialHashedPassword = "$6$79Eopfg.bX9kzgyR$mPzq3.dFGkCaX2NiAPiTqltBQ0b9gLpEPsX7YdKLyuMbvLssUlfFDiOhZ.FZ.AwS6JbXQ6AXB41Yq5QpJxWJ6/";
