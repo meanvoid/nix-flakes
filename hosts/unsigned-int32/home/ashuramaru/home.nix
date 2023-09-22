@@ -24,7 +24,7 @@
         krita
         gimp
         inkscape
-        godot
+        godot3
         kdenlive
 
         # Productivity
@@ -40,9 +40,14 @@
         mullvad
         rbw # bitwarden cli
 
-        # Games
+        ### --- Games --- ###
+
+        # Xbox
         xemu
+
+        # Sega
         flycast
+
         # Nintendo
         citra-canary
         mgba
@@ -57,18 +62,17 @@
         ppsspp
         rpcs3
 
+        # Minecraft
         prismlauncher
 
+        ### --- Games --- ###
         # Python
-        python311Full
         conda
         android-studio
       ])
       ++ (with pkgs.jetbrains; [
         idea-ultimate
-        rider
         datagrip
-        pycharm-community
       ]);
     stateVersion = "23.05";
   };

@@ -50,42 +50,11 @@
     supportedFilesystems = ["xfs" "ntfs" "zfs"];
   };
   boot.loader = {
-    ### Remove systemdboot for now
-    # systemd-boot = {
-    #   enable = true;
-    #   consoleMode = "max";
-    #   netbootxyz.enable = true;
-    #   memtest86.enable = true;
-    #   configurationLimit = 30;
-    # };
-    grub = {
+    systemd-boot = {
       enable = true;
-      efiSupport = true;
-      enableCryptodisk = true;
-      zfsSupport = true;
-      device = "nodev";
-      memtest86.enable = true;
-      ipxe = {
-        demo = ''
-          #!ipxe
-          dhcp
-          chain http://boot.ipxe.org/demo/boot.php
-        '';
-      };
-      mirroredBoots = [
-        {
-          devices = ["nodev"];
-          efiSysMountPoint = "/boot";
-          efiBootloaderId = "nixos-fsId0";
-          path = "/boot";
-        }
-        {
-          devices = ["nodev"];
-          efiSysMountPoint = "/boot-mirrored";
-          efiBootloaderId = "nixos-fsId1";
-          path = "/boot-mirrored";
-        }
-      ];
+      consoleMode = "max";
+      netbootxyz.enable = true;
+      configurationLimit = 30;
     };
     generationsDir.copyKernels = true;
     efi.canTouchEfiVariables = true;
@@ -95,12 +64,7 @@
 
   ### ----------------BOOT------------------- ###
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/DC98-BC3C";
-    fsType = "vfat";
-  };
-
-  fileSystems."/boot-fallback" = {
-    device = "/dev/disk/by-uuid/DC29-4C99";
+    device = "/dev/disk/by-uuid/84A7-8AA0";
     fsType = "vfat";
   };
   ### ----------------BOOT------------------- ###
@@ -112,101 +76,99 @@
       reusePassphrases = true;
       mitigateDMAAttacks = true;
       devices = {
-        "md5" = {
-          device = "/dev/md5";
+        "root" = {
+          device = "/dev/disk/by-uuid/baee7f57-7ca2-458d-940b-77f443c992b9";
+          allowDiscards = true;
           bypassWorkqueues = true;
-          yubikey = {
-            slot = 2;
-            twoFactor = true;
-            gracePeriod = 30;
-            keyLength = 64;
-            saltLength = 64;
-            storage = {
-              device = "/dev/nvme0n1p1";
-              fsType = "vfat";
-              path = "/crypt-storage/hdd_slot0";
-            };
-          };
         };
+        # "md5" = {
+        # device = "/dev/md5";
+        # bypassWorkqueues = true;
+        # yubikey = {
+        # slot = 2;
+        # twoFactor = true;
+        # gracePeriod = 30;
+        # keyLength = 64;
+        # saltLength = 64;
+        # storage = {
+        # device = "/dev/nvme0n1p1";
+        # fsType = "vfat";
+        # path = "/crypt-storage/hdd_slot0";
+        # };
+        # };
+        # };
       };
     };
     ### ---------------------LUKS--------------------- ###
 
     network.enable = true;
-    availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "uas" "sd_mod" "r8169"];
-    kernelModules = ["dm-snapshot" "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "dm-cache" "dm-cache-smq" "dm-cache-mq" "dm-cache-cleaner"];
+    availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "ahci"
+      "usbhid"
+      "usb_storage"
+      "uas"
+      "sd_mod"
+      # network
+      "igc"
+      "atlantic"
+    ];
+    kernelModules = [
+      # modules
+      "vfat"
+      # yubico
+      "nls_cp437"
+      "nls_iso8859-1"
+      # lvm2
+      "dm-snapshot"
+      "dm-cache"
+      "dm-cache-smq"
+      "dm-cache-mq"
+      "dm-cache-cleaner"
+    ];
   };
-  boot.zfs.forceImportRoot = false;
-  services.zfs = {
-    expandOnBoot = ["zpool"];
-    trim = {
-      enable = true;
-      interval = "daily";
-    };
-    autoScrub = {
-      enable = true;
-      pools = ["zpool"];
-      interval = "weekly";
-    };
-  };
-  ### ---------------zpool root------------------- ###
+  ### ---------------/dev/nvme2n1p2-------------------- ###
   fileSystems."/" = {
-    device = "zpool/root";
-    fsType = "zfs";
+    device = "/dev/disk/by-uuid/425eeef2-fd32-4c76-aed4-8144b826c6e9";
+    fsType = "btrfs";
+    options = ["subvol=root" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
-
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/425eeef2-fd32-4c76-aed4-8144b826c6e9";
+    fsType = "btrfs";
+    options = ["subvol=nix" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+  };
   fileSystems."/var" = {
-    device = "zpool/var";
-    fsType = "zfs";
+    device = "/dev/disk/by-uuid/425eeef2-fd32-4c76-aed4-8144b826c6e9";
+    fsType = "btrfs";
+    options = ["subvol=var" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
-
-  fileSystems."/var/lib" = {
-    device = "zpool/var/lib";
-    fsType = "zfs";
-  };
-
   fileSystems."/Users" = {
-    device = "zpool/Users";
-    fsType = "zfs";
+    device = "/dev/disk/by-uuid/425eeef2-fd32-4c76-aed4-8144b826c6e9";
+    fsType = "btrfs";
+    options = ["subvol=Users" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
-
-  fileSystems."/Users/alex" = {
-    device = "zpool/Users/alex";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Users/marie" = {
-    device = "zpool/Users/marie";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home/alex" = {
-    device = "/Users/alex";
-    fsType = "none";
-    options = ["bind"];
-  };
-
-  fileSystems."/home/marie" = {
-    device = "/Users/marie";
-    fsType = "none";
-    options = ["bind"];
-  };
-
-  ### ---------------zpool root------------------- ###
+  ### ---------------/dev/nvme2n1p2-------------------- ###
 
   ### ---------------/dev/md5-------------------- ###
-  fileSystems."/Shared/media" = {
-    device = "/dev/hddpool/media";
-    fsType = "ext4";
-    options = ["noatime" "nofail"];
-  };
+  # fileSystems."/Shared/media" = {
+  # device = "/dev/hddpool/media";
+  # fsType = "ext4";
+  # options = ["noatime" "nofail"];
+  # };
 
-  fileSystems."/var/backup" = {
-    device = "/dev/hddpool/backup";
-    fsType = "ext4";
-    options = ["noatime" "nofail"];
-  };
+  # fileSystems."/var/backup" = {
+  # device = "/dev/hddpool/backup";
+  # fsType = "ext4";
+  # options = ["noatime" "nofail"];
+  # };
   ### ---------------/dev/md5-------------------- ###
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "monthly";
+    fileSystems = ["/"];
+  };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 }
