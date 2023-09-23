@@ -47,7 +47,7 @@
     };
     # Blacklisted Kernel modules do not change
     blacklistedKernelModules = ["i915" "amdgpu"];
-    supportedFilesystems = ["xfs" "ntfs" "zfs"];
+    supportedFilesystems = ["xfs" "ntfs"];
   };
   boot.loader = {
     systemd-boot = {
