@@ -8,7 +8,7 @@
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
   boot = {
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    kernelPackages = pkgs.linuxPackages_xanmod_stable;``
     kernelModules = [
       # dkms
       "kvm-amd"
