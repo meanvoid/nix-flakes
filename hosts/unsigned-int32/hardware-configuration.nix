@@ -153,6 +153,10 @@
     device = "/Users/marie";
     options = [ "bind" ];
   };
+  fileSystems."/home/meanrin" = {
+    device = "/Users/alex";
+    options = [ "bind" ];
+  };
   ### ---------------/dev/nvme2n1p2-------------------- ###
 
   ### ---------------/dev/md5-------------------- ###
