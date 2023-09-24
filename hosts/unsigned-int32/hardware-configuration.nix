@@ -179,18 +179,27 @@
   ### ---------------/dev/nvme0n1p2-------------------- ###
 
   ### ---------------/dev/md5-------------------- ###
-  # fileSystems."/Shared/media" = {
-  # device = "/dev/hddpool/media";
-  # fsType = "ext4";
-  # options = ["noatime" "nofail"];
-  # };
+  fileSystems."/Shared/media" = {
+    device = "/dev/hddpool/media";
+    fsType = "ext4";
+    options = ["noatime" "nofail"];
+  };
 
-  # fileSystems."/var/backup" = {
-  # device = "/dev/hddpool/backup";
-  # fsType = "ext4";
-  # options = ["noatime" "nofail"];
-  # };
+  fileSystems."/var/lib/backup" = {
+    device = "/dev/hddpool/backup";
+    fsType = "ext4";
+    options = ["noatime" "nofail"];
+  };
   ### ---------------/dev/md5-------------------- ###
+
+  ### ---------------/dev/md50-------------------- ###
+  fileSystems."/Shared/media/games" = {
+    device = "/dev/mapper/fpool";
+    fsType = "btrfs";
+    options = ["subvol=games" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+  };
+  ### ---------------/dev/md50-------------------- ###
+
   services.btrfs.autoScrub = {
     enable = true;
     interval = "monthly";
