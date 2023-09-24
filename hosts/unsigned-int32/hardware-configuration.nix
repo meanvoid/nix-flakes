@@ -44,6 +44,8 @@
         HOMEHOST <ignore>
         ARRAY /dev/md5 UUID=c672589e:b68e1eae:6d443de9:956ba431
         ARRAY /dev/md50 metadata=1.2 name=unsigned-int32:fpool UUID=38d6870a:a1b00122:2c4aac4b:7ba0d7cd
+        MAILADDR ashuramaru@tenjin-dk.com
+        MAILFROM no-reply@cloud.tenjin-dk.com
       '';
     };
     # Blacklisted Kernel modules do not change
