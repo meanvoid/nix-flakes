@@ -44,7 +44,6 @@
         floccus
         tabliss
         return-youtube-dislikes
-        old-twitter-layout
         old-reddit-redirect
         reddit-enhancement-suite
 
