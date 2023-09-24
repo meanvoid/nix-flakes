@@ -102,6 +102,7 @@
         "hpool" = {
           device = "/dev/md5";
           bypassWorkqueues = true;
+          preLVM = true;
           yubikey = {
             slot = 2;
             twoFactor = true;
