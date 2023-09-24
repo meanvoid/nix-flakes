@@ -109,7 +109,7 @@
             keyLength = 64;
             saltLength = 16;
             storage = {
-              device = "/dev/nvme0n1p1";
+              device = "/dev/nvme1n1p1";
               fsType = "vfat";
               path = "/crypt-storage/hpool_slot0";
             };
