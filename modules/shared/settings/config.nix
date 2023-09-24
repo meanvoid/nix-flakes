@@ -14,7 +14,7 @@
     unzip
     rar
     lz4
-    7z
+    p7zip
 
     # utils
     neofetch
