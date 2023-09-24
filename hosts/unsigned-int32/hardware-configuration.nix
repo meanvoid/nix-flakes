@@ -43,6 +43,7 @@
       mdadmConf = ''
         HOMEHOST <ignore>
         ARRAY /dev/md5 UUID=c672589e:b68e1eae:6d443de9:956ba431
+        ARRAY /dev/md50 metadata=1.2 name=unsigned-int32:fpool UUID=38d6870a:a1b00122:2c4aac4b:7ba0d7cd
       '';
     };
     # Blacklisted Kernel modules do not change
@@ -81,22 +82,39 @@
           allowDiscards = true;
           bypassWorkqueues = true;
         };
-        # "md5" = {
-        # device = "/dev/md5";
-        # bypassWorkqueues = true;
-        # yubikey = {
-        # slot = 2;
-        # twoFactor = true;
-        # gracePeriod = 30;
-        # keyLength = 64;
-        # saltLength = 64;
-        # storage = {
-        # device = "/dev/nvme0n1p1";
-        # fsType = "vfat";
-        # path = "/crypt-storage/hdd_slot0";
-        # };
-        # };
-        # };
+        "fpool" = {
+          device = "/dev/md50";
+          allowDiscards = true;
+          bypassWorkqueues = true;
+          yubikey = {
+            slot = 2;
+            twoFactor = true;
+            gracePeriod = 30;
+            keyLength = 64;
+            saltLength = 16;
+            storage = {
+              device = "/dev/nvme1n1p1";
+              fsType = "vfat";
+              path = "/crypt-storage/fpool_slot0";
+            };
+          };
+        };
+        "hpool" = {
+          device = "/dev/md5";
+          bypassWorkqueues = true;
+          yubikey = {
+            slot = 2;
+            twoFactor = true;
+            gracePeriod = 30;
+            keyLength = 64;
+            saltLength = 16;
+            storage = {
+              device = "/dev/nvme0n1p1";
+              fsType = "vfat";
+              path = "/crypt-storage/hpool_slot0";
+            };
+          };
+        };
       };
     };
     ### ---------------------LUKS--------------------- ###
@@ -128,7 +146,7 @@
       "dm-cache-cleaner"
     ];
   };
-  ### ---------------/dev/nvme2n1p2-------------------- ###
+  ### ---------------/dev/nvme0n1p2-------------------- ###
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/425eeef2-fd32-4c76-aed4-8144b826c6e9";
     fsType = "btrfs";
@@ -151,13 +169,13 @@
   };
   fileSystems."/home/ashuramaru" = {
     device = "/Users/marie";
-    options = [ "bind" ];
+    options = ["bind"];
   };
   fileSystems."/home/meanrin" = {
     device = "/Users/alex";
-    options = [ "bind" ];
+    options = ["bind"];
   };
-  ### ---------------/dev/nvme2n1p2-------------------- ###
+  ### ---------------/dev/nvme0n1p2-------------------- ###
 
   ### ---------------/dev/md5-------------------- ###
   # fileSystems."/Shared/media" = {
