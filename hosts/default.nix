@@ -40,7 +40,7 @@ in {
             "flathub" = "https://flathub.org/repo/flathub.flatpakrepo";
             "flathub-beta" = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
           };
-          packages = ["flathub:org.blender.Blender//stable"];
+          packages = ["flathub:app/org.blender.Blender//stable"];
         };
       }
     ];
