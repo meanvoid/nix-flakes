@@ -6,7 +6,7 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     ### --- nixpkgs channel
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nur.url = "github:nix-community/nur";
 
     ### --- system specific
@@ -17,7 +17,7 @@
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
 
     ### --- user specific modules
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-23.05";
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
 
