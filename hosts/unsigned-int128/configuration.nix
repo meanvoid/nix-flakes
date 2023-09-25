@@ -18,7 +18,6 @@ in {
   imports =
     [
       ./hardware-configuration.nix
-      ./settings.nix # temp networking
       (path + "/modules/unsigned-int128/environment/users.nix")
       (path + "/modules/shared/settings/opengl.nix")
       (path + "/modules/shared/settings/nix.nix")
