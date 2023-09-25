@@ -98,27 +98,27 @@
         KbdInteractiveAuthentication = true;
         PermitRootLogin = "prohibit-password";
       };
-      listenAddresses = [
-        {
-          addr = "0.0.0.0";
-          port = 57255;
-        }
-        {
-          addr = "::";
-        }
-        {
-          addr = "192.168.10.1";
-          port = 22;
-        }
-        {
-          addr = "192.168.254.1";
-          port = 22;
-        }
-        {
-          addr = "172.168.10.1";
-          port = 22;
-        }
-      ];
+      # listenAddresses = [
+      #   {
+      #     addr = "0.0.0.0";
+      #     port = 57255;
+      #   }
+      #   {
+      #     addr = "::";
+      #   }
+      #   {
+      #     addr = "192.168.10.1";
+      #     port = 22;
+      #   }
+      #   {
+      #     addr = "192.168.254.1";
+      #     port = 22;
+      #   }
+      #   {
+      #     addr = "172.168.10.1";
+      #     port = 22;
+      #   }
+      # ];
     };
     dnsmasq = {
       enable = true;
