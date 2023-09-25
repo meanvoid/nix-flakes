@@ -128,33 +128,33 @@ in {
   fileSystems."/var/lib/backup" = {
     device = "//u369008-sub4.your-storagebox.de/u369008-sub4";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/u369008-sub4"];
+    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub4"];
   };
   fileSystems."/var/lib/minecraft/backup/solonka" = {
     device = "//u369008-sub6.your-storagebox.de/u369008-sub6";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/u369008-sub6,uid=5333,gid=5333"];
+    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub6,uid=5333,gid=5333"];
   };
   fileSystems."/var/lib/minecraft/backup/fumoposting" = {
     device = "//u369008-sub7.your-storagebox.de/u369008-sub7";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/u369008-sub7,uid=5333,gid=5333"];
+    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub7,uid=5333,gid=5333"];
   };
   ### ---------------media-------------------- ###
   fileSystems."/mnt/media" = {
     device = "//u369008-sub9.your-storagebox.de/u369008-sub9";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/u369008-sub9,uid=991,gid=981"];
+    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub9,uid=991,gid=981"];
   };
   fileSystems."/var/lib/transmission/private" = {
-    device = "//u369008-sub10.your-storagebox.de/u369008-sub10";
+    device = "//u369008-sub10.your-storagebox.de/storagebox/u369008-sub10";
     fsType = "cifs";
     options = ["${automount_opts},credentials=/root/secrets/u369008-sub10,uid=70,gid=70"];
   };
   fileSystems."/var/lib/transmission/public" = {
     device = "//u369008-sub11.your-storagebox.de/u369008-sub11";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/u369008-sub11,uid=70,gid=70"];
+    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub11,uid=70,gid=70"];
   };
   ### ---------------SMB/NAS/CIFS-------------------- ###
   services.btrfs.autoScrub = {
