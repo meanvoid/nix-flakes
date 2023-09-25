@@ -18,6 +18,7 @@ in {
   imports =
     [
       ./hardware-configuration.nix
+      ./settings.nix # temp networking
       (path + "/modules/unsigned-int64/environment/users.nix")
       (path + "/modules/shared/settings/opengl.nix")
       (path + "/modules/shared/settings/nix.nix")
@@ -26,8 +27,8 @@ in {
       (path + "/modules/shared/settings/config.nix")
     ]
     ++ hostModules [
-      "networking"
-      "services"
+      # "networking"
+      # "services"
       "virtualisation"
     ];
 
