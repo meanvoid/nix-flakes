@@ -14,7 +14,7 @@
     packages = [
       "flathub:runtime/org.kde.Platform/x86_64/5.15-22.08"
       "flathub:runtime/org.kde.PlatformTheme.QGnomePlatform/x86_64/5.15-22.08"
-      "flathub:org.kde.WaylandDecoration.QGnomePlatform-decoration/x86_64/5.15-22.08"
+      "flathub:runtime/org.kde.WaylandDecoration.QGnomePlatform-decoration/x86_64/5.15-22.08"
     ];
   };
   system.fsPackages = [pkgs.bindfs];
