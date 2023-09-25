@@ -10,7 +10,7 @@
 in {
   imports = [./secrets.nix];
   networking.wg-quick.interfaces.wireguard1 = {
-    address = ["172.168.10.1/24"];
+    address = ["172.168.10.1/24" "f9c4:6fa6:98a2:a39c::1/64"];
     listenPort = 51280;
     privateKeyFile = private;
     postUp = ''
@@ -28,21 +28,21 @@ in {
     peers = [
       # root@unsigned-int32
       {
-        publicKey = "Xkf+7uF5pySGc+zCrl2f+lrpn34fs6FW1XUfo32TKng=";
+        publicKey = "DWcyxqR5vRTpiTm0UGCchdAHwr+pTK2E/n7sd7GXLDc=";
         presharedKeyFile = preshared;
-        allowedIPs = ["172.168.10.2/32"];
+        allowedIPs = ["172.168.10.2/32" "f9c4:6fa6:98a2:a39c::2/128"];
       }
       # root@v1
       {
         publicKey = "CSDtM49xF0EMPGgQIKtu88ZxtFmHYUYRnNxGjd+RMzA=";
         presharedKeyFile = preshared;
-        allowedIPs = ["172.168.10.3/32"];
+        allowedIPs = ["172.168.10.3/32" "f9c4:6fa6:98a2:a39c::3/128"];
       }
       {
         # root@unsigned-int8
         publicKey = "znpZ26tP+y+aF/LoOT4TyLXqBNt9wuZKK0ktnk18GHA=";
         presharedKeyFile = preshared;
-        allowedIPs = ["172.168.10.4/32"];
+        allowedIPs = ["172.168.10.4/32" "f9c4:6fa6:98a2:a39c::4/128"];
       }
     ];
   };

@@ -69,7 +69,7 @@ in {
       # --- Home Network --- #
       {
         # root@signed-int64 pixel7pro
-        publicKey = "WxQNVRD5zwzal95wUuSMZbx8Nl0cvKoa/5ICdTYDBnw=";
+        publicKey = "DWcyxqR5vRTpiTm0UGCchdAHwr+pTK2E/n7sd7GXLDc=";
         presharedKeyFile = preshared;
         allowedIPs = [
           "192.168.10.24/32"
