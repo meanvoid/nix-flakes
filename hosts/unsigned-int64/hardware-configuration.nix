@@ -123,27 +123,40 @@ in {
   };
   ### ---------------/dev/nvme0n1p2-------------------- ###
 
-  # SMB/NAS/CIFS
-  # fileSystems."/var/lib/transmission" = {
-  #   device = "//u357064-sub1.your-storagebox.de/u357064-sub1";
-  #   fsType = "cifs";
-  #   options = ["${automount_opts},credentials=/root/secrets/u357064-sub1,uid=70,gid=70"];
-  # };
-  # fileSystems."/mnt/media" = {
-  #   device = "//u357064-sub1.your-storagebox.de/u357064-sub1/Media";
-  #   fsType = "cifs";
-  #   options = ["${automount_opts},credentials=/root/secrets/u357064-sub1,uid=986,gid=986"];
-  # };
-  # fileSystems."/var/backup/system" = {
-  #   device = "//u357064-sub2.your-storagebox.de/u357064-sub2";
-  #   fsType = "cifs";
-  #   options = ["${automount_opts},credentials=/root/secrets/u357064-sub2"];
-  # };
-  # fileSystems."/var/lib/minecraft/backup" = {
-  #   device = "//u357064-sub3.your-storagebox.de/u357064-sub3";
-  #   fsType = "cifs";
-  #   options = ["${automount_opts},credentials=/root/secrets/u357064-sub3,uid=5333,gid=5333"];
-  # };
+  ### ---------------SMB/NAS/CIFS-------------------- ###
+  ### ---------------backups-------------------- ###
+  fileSystems."/var/lib/backup" = {
+    device = "//u369008-sub4.your-storagebox.de/u369008-sub4";
+    fsType = "cifs";
+    options = ["${automount_opts},credentials=/root/secrets/u369008-sub4"];
+  };
+  fileSystems."/var/lib/minecraft/backup/solonka" = {
+    device = "//u369008-sub6.your-storagebox.de/u369008-sub6";
+    fsType = "cifs";
+    options = ["${automount_opts},credentials=/root/secrets/u369008-sub6,uid=5333,gid=5333"];
+  };
+  fileSystems."/var/lib/minecraft/backup/fumoposting" = {
+    device = "//u369008-sub7.your-storagebox.de/u369008-sub7";
+    fsType = "cifs";
+    options = ["${automount_opts},credentials=/root/secrets/u369008-sub7,uid=5333,gid=5333"];
+  };
+  ### ---------------media-------------------- ###
+  fileSystems."/mnt/media" = {
+    device = "//u369008-sub9.your-storagebox.de/u369008-sub9";
+    fsType = "cifs";
+    options = ["${automount_opts},credentials=/root/secrets/u369008-sub9,uid=991,gid=981"];
+  };
+  fileSystems."/var/lib/transmission/private" = {
+    device = "//u369008-sub10.your-storagebox.de/u369008-sub10";
+    fsType = "cifs";
+    options = ["${automount_opts},credentials=/root/secrets/u369008-sub10,uid=70,gid=70"];
+  };
+  fileSystems."/var/lib/transmission/public" = {
+    device = "//u369008-sub11.your-storagebox.de/u369008-sub11";
+    fsType = "cifs";
+    options = ["${automount_opts},credentials=/root/secrets/u369008-sub11,uid=70,gid=70"];
+  };
+  ### ---------------SMB/NAS/CIFS-------------------- ###
   services.btrfs.autoScrub = {
     enable = true;
     interval = "monthly";
