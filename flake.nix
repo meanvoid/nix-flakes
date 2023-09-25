@@ -17,7 +17,7 @@
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
 
     ### --- user specific modules
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    home-manager.url = "github:nix-community/home-manager";
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
 
