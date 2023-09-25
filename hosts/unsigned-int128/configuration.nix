@@ -28,7 +28,7 @@ in {
     ]
     ++ hostModules [
       # "networking"
-      # "services"
+      "services"
       "virtualisation"
     ];
 
