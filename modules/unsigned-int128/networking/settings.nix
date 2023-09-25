@@ -5,7 +5,7 @@
   ...
 }: {
   networking = {
-    hostName = "unsigned-int64";
+    hostName = "unsigned-int128";
     interfaces = {
       "enp5s0" = {
         name = "enp5s0";
