@@ -8,7 +8,7 @@
 }: {
   age.secrets.grafana_pgsql = {
     file = path + /secrets/grafana_pgsql.age;
-    path = "/var/lib/backup/pgsql.pass";
+    path = "/var/lib/secrets/pgsql.pass";
     mode = "0640";
     owner = "grafana";
     group = "grafana";

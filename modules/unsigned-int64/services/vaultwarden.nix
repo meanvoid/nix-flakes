@@ -10,7 +10,7 @@
 in {
   age.secrets.vaultwarden-env = {
     file = path + /secrets/vaultwarden-env.age;
-    path = "/var/lib/backup/.env";
+    path = "/var/lib/secrets/.env";
     mode = "770";
     owner = "vaultwarden";
     group = "vaultwarden";
