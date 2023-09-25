@@ -1,3 +1,5 @@
 [
-  # ./vpn/wireguard/wg.nix
+  ./openssh.nix
+  ./samba.nix
+  ./wireguard/wg.nix
 ]
