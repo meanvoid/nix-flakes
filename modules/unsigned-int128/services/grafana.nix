@@ -81,7 +81,7 @@
     };
     scrapeConfigs = [
       {
-        job_name = "unsigned-int64";
+        job_name = "unsigned-int128";
         static_configs = [{targets = ["127.0.0.1:${toString config.services.prometheus.exporters.node.port}"];}];
       }
       {
@@ -198,7 +198,7 @@
             max_age = "12h";
             labels = {
               job = "systemd-journal";
-              host = "unsigned-int64";
+              host = "unsigned-int128";
             };
           };
           relabel_configs = [
