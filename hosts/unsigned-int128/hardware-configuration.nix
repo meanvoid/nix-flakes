@@ -68,10 +68,12 @@ in {
       yubikeySupport = true;
       reusePassphrases = true;
       mitigateDMAAttacks = true;
-      "root" = {
-        device = "/dev/disk/by-uuid/5126dd32-509c-4946-b421-1a860c843abd";
-        allowDiscards = true;
-        bypassWorkqueues = true;
+      devices = {
+        "root" = {
+          device = "/dev/disk/by-uuid/5126dd32-509c-4946-b421-1a860c843abd";
+          allowDiscards = true;
+          bypassWorkqueues = true;
+        };
       };
     };
     availableKernelModules = [
