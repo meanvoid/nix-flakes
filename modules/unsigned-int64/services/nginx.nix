@@ -46,16 +46,16 @@
       add_header X-XSS-Protection "1; mode=block";
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
-    # virtualHosts."fumoposting.com" = {
-    #   serverName = "fumoposting.com";
-    #   addSSL = true;
-    #   enableACME = true;
-    #   locations."/static" = {
-    #     root = "/var/lib/minecraft";
-    #     extraConfig = ''
-    #       autoindex on;
-    #     '';
-    #   };
-    # };
+    virtualHosts."fumoposting.com" = {
+      serverName = "fumoposting.com";
+      addSSL = true;
+      enableACME = true;
+      locations."/static" = {
+        root = "/var/lib/minecraft";
+        extraConfig = ''
+          autoindex on;
+        '';
+      };
+    };
   };
 }
