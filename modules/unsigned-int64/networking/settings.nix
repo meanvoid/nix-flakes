@@ -7,34 +7,30 @@
   networking = {
     hostName = "unsigned-int64";
     interfaces = {
-      "eth0" = {
-        name = "eth0";
+      "eno1" = {
+        name = "eno1";
         useDHCP = lib.mkDefault true;
         ipv4.addresses = [
           {
-            address = "78.46.45.218";
-            prefixLength = 24;
-          }
-          {
-            address = "78.46.45.208";
-            prefixLength = 32;
+            address = "176.9.10.47";
+            prefixLength = 27;
           }
         ];
         ipv6.addresses = [
           {
-            address = "2a01:4f8:110:33ab::1";
+            address = "2a01:4f8:141:5330::1";
             prefixLength = 64;
           }
         ];
       };
     };
     defaultGateway = {
-      address = "78.46.45.193";
-      interface = "eth0";
+      address = "176.9.10.33";
+      interface = "eno1";
     };
     defaultGateway6 = {
       address = "fe80::1";
-      interface = "eth0";
+      interface = "eno1";
     };
     nameservers = [
       "127.0.0.1"
@@ -49,7 +45,7 @@
     nat = {
       enable = true;
       enableIPv6 = true;
-      externalInterface = "eth0";
+      externalInterface = "eno1";
       internalInterfaces = [
         "ve-+"
         "virbr0"
@@ -102,27 +98,27 @@
         KbdInteractiveAuthentication = true;
         PermitRootLogin = "prohibit-password";
       };
-      listenAddresses = [
-        {
-          addr = "0.0.0.0";
-          port = 57255;
-        }
-        {
-          addr = "::";
-        }
-        {
-          addr = "192.168.10.1";
-          port = 22;
-        }
-        {
-          addr = "192.168.254.1";
-          port = 22;
-        }
-        {
-          addr = "172.168.10.1";
-          port = 22;
-        }
-      ];
+      # listenAddresses = [
+      #   {
+      #     addr = "0.0.0.0";
+      #     port = 57255;
+      #   }
+      #   {
+      #     addr = "::";
+      #   }
+      #   {
+      #     addr = "192.168.10.1";
+      #     port = 22;
+      #   }
+      #   {
+      #     addr = "192.168.254.1";
+      #     port = 22;
+      #   }
+      #   {
+      #     addr = "172.168.10.1";
+      #     port = 22;
+      #   }
+      # ];
     };
     dnsmasq = {
       enable = true;

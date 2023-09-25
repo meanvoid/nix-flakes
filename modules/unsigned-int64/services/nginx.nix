@@ -46,30 +46,16 @@
       add_header X-XSS-Protection "1; mode=block";
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
-    virtualHosts."fumoposting.com" = {
-      serverName = "fumoposting.com";
-      addSSL = true;
-      enableACME = true;
-      locations."/static" = {
-        root = "/var/lib/minecraft";
-        extraConfig = ''
-          autoindex on;
-        '';
-      };
-    };
-    virtualHosts."rcon.fumoposting.com" = {
-      serverName = "rcon.fumoposting.com";
-      addSSL = true;
-      sslCertificate = "/var/lib/scerts/rcon.fumoposting.com.crt";
-      sslCertificateKey = "/var/lib/scerts/rcon.fumoposting.com.key";
-      locations."/" = {
-        proxyPass = "http://172.168.10.1:4326";
-        proxyWebsockets = true;
-      };
-      locations."/ws" = {
-        proxyPass = "http://172.168.10.1:4327";
-        proxyWebsockets = true;
-      };
-    };
+    # virtualHosts."fumoposting.com" = {
+    #   serverName = "fumoposting.com";
+    #   addSSL = true;
+    #   enableACME = true;
+    #   locations."/static" = {
+    #     root = "/var/lib/minecraft";
+    #     extraConfig = ''
+    #       autoindex on;
+    #     '';
+    #   };
+    # };
   };
 }

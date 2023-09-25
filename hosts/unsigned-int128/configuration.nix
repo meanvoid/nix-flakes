@@ -18,7 +18,7 @@ in {
   imports =
     [
       ./hardware-configuration.nix
-      (path + "/modules/unsigned-int128/environment/users.nix")
+      (path + "/modules/unsigned-int64/environment/users.nix")
       (path + "/modules/shared/settings/opengl.nix")
       (path + "/modules/shared/settings/nix.nix")
       (path + "/modules/shared/settings/firmware.nix")
