@@ -1,5 +1,5 @@
 [
   ./openssh.nix
   ./samba.nix
-  ./wireguard/wg.nix
+  ./wg.nix
 ]
