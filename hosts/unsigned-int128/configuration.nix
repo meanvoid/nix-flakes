@@ -10,7 +10,7 @@
   ...
 }: let
   importModule = moduleName: let
-    dir = path + "/modules/unsigned-int64";
+    dir = path + "/modules/${hostname}";
   in
     import (dir + "/${moduleName}");
   hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
@@ -19,7 +19,7 @@ in {
     [
       ./hardware-configuration.nix
       ./settings.nix # temp networking
-      (path + "/modules/unsigned-int64/environment/users.nix")
+      (path + "/modules/unsigned-int128/environment/users.nix")
       (path + "/modules/shared/settings/opengl.nix")
       (path + "/modules/shared/settings/nix.nix")
       (path + "/modules/shared/settings/firmware.nix")
@@ -27,7 +27,7 @@ in {
       (path + "/modules/shared/settings/config.nix")
     ]
     ++ hostModules [
-      # "networking"
+      "networking"
       "services"
       "virtualisation"
     ];
