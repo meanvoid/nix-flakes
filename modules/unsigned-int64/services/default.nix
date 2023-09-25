@@ -5,7 +5,7 @@
   ./nginx.nix
   ./nextcloud.nix
   ./vaultwarden.nix
-  ./grafana.nix
+  # ./grafana.nix
   ./jellyfin.nix
   ./transmission.nix
 ]
