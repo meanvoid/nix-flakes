@@ -4,8 +4,7 @@ let
     meanrin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFS10V6yIxDfxjepo1jmYam1qQ67NMpkPeUFDJokhOJj";
   };
   systems = {
-    unsigned-int8 = "";
-    unsigned-int32 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILn6KuA2ztDSI2vFwOgZlmvEik4pkVJ1pvIKBMo6rh/4 root@unsigned-int32";
+    unsigned-int32 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMDjzgy3naRadyxnaN5Kjn3of0qPlDOYg2coY4Url5U5 root@unsigned-int32";
     unsigned-int64 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKdiVn6zgj+VGj3BIGiwMFH3AumoGSCzaVukcbQWVz1K root@unsigned-int64";
   };
   matrix = [systems.unsigned-int32 systems.unsigned-int64];

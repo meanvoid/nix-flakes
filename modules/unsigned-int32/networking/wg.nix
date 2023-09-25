@@ -38,7 +38,7 @@ in {
       ];
     };
     wg-ui64 = {
-      address = ["172.168.10.2/24" ""];
+      address = ["172.168.10.2/24"];
       dns = ["172.168.10.1"];
       privateKeyFile = private;
       peers = [
