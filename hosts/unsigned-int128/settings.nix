@@ -8,7 +8,7 @@
     hostName = "unsigned-int64";
     interfaces = {
       "enp5s0" = {
-        name = "eth0";
+        name = "enp5s0";
         useDHCP = lib.mkDefault true;
         ipv4.addresses = [
           {
@@ -26,11 +26,11 @@
     };
     defaultGateway = {
       address = "176.9.10.33";
-      interface = "eth0";
+      interface = "enp5s0";
     };
     defaultGateway6 = {
       address = "fe80::1";
-      interface = "eth0";
+      interface = "enp5s0";
     };
     nameservers = [
       "127.0.0.1"
@@ -45,7 +45,7 @@
     nat = {
       enable = true;
       enableIPv6 = true;
-      externalInterface = "eth0";
+      externalInterface = "enp5s0";
       internalInterfaces = [
         "ve-+"
         "virbr0"
