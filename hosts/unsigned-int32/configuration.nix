@@ -111,7 +111,6 @@ in {
       enable = true;
       dhcp = "internal";
       dns = "dnsmasq";
-      firewallBackend = "nftables";
       unmanaged = ["interface-name:ve-*"];
     };
     nameservers = [
