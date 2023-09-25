@@ -6,13 +6,13 @@
   path,
   ...
 }: {
-  age.secrets.njalla-api-token = {
-    file = path + /secrets/njalla-api-token.age;
-    path = "/var/lib/njalla";
-    mode = "770";
-    owner = "acme";
-    group = "acme";
-  };
+  # age.secrets.njalla-api-token = {
+  #   file = path + /secrets/njalla-api-token.age;
+  #   path = "/var/lib/njalla";
+  #   mode = "770";
+  #   owner = "acme";
+  #   group = "acme";
+  # };
 
   security.acme = {
     acceptTerms = true;
@@ -20,7 +20,7 @@
       email = "ashuramaru@tenjin-dk.com";
       dnsResolver = "1.1.1.1:53";
       dnsProvider = "njalla";
-      credentialsFile = config.age.secrets.njalla-api-token.path;
+      # credentialsFile = config.age.secrets.njalla-api-token.path;
     };
   };
   services.nginx = {
