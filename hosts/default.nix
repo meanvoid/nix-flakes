@@ -56,4 +56,15 @@ in {
       "fumono"
     ];
   };
+  unsigned-int128 = mkSystemConfig.linux {
+    hostName = "unsigned-int128";
+    system = "x86_64-linux";
+    useHomeManager = true;
+    useVscodeServer = true;
+    users = [
+      "ashuramaru"
+      "meanrin"
+      "fumono"
+    ];
+  };
 }
