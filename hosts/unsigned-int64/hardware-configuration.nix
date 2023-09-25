@@ -149,7 +149,7 @@ in {
   fileSystems."/var/lib/transmission/private" = {
     device = "//u369008-sub10.your-storagebox.de/storagebox/u369008-sub10";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/u369008-sub10,uid=70,gid=70"];
+    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub10,uid=70,gid=70"];
   };
   fileSystems."/var/lib/transmission/public" = {
     device = "//u369008-sub11.your-storagebox.de/u369008-sub11";
