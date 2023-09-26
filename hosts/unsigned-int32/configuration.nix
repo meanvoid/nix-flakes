@@ -110,7 +110,7 @@ in {
     networkmanager = {
       enable = true;
       dhcp = "internal";
-      dns = "default";
+      dns = "systemd-resolved";
       unmanaged = ["interface-name:ve-*"];
     };
     nameservers = [
