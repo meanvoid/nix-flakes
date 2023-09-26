@@ -227,14 +227,14 @@
         };
       };
     };
-    "prom.tenjin-dk.com" = {
-      addSSL = true;
-      sslCertificate = "/var/lib/scerts/prom.tenjin-dk.com/prom.tenjin-dk.com.crt";
-      sslCertificateKey = "/var/lib/scerts/prom.tenjin-dk.com/prom.tenjin-dk.com.key";
-      locations."/" = {
-        proxyPass = "http://172.168.10.1:${toString config.services.prometheus.port}";
-        proxyWebsockets = true;
-      };
-    };
+    # "prom.tenjin-dk.com" = {
+    #   addSSL = true;
+    #   sslCertificate = "/var/lib/scerts/prom.tenjin-dk.com/prom.tenjin-dk.com.crt";
+    #   sslCertificateKey = "/var/lib/scerts/prom.tenjin-dk.com/prom.tenjin-dk.com.key";
+    #   locations."/" = {
+    #     proxyPass = "http://172.168.10.1:${toString config.services.prometheus.port}";
+    #     proxyWebsockets = true;
+    #   };
+    # };
   };
 }
