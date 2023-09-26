@@ -56,8 +56,8 @@ in {
       "upload_max_filesize" = "500G";
       "max_file_uploads" = "10000000";
     };
-    phpExtraExtensions = all: [ 
-      all.pdlib 
+    phpExtraExtensions = all: [
+      all.pdlib
       all.bz2
       all.smbclient
     ];
