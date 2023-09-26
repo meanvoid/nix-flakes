@@ -90,9 +90,9 @@
     solonka = {
       isNormalUser = true;
       home = "/Users/solonka";
-      description = "Sonja";
+      description = "Soniya";
       initialHashedPassword = "";
-      extraGroups = ["Sonja" "docker" "minecraft"];
+      extraGroups = ["solonka" "docker" "minecraft"];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGkp/XreM7mGl/zxLTk7HF50hcKxyDhh04SQThHjpDD7 solonkamay@gmail.com"
       ];
