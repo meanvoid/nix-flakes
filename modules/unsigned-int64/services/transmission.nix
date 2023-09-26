@@ -15,6 +15,7 @@
       watch-dir = "${config.services.transmission.home}/watch";
       incomplete-dir-enabled = true;
       incomplete-dir = "${config.services.transmission.home}/incomplete";
+      download-dir = "${config.services.transmission.home}/Downloads";
       rpc-bind-address = "0.0.0.0";
       rpc-port = 18765;
       rpc-whitelist-enabled = true;
