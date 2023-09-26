@@ -110,7 +110,7 @@ in {
     networkmanager = {
       enable = true;
       dhcp = "internal";
-      dns = "systemd-resolved";
+      dns = "dnsmasq";
       unmanaged = ["interface-name:ve-*"];
     };
     nameservers = [
@@ -124,6 +124,21 @@ in {
       allowedUDPPorts = [53];
       allowedTCPPorts = [53 80 443];
     };
+  };
+  services.dnsmasq = {
+    enable = true;
+      resolveLocalQueries = true;
+      settings = {
+        interface = [
+          "wg-ui64"
+        ];
+        server = [
+          # blahdns
+          "78.46.244.143"
+          "95.216.212.177"
+          "2a01:4f8:c17:ec67::1"
+          "2a01:4f9:c010:43ce::1"
+        ];
   };
   services.vscode-server.enable = true;
   environment = {
