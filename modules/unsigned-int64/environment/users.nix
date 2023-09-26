@@ -109,6 +109,7 @@
       extraGroups = ["jalemi" "docker" "minecraft"];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM7Y6rWriIoPAs/4UwyR6idg+qoltoMqpzrFfRxvfNl8 jolym@DESKTOP-8ABNMG9"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH5vW/3EeOQV9Et0BtNFk7AwRQHG0BpYPiV+7NA73+mx joly@joly-BOD-WXX9"
       ];
     };
     solonka = {
