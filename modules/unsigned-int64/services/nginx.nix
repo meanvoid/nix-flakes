@@ -12,7 +12,7 @@
       email = "ashuramaru@tenjin-dk.com";
       dnsResolver = "1.1.1.1:53";
       dnsProvider = "njalla";
-      credentialsFile = /var/lib/scerts/njalla-api ;
+      credentialsFile = /var/lib/scerts/njalla-api;
     };
   };
   services.nginx = {
