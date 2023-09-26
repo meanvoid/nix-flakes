@@ -7,10 +7,14 @@
   services.transmission = {
     enable = true;
     openPeerPorts = true;
+    downloadDirPermissions = "775";
+    home = "/var/lib/transmission/public";
     settings = {
       utp-enabled = true; # to not forget
       watch-dir-enabled = true;
-      watch-dir = "${config.services.transmission.home}/watch-dir";
+      watch-dir = "${config.services.transmission.home}/watch";
+      incomplete-dir-enabled = true;
+      incomplete-dir = "${config.services.transmission.home}/incomplete";
       rpc-bind-address = "0.0.0.0";
       rpc-port = 18765;
       rpc-whitelist-enabled = true;
