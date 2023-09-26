@@ -40,8 +40,8 @@
     '';
     virtualHosts."fumoposting.com" = {
       serverName = "fumoposting.com";
-      # addSSL = true;
-      # enableACME = true;
+      addSSL = true;
+      enableACME = true;
       locations."/static" = {
         root = "/var/lib/minecraft";
         extraConfig = ''
