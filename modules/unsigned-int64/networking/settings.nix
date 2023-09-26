@@ -38,7 +38,6 @@
       "1.1.1.1" # cloudflare
     ];
     extraHosts = ''
-      172.168.10.1 rcon.fumoposting.com
       172.168.10.1 prom.tenjin-dk.com
       172.168.10.1 lib.tenjin-dk.com
     '';
