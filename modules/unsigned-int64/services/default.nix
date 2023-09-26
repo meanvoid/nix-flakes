@@ -7,5 +7,5 @@
   ./vaultwarden.nix
   ./grafana.nix
   ./jellyfin.nix
-  # ./transmission.nix
+  ./transmission.nix
 ]
