@@ -116,7 +116,6 @@ in {
     nameservers = [
       "127.0.0.1"
       "::1"
-      "172.168.10.1"
     ];
     resolvconf.useLocalResolver = true;
     firewall = {
