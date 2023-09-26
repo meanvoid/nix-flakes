@@ -129,6 +129,7 @@ in {
     enable = true;
     resolveLocalQueries = true;
     settings = {
+      listenAddresses = "127.0.0.1#5300";
       interface = [
         "wg-ui64"
       ];
