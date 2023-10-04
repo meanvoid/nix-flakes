@@ -32,15 +32,15 @@ in {
         presharedKeyFile = preshared;
         allowedIPs = ["172.168.10.2/32" "f9c4:6fa6:98a2:a39c::2/128"];
       }
-      # root@v1
       {
-        publicKey = "CSDtM49xF0EMPGgQIKtu88ZxtFmHYUYRnNxGjd+RMzA=";
+        # root@unsigned-int8
+        publicKey = "znpZ26tP+y+aF/LoOT4TyLXqBNt9wuZKK0ktnk18GHA=";
         presharedKeyFile = preshared;
         allowedIPs = ["172.168.10.3/32" "f9c4:6fa6:98a2:a39c::3/128"];
       }
       {
-        # root@unsigned-int8
-        publicKey = "znpZ26tP+y+aF/LoOT4TyLXqBNt9wuZKK0ktnk18GHA=";
+        # root@v1
+        publicKey = "TX+IdvAXyVV1DtbcyBtPbavney5uMg9mksxXWjoYO3A=";
         presharedKeyFile = preshared;
         allowedIPs = ["172.168.10.4/32" "f9c4:6fa6:98a2:a39c::4/128"];
       }
