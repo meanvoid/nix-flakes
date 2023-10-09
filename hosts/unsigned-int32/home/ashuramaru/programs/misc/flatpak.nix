@@ -14,7 +14,6 @@
     packages = [
       # KDE/Qt
       "flathub:app/com.github.tchx84.Flatseal/x86_64/stable"
-      "flathub:app/org.kde.index/x86_64/stable"
       "flathub:app/org.kde.kdenlive/x86_64/stable"
       "flathub:app/de.shorsh.discord-screenaudio/x86_64/stable"
 
@@ -33,7 +32,6 @@
       "flathub:runtime/com.obsproject.Studio.Plugin.OBSVkCapture/x86_64/stable"
       "flathub:runtime/com.obsproject.Studio.Plugin.SceneSwitcher/x86_64/stable"
       "flathub:runtime/com.obsproject.Studio.Plugin.WebSocket/x86_64/stable"
-      "flathub:runtime/org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/22.08"
 
       # Gaming
       "flathub:app/com.usebottles.bottles/x86_64/stable"
@@ -42,16 +40,17 @@
       "flathub:app/net.davidotek.pupgui2/x86_64/stable"
       "flathub:app/com.valvesoftware.Steam.CompatibilityTool.Proton/x86_64/stable"
       "flathub:app/com.valvesoftware.Steam.CompatibilityTool.Proton-GE/x86_64/stable"
-      "flathub:app/com.valvesoftware.Steam.Utility.gamescope/x86_64/stable"
 
       # Vulkan utils
-      "flathub:runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08"
-      "flathub:runtime/org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/22.08"
+      "flathub:runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
+      "flathub:runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08"
+      "flathub:runtime/org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/23.08"
+      "flathub:runtime/org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
 
       # Utils
       "flathub:runtime/org.gtk.Gtk3theme.Adwaita-dark/x86_64/3.22"
       "flathub:runtime/org.gtk.Gtk3theme.adw-gtk3-dark/x86_64/3.22"
-      "flathub:runtime/org.gtk.Gtk3theme.Catppuccin-Mocha-Lavender/x86_64/3.22"
+      "flathub:runtime/org.gtk.Gtk3theme.Catppuccin-Mocha-Red/x86_64/3.22"
     ];
   };
 }
