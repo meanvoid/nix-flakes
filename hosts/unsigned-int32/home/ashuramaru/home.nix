@@ -41,7 +41,8 @@
         rbw # bitwarden cli
 
         ### --- Games --- ###
-
+        heroic
+        gogdl
         # Xbox
         xemu
 

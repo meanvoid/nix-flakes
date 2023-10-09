@@ -127,7 +127,7 @@
             definedAliases = ["@protondb"];
           };
         };
-        default = "SearXNG";
+        default = "Ecosia";
       };
     };
   };
