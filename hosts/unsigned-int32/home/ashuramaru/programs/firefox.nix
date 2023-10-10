@@ -22,6 +22,7 @@
         tampermonkey
 
         # bypass-paywalls-clean
+        clearurls
         user-agent-string-switcher
         web-archives
 
