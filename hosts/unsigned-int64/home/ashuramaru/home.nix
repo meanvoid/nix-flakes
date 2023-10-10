@@ -17,6 +17,7 @@
       # Utils
       ani-cli
       thefuck
+      nicotine-plus
 
       # Python
       python311Full
