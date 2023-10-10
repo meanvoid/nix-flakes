@@ -17,6 +17,7 @@
     packages =
       (with pkgs; [
         qbittorrent
+        nicotine-plus
         # Audio
         tenacity
 
