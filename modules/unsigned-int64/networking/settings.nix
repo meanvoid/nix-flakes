@@ -127,11 +127,11 @@
         # wireguard0#public
         {
           addr = "10.64.10.1";
-          port = 57255;
+          port = 67333;
         }
         {
           addr = "[fd02:f8eb:7ca4:5f4c::1]";
-          port = 22;
+          port = 67333;
         }
         # wireguard1
         {
