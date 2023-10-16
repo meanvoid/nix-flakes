@@ -18,13 +18,16 @@
     };
   };
 
-  hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = false;
+  services.hardware.bolt.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
   hardware.opentabletdriver = {
     enable = true;
     daemon.enable = true;
   };
-  services.hardware.bolt.enable = true;
   services = {
     pipewire = {
       enable = true;

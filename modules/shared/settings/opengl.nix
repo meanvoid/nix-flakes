@@ -10,8 +10,8 @@
     driSupport32Bit = true;
     extraPackages = with pkgs; [
       # AMD
-      rocm-opencl-icd
-      rocm-opencl-runtime
+      rocmPackages.clr.icd
+      rocmPackages.clr
       # VAAPI
       libva
       vaapiVdpau
@@ -24,6 +24,6 @@
     ];
   };
   systemd.tmpfiles.rules = with pkgs; [
-    "L+    /opt/rocm/hip   -    -    -     -    ${hip}"
+    "L+    /opt/rocm/hip   -    -    -     -    ${rocmPackages.clr}"
   ];
 }

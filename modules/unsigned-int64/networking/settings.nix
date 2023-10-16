@@ -102,20 +102,44 @@
           addr = "0.0.0.0";
           port = 57255;
         }
-        # {
-        #   addr = "[::]";
-        #   port = 57255;
-        # }
         {
-          addr = "192.168.10.1";
-          port = 22;
+          addr = "[::]";
+          port = 57255;
         }
+        # wireguard0#private
         {
           addr = "192.168.254.1";
           port = 22;
         }
         {
+          addr = "[dced:2718:5f06:321a::1]";
+          port = 22;
+        }
+        # wireguard0#home
+        {
+          addr = "192.168.10.1";
+          port = 22;
+        }
+        {
+          addr = "[dced:2718:5f06:718a::1]";
+          port = 22;
+        }
+        # wireguard0#public
+        {
+          addr = "10.64.10.1";
+          port = 57255;
+        }
+        {
+          addr = "[fd02:f8eb:7ca4:5f4c::1]";
+          port = 22;
+        }
+        # wireguard1
+        {
           addr = "172.168.10.1";
+          port = 22;
+        }
+        {
+          addr = "[f9c4:6fa6:98a2:a39c::1]";
           port = 22;
         }
       ];
