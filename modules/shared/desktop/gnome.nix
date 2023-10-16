@@ -36,7 +36,7 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [
+    extraPortals = with pkgs; [
       xdg-desktop-portal-kde
     ];
   };
