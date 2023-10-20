@@ -23,6 +23,11 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
+    settings.General = {
+      ControllerMode = "bredr";
+      AutoEnable = true;
+      Experimental = true;
+    };
   };
   hardware.opentabletdriver = {
     enable = true;
