@@ -24,14 +24,41 @@
       rpc-host-whitelist = "lib.tenjin-dk.com";
     };
   };
+  services.sonarr = {
+    enable = true;
+    user = "transmission";
+    group = "transmission";
+  };
+  services.jackett = {
+    enable = true;
+    user = "transmission";
+    group = "transmission";
+  };
+  service.prowlarr.enable = true;
   users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
   users.users.transmission.extraGroups = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
   services.nginx.virtualHosts."lib.tenjin-dk.com" = {
     addSSL = true;
     sslCertificate = "/var/lib/scerts/lib.tenjin-dk.com/lib.tenjin-dk.com.crt";
     sslCertificateKey = "/var/lib/scerts/lib.tenjin-dk.com/lib.tenjin-dk.com.key";
-    locations."/" = {
+    locations."/public/" = {
       proxyPass = "http://172.168.10.1:18765";
+      proxyWebsockets = true;
+    };
+    locations."/private/" = {
+      proxyPass = "http://172.168.10.1:9091";
+      proxyWebsockets = true;
+    };
+    locations."/sonaar/" = {
+      proxyPass = "http://172.168.10.1:8989";
+      proxyWebsockets = true;
+    };
+    locations."/jackett/" = {
+      proxyPass = "http://172.168.10.1:9117";
+      proxyWebsockets = true;
+    };
+    locations."/prowlarr/" = {
+      proxyPass = "http://172.168.10.1:9696";
       proxyWebsockets = true;
     };
   };

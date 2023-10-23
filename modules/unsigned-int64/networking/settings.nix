@@ -83,7 +83,18 @@
         57255
       ];
       interfaces."wireguard1" = {
-        allowedTCPPorts = [9000 18765];
+        allowedTCPPorts = [
+          # prometheus
+          9000
+          # sonaar
+          8989
+          # jackett
+          9117
+          # prowlarr
+          9696
+          # transmission
+          18765
+        ];
       };
     };
   };
