@@ -40,6 +40,7 @@
       "flathub:app/net.davidotek.pupgui2/x86_64/stable"
       "flathub:app/com.valvesoftware.Steam.CompatibilityTool.Proton/x86_64/stable"
       "flathub:app/com.valvesoftware.Steam.CompatibilityTool.Proton-GE/x86_64/stable"
+      "com.valvesoftware.Steam.Utility.thcrap_steam_proton_wrapper/x86_64/stable"
 
       # Vulkan utils
       "flathub:runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
