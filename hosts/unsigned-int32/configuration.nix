@@ -88,59 +88,6 @@ in {
       };
     };
   };
-  networking = {
-    hostName = "unsigned-int32";
-    hostId = "ab5d64f5";
-    interfaces = {
-      "enp57s0" = {
-        name = "enp57s0";
-        useDHCP = true;
-      };
-      "enp59s0" = {
-        name = "enp59s0";
-        useDHCP = true;
-      };
-    };
-    nat = {
-      enable = true;
-      enableIPv6 = true;
-      externalInterface = "enp59s0";
-      internalInterfaces = ["ve-+"];
-    };
-    networkmanager = {
-      enable = true;
-      dhcp = "internal";
-      dns = "dnsmasq";
-      unmanaged = ["interface-name:ve-*"];
-    };
-    nameservers = [
-      "127.0.0.1"
-      "::1"
-    ];
-    resolvconf.useLocalResolver = true;
-    firewall = {
-      enable = true;
-      allowPing = true;
-      allowedUDPPorts = [53];
-      allowedTCPPorts = [53 80 443];
-    };
-  };
-  services.dnsmasq = {
-    enable = true;
-    resolveLocalQueries = true;
-    settings = {
-      interface = [
-        "wg-ui64"
-      ];
-      server = [
-        # blahdns
-        "78.46.244.143"
-        "95.216.212.177"
-        "2a01:4f8:c17:ec67::1"
-        "2a01:4f9:c010:43ce::1"
-      ];
-    };
-  };
   services.vscode-server.enable = true;
   environment = {
     systemPackages = with pkgs; [
