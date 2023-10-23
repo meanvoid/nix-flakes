@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  path,
   ...
 }: let
   private = config.age.secrets.wireguard-client.path;
