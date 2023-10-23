@@ -1,5 +1,4 @@
 [
-  ./openssh.nix
+  ./settings.nix
   ./samba.nix
-  ./wg.nix
 ]
