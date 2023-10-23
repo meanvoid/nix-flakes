@@ -27,6 +27,8 @@
     hyprland.url = "github:hyprwm/Hyprland";
     doom-emacs.url = "github:nix-community/nix-doom-emacs";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
+    tenjin.url = "github:meanvoid/nixos-overlay";
+    ekverlay.url = "github:euank/nixek-overlay"; # test
 
     ### --- de-duplication
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -53,6 +55,8 @@
     flake-utils,
     pre-commit-hooks,
     vscode-server,
+    tenjin,
+    ekverlay,
     ...
   } @ inputs: let
     inherit (flake-utils.lib) eachSystem eachDefaultSystem;
@@ -62,6 +66,7 @@
 
     commonAttrs = {
       inherit (nixpkgs) lib;
+      inherit (self) output;
       inherit inputs self nixpkgs darwin;
       inherit home-manager path;
       inherit nur hyprland agenix;
@@ -72,8 +77,15 @@
     flakeOutput =
       eachDefaultSystem
       (system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-        thPkg = pkgs.callPackage ./derivations/thcrap.nix {};
+        pkgs = import nixpkgs {
+          overlays =
+            if system == "x86_64-linux"
+            then [
+              tenjin.overlay
+              # ekverlay.overlay
+            ]
+            else null;
+        };
       in {
         checks = {
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
@@ -82,13 +94,9 @@
           };
         };
         devShells = {
-          default = pkgs.mkShell {
+          default = nixpkgs.legacyPackages.${system}.mkShell {
             inherit (self.checks.${system}.pre-commit-check) shellHook;
           };
-        };
-        packages = {
-          default = thPkg;
-          thcrap-nix = thPkg;
         };
         formatter = nixpkgs.legacyPackages.${system}.alejandra;
       });

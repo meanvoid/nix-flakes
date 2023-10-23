@@ -67,6 +67,7 @@
         # Minecraft
         prismlauncher
 
+        np2kai
         ### --- Games --- ###
         # Python
         conda
