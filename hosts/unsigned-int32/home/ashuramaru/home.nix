@@ -68,6 +68,7 @@
         prismlauncher
 
         np2kai
+        thcrap-wrapper
         ### --- Games --- ###
         # Python
         conda
