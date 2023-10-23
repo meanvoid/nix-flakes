@@ -9,34 +9,38 @@
 }: {
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
-      extraPkgs = pkgs: (with pkgs; [
-        xorg.xhost
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXinerama
-        xorg.libXScrnSaver
-        curl
-        imagemagick
-        libpng
-        libpulseaudio
-        libvorbis
-        stdenv.cc.cc.lib
-        libkrb5
-        keyutils
-        libgdiplus
-        glxinfo
-        mesa-demos
-        vulkan-tools
-        vulkan-headers
-        vulkan-caps-viewer
-        vulkan-validation-layers
-        vulkan-extension-layer
-        vulkan-loader
-        vkBasalt
-        mangohud
-        gamescope
-        steamtinkerlaunch
-      ]);
+      extraPkgs = pkgs:
+        (with pkgs; [
+          xorg.xhost
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXinerama
+          xorg.libXScrnSaver
+          curl
+          imagemagick
+          libpng
+          libpulseaudio
+          libvorbis
+          stdenv.cc.cc.lib
+          libkrb5
+          keyutils
+          libgdiplus
+          glxinfo
+          mesa-demos
+          vulkan-tools
+          vulkan-headers
+          vulkan-caps-viewer
+          vulkan-validation-layers
+          vulkan-extension-layer
+          vulkan-loader
+          vkBasalt
+          mangohud
+          gamescope
+          steamtinkerlaunch
+        ])
+        ++ (with inputs.tenjin.packages.x86_64-linux.default; [
+          thcrap-wrapper
+        ]);
     };
   };
   environment.systemPackages =

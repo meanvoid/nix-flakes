@@ -47,6 +47,9 @@
         # Xbox
         xemu
 
+        # pc98
+        np2kai
+
         # Sega
         flycast
 
@@ -67,8 +70,6 @@
         # Minecraft
         prismlauncher
 
-        np2kai
-        thcrap-wrapper
         ### --- Games --- ###
         # Python
         conda

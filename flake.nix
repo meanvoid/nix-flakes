@@ -28,7 +28,6 @@
     doom-emacs.url = "github:nix-community/nix-doom-emacs";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     tenjin.url = "github:meanvoid/nixos-overlay";
-    ekverlay.url = "github:euank/nixek-overlay"; # test
 
     ### --- de-duplication
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -56,7 +55,6 @@
     pre-commit-hooks,
     vscode-server,
     tenjin,
-    ekverlay,
     ...
   } @ inputs: let
     inherit (flake-utils.lib) eachSystem eachDefaultSystem;
@@ -77,15 +75,7 @@
     flakeOutput =
       eachDefaultSystem
       (system: let
-        pkgs = import nixpkgs {
-          overlays =
-            if system == "x86_64-linux"
-            then [
-              tenjin.overlay
-              # ekverlay.overlay
-            ]
-            else null;
-        };
+        pkgs = import nixpkgs;
       in {
         checks = {
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
