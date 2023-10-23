@@ -44,6 +44,10 @@ in {
       allowedUDPPorts = [53];
       allowedTCPPorts = [53 80 443];
     };
+    extraHosts = ''
+      172.168.10.1 prom.tenjin-dk.com
+      172.168.10.1 lib.tenjin-dk.com
+    '';
   };
   services.dnsmasq = {
     enable = true;
@@ -60,10 +64,6 @@ in {
         "2a01:4f9:c010:43ce::1"
       ];
     };
-    extraHosts = ''
-      172.168.10.1 prom.tenjin-dk.com
-      172.168.10.1 lib.tenjin-dk.com
-    '';
   };
 
   services.openssh = {
