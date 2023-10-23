@@ -34,7 +34,7 @@
     user = "transmission";
     group = "transmission";
   };
-  service.prowlarr.enable = true;
+  services.prowlarr.enable = true;
   users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
   users.users.transmission.extraGroups = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
   services.nginx.virtualHosts."lib.tenjin-dk.com" = {
