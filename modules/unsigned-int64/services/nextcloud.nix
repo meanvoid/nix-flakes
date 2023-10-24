@@ -7,14 +7,14 @@
   ...
 }: let
 in {
-  # age.secrets.admin = {
-  #   file = path + /secrets/admin.age;
-  #   mode = "770";
-  #   owner = "nextcloud";
-  #   group = "nextcloud";
-  # };
+  age.secrets.admin = {
+    file = path + /secrets/admin.age;
+    mode = "770";
+    owner = "nextcloud";
+    group = "nextcloud";
+  };
   services.nextcloud = {
-    enable = false;
+    enable = true;
     database.createLocally = true;
     package = pkgs.nextcloud27;
     extraApps = with config.services.nextcloud.package.packages.apps; {
