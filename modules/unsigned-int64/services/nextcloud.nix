@@ -9,11 +9,10 @@
 in {
   age.secrets.admin = {
     file = path + /secrets/admin.age;
-    mode = "775";
-    owner = "password";
-    group = "password";
+    mode = "770";
+    owner = "nextcloud";
+    group = "nextcloud";
   };
-
   services.nextcloud = {
     enable = true;
     database.createLocally = true;
