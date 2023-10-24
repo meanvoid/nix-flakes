@@ -9,12 +9,10 @@
 in {
   age.secrets.admin = {
     file = path + /secrets/admin.age;
-    mode = "770";
+    mode = "775";
     owner = "password";
     group = "password";
   };
-  users.groups.nextcloud.members = ["ashuramaru" "meanrin" "passwords"];
-  users.users.nextcloud.extraGroups = ["ashuramaru" "meanrin" "passwords"];
 
   services.nextcloud = {
     enable = false;
