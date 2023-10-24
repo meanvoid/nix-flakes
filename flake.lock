@@ -1190,11 +1190,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1698079066,
-        "narHash": "sha256-yIDmLKgU4H1+JcyF4S4cam8hdVWwjuLsgjz7z/AxfYI=",
+        "lastModified": 1698079368,
+        "narHash": "sha256-21B1xtYCQXlCoKfbLLIB+oMcbDDH4O+7soelzj24ePI=",
         "owner": "meanvoid",
         "repo": "nixos-overlay",
-        "rev": "8495d646fd84064903b628b7bdde60b59fb161f5",
+        "rev": "e285835b8581ab6017dd78075eb9b21eb6c7510b",
         "type": "github"
       },
       "original": {

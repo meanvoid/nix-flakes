@@ -11,7 +11,7 @@
     steam = pkgs.steam.override {
       extraPkgs = pkgs:
         (with pkgs; [
-          zenity
+          gnome.zenity
           xorg.xhost
           xorg.libXcursor
           xorg.libXi
