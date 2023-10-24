@@ -7,14 +7,14 @@
   ...
 }: let
 in {
-  age.secrets.admin = {
-    file = path + /secrets/admin.age;
-    mode = "770";
-    owner = "nextcloud";
-    group = "nextcloud";
-  };
+  # age.secrets.admin = {
+  #   file = path + /secrets/admin.age;
+  #   mode = "770";
+  #   owner = "nextcloud";
+  #   group = "nextcloud";
+  # };
   services.nextcloud = {
-    enable = true;
+    enable = false;
     database.createLocally = true;
     package = pkgs.nextcloud27;
     extraApps = with config.services.nextcloud.package.packages.apps; {
@@ -36,7 +36,7 @@ in {
       defaultPhoneRegion = "UA";
       dbtype = "pgsql";
       adminuser = "root";
-      adminpassFile = config.age.secrets.admin.path;
+      adminpassFile = "/var/lib/backup/admin";
     };
     extraOptions = {
       redis = {
