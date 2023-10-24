@@ -13,7 +13,7 @@ in {
     ruby
     go
     jdk
-    rustup-toolchain-install-master
+    rustup
   ];
   programs.vscode = {
     enable = true;

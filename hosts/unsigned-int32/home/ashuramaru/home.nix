@@ -19,7 +19,10 @@
         qbittorrent
         nicotine-plus
         # Audio
+        audacity
         tenacity
+        pavucontrol
+        helvum
 
         # Working with graphics
         krita
