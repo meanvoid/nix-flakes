@@ -14,7 +14,7 @@ in {
     group = "nextcloud";
   };
   services.nextcloud = {
-    enable = true;
+    enable = false;
     database.createLocally = true;
     package = pkgs.nextcloud27;
     extraApps = with config.services.nextcloud.package.packages.apps; {
