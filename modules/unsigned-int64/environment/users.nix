@@ -16,6 +16,10 @@
       gid = config.users.users.minecraft.uid;
       members = ["ashuramaru" "fumono" "matthew" "jalemi" "solonka" "nginx"];
     };
+    password = {
+      gid = config.users.users.password.uid;
+      members = ["ashuramaru" "meanrin" "nextcloud"];
+    };
     nginx.members = ["minecraft"];
   };
   users.users = {
@@ -23,7 +27,12 @@
       uid = 5333;
       isSystemUser = true;
       group = "minecraft";
-      extraGroups = ["ashuramaru" "fumono" "nginx"];
+      extraGroups = ["ashuramaru" "meanrin" "fumono" "nginx"];
+    };
+    password = {
+      isSystemUser = true;
+      group = "password";
+      extraGroups = ["ashuramaru" "meanrin"];
     };
     nginx.extraGroups = ["minecraft"];
     root = {
