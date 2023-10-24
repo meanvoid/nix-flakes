@@ -7,12 +7,12 @@
   ...
 }: let
 in {
-  age.secrets.admin = {
-    file = path + /secrets/admin.age;
-    mode = "770";
-    owner = "nextcloud";
-    group = "nextcloud";
-  };
+  # age.secrets.admin = {
+  #   file = path + /secrets/admin.age;
+  #   mode = "770";
+  #   owner = "nextcloud";
+  #   group = "nextcloud";
+  # };
   services.nextcloud = {
     enable = true;
     database.createLocally = true;
