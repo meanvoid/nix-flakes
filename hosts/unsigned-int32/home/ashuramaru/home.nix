@@ -19,7 +19,6 @@
         qbittorrent
         nicotine-plus
         # Audio
-        audacity
         tenacity
         pavucontrol
         helvum
