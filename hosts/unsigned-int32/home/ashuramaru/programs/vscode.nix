@@ -57,7 +57,7 @@ in {
       scala-lang.scala # scala
       mathiasfrohlich.kotlin # kotlin
       fwcd.kotlin # kotlin debug
-      rebornix.ruby # ruby
+      shopify.ruby-lsp # ruby, previous was deprecated
       dart-code.flutter # flutter
       ms-azuretools.vscode-docker # docker
       ms-kubernetes-tools.vscode-kubernetes-tools # kuber
