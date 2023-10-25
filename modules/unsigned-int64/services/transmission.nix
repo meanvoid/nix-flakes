@@ -47,7 +47,6 @@
       extraConfig = ''
         proxy_redirect off;
       '';
-      return = "301 /web/";
     };
     locations."/private/" = {
       proxyPass = "http://172.168.10.1:9091/transmission/";
@@ -55,7 +54,6 @@
       extraConfig = ''
         proxy_redirect off;
       '';
-      return = "301 /web/";
     };
     locations."/sonaar/" = {
       proxyPass = "http://172.168.10.1:8989";
