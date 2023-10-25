@@ -47,7 +47,7 @@
       extraConfig = ''
         proxy_redirect off;
       '';
-      return = "302 $scheme://$host/private/transmission/web$request_uri;";
+      return = "302 $scheme://$host/private/transmission/web$request_uri";
     };
     locations."/private/" = {
       proxyPass = "http://172.168.10.1:9091/transmission/";
@@ -55,7 +55,7 @@
       extraConfig = ''
         proxy_redirect off;
       '';
-      return = "302 $scheme://$host/private/transmission/web$request_uri;";
+      return = "302 $scheme://$host/private/transmission/web$request_uri";
     };
     locations."/sonaar/" = {
       proxyPass = "http://172.168.10.1:8989";
