@@ -27,6 +27,15 @@ in {
     ];
     extraModulePackages = with config.boot.kernelPackages; [zenpower vendor-reset];
     supportedFilesystems = ["xfs"];
+    swraid = {
+      enable = true;
+      mdadmConf = ''
+        HOMEHOST <ignore>
+        ARRAY /dev/md10 metadata=1.2 name=unsigned-int64:fpool UUID=bb2e96e5:c781e2d1:ead32a7f:e7051656
+        MAILADDR ashuramaru@tenjin-dk.com
+        MAILFROM no-reply@cloud.tenjin-dk.com
+      '';
+    };
   };
   boot.loader = {
     systemd-boot = {
@@ -71,6 +80,11 @@ in {
       devices = {
         "root" = {
           device = "/dev/disk/by-uuid/5126dd32-509c-4946-b421-1a860c843abd";
+          allowDiscards = true;
+          bypassWorkqueues = true;
+        };
+        "fpool" = {
+          device = "8f075465-a72e-467c-946d-df8544b1bff3";
           allowDiscards = true;
           bypassWorkqueues = true;
         };
