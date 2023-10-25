@@ -38,9 +38,6 @@
     locations."/" = {
       proxyPass = "http://172.168.10.1:18765";
     };
-    locations."/private" = {
-      proxyPass = "http://172.168.10.1:9091";
-    };
     locations."/sonaar" = {
       proxyPass = "http://172.168.10.1:8989";
     };
