@@ -49,13 +49,6 @@
       '';
     };
 
-    locations."^~ /rpc" = {
-      proxyPass = "http://172.168.10.1:18765";
-      extraConfig = ''
-        proxy_pass_header X-Transmission-Session-Id;
-      '';
-    };
-
     locations."/sonaar/" = {
       proxyPass = "http://172.168.10.1:8989";
       proxyWebsockets = true;
