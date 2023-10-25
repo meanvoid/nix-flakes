@@ -42,12 +42,34 @@
     sslCertificate = "/var/lib/scerts/lib.tenjin-dk.com/lib.tenjin-dk.com.crt";
     sslCertificateKey = "/var/lib/scerts/lib.tenjin-dk.com/lib.tenjin-dk.com.key";
     locations."/" = {
-      proxyPass = "http://172.168.10.1:18765";
+      proxyPass = "http://172.168.10.1:18765/transmission/";
       proxyWebsockets = true;
+      extraConfig = ''
+        proxy_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Host $remote_addr;
+      '';
+      return = "301 /web/";
     };
     locations."/private/" = {
-      proxyPass = "http://172.168.10.1:9091/transmission";
+      proxyPass = "http://172.168.10.1:9091/transmission/";
       proxyWebsockets = true;
+      extraConfig = ''
+        proxy_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Host $remote_addr;
+      '';
+      return = "301 /web/";
     };
     locations."/sonaar/" = {
       proxyPass = "http://172.168.10.1:8989";
