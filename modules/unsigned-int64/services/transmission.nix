@@ -41,7 +41,7 @@
     addSSL = true;
     sslCertificate = "/var/lib/scerts/lib.tenjin-dk.com/lib.tenjin-dk.com.crt";
     sslCertificateKey = "/var/lib/scerts/lib.tenjin-dk.com/lib.tenjin-dk.com.key";
-    locations."/" = {
+    locations."/public/" = {
       proxyPass = "http://172.168.10.1:18765/transmission/";
       proxyWebsockets = true;
       extraConfig = ''
@@ -49,7 +49,7 @@
       '';
     };
     locations."/private/" = {
-      proxyPass = "http://172.168.10.1:9091/transmission/web/";
+      proxyPass = "http://172.168.10.1:9091/transmission/";
       proxyWebsockets = true;
       extraConfig = ''
         proxy_redirect off;
