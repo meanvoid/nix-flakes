@@ -49,7 +49,7 @@
       '';
     };
     locations."/private/" = {
-      proxyPass = "http://172.168.10.1:9091/transmission/";
+      proxyPass = "http://172.168.10.1:9091/transmission/web/";
       proxyWebsockets = true;
       extraConfig = ''
         proxy_redirect off;
