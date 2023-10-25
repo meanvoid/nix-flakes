@@ -5,7 +5,7 @@
   ...
 }: {
   services.transmission = {
-    enable = true;
+    enable = false;
     openPeerPorts = true;
     downloadDirPermissions = "775";
     home = "/var/lib/transmission/public";
