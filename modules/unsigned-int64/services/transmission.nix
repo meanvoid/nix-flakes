@@ -51,9 +51,6 @@
         proxy_set_header   X-Forwarded-Host $host;
         proxy_set_header   X-Forwarded-Server $host;
         proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-        access_log /var/log/nginx/domain1.access.log log_format custom '$remote_addr - $remote_user [$time_local] '
-                           '"$request" $status $body_bytes_sent '
-                           '"$http_referer" "$http_user_agent" "$gzip_ratio"';
       '';
     };
     locations."/sonaar/" = {
