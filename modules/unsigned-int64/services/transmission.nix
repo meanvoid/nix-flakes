@@ -43,7 +43,7 @@
     sslCertificateKey = "/var/lib/scerts/lib.tenjin-dk.com/lib.tenjin-dk.com.key";
 
     locations."/transmission/" = {
-      proxyPass = "http://172.168.10.1:18765/transmission/web/";
+      proxyPass = "http://172.168.10.1:18765/transmission/";
       extraConfig = ''
         proxy_read_timeout 300;
         proxy_pass_header  X-Transmission-Session-Id;
@@ -51,6 +51,7 @@
         proxy_set_header   X-Forwarded-Server $host;
         proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
       '';
+      return = "301 /transmission/web/";
     };
     locations."^~ /transmission/rpc" = {
       proxyPass = "http://172.168.10.1:18765";
