@@ -5,7 +5,7 @@
   ...
 }: {
   services.transmission = {
-    enable = false;
+    enable = true;
     openPeerPorts = true;
     downloadDirPermissions = "775";
     home = "/var/lib/transmission/public";
@@ -29,8 +29,8 @@
   services.jackett.enable = true;
   services.prowlarr.enable = true;
 
-  # users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
-  # users.users.transmission.extraGroups = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
+  users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
+  users.users.transmission.extraGroups = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
   services.nginx.virtualHosts."lib.tenjin-dk.com" = {
     addSSL = true;
     sslCertificate = "/var/lib/scerts/lib.tenjin-dk.com/lib.tenjin-dk.com.crt";
