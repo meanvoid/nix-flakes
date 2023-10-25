@@ -53,9 +53,7 @@
       proxyWebsockets = true;
       extraConfig = ''
         proxy_redirect off;
-        rewrite ^/private(/transmission/.*)$ $1 break;
       '';
-      return = "302 $scheme://$host/private/transmission/web$request_uri";
     };
     locations."/sonaar/" = {
       proxyPass = "http://172.168.10.1:8989";
