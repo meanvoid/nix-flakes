@@ -136,7 +136,11 @@ in {
     options = ["subvol=/Users" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
   ### ---------------/dev/nvme0n1p2-------------------- ###
-
+  fileSystems."/var/lib/nextcloud/data" = {
+    device = "/dev/disk/by-uuid/d7aca109-b520-4052-9844-39a4378a1bac";
+    fsType = "btrfs";
+    options = ["subvol=/nextcloud" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+  };
   ### ---------------SMB/NAS/CIFS-------------------- ###
   ### ---------------backups-------------------- ###
   fileSystems."/var/lib/backup" = {
