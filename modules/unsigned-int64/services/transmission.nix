@@ -42,12 +42,19 @@
     sslCertificate = "/var/lib/scerts/lib.tenjin-dk.com/lib.tenjin-dk.com.crt";
     sslCertificateKey = "/var/lib/scerts/lib.tenjin-dk.com/lib.tenjin-dk.com.key";
 
-    # locations."/" = {
-    #   proxyPass = "http://172.168.10.1:18765/transmission/";
-    #   extraConfig = ''
-    #     proxy_pass_header X-Transmission-Session-Id;
-    #   '';
-    # };
+    locations."/transmission/" = {
+      proxyPass = "http://172.168.10.1:18765/transmission/web/";
+      extraConfig = ''
+        proxy_read_timeout 300;
+        proxy_pass_header  X-Transmission-Session-Id;
+        proxy_set_header   X-Forwarded-Host $host;
+        proxy_set_header   X-Forwarded-Server $host;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+      '';
+    };
+    locations."^~ /transmission/rpc" = {
+      proxyPass = "http://172.168.10.1:18765";
+    };
 
     locations."/sonaar/" = {
       proxyPass = "http://172.168.10.1:8989";
