@@ -38,20 +38,17 @@
     locations."/" = {
       proxyPass = "http://172.168.10.1:18765";
     };
-    locations."/private/" = {
+    locations."/private" = {
       proxyPass = "http://172.168.10.1:9091";
     };
-    locations."/sonaar/" = {
+    locations."/sonaar" = {
       proxyPass = "http://172.168.10.1:8989";
-      proxyWebsockets = true;
     };
-    locations."/jackett/" = {
+    locations."/jackett" = {
       proxyPass = "http://172.168.10.1:9117";
-      proxyWebsockets = true;
     };
-    locations."/prowlarr/" = {
+    locations."/prowlarr" = {
       proxyPass = "http://172.168.10.1:9696";
-      proxyWebsockets = true;
     };
   };
 }
