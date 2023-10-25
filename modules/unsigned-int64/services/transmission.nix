@@ -46,6 +46,7 @@
       proxyWebsockets = true;
       extraConfig = ''
         proxy_redirect off;
+        return 301 /web/;
       '';
     };
     locations."/private/" = {
@@ -53,6 +54,7 @@
       proxyWebsockets = true;
       extraConfig = ''
         proxy_redirect off;
+        return 301 /web/;
       '';
     };
     locations."/sonaar/" = {
