@@ -25,19 +25,12 @@
       rpc-host-whitelist = "lib.tenjin-dk.com";
     };
   };
-  services.sonarr = {
-    enable = true;
-    user = "transmission";
-    group = "transmission";
-  };
-  services.jackett = {
-    enable = true;
-    user = "transmission";
-    group = "transmission";
-  };
+  services.sonarr.enable = true;
+  services.jackett.enable = true;
   services.prowlarr.enable = true;
-  users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
-  users.users.transmission.extraGroups = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
+
+  # users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
+  # users.users.transmission.extraGroups = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
   services.nginx.virtualHosts."lib.tenjin-dk.com" = {
     addSSL = true;
     sslCertificate = "/var/lib/scerts/lib.tenjin-dk.com/lib.tenjin-dk.com.crt";
