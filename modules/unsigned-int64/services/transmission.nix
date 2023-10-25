@@ -42,13 +42,14 @@
     sslCertificate = "/var/lib/scerts/lib.tenjin-dk.com/lib.tenjin-dk.com.crt";
     sslCertificateKey = "/var/lib/scerts/lib.tenjin-dk.com/lib.tenjin-dk.com.key";
 
-    locations."/".return = "301 /transmission/web/";
     locations."^~ /" = {
       proxyPass = "http://172.168.10.1:18765/transmission";
       extraConfig = ''
         proxy_pass_header X-Transmission-Session-Id;
       '';
+      return = "301 /transmission/web/";
     };
+
     locations."^~ /rpc" = {
       proxyPass = "http://172.168.10.1:18765";
       extraConfig = ''
