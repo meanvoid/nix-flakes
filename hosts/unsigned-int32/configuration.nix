@@ -23,6 +23,7 @@ in {
     [
       ./hardware-configuration.nix
       (path + "/modules/shared/desktop/gnome.nix")
+      (path + "/modules/shared/desktop/plasma.nix")
       (path + "/modules/shared/desktop/fonts.nix")
       (path + "/modules/shared/settings/opengl.nix")
       (path + "/modules/shared/settings/nix.nix")
