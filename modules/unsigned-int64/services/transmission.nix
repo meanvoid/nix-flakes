@@ -47,7 +47,6 @@
       extraConfig = ''
         proxy_pass_header X-Transmission-Session-Id;
       '';
-      return = "301 /transmission/web/";
     };
 
     locations."^~ /rpc" = {
