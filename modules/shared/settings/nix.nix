@@ -5,6 +5,9 @@
   ...
 }: {
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-24.8.6" # bug
+  ];
   nix = {
     gc = {
       automatic = true;

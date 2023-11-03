@@ -43,7 +43,7 @@
   qt = {
     enable = true;
     platformTheme = "qt5ct";
-    style = "qt5ct-style";
+    style = "breeze";
   };
   programs = {
     gnome-terminal.enable = true;
