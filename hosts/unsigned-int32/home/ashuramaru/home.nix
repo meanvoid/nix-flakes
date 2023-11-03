@@ -58,7 +58,7 @@
         # Nintendo
         citra-canary
         mgba
-        dolphin-emu
+        # dolphin-emu
         cemu
         yuzu-mainline
         ryujinx
