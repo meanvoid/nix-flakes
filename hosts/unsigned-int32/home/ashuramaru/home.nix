@@ -76,6 +76,9 @@
         # Python
         conda
         android-studio
+
+        ### --- Utils --- ###
+        cinnamon.nemo-with-extensions
       ])
       ++ (with pkgs.jetbrains; [
         idea-ultimate
