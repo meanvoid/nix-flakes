@@ -48,7 +48,7 @@
   programs = {
     gnome-terminal.enable = true;
     calls.enable = true;
-    firefox.nativeMessagingHosts = pkgs.gnome-browser-connector;
+    firefox.nativeMessagingHosts.gsconnect = pkgs.gnome-browser-connector;
     kdeconnect = {
       enable = true;
       package = pkgs.gnomeExtensions.gsconnect;
