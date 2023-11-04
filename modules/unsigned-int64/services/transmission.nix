@@ -33,8 +33,8 @@
   services.nginx.virtualHosts = {
     "public.tenjin-dk.com" = {
       addSSL = true;
-      sslCertificate = "/etc/ssl/self/tenjin-dk.com.crt";
-      sslCertificateKey = "/etc/ssl/self/tenjin-dk.com.key";
+      sslCertificate = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.crt";
+      sslCertificateKey = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.key";
       locations."/" = {
         proxyPass = "http://172.168.10.1:18765";
       };

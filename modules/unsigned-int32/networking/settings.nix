@@ -33,8 +33,14 @@ in {
       unmanaged = ["interface-name:ve-*"];
     };
     nameservers = [
+      # local
       "127.0.0.1"
       "::1"
+      # cloudflare
+      "1.1.1.1#cloudflare-dns.com"
+      "1.0.0.1#cloudflare-dns.com"
+      "2606:4700:4700::1111#cloudflare-dns.com"
+      "2606:4700:4700::1001#cloudflare-dns.com"
     ];
     firewall = {
       enable = true;
@@ -42,14 +48,20 @@ in {
       allowedUDPPorts = [25565 15800];
       allowedTCPPorts = [80 443];
     };
-    extraHosts = ''
-      172.168.10.1 prom.tenjin-dk.com
-      172.168.10.1 public.tenjin-dk.com
-      172.168.10.1 private.tenjin-dk.com
-      172.168.10.1 lib.tenjin-dk.com
+  };
+  services.resolved = {
+    enable = true;
+    dnssec = "true";
+    fallbackDns = [
+      "1.1.1.1#cloudflare-dns.com"
+      "1.0.0.1#cloudflare-dns.com"
+      "2606:4700:4700::1111#cloudflare-dns.com"
+      "2606:4700:4700::1001#cloudflare-dns.com"
+    ];
+    extraConfig = ''
+      DNSOverTLS=yes
     '';
   };
-  services.resolved.enable = true;
   services.openssh = {
     enable = true;
     settings = {
