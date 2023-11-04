@@ -157,7 +157,7 @@
         }
       ];
     };
-    services.resolved.enable = true;
+    resolved.enable = true;
     # dnsmasq = {
     #   enable = true;
     #   resolveLocalQueries = true;
