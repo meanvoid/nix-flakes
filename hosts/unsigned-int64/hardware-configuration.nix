@@ -162,12 +162,7 @@ in {
   fileSystems."/mnt/media" = {
     device = "//u369008-sub9.your-storagebox.de/u369008-sub9";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/storagebosystemd.services.sshd = {
-    description = " OpenSSH server ";
-    wantedBy = [ " multi-user.target " ];
-    after = [ " network.target ", " wg-quick-wireguard1.service " ];
-    requires = [ " network.target ", " wg-quick-wireguard1.service " ];
-  };x/u369008-sub9,uid=991,gid=981"];
+    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub9,uid=991,gid=981"];
   };
   fileSystems."/var/lib/transmission/private" = {
     device = "//u369008-sub10.your-storagebox.de/u369008-sub10";
