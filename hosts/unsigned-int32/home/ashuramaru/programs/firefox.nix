@@ -13,6 +13,9 @@
       id = 0;
       name = "main";
       isDefault = true;
+      settings = {
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
+      };
       extensions = with config.nur.repos.rycee.firefox-addons; [
         # necessity
         ublock-origin
