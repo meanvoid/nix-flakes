@@ -157,29 +157,20 @@
         }
       ];
     };
-    dnsmasq = {
-      enable = true;
-      resolveLocalQueries = true;
-      settings = {
-        interface = [
-          "wireguard0"
-          "wireguard1"
-        ];
-        server = [
-          # blahdns
-          "78.46.244.143"
-          "95.216.212.177"
-          "2a01:4f8:c17:ec67::1"
-          "2a01:4f9:c010:43ce::1"
-          # mullvad
-          "194.242.2.3"
-          "2a07:e340::3"
-          # quad9
-          "9.9.9.9"
-          # cloudflare
-          "1.1.1.1"
-        ];
-      };
-    };
+    services.resolved.enable = true;
+    # dnsmasq = {
+    #   enable = true;
+    #   resolveLocalQueries = true;
+    #   settings = {
+    #     interface = [
+    #       "wireguard0"
+    #       "wireguard1"
+    #     ];
+    #     bind-interfaces = true;
+    #     server = [
+    #       127.0.0.1
+    #     ];
+    #   };
+    # };
   };
 }
