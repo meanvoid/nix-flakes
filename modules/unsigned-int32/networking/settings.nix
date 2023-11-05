@@ -29,19 +29,8 @@ in {
     };
     networkmanager = {
       enable = true;
-      dhcp = "internal";
       unmanaged = ["interface-name:ve-*"];
     };
-    nameservers = [
-      # local
-      "127.0.0.1"
-      "::1"
-      # cloudflare
-      "1.1.1.1#cloudflare-dns.com"
-      "1.0.0.1#cloudflare-dns.com"
-      "2606:4700:4700::1111#cloudflare-dns.com"
-      "2606:4700:4700::1001#cloudflare-dns.com"
-    ];
     firewall = {
       enable = true;
       allowPing = true;
@@ -49,19 +38,7 @@ in {
       allowedTCPPorts = [80 443];
     };
   };
-  services.resolved = {
-    enable = true;
-    dnssec = "true";
-    fallbackDns = [
-      "1.1.1.1#cloudflare-dns.com"
-      "1.0.0.1#cloudflare-dns.com"
-      "2606:4700:4700::1111#cloudflare-dns.com"
-      "2606:4700:4700::1001#cloudflare-dns.com"
-    ];
-    extraConfig = ''
-      DNSOverTLS=yes
-    '';
-  };
+  services.resolved.enable = true;
   services.openssh = {
     enable = true;
     settings = {
@@ -105,7 +82,6 @@ in {
         "dced:2718:5f06:718a::100/64"
         "dced:2718:5f06:718a::10/64"
       ];
-      dns = ["192.168.10.1" "dced:2718:5f06:718a::100"];
       privateKeyFile = private;
       peers = [
         {
@@ -118,8 +94,8 @@ in {
       ];
     };
     wg-ui64 = {
+      autostart = false;
       address = ["172.168.10.2/32" "f9c4:6fa6:98a2:a39c::2/128"];
-      dns = ["172.168.10.1" "f9c4:6fa6:98a2:a39c::1"];
       privateKeyFile = private;
       peers = [
         {
