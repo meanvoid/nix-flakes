@@ -35,7 +35,6 @@
     nameservers = [
       "127.0.0.1"
       "::1"
-      "1.1.1.1" # cloudflare
     ];
     extraHosts = ''
       172.168.10.1 prom.tenjin-dk.com
@@ -57,10 +56,6 @@
     firewall = {
       enable = true;
       allowedUDPPorts = [
-        # dns
-        53
-        67
-        68
         # Proxy
         1080
         3128
@@ -71,8 +66,6 @@
         51820
       ];
       allowedTCPPorts = [
-        # dns
-        53
         # Http
         80
         443
@@ -157,20 +150,10 @@
         }
       ];
     };
-    resolved.enable = true;
-    # dnsmasq = {
-    #   enable = true;
-    #   resolveLocalQueries = true;
-    #   settings = {
-    #     interface = [
-    #       "wireguard0"
-    #       "wireguard1"
-    #     ];
-    #     bind-interfaces = true;
-    #     server = [
-    #       127.0.0.1
-    #     ];
-    #   };
-    # };
+    unbound = {
+      enable = true;
+      enableRootTrustAnchor = true;
+      resolveLocalQueries = true;
+    };
   };
 }
