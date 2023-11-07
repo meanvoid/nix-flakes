@@ -33,8 +33,10 @@
       interface = "eno1";
     };
     nameservers = [
-      "213.133.100.98"
-      "2a01:4f8:0:1::add:1098"
+      "1.0.0.1"
+      "1.1.1.1"
+      "2606:4700:4700::1111"
+      "2606:4700:4700::1001"
     ];
     nat = {
       enable = true;
@@ -135,7 +137,6 @@
         }
       ];
     };
-    resolved.enable = true;
     # unbound = {
     #   enable = true;
     #   enableRootTrustAnchor = true;
