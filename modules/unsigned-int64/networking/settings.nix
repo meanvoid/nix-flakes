@@ -137,6 +137,7 @@
         }
       ];
     };
+    resolved.enable = true;
     # unbound = {
     #   enable = true;
     #   enableRootTrustAnchor = true;
