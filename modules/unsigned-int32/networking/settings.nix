@@ -94,14 +94,22 @@ in {
       ];
     };
     wg-ui64 = {
-      autostart = false;
-      address = ["172.168.10.2/32" "f9c4:6fa6:98a2:a39c::2/128"];
+      address = ["172.16.31.2/32" "fd17:216b:31bc:1::2/128"];
       privateKeyFile = private;
+      postUp = ''
+        ${pkgs.systemd}/bin/resolvectl dns wg-ui64 172.16.31.1
+        ${pkgs.systemd}/bin/resolvectl domain wg-ui64 ~\prom.tenjin-dk.com ~\lib.tenjin-dk.com ~\private.tenjin-dk.com ~\public.tenjin-dk.com ~\.fumoposting.com
+      '';
       peers = [
         {
           publicKey = "UJNTai8BfRY0w0lYtxyiM+Azcv8rGdWPrPw7Afj1oHk=";
           presharedKeyFile = shared;
-          allowedIPs = ["172.168.10.1/24" "f9c4:6fa6:98a2:a39c::1/64"];
+          allowedIPs = [
+            "172.16.31.0/24"
+            "fd17:216b:31bc:1::/64"
+            "172.16.31.1/32"
+            "fd17:216b:31bc:1::1/128"
+          ];
           endpoint = "tenjin-dk.com:51280";
           persistentKeepalive = 25;
         }

@@ -36,7 +36,6 @@
           vulkan-loader
           vkBasalt
           mangohud
-          gamescope
           steamtinkerlaunch
         ])
         ++ (with inputs.tenjin.packages.x86_64-linux.default; [
@@ -57,6 +56,9 @@
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
+      gamescopeSession = {
+        enable = true;
+      };
     };
     gamemode = {
       enable = true;
@@ -65,6 +67,10 @@
         start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
         end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
       };
+    };
+    gamescope = {
+      enable = true;
+      capSysNice = true;
     };
     anime-game-launcher.enable = lib.mkDefault true;
     honkers-railway-launcher.enable = lib.mkDefault true;
