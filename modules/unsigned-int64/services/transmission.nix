@@ -19,7 +19,7 @@
       rpc-bind-address = "0.0.0.0";
       rpc-port = 18765;
       rpc-whitelist-enabled = true;
-      rpc-whitelist = "127.0.0.1,172.168.10.*";
+      rpc-whitelist = "127.0.0.1,172.16.31.*";
       rpc-host-whitelist-enabled = true;
       rpc-host-whitelist = "lib.tenjin-dk.com";
     };
@@ -36,7 +36,7 @@
       sslCertificate = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.crt";
       sslCertificateKey = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.key";
       locations."/" = {
-        proxyPass = "http://172.168.10.1:18765";
+        proxyPass = "http://172.16.31.1:18765";
       };
     };
     "private.tenjin-dk.com" = {
@@ -44,7 +44,7 @@
       sslCertificate = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.crt";
       sslCertificateKey = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.key";
       locations."/" = {
-        proxyPass = "http://172.168.10.1:9091";
+        proxyPass = "http://172.16.31.1:9091";
       };
     };
     "lib.tenjin-dk.com" = {
@@ -52,13 +52,13 @@
       sslCertificate = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.crt";
       sslCertificateKey = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.key";
       locations."/sonaar" = {
-        proxyPass = "http://172.168.10.1:8989";
+        proxyPass = "http://172.16.31.1:8989";
       };
       locations."/jackett" = {
-        proxyPass = "http://172.168.10.1:9117";
+        proxyPass = "http://172.16.31.1:9117";
       };
       locations."/prowlarr" = {
-        proxyPass = "http://172.168.10.1:9696";
+        proxyPass = "http://172.16.31.1:9696";
       };
     };
   };

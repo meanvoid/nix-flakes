@@ -37,10 +37,10 @@
       "::1"
     ];
     # extraHosts = ''
-    #   172.168.10.1 prom.tenjin-dk.com
-    #   172.168.10.1 public.tenjin-dk.com
-    #   172.168.10.1 private.tenjin-dk.com
-    #   172.168.10.1 lib.tenjin-dk.com
+    #   172.16.31.1 prom.tenjin-dk.com
+    #   172.16.31.1 public.tenjin-dk.com
+    #   172.16.31.1 private.tenjin-dk.com
+    #   172.16.31.1 lib.tenjin-dk.com
     # '';
     nat = {
       enable = true;
@@ -141,7 +141,7 @@
         }
         # wireguard1
         {
-          addr = "172.168.10.1";
+          addr = "172.16.31.1";
           port = 22;
         }
         {
