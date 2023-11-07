@@ -36,12 +36,12 @@
       "127.0.0.1"
       "::1"
     ];
-    extraHosts = ''
-      172.168.10.1 prom.tenjin-dk.com
-      172.168.10.1 public.tenjin-dk.com
-      172.168.10.1 private.tenjin-dk.com
-      172.168.10.1 lib.tenjin-dk.com
-    '';
+    # extraHosts = ''
+    #   172.168.10.1 prom.tenjin-dk.com
+    #   172.168.10.1 public.tenjin-dk.com
+    #   172.168.10.1 private.tenjin-dk.com
+    #   172.168.10.1 lib.tenjin-dk.com
+    # '';
     nat = {
       enable = true;
       enableIPv6 = true;
