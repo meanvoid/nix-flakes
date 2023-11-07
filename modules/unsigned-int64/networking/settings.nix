@@ -18,14 +18,14 @@
         ];
         ipv6.addresses = [
           {
-            address = "2a01:4f8:141:5330::1";
+            address = "2a01:4f8:141:5310::1";
             prefixLength = 64;
           }
         ];
       };
     };
     defaultGateway = {
-      address = "176.9.10.33";
+      address = "176.9.10.31";
       interface = "eno1";
     };
     defaultGateway6 = {
@@ -133,11 +133,11 @@
         # wireguard0#public
         {
           addr = "10.64.10.1";
-          port = 43333;
+          port = 43131;
         }
         {
           addr = "[fd02:f8eb:7ca4:5f4c::1]";
-          port = 43333;
+          port = 43131;
         }
         # wireguard1
         {
@@ -154,6 +154,50 @@
       enable = true;
       enableRootTrustAnchor = true;
       resolveLocalQueries = true;
+      settings = {
+        server = {
+          interface = [
+            "127.0.0.1"
+          ];
+          private-domain = [
+            "remote.tenjin-dk.com."
+            "remote.fumoposting.com."
+          ];
+        };
+        private-address = [
+          "10.0.0.0/8"
+          "172.16.0.0/12"
+          "fd00::/8"
+          "fd17::/16"
+          "fe80::/10"
+        ];
+        local-zone = [
+          "1.31.16.172.in-addr.arpa. transparent"
+          "unsigned-int64.remote. transparent"
+        ];
+        local-data-ptr = [
+          "1.31.16.172.in-addr.arpa. unsigned-int64.remote"
+        ];
+        local-data = [
+          # A/AAAA records
+          "unsigned-int64.remote. A 172.16.31.1"
+          "unsigned-int64.remote. AAAA fd17:216b:31bc:1::1"
+
+          # CNAME
+          "prom.tenjin-dk.com CNAME unsigned-int64.remote"
+          "lib.tenjin-dk.com CNAME unsigned-int64.remote"
+          "private.tenjin-dk.com CNAME unsigned-int64.remote"
+          "public.tenjin-dk.com CNAME unsigned-int64.remote"
+
+          # PTR records
+          "1.31.16.172.in-addr.arpa. PTR static.1.31.16.172.internal.unsigned-int64.com."
+        ];
+        remote-control = {
+          control-enable = true;
+          control-interface = ["127.0.0.1"];
+          control-port = 8953;
+        };
+      };
     };
   };
 }

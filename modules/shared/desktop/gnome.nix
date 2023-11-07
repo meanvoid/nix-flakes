@@ -54,7 +54,6 @@
       package = pkgs.gnomeExtensions.gsconnect;
     };
   };
-
   environment.systemPackages =
     (with pkgs; [
       adw-gtk3
@@ -94,11 +93,20 @@
       dash-to-dock
       arcmenu
     ]);
+  nixpkgs.config.packageOverrides = pkgs: {
+    catppuccin-gtk = pkgs.catppuccin-gtk.override {
+      accents = ["rosewater"];
+      size = "compact";
+      tweaks = ["rimless"];
+      variant = "frappe";
+    };
+  };
   environment.gnome.excludePackages = with pkgs; [
     gnome-console
   ];
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";
   };
+  services.dbus.packages = [pkgs.gcr];
   services.gnome.gnome-browser-connector.enable = true;
 }

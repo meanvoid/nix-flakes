@@ -41,7 +41,6 @@
         ani-cli
         thefuck
         mullvad
-        rbw # bitwarden cli
 
         ### --- Games --- ###
         heroic
@@ -85,5 +84,14 @@
         datagrip
       ]);
     stateVersion = "23.05";
+  };
+  programs.rbw = {
+    enable = true;
+    settings = {
+      email = "ashuramaru@tenjin-dk.com";
+      base_url = "https://bitwarden.tenjin-dk.com";
+      lock_timeout = 600;
+      pinentry = "gnome3";
+    };
   };
 }
