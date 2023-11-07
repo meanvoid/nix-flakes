@@ -42,7 +42,7 @@ in {
       enable = true;
       consoleMode = "max";
       netbootxyz.enable = true;
-      configurationLimit = 5;
+      configurationLimit = 30;
     };
     generationsDir.copyKernels = true;
     efi.canTouchEfiVariables = true;
@@ -84,7 +84,7 @@ in {
           bypassWorkqueues = true;
         };
         "fpool" = {
-          device = "8f075465-a72e-467c-946d-df8544b1bff3";
+          device = "/dev/disk/by-uuid/8f075465-a72e-467c-946d-df8544b1bff3";
           allowDiscards = true;
           bypassWorkqueues = true;
         };
