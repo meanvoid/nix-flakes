@@ -98,7 +98,7 @@ in {
       privateKeyFile = private;
       postUp = ''
         ${pkgs.systemd}/bin/resolvectl dns wg-ui64 172.16.31.1
-        ${pkgs.systemd}/bin/resolvectl domain wg-ui64 ~\prom.tenjin-dk.com ~\lib.tenjin-dk.com ~\private.tenjin-dk.com ~\public.tenjin-dk.com ~\.fumoposting.com
+        ${pkgs.systemd}/bin/resolvectl domain wg-ui64 ~\prom.tenjin-dk.com ~\lib.tenjin-dk.com ~\private.tenjin-dk.com ~\public.tenjin-dk.com ~\rcon.fumoposting.com
       '';
       peers = [
         {
