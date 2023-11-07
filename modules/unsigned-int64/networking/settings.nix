@@ -16,12 +16,12 @@
             prefixLength = 27;
           }
         ];
-        ipv6.addresses = [
-          {
-            address = "2a01:4f8:141:5310::1";
-            prefixLength = 64;
-          }
-        ];
+        # ipv6.addresses = [
+        #   {
+        #     address = "2a01:4f8:141:5330::1";
+        #     prefixLength = 64;
+        #   }
+        # ];
       };
     };
     defaultGateway = {
@@ -40,7 +40,7 @@
     ];
     nat = {
       enable = true;
-      enableIPv6 = true;
+      # enableIPv6 = true;
       externalInterface = "eno1";
       internalInterfaces = [
         "ve-+"
