@@ -46,7 +46,7 @@ in {
     };
     generationsDir.copyKernels = true;
     efi.canTouchEfiVariables = true;
-    efi.efiSysMountPoint = "/boot/efi";
+    efi.efiSysMountPoint = "/boot";
     timeout = 10;
   };
   ### ----------------BOOT------------------- ###
