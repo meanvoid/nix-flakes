@@ -207,10 +207,11 @@
             "\"tenjin.com. 10800 IN SOA ns1.internal.com. admin@cloud.tenjin-dk.com. 1 3600 1200 604800 10800\""
             "\"tenjin.com. 10800 IN A 172.16.31.1\""
             "\"tenjin.com. 10800 IN AAAA fd17:216b:31bc:1::1\""
-            "\"prom.tenjin.com. 3600 IN CNAME tenjin.com.\""
-            "\"lib.tenjin.com. 3600 IN CNAME tenjin.com.\""
-            "\"public.tenjin.com. 3600 IN CNAME tenjin.com.\""
-            "\"private.tenjin.com. 3600 IN CNAME tenjin.com.\""
+            "\"www.tenjin.com. 10800 IN CNAME tenjin.com.\""
+            "\"prom.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
+            "\"lib.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
+            "\"public.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
+            "\"private.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
           ];
         };
         forward-zone = [
