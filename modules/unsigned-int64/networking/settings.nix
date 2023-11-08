@@ -177,6 +177,13 @@
             "remote.tenjin-dk.com."
             "remote.fumoposting.com."
           ];
+          private-address = [
+            "10.0.0.0/8"
+            "172.16.0.0/12"
+            "fd00::/8"
+            "fd17::/16"
+            "fe80::/10"
+          ];
         };
         forward-zone = [
           {
@@ -190,13 +197,6 @@
             forward-tls-upstream = "yes";
           }
         ];
-        # private-address = [
-        #   "10.0.0.0/8"
-        #   "172.16.0.0/12"
-        #   "fd00::/8"
-        #   "fd17::/16"
-        #   "fe80::/10"
-        # ];
         # local-zone = [
         #   "1.31.16.172.in-addr.arpa transparent"
         #   "unsigned-int64.remote transparent"
