@@ -227,7 +227,7 @@
         };
       };
     };
-    "prom.tenjin-dk.com" = {
+    "prom.tenjin.com" = {
       addSSL = true;
       sslCertificate = "/var/lib/scerts/prom.tenjin-dk.com/prom.tenjin-dk.com.crt";
       sslCertificateKey = "/var/lib/scerts/prom.tenjin-dk.com/prom.tenjin-dk.com.key";

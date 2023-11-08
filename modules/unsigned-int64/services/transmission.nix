@@ -21,7 +21,7 @@
       rpc-whitelist-enabled = true;
       rpc-whitelist = "127.0.0.1,172.16.31.*";
       rpc-host-whitelist-enabled = true;
-      rpc-host-whitelist = "lib.tenjin-dk.com";
+      rpc-host-whitelist = "lib.tenjin.com";
     };
   };
   services.sonarr.enable = true;
@@ -31,7 +31,7 @@
   users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
   users.users.transmission.extraGroups = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
   services.nginx.virtualHosts = {
-    "public.tenjin-dk.com" = {
+    "public.tenjin.com" = {
       addSSL = true;
       sslCertificate = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.crt";
       sslCertificateKey = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.key";
@@ -39,7 +39,7 @@
         proxyPass = "http://172.16.31.1:18765";
       };
     };
-    "private.tenjin-dk.com" = {
+    "private.tenjin.com" = {
       addSSL = true;
       sslCertificate = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.crt";
       sslCertificateKey = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.key";
@@ -47,7 +47,7 @@
         proxyPass = "http://172.16.31.1:9091";
       };
     };
-    "lib.tenjin-dk.com" = {
+    "lib.tenjin.com" = {
       addSSL = true;
       sslCertificate = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.crt";
       sslCertificateKey = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.key";
