@@ -163,20 +163,23 @@
             "fd17::/16 allow"
             "fe80::/10 allow"
           ];
-          forward-zone = [
-            {
-              name = ".";
-              forward-addr = [
-                # "1.1.1.1@853#cloudflare-dns.com"
-                # "1.0.0.1@853#cloudflare-dns.com"
-                # "2606:4700:4700::1111@853#cloudflare-dns.com"
-                # "2606:4700:4700::1001@853#cloudflare-dns.com"
-                "1.1.1.1@853#cloudflare-dns.com"
-              ];
-              forward-tls-upstream = "yes";
-            }
+          private-domain = [
+            "remote.tenjin-dk.com."
+            "remote.fumoposting.com."
           ];
         };
+        forward-zone = [
+          {
+            name = ".";
+            forward-addr = [
+              "1.1.1.1@853#cloudflare-dns.com"
+              "1.0.0.1@853#cloudflare-dns.com"
+              "2606:4700:4700::1111@853#cloudflare-dns.com"
+              "2606:4700:4700::1001@853#cloudflare-dns.com"
+            ];
+            forward-tls-upstream = "yes";
+          }
+        ];
         # private-address = [
         #   "10.0.0.0/8"
         #   "172.16.0.0/12"
@@ -206,11 +209,11 @@
         #   "1.31.16.172.in-addr.arpa. IN PTR static.1.31.16.172.internal.unsigned-int64.com. 3600"
         # ];
         remote-control.control-enable = true;
-        do-not-query-localhost = false;
-        do-ip4 = "yes";
-        do-ip6 = "yes";
-        do-udp = "yes";
-        do-tcp = "yes";
+        do-not-query-localhost = "no";
+        do-ip4 = "no";
+        do-ip6 = "no";
+        do-udp = "no";
+        do-tcp = "no";
       };
     };
   };
