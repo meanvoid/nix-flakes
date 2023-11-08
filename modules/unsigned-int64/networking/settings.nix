@@ -40,12 +40,10 @@
       address = "fe80::1";
       interface = "eno1";
     };
-    # nameservers = [
-    #   "1.0.0.1"
-    #   "1.1.1.1"
-    #   "2606:4700:4700::1111"
-    #   "2606:4700:4700::1001"
-    # ];
+    nameservers = [
+      "127.0.0.1"
+      "::1"
+    ];
     nat = {
       enable = true;
       enableIPv6 = true;
@@ -182,13 +180,13 @@
             forward-tls-upstream = "yes";
           }
         ];
-        private-address = [
-          "10.0.0.0/8"
-          "172.16.0.0/12"
-          "fd00::/8"
-          "fd17::/16"
-          "fe80::/10"
-        ];
+        # private-address = [
+        #   "10.0.0.0/8"
+        #   "172.16.0.0/12"
+        #   "fd00::/8"
+        #   "fd17::/16"
+        #   "fe80::/10"
+        # ];
         # local-zone = [
         #   "1.31.16.172.in-addr.arpa transparent"
         #   "unsigned-int64.remote transparent"
@@ -211,6 +209,10 @@
         #   "1.31.16.172.in-addr.arpa. IN PTR static.1.31.16.172.internal.unsigned-int64.com. 3600"
         # ];
         remote-control.control-enable = true;
+        do-ip4 = "yes";
+        do-ip6 = "yes";
+        do-udp = "yes";
+        do-tcp = "yes";
       };
     };
   };
