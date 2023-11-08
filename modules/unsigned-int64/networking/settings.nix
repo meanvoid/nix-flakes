@@ -128,24 +128,6 @@
           addr = "[::]";
           port = 57255;
         }
-        # wireguard0#private
-        {
-          addr = "192.168.254.1";
-          port = 22;
-        }
-        {
-          addr = "[dced:2718:5f06:321a::1]";
-          port = 22;
-        }
-        # wireguard0#home
-        {
-          addr = "192.168.10.1";
-          port = 22;
-        }
-        {
-          addr = "[dced:2718:5f06:718a::1]";
-          port = 22;
-        }
         # wireguard1
         {
           addr = "172.16.31.1";
