@@ -229,8 +229,9 @@
     };
     "prom.tenjin.com" = {
       addSSL = true;
-      sslCertificate = "/var/lib/scerts/prom.tenjin-dk.com/prom.tenjin-dk.com.crt";
-      sslCertificateKey = "/var/lib/scerts/prom.tenjin-dk.com/prom.tenjin-dk.com.key";
+      sslCertificate = "/var/lib/scerts/prom.tenjin.com/prom.tenjin.com.crt";
+      sslCertificateKey = "/var/lib/scerts/prom.tenjin.com/prom.tenjin.com.key";
+      sslTrustedCertificate = "/etc/ssl/self/tenjin.com/ca.crt";
       locations."/" = {
         proxyPass = "http://172.16.31.1:${toString config.services.prometheus.port}";
         proxyWebsockets = true;

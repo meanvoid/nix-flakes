@@ -43,6 +43,10 @@ in {
       execWheelOnly = true;
     };
     rtkit.enable = true;
+    pki.certificateFiles = [
+      "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+      "/etc/ssl/self/tenjin.com/ca.crt"
+    ];
   };
   services.vscode-server.enable = true;
   programs = {

@@ -33,24 +33,27 @@
   services.nginx.virtualHosts = {
     "public.tenjin.com" = {
       addSSL = true;
-      sslCertificate = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.crt";
-      sslCertificateKey = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.key";
+      sslCertificate = "/etc/ssl/self/tenjin.com/tenjin.com.crt";
+      sslCertificateKey = "/etc/ssl/self/tenjin.com/tenjin.com.key";
+      sslTrustedCertificate = "/etc/ssl/self/tenjin.com/ca.crt";
       locations."/" = {
         proxyPass = "http://172.16.31.1:18765";
       };
     };
     "private.tenjin.com" = {
       addSSL = true;
-      sslCertificate = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.crt";
-      sslCertificateKey = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.key";
+      sslCertificate = "/etc/ssl/self/tenjin.com/tenjin.com.crt";
+      sslCertificateKey = "/etc/ssl/self/tenjin.com/tenjin.com.key";
+      sslTrustedCertificate = "/etc/ssl/self/tenjin.com/ca.crt";
       locations."/" = {
         proxyPass = "http://172.16.31.1:9091";
       };
     };
     "lib.tenjin.com" = {
       addSSL = true;
-      sslCertificate = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.crt";
-      sslCertificateKey = "/etc/ssl/self/tenjin-dk.com/tenjin-dk.com.key";
+      sslCertificate = "/etc/ssl/self/tenjin.com/tenjin.com.crt";
+      sslCertificateKey = "/etc/ssl/self/tenjin.com/tenjin.com.key";
+      sslTrustedCertificate = "/etc/ssl/self/tenjin.com/ca.crt";
       locations."/sonaar" = {
         proxyPass = "http://172.16.31.1:8989";
       };
