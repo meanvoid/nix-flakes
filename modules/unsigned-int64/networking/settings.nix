@@ -96,12 +96,20 @@
           # prometheus
           9000
 
-          # sonaar
+          #radarr
+          7878
+          # sonarr
           8989
-          # jackett
-          9117
+          # lidarr
+          8686
+          # readarr
+          8787
           # prowlarr
           9696
+          # bazarr
+          8763
+          # jackett
+          9117
           # transmission
           9091
           18765
