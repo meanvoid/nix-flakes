@@ -80,7 +80,13 @@
         57255
       ];
       interfaces."wireguard1" = {
+        allowedUDPPorts = [
+          53
+          67
+        ];
         allowedTCPPorts = [
+          53
+          67
           # prometheus
           9000
           # sonaar
@@ -215,20 +221,6 @@
           ];
         };
         forward-zone = [
-          {
-            name = "internal.com.";
-            forward-addr = [
-              "172.16.31.1"
-              "fd17:216b:31bc:1::1"
-            ];
-          }
-          {
-            name = "172.in-addr.arpa.";
-            forward-addr = [
-              "172.16.31.1"
-              "fd17:216b:31bc:1::1"
-            ];
-          }
           {
             name = ".";
             forward-addr = [
