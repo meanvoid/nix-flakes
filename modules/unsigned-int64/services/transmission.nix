@@ -19,9 +19,9 @@
       rpc-bind-address = "0.0.0.0";
       rpc-port = 18765;
       rpc-whitelist-enabled = true;
-      rpc-whitelist = "127.0.0.1,172.16.31.*";
+      rpc-whitelist = "172.16.31.*";
       rpc-host-whitelist-enabled = true;
-      rpc-host-whitelist = "lib.tenjin.com";
+      rpc-host-whitelist = "*";
     };
   };
   services.sonarr.enable = true;
