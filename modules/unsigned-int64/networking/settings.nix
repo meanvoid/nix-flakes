@@ -167,6 +167,11 @@
             "remote.tenjin-dk.com."
             "remote.fumoposting.com."
           ];
+          do-not-query-localhost = "no";
+          do-ip4 = "no";
+          do-ip6 = "no";
+          do-udp = "no";
+          do-tcp = "no";
         };
         forward-zone = [
           {
@@ -209,11 +214,6 @@
         #   "1.31.16.172.in-addr.arpa. IN PTR static.1.31.16.172.internal.unsigned-int64.com. 3600"
         # ];
         remote-control.control-enable = true;
-        do-not-query-localhost = "no";
-        do-ip4 = "no";
-        do-ip6 = "no";
-        do-udp = "no";
-        do-tcp = "no";
       };
     };
   };
