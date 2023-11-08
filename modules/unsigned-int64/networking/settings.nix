@@ -163,18 +163,15 @@
             "fd17::/16 allow"
             "fe80::/10 allow"
           ];
-          private-domain = [
-            "remote.tenjin-dk.com."
-            "remote.fumoposting.com."
-          ];
           forward-zone = [
             {
               name = ".";
               forward-addr = [
+                # "1.1.1.1@853#cloudflare-dns.com"
+                # "1.0.0.1@853#cloudflare-dns.com"
+                # "2606:4700:4700::1111@853#cloudflare-dns.com"
+                # "2606:4700:4700::1001@853#cloudflare-dns.com"
                 "1.1.1.1@853#cloudflare-dns.com"
-                "1.0.0.1@853#cloudflare-dns.com"
-                "2606:4700:4700::1111@853#cloudflare-dns.com"
-                "2606:4700:4700::1001@853#cloudflare-dns.com"
               ];
               forward-tls-upstream = "yes";
             }
