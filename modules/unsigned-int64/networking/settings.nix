@@ -21,6 +21,14 @@
             address = "2a01:4f8:141:5330::";
             prefixLength = 64;
           }
+          {
+            address = "2a01:4f8:141:5330::1";
+            prefixLength = 128;
+          }
+          {
+            address = "2a01:4f8:141:5330::2";
+            prefixLength = 128;
+          }
         ];
       };
     };
