@@ -103,6 +103,7 @@
           # prowlarr
           9696
           # transmission
+          9091
           18765
         ];
       };
