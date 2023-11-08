@@ -166,6 +166,8 @@
           prefetch = "yes";
           prefetch-key = "yes";
           num-threads = "2";
+          hide-identity = "yes";
+          identity = "\"static.unsigned-int64.your-server.de\"";
           access-control = [
             "127.0.0.0/8 allow"
             "172.16.0.0/12 allow"
@@ -186,7 +188,7 @@
           ];
           local-zone = [
             "\"internal.com.\" static"
-            "\"172.in-addr.arpa.\" static"
+            "\"172.in-addr.arpa.\" transparent"
           ];
           local-data = [
             "\"internal.com. 10800 IN NS internal.com.\""
@@ -200,6 +202,20 @@
           ];
         };
         forward-zone = [
+          {
+            name = "internal.com.";
+            forward-addr = [
+              "172.16.31.1"
+              "fd17:216b:31bc:1::1"
+            ];
+          }
+          {
+            name = "172.in-addr.arpa.";
+            forward-addr = [
+              "172.16.31.1"
+              "fd17:216b:31bc:1::1"
+            ];
+          }
           {
             name = ".";
             forward-addr = [
