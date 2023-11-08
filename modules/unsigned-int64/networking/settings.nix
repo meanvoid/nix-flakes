@@ -81,14 +81,21 @@
       ];
       interfaces."wireguard1" = {
         allowedUDPPorts = [
+          # forward all possible dns ports
           53
           67
+          5353
+          8053
         ];
         allowedTCPPorts = [
           53
           67
+          5353
+          8053
+
           # prometheus
           9000
+
           # sonaar
           8989
           # jackett
