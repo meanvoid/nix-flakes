@@ -179,12 +179,12 @@
               forward-tls-upstream = "yes";
             }
           ];
-          do-not-query-localhost = false;
-          do-ip4 = "yes";
-          do-ip6 = "yes";
-          do-udp = "yes";
-          do-tcp = "yes";
         };
+        do-not-query-localhost = "no";
+        do-ip4 = "yes";
+        do-ip6 = "yes";
+        do-udp = "yes";
+        do-tcp = "yes";
         # private-address = [
         #   "10.0.0.0/8"
         #   "172.16.0.0/12"
