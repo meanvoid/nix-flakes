@@ -184,8 +184,25 @@
             "fd17::/16"
             "fe80::/10"
           ];
+          local-zone = [
+            "\"static.1.31.16.172.in-addr.arpa.\" transparent"
+          ];
         };
         forward-zone = [
+          {
+            name = "unsigned-int64.com.";
+            forward-addr = [
+              "172.16.31.1"
+              "fd17:216b:31bc:1::1"
+            ];
+          }
+          {
+            name = "static.1.31.16.172.in-addr.arpa";
+            forward-addr = [
+              "172.16.31.1"
+              "fd17:216b:31bc:1::1"
+            ];
+          }
           {
             name = ".";
             forward-addr = [
@@ -197,10 +214,6 @@
             forward-tls-upstream = "yes";
           }
         ];
-        # local-zone = [
-        #   "1.31.16.172.in-addr.arpa transparent"
-        #   "unsigned-int64.remote transparent"
-        # ];
         # local-data-ptr = [
         #   "1.31.16.172.in-addr.arpa unsigned-int64.remote"
         # ];
