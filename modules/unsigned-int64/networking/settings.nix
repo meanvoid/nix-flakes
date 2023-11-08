@@ -167,7 +167,6 @@
             "remote.tenjin-dk.com."
             "remote.fumoposting.com."
           ];
-          do-not-query-localhost = "no";
           do-ip4 = "no";
           do-ip6 = "no";
           do-udp = "no";
