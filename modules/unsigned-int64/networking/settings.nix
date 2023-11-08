@@ -16,12 +16,12 @@
             prefixLength = 27;
           }
         ];
-        # ipv6.addresses = [
-        #   {
-        #     address = "2a01:4f8:141:5330::1";
-        #     prefixLength = 64;
-        #   }
-        # ];
+        ipv6.addresses = [
+          {
+            address = "2a01:4f8:141:5330::1";
+            prefixLength = 64;
+          }
+        ];
       };
     };
     defaultGateway = {
@@ -32,15 +32,15 @@
       address = "fe80::1";
       interface = "eno1";
     };
-    nameservers = [
-      "1.0.0.1"
-      "1.1.1.1"
-      "2606:4700:4700::1111"
-      "2606:4700:4700::1001"
-    ];
+    # nameservers = [
+    #   "1.0.0.1"
+    #   "1.1.1.1"
+    #   "2606:4700:4700::1111"
+    #   "2606:4700:4700::1001"
+    # ];
     nat = {
       enable = true;
-      # enableIPv6 = true;
+      enableIPv6 = true;
       externalInterface = "eno1";
       internalInterfaces = [
         "ve-+"
@@ -137,59 +137,73 @@
         }
       ];
     };
-    resolved.enable = true;
-    # unbound = {
-    #   enable = true;
-    #   enableRootTrustAnchor = true;
-    #   resolveLocalQueries = true;
-    #   settings = {
-    #     server = {
-    #       verbosity = 2;
-    #       interface = [
-    #         "127.0.0.1"
-    #         "::1"
-    #         "172.16.31.1"
-    #         fd17:216b:31bc:1::1
-    #       ];
-    #       private-domain = [
-    #         "remote.tenjin-dk.com."
-    #         "remote.fumoposting.com."
-    #       ];
-    #     };
-    #     private-address = [
-    #       "10.0.0.0/8"
-    #       "172.16.0.0/12"
-    #       "fd00::/8"
-    #       "fd17::/16"
-    #       "fe80::/10"
-    #     ];
-    #     local-zone = [
-    #       "1.31.16.172.in-addr.arpa transparent"
-    #       "unsigned-int64.remote transparent"
-    #     ];
-    #     local-data-ptr = [
-    #       "1.31.16.172.in-addr.arpa unsigned-int64.remote"
-    #     ];
-    #     local-data = [
-    #       # A/AAAA records
-    #       "unsigned-int64.remote IN A 172.16.31.1 3600"
-    #       "unsigned-int64.remote IN AAAA fd17:216b:31bc:1::1 3600"
+    unbound = {
+      enable = true;
+      enableRootTrustAnchor = true;
+      resolveLocalQueries = true;
+      settings = {
+        server = {
+          verbosity = 2;
+          interface = [
+            "127.0.0.1"
+            "::1"
+            "172.16.31.1"
+            fd17:216b:31bc:1::1
+          ];
+          access-control = [
+            "127.0.0.0/8 allow"
+          ];
+          # private-domain = [
+          #   "remote.tenjin-dk.com."
+          #   "remote.fumoposting.com."
+          # ];
+        };
+        forward-zone = [
+          {
+            name = ".";
+            forward-addr = [
+              "1.1.1.1@853#cloudflare-dns.com"
+              "1.0.0.1@853#cloudflare-dns.com"
+              "2606:4700:4700::1111@853#cloudflare-dns.com"
+              "2606:4700:4700::1001@853#cloudflare-dns.com"
+            ];
+            forward-tls-upstream = "yes";
+          }
+        ];
+        # private-address = [
+        #   "10.0.0.0/8"
+        #   "172.16.0.0/12"
+        #   "fd00::/8"
+        #   "fd17::/16"
+        #   "fe80::/10"
+        # ];
+        # local-zone = [
+        #   "1.31.16.172.in-addr.arpa transparent"
+        #   "unsigned-int64.remote transparent"
+        # ];
+        # local-data-ptr = [
+        #   "1.31.16.172.in-addr.arpa unsigned-int64.remote"
+        # ];
+        # local-data = [
+        #   # A/AAAA records
+        #   "unsigned-int64.remote IN A 172.16.31.1 3600"
+        #   "unsigned-int64.remote IN AAAA fd17:216b:31bc:1::1 3600"
 
-    #       # CNAME
-    #       "prom.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-    #       "lib.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-    #       "private.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-    #       "public.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
+        #   # CNAME
+        #   "prom.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
+        #   "lib.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
+        #   "private.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
+        #   "public.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
 
-    #       # PTR records
-    #       "1.31.16.172.in-addr.arpa. IN PTR static.1.31.16.172.internal.unsigned-int64.com. 3600"
-    #     ];
-    #     remote-control = {
-    #       control-enable = true;
-    #       control-interface = ["127.0.0.1"];
-    #       control-port = 8953;
-    #     };
-    #   };
-    # };
+        #   # PTR records
+        #   "1.31.16.172.in-addr.arpa. IN PTR static.1.31.16.172.internal.unsigned-int64.com. 3600"
+        # ];
+        remote-control = {
+          control-enable = true;
+          control-interface = ["127.0.0.1"];
+          control-port = 8953;
+        };
+      };
+    };
   };
 }
