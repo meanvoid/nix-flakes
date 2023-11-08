@@ -167,10 +167,6 @@
             "remote.tenjin-dk.com."
             "remote.fumoposting.com."
           ];
-          do-ip4 = "no";
-          do-ip6 = "no";
-          do-udp = "no";
-          do-tcp = "no";
         };
         forward-zone = [
           {
