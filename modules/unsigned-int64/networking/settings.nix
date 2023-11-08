@@ -186,17 +186,14 @@
           ];
           local-zone = [
             "\"internal.com.\" static"
+            "\"172.in-addr.arpa.\" static"
           ];
           local-data = [
             "internal.com. 10800 IN NS internal.com."
             "internal.com. 10800 IN SOA internal.com. nobody.invalid. 1 3600 1200 604800 10800"
             "internal.com. 10800 IN A 172.16.31.1"
             "internal.com. 10800 IN AAAA fd17:216b:31bc:1::1"
-          ];
-          local-zone = [
-            "\"172.in-addr.arpa.\" static"
-          ];
-          local-data = [
+
             "172.in-addr.arpa. 10800 IN NS internal.com."
             "172.in-addr.arpa. 10800 IN SOA internal.com. nobody.invalid. 2 3600 1200 604800 10800"
             "1.31.16.172.in-addr.arpa. 10800 IN PTR internal.com."
