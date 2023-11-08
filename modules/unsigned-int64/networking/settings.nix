@@ -156,6 +156,16 @@
             "172.16.31.1"
             fd17:216b:31bc:1::1
           ];
+          do-ip4 = "yes";
+          do-ip6 = "yes";
+          do-udp = "yes";
+          do-tcp = "yes";
+          harden-glue = "yes";
+          harden-dnssec-stripped = "yes";
+          edns-buffer-size = 1232;
+          prefetch = "yes";
+          prefetch-key = "yes";
+          num-threads = "2";
           access-control = [
             "127.0.0.0/8 allow"
             "172.16.0.0/12 allow"
