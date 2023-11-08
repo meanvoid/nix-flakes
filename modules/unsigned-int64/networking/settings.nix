@@ -165,10 +165,10 @@
             "fd17::/16 allow"
             "fe80::/10 allow"
           ];
-          # private-domain = [
-          #   "remote.tenjin-dk.com."
-          #   "remote.fumoposting.com."
-          # ];
+          private-domain = [
+            "remote.tenjin-dk.com."
+            "remote.fumoposting.com."
+          ];
         };
         forward-zone = [
           {
@@ -182,13 +182,13 @@
             forward-tls-upstream = "yes";
           }
         ];
-        # private-address = [
-        #   "10.0.0.0/8"
-        #   "172.16.0.0/12"
-        #   "fd00::/8"
-        #   "fd17::/16"
-        #   "fe80::/10"
-        # ];
+        private-address = [
+          "10.0.0.0/8"
+          "172.16.0.0/12"
+          "fd00::/8"
+          "fd17::/16"
+          "fe80::/10"
+        ];
         # local-zone = [
         #   "1.31.16.172.in-addr.arpa transparent"
         #   "unsigned-int64.remote transparent"
@@ -210,11 +210,7 @@
         #   # PTR records
         #   "1.31.16.172.in-addr.arpa. IN PTR static.1.31.16.172.internal.unsigned-int64.com. 3600"
         # ];
-        remote-control = {
-          control-enable = true;
-          control-interface = ["127.0.0.1"];
-          control-port = 8953;
-        };
+        remote-control.control-enable = true;
       };
     };
   };
