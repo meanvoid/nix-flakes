@@ -36,14 +36,15 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+    xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
       xdg-desktop-portal-kde
     ];
   };
   qt = {
     enable = true;
     platformTheme = "qt5ct";
-    style = "breeze";
   };
   programs = {
     gnome-terminal.enable = true;

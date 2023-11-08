@@ -28,7 +28,7 @@ in {
       rocketLog = "critical";
 
       websocketEnabled = true;
-      websocketAddress = "0.0.0.0";
+      websocketAddress = "127.0.0.1";
       websocketPort = "3012";
       enableDbWal = true;
 
