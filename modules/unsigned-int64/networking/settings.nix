@@ -185,24 +185,27 @@
             "fe80::/10"
           ];
           local-zone = [
-            "\"static.1.31.16.172.in-addr.arpa.\" transparent"
+            "\"internal.com.\" static"
+          ];
+          local-data = [
+            "internal.com. 10800 IN NS internal.com."
+            "internal.com. 10800 IN SOA internal.com. nobody.invalid. 1 3600 1200 604800 10800"
+            "internal.com. 10800 IN A 172.16.31.1"
+            "internal.com. 10800 IN AAAA fd17:216b:31bc:1::1"
+          ];
+          local-zone = [
+            "\"172.in-addr.arpa.\" static"
+          ];
+          local-data = [
+            "172.in-addr.arpa. 10800 IN NS internal.com."
+            "172.in-addr.arpa. 10800 IN SOA internal.com. nobody.invalid. 2 3600 1200 604800 10800"
+            "1.31.16.172.in-addr.arpa. 10800 IN PTR internal.com."
+          ];
+          local-data-ptr = [
+            "1.31.16.172.in-addr.arpa unsigned-int64.remote"
           ];
         };
         forward-zone = [
-          {
-            name = "unsigned-int64.com.";
-            forward-addr = [
-              "172.16.31.1"
-              "fd17:216b:31bc:1::1"
-            ];
-          }
-          {
-            name = "static.1.31.16.172.in-addr.arpa";
-            forward-addr = [
-              "172.16.31.1"
-              "fd17:216b:31bc:1::1"
-            ];
-          }
           {
             name = ".";
             forward-addr = [
@@ -214,25 +217,34 @@
             forward-tls-upstream = "yes";
           }
         ];
-        # local-data-ptr = [
-        #   "1.31.16.172.in-addr.arpa unsigned-int64.remote"
-        # ];
-        # local-data = [
-        #   # A/AAAA records
-        #   "unsigned-int64.remote IN A 172.16.31.1 3600"
-        #   "unsigned-int64.remote IN AAAA fd17:216b:31bc:1::1 3600"
-
-        #   # CNAME
-        #   "prom.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-        #   "lib.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-        #   "private.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-        #   "public.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-
-        #   # PTR records
-        #   "1.31.16.172.in-addr.arpa. IN PTR static.1.31.16.172.internal.unsigned-int64.com. 3600"
-        # ];
-        remote-control.control-enable = true;
+        remote-control = {
+          control-enable = true;
+          control-interface = [
+            "127.0.0.1"
+            "::1"
+            "172.16.31.1"
+            "fd17:216b:31bc:1::1"
+          ];
+          control-port = 8953;
+        };
       };
     };
+    # local-data-ptr = [
+    #   "1.31.16.172.in-addr.arpa unsigned-int64.remote"
+    # ];
+    # local-data = [
+    #   # A/AAAA records
+    #   "unsigned-int64.remote IN A 172.16.31.1 3600"
+    #   "unsigned-int64.remote IN AAAA fd17:216b:31bc:1::1 3600"
+
+    #   # CNAME
+    #   "prom.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
+    #   "lib.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
+    #   "private.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
+    #   "public.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
+
+    #   # PTR records
+    #   "1.31.16.172.in-addr.arpa. IN PTR static.1.31.16.172.internal.unsigned-int64.com. 3600"
+    # ];
   };
 }
