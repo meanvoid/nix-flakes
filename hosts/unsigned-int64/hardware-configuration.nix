@@ -162,17 +162,17 @@ in {
   fileSystems."/mnt/media" = {
     device = "//u369008-sub9.your-storagebox.de/u369008-sub9";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub9,uid=991,gid=981"];
+    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub9,uid=991,gid=981,dir_mode=0775,file_mode=0775"];
   };
   fileSystems."/var/lib/transmission/private" = {
     device = "//u369008-sub10.your-storagebox.de/u369008-sub10";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub10,uid=70,gid=70"];
+    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub10,uid=70,gid=70,dir_mode=0775,file_mode=0775"];
   };
   fileSystems."/var/lib/transmission/public" = {
     device = "//u369008-sub11.your-storagebox.de/u369008-sub11";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub11,uid=70,gid=70"];
+    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub11,uid=70,gid=70,dir_mode=0775,file_mode=0775"];
   };
   ### ---------------SMB/NAS/CIFS-------------------- ###
   services.btrfs.autoScrub = {
