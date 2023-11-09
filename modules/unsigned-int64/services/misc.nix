@@ -8,7 +8,7 @@
     enable = true;
     appriseSupport = true;
     settings = {
-      UPTIME_KUMA_HOS = "172.16.31.1";
+      UPTIME_KUMA_HOST = "172.16.31.1";
       UPTIME_KUMA_PORT = "3001";
     };
   };
