@@ -55,6 +55,24 @@
         "wireguard1"
       ];
     };
+    hosts = {
+      "172.16.31.1" = [
+        "www.tenjin.com"
+        "prom.tenjin.com"
+        "lib.tenjin.com"
+        "uptime.tenjin.com"
+        "public.tenjin.com"
+        "private.tenjin.com"
+      ];
+      "fd17:216b:31bc:1::1" = [
+        "www.tenjin.com"
+        "prom.tenjin.com"
+        "lib.tenjin.com"
+        "uptime.tenjin.com"
+        "public.tenjin.com"
+        "private.tenjin.com"
+      ];
+    };
     firewall = {
       enable = true;
       allowedUDPPorts = [
