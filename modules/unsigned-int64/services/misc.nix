@@ -13,12 +13,12 @@
     };
   };
   services.nginx.virtualHosts = {
-    "lib.tenjin.com" = {
+    "uptime.tenjin.com" = {
       addSSL = true;
       sslCertificate = "/etc/ssl/self/tenjin.com/tenjin.com.crt";
       sslCertificateKey = "/etc/ssl/self/tenjin.com/tenjin.com.key";
       sslTrustedCertificate = "/etc/ssl/self/tenjin.com/ca.crt";
-      locations."/kuma" = {
+      locations."/" = {
         proxyPass = "http://172.16.31.1:3001";
         proxyWebsockets = true;
       };

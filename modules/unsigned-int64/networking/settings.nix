@@ -215,6 +215,7 @@
             "\"www.tenjin.com. 10800 IN CNAME tenjin.com.\""
             "\"prom.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
             "\"lib.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
+            "\"uptime.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
             "\"public.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
             "\"private.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
           ];
