@@ -20,6 +20,7 @@
       sslTrustedCertificate = "/etc/ssl/self/tenjin.com/ca.crt";
       locations."/kuma" = {
         proxyPass = "http://172.16.31.1:3001";
+        proxyWebsockets = true;
       };
     };
   };
