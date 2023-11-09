@@ -24,15 +24,41 @@
       rpc-host-whitelist = "*";
     };
   };
-  services.radarr.enable = true;
-  services.sonarr.enable = true;
-  services.lidarr.enable = true;
-  services.readarr.enable = true;
-  services.prowlarr.enable = true;
-  services.jackett.enable = true;
+  services.radarr = {
+    enable = true;
+    user = "jellyfin";
+    group = "jellyfin";
+  };
+  services.sonarr = {
+    enable = true;
+    user = "jellyfin";
+    group = "jellyfin";
+  };
+  services.lidarr = {
+    enable = true;
+    user = "jellyfin";
+    group = "jellyfin";
+  };
+  services.readarr = {
+    enable = true;
+    user = "jellyfin";
+    group = "jellyfin";
+  };
+  services.prowlarr = {
+    enable = true;
+    user = "jellyfin";
+    group = "jellyfin";
+  };
+  services.jackett = {
+    enable = true;
+    user = "jellyfin";
+    group = "jellyfin";
+  };
   services.bazarr = {
     enable = true;
     listenPort = 8763;
+    user = "jellyfin";
+    group = "jellyfin";
   };
 
   users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
@@ -62,43 +88,43 @@
       sslCertificateKey = "/etc/ssl/self/tenjin.com/tenjin.com.key";
       sslTrustedCertificate = "/etc/ssl/self/tenjin.com/ca.crt";
       locations."/radarr" = {
-        proxyPass = "http://172.16.31.1:7878/radarr"; # +
+        proxyPass = "http://172.16.31.1:7878/radarr";
       };
       locations."/radarr/api" = {
         proxyPass = "http://172.16.31.1:7878";
       };
       locations."/lidarr" = {
-        proxyPass = "http://172.16.31.1:8686/lidarr"; # +
+        proxyPass = "http://172.16.31.1:8686/lidarr";
       };
       locations."/lidarr/api" = {
         proxyPass = "http://172.16.31.1:8686";
       };
       locations."/readarr" = {
-        proxyPass = "http://172.16.31.1:8787/readarr"; # +
+        proxyPass = "http://172.16.31.1:8787/readarr";
       };
       locations."/readarr/api" = {
         proxyPass = "http://172.16.31.1:8787";
       };
       locations."/bazarr" = {
-        proxyPass = "http://172.16.31.1:8763/bazarr"; # +
+        proxyPass = "http://172.16.31.1:8763/bazarr";
       };
       locations."/bazarr/api" = {
         proxyPass = "http://172.16.31.1:8763";
       };
       locations."/sonarr" = {
-        proxyPass = "http://172.16.31.1:8989/sonarr"; # -
+        proxyPass = "http://172.16.31.1:8989/sonarr";
       };
       locations."/sonarr/api" = {
         proxyPass = "http://172.16.31.1:8989";
       };
       locations."/prowlarr" = {
-        proxyPass = "http://172.16.31.1:9696/prowlarr"; # +
+        proxyPass = "http://172.16.31.1:9696/prowlarr";
       };
       locations."/prowlarr/api" = {
         proxyPass = "http://172.16.31.1:9696";
       };
       locations."/jackett" = {
-        proxyPass = "http://172.16.31.1:9117"; # +
+        proxyPass = "http://172.16.31.1:9117";
       };
     };
   };
