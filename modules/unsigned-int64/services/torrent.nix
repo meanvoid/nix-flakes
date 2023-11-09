@@ -44,11 +44,6 @@
     user = "jellyfin";
     group = "jellyfin";
   };
-  services.prowlarr = {
-    enable = true;
-    user = "jellyfin";
-    group = "jellyfin";
-  };
   services.jackett = {
     enable = true;
     user = "jellyfin";
@@ -60,6 +55,7 @@
     user = "jellyfin";
     group = "jellyfin";
   };
+  services.prowlarr.enable = true;
 
   users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
   users.users.transmission.extraGroups = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
