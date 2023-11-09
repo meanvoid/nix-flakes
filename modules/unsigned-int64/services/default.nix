@@ -8,5 +8,4 @@
   ./grafana.nix
   ./jellyfin.nix
   ./transmission.nix
-  ./xrdp.nix
 ]

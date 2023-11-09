@@ -18,7 +18,6 @@ in {
   imports =
     [
       ./hardware-configuration.nix
-      (path + "/modules/shared/desktop/gnome.nix")
       (path + "/modules/unsigned-int64/environment/users.nix")
       (path + "/modules/shared/settings/opengl.nix")
       (path + "/modules/shared/settings/nix.nix")
