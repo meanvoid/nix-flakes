@@ -90,7 +90,7 @@ in {
     };
     pki.certificateFiles = [
       "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
-      "/etc/ssl/self/tenjin.com/ca.crt"
+      "/root/tenjin.com-certificate.pem"
     ];
   };
   services.vscode-server.enable = true;
