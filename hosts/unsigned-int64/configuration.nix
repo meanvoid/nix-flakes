@@ -44,7 +44,7 @@ in {
     };
     rtkit.enable = true;
     pki.certificateFiles = [
-      "/etc/ssl/self/tenjin.com-certificate.pem"
+      "/etc/ssl/self/tenjin.com-certificate.crt"
     ];
   };
   services.vscode-server.enable = true;
