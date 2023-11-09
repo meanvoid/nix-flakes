@@ -89,7 +89,7 @@ in {
       };
     };
     pki.certificateFiles = [
-      "/etc/ssl/self/ca.crt"
+      /etc/ssl/self/ca.crt
     ];
   };
   services.vscode-server.enable = true;
