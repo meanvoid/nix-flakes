@@ -40,13 +40,13 @@ in {
       }
       # root@unsigned-int8
       {
-        publicKey = "3zRz0KCrOUHWaKT4N+UeUDOtc4gIHnFAmxHiy/qdAlc=";
+        publicKey = "znpZ26tP+y+aF/LoOT4TyLXqBNt9wuZKK0ktnk18GHA=";
         presharedKeyFile = preshared;
         allowedIPs = ["172.16.31.4/32" "fd17:216b:31bc:1::4/128"];
       }
       # @pixel7pro
       {
-        publicKey = "znpZ26tP+y+aF/LoOT4TyLXqBNt9wuZKK0ktnk18GHA=";
+        publicKey = "WxQNVRD5zwzal95wUuSMZbx8Nl0cvKoa/5ICdTYDBnw=";
         presharedKeyFile = preshared;
         allowedIPs = ["172.16.31.5/32" "fd17:216b:31bc:1::5/128"];
       }
