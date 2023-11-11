@@ -90,7 +90,6 @@ in {
             "fd17:216b:31bc:1::1/128"
           ];
           endpoint = "www.tenjin-dk.com:51280";
-          persistentKeepalive = 25;
         }
       ];
     };
