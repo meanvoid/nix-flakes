@@ -28,7 +28,7 @@ in {
     peers = [
       # Clares@rt-ax86u
       {
-        publicKey = "ruMAmF2d/vAWXT7vTvVMohpX3KGRftVKPKDjo/anXBg=";
+        publicKey = "iH6vtvDU/6TKA7unZAd0xTeiaIcc8a2bnXEiqZOYH2g=";
         presharedKeyFile = preshared;
         allowedIPs = ["172.16.31.2/32" "fd17:216b:31bc:1::2/128"];
       }
