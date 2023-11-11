@@ -23,7 +23,11 @@ in {
   virtualisation.podman = {
     enable = true;
     enableNvidia = true;
-    extraPackages = with pkgs; [gvproxy tun2socks];
+    extraPackages = with pkgs; [
+      gvproxy
+      tun2socks
+      # gvisor
+    ];
     autoPrune = {
       enable = true;
       dates = "weekly";
