@@ -83,7 +83,7 @@ in {
       '';
       peers = [
         {
-          publicKey = "";
+          publicKey = "UJNTai8BfRY0w0lYtxyiM+Azcv8rGdWPrPw7Afj1oHk=";
           presharedKeyFile = shared;
           allowedIPs = [
             "172.16.31.1/32"
