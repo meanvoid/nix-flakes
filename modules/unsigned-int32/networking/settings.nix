@@ -75,7 +75,7 @@ in {
   networking.wireguard.enable = true;
   networking.wg-quick.interfaces = {
     wg-ui64 = {
-      address = ["172.16.31.2/32" "fd17:216b:31bc:1::2/128"];
+      address = ["172.16.31.3/32" "fd17:216b:31bc:1::3/128"];
       privateKeyFile = private;
       postUp = ''
         ${pkgs.systemd}/bin/resolvectl dns wg-ui64 172.16.31.1
