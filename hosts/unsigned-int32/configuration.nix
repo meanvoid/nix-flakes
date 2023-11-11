@@ -90,7 +90,6 @@ in {
     };
     pki.certificateFiles = [
       /etc/ssl/self/ca.crt
-      /etc/ssl/self/router.crt
     ];
   };
   services.vscode-server.enable = true;

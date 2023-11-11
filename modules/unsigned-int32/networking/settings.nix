@@ -83,10 +83,10 @@ in {
       '';
       peers = [
         {
-          publicKey = "UJNTai8BfRY0w0lYtxyiM+Azcv8rGdWPrPw7Afj1oHk=";
+          publicKey = "X6OBa2aMpoLGx9lYSa+p1U8OAx0iUxAE6Te9Mucu/HQ=";
           presharedKeyFile = shared;
           allowedIPs = [
-            "172.16.31.1/32"
+            "172.16.31.1/24"
             "fd17:216b:31bc:1::1/128"
           ];
           endpoint = "www.tenjin-dk.com:51280";
