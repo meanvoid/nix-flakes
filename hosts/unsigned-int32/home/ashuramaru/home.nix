@@ -43,6 +43,8 @@
         mullvad
 
         ### --- Games --- ###
+        goverlay
+        mangohud
         heroic
         gogdl
         # Xbox

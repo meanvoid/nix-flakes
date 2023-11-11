@@ -67,6 +67,9 @@
       share = true;
       path = "${config.xdg.dataHome}/zsh/history";
     };
+    initExtraBeforeCompInit = ''
+      export ZSH_DISABLE_COMPFIX=true
+    '';
     oh-my-zsh = {
       enable = true;
       plugins = ["git" "thefuck" "direnv" "sudo"];

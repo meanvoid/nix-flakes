@@ -26,23 +26,28 @@ in {
       ${pkgs.iptables}/bin/iptables -D FORWARD -i wireguard1 -o eno1 -p tcp --sport 45565 -m state --state ESTABLISHED,RELATED -j ACCEPT
     '';
     peers = [
+      {
+        publicKey = "iH6vtvDU/6TKA7unZAd0xTeiaIcc8a2bnXEiqZOYH2g=";
+        presharedKeyFile = preshared;
+        allowedIPs = ["172.16.31.2/32" "fd17:216b:31bc:1::2/128"];
+      }
       # root@unsigned-int32
       {
         publicKey = "DWcyxqR5vRTpiTm0UGCchdAHwr+pTK2E/n7sd7GXLDc=";
         presharedKeyFile = preshared;
-        allowedIPs = ["172.16.31.2/32" "fd17:216b:31bc:1::2/128"];
+        allowedIPs = ["172.16.31.3/32" "fd17:216b:31bc:1::3/128"];
       }
       {
         # root@unsigned-int8
         publicKey = "znpZ26tP+y+aF/LoOT4TyLXqBNt9wuZKK0ktnk18GHA=";
         presharedKeyFile = preshared;
-        allowedIPs = ["172.16.31.3/32" "fd17:216b:31bc:1::3/128"];
+        allowedIPs = ["172.16.31.4/32" "fd17:216b:31bc:1::4/128"];
       }
       {
         # root@v1
         publicKey = "TX+IdvAXyVV1DtbcyBtPbavney5uMg9mksxXWjoYO3A=";
         presharedKeyFile = preshared;
-        allowedIPs = ["172.16.31.4/32" "fd17:216b:31bc:1::4/128"];
+        allowedIPs = ["172.16.31.5/32" "fd17:216b:31bc:1::5/128"];
       }
     ];
   };
