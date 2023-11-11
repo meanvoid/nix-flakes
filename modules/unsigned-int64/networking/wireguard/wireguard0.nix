@@ -23,7 +23,7 @@ in {
       ${pkgs.iptables}/bin/iptables -I INPUT -p tcp --dport 22 -i wireguard0 -j DROP
 
       # Allow incoming SSH traffic on wireguard1 interface only for source IP range
-      ${pkgs.iptables}/bin/iptables -I INPUT -p tcp --dport 22 -i wireguard1 -m iprange --src-range 172.168.1.50-172.168.1.254 -j ACCEPT
+      ${pkgs.iptables}/bin/iptables -I INPUT -p tcp --dport 22 -i wireguard1 -m iprange --src-range 172.16.31.2-172.16.31.255 -j ACCEPT
 
       # Allow incoming SSH traffic on wireguard0 interface only for source IP range
       ${pkgs.iptables}/bin/iptables -I INPUT -p tcp --dport 22 -i wireguard0 -m iprange --src-range 192.168.10.100-192.168.10.200 -j ACCEPT
