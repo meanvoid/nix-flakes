@@ -72,8 +72,6 @@ in {
         port = 22;
       }
     ];
-    openFirewall = true;
-    allowSFTP = true;
   };
 
   age.secrets = {
