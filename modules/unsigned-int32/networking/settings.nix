@@ -41,25 +41,35 @@ in {
   services.resolved.enable = true;
   services.openssh = {
     enable = true;
+    allowSFTP = true;
+    openFirewall = true;
     settings = {
       UseDns = true;
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = true;
       PermitRootLogin = "prohibit-password";
     };
-    ports = [22 57255];
+    ports = [22];
     listenAddresses = [
       {
-        addr = "192.168.1.100";
-        port = 22;
-      }
-      {
-        addr = "192.168.10.100";
-        port = 22;
-      }
-      {
         addr = "0.0.0.0";
-        port = 52755;
+        port = 57255;
+      }
+      {
+        addr = "[::]";
+        port = 57255;
+      }
+      {
+        addr = "192.168.1.0/24";
+        port = 22;
+      }
+      {
+        addr = "172.16.0.0/12";
+        port = 22;
+      }
+      {
+        addr = "[fd17::/16]";
+        port = 22;
       }
     ];
     openFirewall = true;

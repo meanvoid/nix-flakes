@@ -142,6 +142,7 @@
       allowSFTP = true;
       openFirewall = true;
       settings = {
+        UseDns = true;
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = true;
         PermitRootLogin = "prohibit-password";
