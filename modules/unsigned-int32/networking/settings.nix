@@ -49,7 +49,6 @@ in {
       KbdInteractiveAuthentication = true;
       PermitRootLogin = "prohibit-password";
     };
-    ports = [22];
     listenAddresses = [
       {
         addr = "0.0.0.0";
