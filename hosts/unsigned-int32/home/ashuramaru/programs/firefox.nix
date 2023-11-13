@@ -19,10 +19,12 @@
       extensions = with config.nur.repos.rycee.firefox-addons; [
         # necessity
         ublock-origin
+        privacy-badger
         canvasblocker
         mullvad
         darkreader
         tampermonkey
+        facebook-container
 
         # bypass-paywalls-clean
         clearurls
@@ -36,7 +38,9 @@
         vue-js-devtools
 
         # utils
+        multi-account-containers
         sponsorblock
+        return-youtube-dislikes
         video-downloadhelper
         plasma-integration
         stylus
@@ -47,7 +51,6 @@
         firefox-translations
         floccus
         tabliss
-        return-youtube-dislikes
         old-reddit-redirect
         reddit-enhancement-suite
 
