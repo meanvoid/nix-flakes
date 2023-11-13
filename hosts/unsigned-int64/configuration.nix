@@ -55,7 +55,7 @@ in {
       enableSSHSupport = true;
       enableBrowserSocket = true;
       enableExtraSocket = true;
-      pinentryFlavor = "gnome3";
+      pinentryFlavor = "curses";
     };
     neovim = {
       enable = true;

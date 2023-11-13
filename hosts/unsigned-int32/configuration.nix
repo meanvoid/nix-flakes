@@ -92,6 +92,14 @@ in {
       /etc/ssl/self/ca.crt
     ];
   };
+  programs.gnupg.dirmngr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    enableBrowserSocket = true;
+    enableExtraSocket = true;
+    pinentryFlavor = "gnome3";
+  };
   services.vscode-server.enable = true;
   environment = {
     systemPackages = with pkgs; [

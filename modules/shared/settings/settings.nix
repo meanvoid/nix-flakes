@@ -132,11 +132,6 @@
         };
       };
     };
-    gnupg.agent = {
-      enable = true;
-      pinentryFlavor = "curses";
-      enableSSHSupport = true;
-    };
     nix-index = {
       enableBashIntegration = true;
       enableZshIntegration = true;
