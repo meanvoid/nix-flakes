@@ -49,10 +49,13 @@ in {
   };
   services.vscode-server.enable = true;
   programs = {
+    gnupg.dirmngr.enable = true;
     gnupg.agent = {
       enable = true;
-      pinentryFlavor = "curses";
       enableSSHSupport = true;
+      enableBrowserSocket = true;
+      enableExtraSocket = true;
+      pinentryFlavor = "gnome3";
     };
     neovim = {
       enable = true;

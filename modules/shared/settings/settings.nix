@@ -19,6 +19,7 @@
   };
 
   hardware.pulseaudio.enable = false;
+  hardware.gpgSmartcards.enable = true;
   services.hardware.bolt.enable = true;
   hardware.bluetooth = {
     enable = true;
