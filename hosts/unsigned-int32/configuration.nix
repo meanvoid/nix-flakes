@@ -100,6 +100,7 @@ in {
     enableExtraSocket = true;
     pinentryFlavor = "gnome3";
   };
+  services.yubikey-agent.enable = true;
   services.vscode-server.enable = true;
   environment = {
     systemPackages = with pkgs; [
@@ -108,6 +109,7 @@ in {
       virt-manager
 
       # yubico
+      gpgme
       yubioath-flutter
     ];
     shells = with pkgs; [zsh bash fish];
