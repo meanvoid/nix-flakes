@@ -38,7 +38,7 @@
       "flathub:app/sh.ppy.osu/x86_64/stable"
       "flathub:app/io.github.Foldex.AdwSteamGtk/x86_64/stable"
       "flathub:app/net.davidotek.pupgui2/x86_64/stable"
-      "flathub:app/com.valvesoftware.Steam.CompatibilityTool.Proton/x86_64/stable"
+      "flathub:app/com.valvesoftware.Steam.CompatibilityTool.Protonn/x86_64/stable"
       "flathub:app/com.valvesoftware.Steam.CompatibilityTool.Proton-GE/x86_64/stable"
       "flathub:app/com.valvesoftware.Steam.Utility.thcrap_steam_proton_wrapper/x86_64/stable"
 

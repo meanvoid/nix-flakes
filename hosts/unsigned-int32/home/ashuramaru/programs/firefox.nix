@@ -133,6 +133,18 @@
             updateInterval = 7 * 24 * 60 * 60 * 1000;
             definedAliases = ["@protondb"];
           };
+          "Youtube" = {
+            urls = [{template = "https://youtube.com/search?q={searchTerms}";}];
+            iconUpdateURL = "https://www.youtube.com/s/desktop/5d5de6d9/img/favicon.ico";
+            updateInterval = 7 * 24 * 60 * 60 * 1000;
+            definedAliases = ["@yt" "@youtube"];
+          };
+          "YoutubeMusic" = {
+            urls = [{template = "https://music.youtube.com/search?q={searchTerms}";}];
+            iconUpdateURL = "https://www.youtube.com/s/desktop/5d5de6d9/img/favicon.ico";
+            updateInterval = 7 * 24 * 60 * 60 * 1000;
+            definedAliases = ["@ytm" "@ym"];
+          };
         };
         default = "Ecosia";
       };
