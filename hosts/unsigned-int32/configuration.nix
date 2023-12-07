@@ -73,12 +73,17 @@ in {
         sudo = {
           sshAgentAuth = true;
           u2fAuth = true;
+          yubicoAuth = true;
         };
         sshd = {
           sshAgentAuth = true;
           u2fAuth = true;
+          yubicoAuth = true;
           enableGnomeKeyring = true;
           enableKwallet = true;
+          googleOsLoginAuthentication = true;
+          googleOsLoginAccountVerification = true;
+          googleAuthenticator.enable = true;
         };
       };
       yubico = {
@@ -102,6 +107,7 @@ in {
   };
   services.yubikey-agent.enable = true;
   services.vscode-server.enable = true;
+  # services.alice-lg.enable = true; # TODO causing trouble
   environment = {
     systemPackages = with pkgs; [
       # Virt

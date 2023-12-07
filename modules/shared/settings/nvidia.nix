@@ -11,6 +11,6 @@
   };
   environment.systemPackages = with pkgs; [
     nvtop
-    zenith-nvidia
+    # zenith-nvidia #TODO: remove # a bit later
   ];
 }
