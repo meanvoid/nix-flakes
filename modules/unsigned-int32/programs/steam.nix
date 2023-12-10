@@ -46,6 +46,8 @@
   environment.systemPackages =
     (with pkgs; [
       winetricks
+      scummvm
+      inotify-tools
     ])
     ++ (with pkgs.wineWowPackages; [
       stagingFull
@@ -72,9 +74,9 @@
       enable = true;
       capSysNice = true;
     };
-    anime-game-launcher.enable = lib.mkDefault true;
-    honkers-railway-launcher.enable = lib.mkDefault true;
-    honkers-launcher.enable = lib.mkDefault true;
+    # anime-game-launcher.enable = lib.mkDefault true;
+    # honkers-railway-launcher.enable = lib.mkDefault true;
+    # honkers-launcher.enable = lib.mkDefault true;
   };
   environment.sessionVariables = rec {STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";};
 }

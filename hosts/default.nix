@@ -39,9 +39,8 @@ in {
           remotes = {
             "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
             "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
-            "launcher.moe" = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
           };
-          packages = ["flathub:app/org.blender.Blender//stable"];
+          packages = ["flathub:app/org.blender.Blender/x86_64/stable"];
         };
       }
     ];
