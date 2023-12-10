@@ -4,12 +4,14 @@
   pkgs,
   flatpaks,
   ...
-}: {
+}:
+{
   imports = [flatpaks.homeManagerModules.default];
   services.flatpak = {
     remotes = {
       "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
       "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
+      "launcher.moe" = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
     };
     packages = [
       # KDE/Qt
@@ -23,7 +25,11 @@
       "flathub:app/com.nextcloud.desktopclient.nextcloud/x86_64/stable"
       "flathub:app/io.github.arunsivaramanneo.GPUViewer/x86_64/stable"
       "flathub:app/io.gitlab.theevilskeleton.Upscaler/x86_64/stable"
-
+      "flathub:app/com.belmoussaoui.Authenticator/x86_64/stable"
+      "flathub:app/org.deluge_torrent.deluge/x86_64/stable"
+      "flathub:app/app.drey.PaperPlane/x86_64/stable"
+      "flathub:app/chat.schildi.desktop/x86_64/stable"
+      "flathub:app/im.fluffychat.Fluffychat/x86_64/stable"
       # OBS
       "flathub:app/com.obsproject.Studio/x86_64/stable"
       "flathub:runtime/com.obsproject.Studio.Plugin.GStreamerVaapi/x86_64/stable"
@@ -36,6 +42,7 @@
       # Gaming
       "flathub:app/com.usebottles.bottles/x86_64/stable"
       "flathub:app/sh.ppy.osu/x86_64/stable"
+      "launcher.moe:app/an-anime-game-launcher/x86_64/stable"
       "flathub:app/io.github.Foldex.AdwSteamGtk/x86_64/stable"
       "flathub:app/net.davidotek.pupgui2/x86_64/stable"
       "flathub:app/com.valvesoftware.Steam.CompatibilityTool.Protonn/x86_64/stable"
@@ -55,3 +62,4 @@
     ];
   };
 }
+4
