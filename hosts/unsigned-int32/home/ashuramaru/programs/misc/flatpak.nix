@@ -17,6 +17,7 @@
       "flathub:app/com.github.tchx84.Flatseal/x86_64/stable"
       "flathub:app/org.kde.kdenlive/x86_64/stable"
       "flathub:app/de.shorsh.discord-screenaudio/x86_64/stable"
+      "flathub:app/org.keepassxc.KeePassXC/x86_64/stable"
 
       # Desktop
       "flathub:app/com.discordapp.Discord/x86_64/stable"
