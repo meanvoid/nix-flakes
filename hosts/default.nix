@@ -39,8 +39,12 @@ in {
           remotes = {
             "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
             "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
+            "launcher" = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
           };
-          packages = ["flathub:app/org.blender.Blender/x86_64/stable"];
+          packages = [
+            "flathub:app/org.blender.Blender/x86_64/stable"
+            "launcher:app/an-anime-game-launcher/x86_64/master"
+          ];
         };
       }
     ];
