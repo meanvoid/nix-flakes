@@ -14,21 +14,20 @@
     ensureUsers = [
       {
         name = "superuser";
-        ensureDBOwnership = {
-          "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
+        ensureDBOwnership = true;
+        ensureClauses = {
+          superuser = true;
+          createrole = true;
+          createdb = true;
         };
       }
       {
         name = "vaultwarden";
-        ensureDBOwnership = {
-          "DATABASE vaultwarden" = "ALL PRIVILEGES";
-        };
+        ensureDBOwnership = true;
       }
       {
         name = "grafana";
-        ensureDBOwnership = {
-          "DATABASE grafana" = "ALL PRIVILEGES";
-        };
+        ensureDBOwnership = true;
       }
     ];
   };
