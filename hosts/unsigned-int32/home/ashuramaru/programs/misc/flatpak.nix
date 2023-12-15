@@ -44,7 +44,6 @@
       "flathub:app/com.usebottles.bottles/x86_64/stable"
       "flathub:app/re.chiaki.Chiaki/x86_64/stable"
       "flathub:app/sh.ppy.osu/x86_64/stable"
-      "launcher:app/an-anime-game-launcher/x86_64/master"
       "flathub:app/io.github.Foldex.AdwSteamGtk/x86_64/stable"
       "flathub:app/net.davidotek.pupgui2/x86_64/stable"
       "flathub:app/com.valvesoftware.Steam.CompatibilityTool.Protonn/x86_64/stable"
