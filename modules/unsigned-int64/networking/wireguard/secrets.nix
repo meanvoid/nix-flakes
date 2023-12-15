@@ -12,5 +12,6 @@
     wireguard-shared.file = path + /secrets/wireguard-shared.age;
     wireguard-shared_fumono.file = path + /secrets/wireguard-shared_fumono.age;
     wireguard-shared_jul.file = path + /secrets/wireguard-shared_jul.age;
+    tailscale-auth-key.file = path + /secrets/tailscale-auth-key.age;
   };
 }
