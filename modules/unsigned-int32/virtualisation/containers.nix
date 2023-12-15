@@ -26,7 +26,7 @@ in {
     extraPackages = with pkgs; [
       gvproxy
       tun2socks
-      # gvisor
+      gvisor
     ];
     autoPrune = {
       enable = true;
