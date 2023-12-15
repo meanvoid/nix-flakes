@@ -7,6 +7,7 @@
 }: let
   private = config.age.secrets.wireguard-client.path;
   shared = config.age.secrets.wireguard-shared.path;
+  auth-key = config.age.secrets.tailscale-auth-key.path;
 in {
   networking = {
     hostName = "unsigned-int32";
@@ -80,8 +81,8 @@ in {
   age.secrets = {
     wireguard-client.file = path + /secrets/wireguard-client.age;
     wireguard-shared.file = path + /secrets/wireguard-shared.age;
+    tailscale-auth-key.file = path + /secrets/tailscale-auth-key.age;
   };
-
   services.wg-netmanager.enable = true;
   networking.wireguard.enable = true;
   networking.wg-quick.interfaces = {
@@ -104,5 +105,14 @@ in {
         }
       ];
     };
+  };
+  services.tailscale = {
+    enable = true;
+    extraUpFlags = [
+      "--ssh"
+    ];
+    dns_config.domains = ["unsigned-int32.internal"];
+    openFirewall = true;
+    authKeyFile = auth-key;
   };
 }
