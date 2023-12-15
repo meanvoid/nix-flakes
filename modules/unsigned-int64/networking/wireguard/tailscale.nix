@@ -14,6 +14,7 @@ in {
     authKeyFile = auth-key;
     extraUpFlags = [
       "--ssh"
+      "--advertise-exit-node"
     ];
   };
 }
