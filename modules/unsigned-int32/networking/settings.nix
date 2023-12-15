@@ -108,11 +108,11 @@ in {
   };
   services.tailscale = {
     enable = true;
+    useRoutingFeatures = "both";
+    openFirewall = true;
+    authKeyFile = auth-key;
     extraUpFlags = [
       "--ssh"
     ];
-    dns_config.domains = ["unsigned-int32.internal"];
-    openFirewall = true;
-    authKeyFile = auth-key;
   };
 }

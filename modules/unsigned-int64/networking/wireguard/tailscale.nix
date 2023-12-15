@@ -9,11 +9,11 @@ in {
   imports = [./secrets.nix];
   services.tailscale = {
     enable = true;
+    useRoutingFeatures = "server";
+    openFirewall = true;
+    authKeyFile = auth-key;
     extraUpFlags = [
       "--ssh"
     ];
-    dns_config.domains = ["unsigned-int64.internal"];
-    openFirewall = true;
-    authKeyFile = auth-key;
   };
 }
