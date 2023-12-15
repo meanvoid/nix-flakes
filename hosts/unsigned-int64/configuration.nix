@@ -33,8 +33,6 @@ in {
 
   environment = {
     shells = with pkgs; [zsh bash fish];
-    pathsToLink = ["/share/zsh"];
-    binsh = "${pkgs.dash}/bin/dash";
   };
 
   security = {
