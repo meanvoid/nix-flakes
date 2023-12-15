@@ -143,6 +143,11 @@ in {
   };
   ### ---------------SMB/NAS/CIFS-------------------- ###
   ### ---------------backups-------------------- ###
+  fileSystems."/Users/ashuramaru/backup" = {
+    device = "//u369008-sub3.your-storagebox.de/u369008-sub3";
+    fsType = "cifs";
+    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub3"];
+  };
   fileSystems."/var/lib/backup" = {
     device = "//u369008-sub4.your-storagebox.de/u369008-sub4";
     fsType = "cifs";
