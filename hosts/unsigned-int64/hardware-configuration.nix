@@ -146,7 +146,7 @@ in {
   fileSystems."/Users/ashuramaru/backup" = {
     device = "//u369008-sub3.your-storagebox.de/u369008-sub3";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub3"];
+    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub3,uid=1000,gid=1000,dir_mode=0770"];
   };
   fileSystems."/var/lib/backup" = {
     device = "//u369008-sub4.your-storagebox.de/u369008-sub4";
