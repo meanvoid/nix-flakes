@@ -14,7 +14,6 @@
     ensureUsers = [
       {
         name = "superuser";
-        ensureDBOwnership = true;
         ensureClauses = {
           superuser = true;
           createrole = true;
