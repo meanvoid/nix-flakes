@@ -44,6 +44,7 @@
       nowdate = "date +'%d-%m-%Y'";
       fastping = "ping -c 100 -s .10";
       ytmp4 = "yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'";
+      ytdlp = "yt-dlp --embed-thumbnail --no-mtime -S res,ext:mp4:m4a --recode mp4";
       arch = "distrobox enter arch";
       void = "distrbox enter void";
       gentoo = "distrobox enter gentoo";
