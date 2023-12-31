@@ -27,7 +27,7 @@
         options = ["ro" "resolve-symlinks" "x-gvfs-hide"];
       })
     {
-      "/usr/share/icons".device = "/run/current-system/sw/share/icons";
+      # "/usr/share/icons".device = "/run/current-system/sw/share/icons";
       "/usr/share/fonts".device =
         pkgs.buildEnv
         {

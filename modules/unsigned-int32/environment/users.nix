@@ -28,7 +28,7 @@
         home = "/Users/marie";
         uid = 1000;
         initialHashedPassword = "$6$79Eopfg.bX9kzgyR$mPzq3.dFGkCaX2NiAPiTqltBQ0b9gLpEPsX7YdKLyuMbvLssUlfFDiOhZ.FZ.AwS6JbXQ6AXB41Yq5QpJxWJ6/";
-        hashedPassword = "$6$9BY1nlAvCe/S63yL$yoKImQ99aC8l.CBPqGGrr74mQPPGucug13efoGbBaF.LT9GNUYeOk8ZejZpJhnJjPRkaU0hJTYtplI1rkxVnY.";
+        hashedPassword = "$6$77kLLDvOgu.dYPBM$r5c3DxYM9fYb0qUqvJ8TwDbjFtGol3fIAj38U4785h9iXkzNMiDrr71xigw2JE/uOzWsa5LfvhtsR4r30/fmo/";
         extraGroups = ["wheel" "networkmanager" "video" "audio" "storage"];
         openssh.authorizedKeys.keys = [
           "sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBNR1p1OviZgAkv5xQ10NTLOusPT8pQUG2qCTpO3AhmxaZM2mWNePVNqPnjxNHjWN+a/FcZ5on74QZQJtwXI5m80AAAAOc3NoOnJlbW90ZS1kc2E= email:ashuramaru@tenjin-dk.com id:ashuramaru@unsigned-int32"

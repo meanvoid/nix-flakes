@@ -80,6 +80,7 @@
 
         ### --- Utils --- ###
         cinnamon.nemo-with-extensions
+        yt-dlp
       ])
       ++ (with pkgs.jetbrains; [
         idea-ultimate
