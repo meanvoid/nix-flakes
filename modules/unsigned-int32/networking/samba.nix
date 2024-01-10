@@ -21,25 +21,30 @@
         server string = unsigned-int32
         netbios name = unsigned-int32
         security = user
-        hosts allow = 192.168.1.0/24 192.168.10.0/24 127.0.0.1 localhost ::1
+        hosts allow = 192.168.1.0/24 172.16.31.0/24 127.0.0.1 localhost ::1
         hosts deny = 0.0.0.0/0
         guest account = nobody
         map to guest = bad user
         load printers = yes
         printing = cups
-        printcup name = printer
       '';
       shares = {
         Public = {
           comment = "Public Directory";
-          path = "/Shared/";
+          path = "/Shared";
           browseable = "yes";
           writeable = "yes";
-          "read only" = "no";
-          "directory mask" = "0770";
-          "valid users" = "@shared";
-          "force group" = "shared";
           "inherit permissions" = "yes";
+          "read only" = "no";
+          "guest ok" = "yes";
+          "guest only" = "no";
+          "create mask" = "0644";
+          "directory mask" = "0775";
+          "directory mode" = "3770";
+          "force directory mode" = "3770";
+          "valid users" = "ashuramaru meanrin";
+          "force user" = "ashuramaru";
+          "force group" = "users";
         };
         marie = {
           comment = "Marie's personal directory";
@@ -50,7 +55,7 @@
           "read only" = "no";
           "create mask" = "0644";
           "directory mask" = "0770";
-          "valid users" = "@ashuramaru";
+          "valid users" = "ashuramaru";
           "force user" = "ashuramaru";
           "force group" = "ashuramaru";
         };
@@ -62,56 +67,52 @@
           writeable = "yes";
           "create mask" = "0644";
           "directory mask" = "0775";
-          "valid users" = "@meanrin";
+          "valid users" = "meanrin";
           "force user" = "meanrin";
           "force group" = "meanrin";
         };
         "Marie's public directory" = {
           path = "/Users/marie/Public";
-          browseable = "no";
+          browseable = "yes";
           writeable = "yes";
           "inherit permissions" = "yes";
           "read only" = "no";
-          "valid users" = "@shared";
+          "guest ok" = "yes";
+          "guest only" = "no";
           "force user" = "ashuramaru";
           "force group" = "ashuramaru";
           "directory mode" = "3770";
           "force directory mode" = "3770";
         };
+
         "Alex's public directory" = {
           path = "/Users/alex/Public";
-          browseable = "no";
+          browseable = "yes";
           writeable = "yes";
           "inherit permissions" = "yes";
           "read only" = "no";
-          "valid users" = "@shared";
+          "guest ok" = "yes";
+          "guest only" = "no";
           "force user" = "meanrin";
           "force group" = "meanrin";
           "directory mode" = "3770";
           "force directory mode" = "3770";
         };
+
         timemachine = {
           comment = "Apple's Timemachine backups";
-          path = "/Shared/timemachine";
+          path = "/var/lib/backup/tm-backup";
           public = "no";
           writeable = "yes";
           "read only" = "no";
-          "valid users" = "@ashuramaru @meanrin";
-          "force user" = "macmini";
-          "force group" = "admin";
+          "create mask" = "0644";
+          "directory mask" = "0770";
+          "valid users" = "ashuramaru meanrin";
+          "force user" = "root";
+          "force group" = "users";
           "fruit:aapl" = "yes";
           "fruit:time machine" = "yes";
           "vfs objects" = "catia fruit streams_xattr";
-        };
-        printer = {
-          comment = "Printers";
-          path = "/var/spool/samba";
-          public = "yes";
-          browseable = "yes";
-          writable = "no";
-          printable = "yes";
-          "guest ok" = "yes";
-          "create mode" = 0700;
         };
       };
     };

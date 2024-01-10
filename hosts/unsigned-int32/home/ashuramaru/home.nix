@@ -79,7 +79,15 @@
         android-studio
 
         ### --- Utils --- ###
-        cinnamon.nemo-with-extensions
+        (cinnamon.nemo-with-extensions.override {
+          extensions = [
+            nemo-qml-plugin-dbus
+            cinnamon.nemo-python
+            cinnamon.nemo-emblems
+            cinnamon.nemo-fileroller
+            cinnamon.folder-color-switcher
+          ];
+        })
         yt-dlp
       ])
       ++ (with pkgs.jetbrains; [
