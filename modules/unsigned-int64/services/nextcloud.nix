@@ -16,7 +16,7 @@ in {
   services.nextcloud = {
     enable = true;
     database.createLocally = true;
-    package = pkgs.nextcloud27;
+    package = pkgs.nextcloud28;
     extraApps = with config.services.nextcloud.package.packages.apps; {
       inherit bookmarks calendar contacts cookbook cospend deck tasks polls forms;
       inherit files_texteditor files_markdown previewgenerator onlyoffice spreed;
