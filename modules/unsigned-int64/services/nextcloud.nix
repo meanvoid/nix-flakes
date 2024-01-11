@@ -19,7 +19,7 @@ in {
     package = pkgs.nextcloud28;
     extraApps = with config.services.nextcloud.package.packages.apps; {
       inherit bookmarks calendar contacts cookbook cospend deck tasks polls forms;
-      inherit files_texteditor files_markdown previewgenerator onlyoffice spreed;
+      inherit files_texteditor previewgenerator onlyoffice spreed; # files_markdown
       inherit mail groupfolders memories music;
       inherit notify_push twofactor_totp twofactor_webauthn twofactor_nextcloud_notification user_oidc user_saml;
     };
