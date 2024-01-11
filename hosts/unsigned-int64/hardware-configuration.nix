@@ -174,11 +174,11 @@ in {
     fsType = "cifs";
     options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub10,uid=70,gid=70,dir_mode=0777,file_mode=0777"];
   };
-  fileSystems."/var/lib/transmission/public" = {
-    device = "//u369008-sub11.your-storagebox.de/u369008-sub11";
-    fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub11,uid=70,gid=70,dir_mode=0777,file_mode=0777"];
-  };
+  # fileSystems."/var/lib/transmission/public" = {
+  #   device = "//u369008-sub11.your-storagebox.de/u369008-sub11";
+  #   fsType = "cifs";
+  #   options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub11,uid=70,gid=70,dir_mode=0777,file_mode=0777"];
+  # };
   ### ---------------SMB/NAS/CIFS-------------------- ###
   services.btrfs.autoScrub = {
     enable = true;
