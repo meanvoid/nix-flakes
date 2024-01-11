@@ -57,8 +57,8 @@
   };
   services.prowlarr.enable = true;
 
-  # users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
-  # users.users.transmission.extraGroups = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
+  users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
+  users.users.transmission.extraGroups = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
   services.nginx.virtualHosts = {
     "public.tenjin.com" = {
       addSSL = true;
