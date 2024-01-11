@@ -20,7 +20,6 @@
   };
   imports =
     [
-      (path + "/modules/shared/desktop/fonts.nix")
       (path + "/modules/shared/settings/config.nix")
     ]
     ++ (import (path + "/modules/${hostname}/environment"))
