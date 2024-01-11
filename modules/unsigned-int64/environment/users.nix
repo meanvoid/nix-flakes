@@ -12,7 +12,7 @@
     matthew.gid = config.users.users.matthew.uid;
     jalemi.gid = config.users.users.jalemi.uid;
     solonka.gid = config.users.users.solonka.uid;
-    android.gid = {
+    android = {
       gid = config.users.users.android.uid;
       members = ["ashuramaru" "meanrin" "fumono"];
     };
