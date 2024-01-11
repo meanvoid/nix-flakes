@@ -1,4 +1,5 @@
 [
   ./users.nix
-  # ./env.nix
+  ./env.nix
+  ./fonts.nix
 ]
