@@ -20,7 +20,7 @@ in {
     extraApps = with config.services.nextcloud.package.packages.apps; {
       inherit bookmarks calendar contacts cookbook cospend deck tasks polls forms;
       inherit previewgenerator onlyoffice spreed; # files_markdown files_texteditor
-      inherit mail groupfolders memories music;
+      inherit mail groupfolders music; # memories
       inherit notify_push twofactor_totp twofactor_webauthn twofactor_nextcloud_notification user_oidc user_saml;
     };
     extraAppsEnable = true;
