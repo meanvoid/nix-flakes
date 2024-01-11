@@ -21,7 +21,7 @@ in {
       inherit bookmarks calendar contacts cookbook cospend deck tasks polls forms;
       inherit previewgenerator onlyoffice spreed; # files_markdown files_texteditor
       inherit mail groupfolders; # memories music
-      inherit notify_push twofactor_totp twofactor_webauthn twofactor_nextcloud_notification user_oidc user_saml;
+      inherit notify_push twofactor_webauthn twofactor_nextcloud_notification user_oidc user_saml; # twofactor_totp
     };
     extraAppsEnable = true;
     hostName = "cloud.tenjin-dk.com";
