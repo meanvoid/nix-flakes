@@ -32,13 +32,13 @@ in {
     };
     maxUploadSize = "500G";
     config = {
-      overwriteProtocol = "https";
-      defaultPhoneRegion = "UA";
       dbtype = "pgsql";
       adminuser = "root";
       adminpassFile = config.age.secrets.admin.path;
     };
     extraOptions = {
+      overwriteProtocol = "https";
+      defaultPhoneRegion = "UA";
       redis = {
         host = "/run/redis-nextcloud/redis.sock";
         port = 0;
