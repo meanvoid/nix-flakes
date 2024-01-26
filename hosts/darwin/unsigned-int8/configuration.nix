@@ -19,9 +19,7 @@
     };
   };
   imports =
-    [
-      (path + "/modules/shared/settings/config.nix")
-    ]
+    []
     ++ (import (path + "/modules/${hostname}/environment"))
     ++ (import (path + "/modules/${hostname}/programs"));
 
@@ -45,6 +43,25 @@
       openssh
       git
       python310Full
+      curl
+      wget
+      nmap
+      dig
+
+      zip
+      unzip
+      rar
+      lz4
+      p7zip
+
+      # utils
+      neofetch
+      hyfetch
+
+      ffmpeg_6-full
+      imagemagick
+      mpv
+      mpd
     ];
   };
   programs.gnupg.agent = {

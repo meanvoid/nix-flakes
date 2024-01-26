@@ -10,7 +10,7 @@
     packages = with pkgs; [
       rsync
     ];
-    stateVersion = "23.05";
+    stateVersion = "24.05";
   };
   programs.home-manager.enable = true;
 }

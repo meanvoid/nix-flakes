@@ -7,10 +7,8 @@
   ...
 }: {
   imports =
-    []
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/utils))
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/dev))
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/misc));
+    [(path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)]
+    ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
   home = {
     username = "ashuramaru";
     packages = with pkgs; [
@@ -23,6 +21,6 @@
       conda
       android-studio
     ];
-    stateVersion = "23.05";
+    stateVersion = "24.05";
   };
 }

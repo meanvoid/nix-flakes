@@ -16,6 +16,5 @@
     XDG_CONFIG_HOME = "\${HOME}/.config";
     XDG_DATA_HOME = "\${HOME}/.local/share";
     XDG_DATA_DIRS = ["${XDG_DATA_HOME}/.icons"];
-    CUDA_PATH = "${pkgs.cudatoolkit}";
   };
 }

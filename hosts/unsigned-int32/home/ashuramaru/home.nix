@@ -7,11 +7,12 @@
   ...
 }: {
   imports =
-    [./services/easyeffects.nix]
+    [
+      ./services/easyeffects.nix
+      (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
+    ]
     ++ (import (path + /hosts/unsigned-int32/home/ashuramaru/programs))
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/utils))
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/dev))
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/misc));
+    ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
   home = {
     username = "ashuramaru";
     packages =
@@ -94,7 +95,7 @@
         idea-ultimate
         datagrip
       ]);
-    stateVersion = "23.05";
+    stateVersion = "24.05";
   };
   programs.rbw = {
     enable = true;

@@ -19,21 +19,6 @@
   };
 
   hardware.pulseaudio.enable = false;
-  hardware.gpgSmartcards.enable = true;
-  services.hardware.bolt.enable = true;
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings.General = {
-      ControllerMode = "bredr";
-      AutoEnable = true;
-      Experimental = true;
-    };
-  };
-  hardware.opentabletdriver = {
-    enable = true;
-    daemon.enable = true;
-  };
   services = {
     pipewire = {
       enable = true;
@@ -42,33 +27,35 @@
       pulse.enable = true;
       jack.enable = true;
     };
-    printing = {
-      enable = true;
-      drivers = with pkgs; [
-        gutenprint
-      ];
-      browsing = true;
-    };
-    avahi = {
-      enable = true;
-      publish = {
-        enable = true;
-        userServices = true;
-      };
-      nssmdns4 = true;
-      openFirewall = true;
-    };
     fstrim = {
       enable = true;
       interval = "weekly";
     };
-    lvm.boot.thin.enable = true;
-    pcscd.enable = true;
     gvfs.enable = true;
   };
 
   environment.systemPackages =
     (with pkgs; [
+      # essential
+      curl
+      wget
+      nmap
+      dig
+
+      zip
+      unzip
+      rar
+      lz4
+      p7zip
+
+      # utils
+      neofetch
+      hyfetch
+
+      ffmpeg_6-full
+      imagemagick
+      mpv
+      mpd
       # Networking
       finger_bsd
 

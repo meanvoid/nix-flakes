@@ -21,16 +21,17 @@
 in {
   imports =
     [
+      ### ----------------ESSENTIAL------------------- ###
       ./hardware-configuration.nix
-      (path + "/modules/shared/desktop/gnome.nix")
-      # (path + "/modules/shared/desktop/plasma.nix")
-      (path + "/modules/shared/desktop/fonts.nix")
-      (path + "/modules/shared/settings/opengl.nix")
-      (path + "/modules/shared/settings/nix.nix")
-      (path + "/modules/shared/settings/nvidia.nix")
       (path + "/modules/shared/settings/firmware.nix")
+      (path + "/modules/shared/settings/nix.nix")
+      (path + "/modules/shared/settings/opengl.nix")
+      ### ----------------ESSENTIAL------------------- ###
       (path + "/modules/shared/settings/settings.nix")
-      (path + "/modules/shared/settings/config.nix")
+      ### ----------------DESKTOP------------------- ###
+      (path + "/modules/shared/desktop/gnome.nix")
+      (path + "/modules/shared/desktop/fonts.nix")
+      ### ----------------DESKTOP------------------- ###
     ]
     ++ hostModules [
       "environment"
@@ -97,17 +98,17 @@ in {
       /etc/ssl/self/ca.crt
     ];
   };
-  programs.gnupg.dirmngr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    enableBrowserSocket = true;
-    enableExtraSocket = true;
-    pinentryFlavor = "gnome3";
+  programs = {
+    gnupg.dirmngr.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      enableBrowserSocket = true;
+      enableExtraSocket = true;
+    };
   };
   services.yubikey-agent.enable = true;
   services.vscode-server.enable = true;
-  # services.alice-lg.enable = true; # TODO causing trouble
   environment = {
     systemPackages = with pkgs; [
       # Virt
@@ -118,7 +119,6 @@ in {
       gpgme
       yubioath-flutter
     ];
-    shells = with pkgs; [zsh bash fish];
   };
 
   time.timeZone = "Europe/Kyiv";
@@ -127,5 +127,5 @@ in {
     supportedLocales = ["all"];
   };
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "24.05";
 }
