@@ -1,3 +1,0 @@
-[
-  ./gallery-dl.nix
-]

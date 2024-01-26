@@ -8,12 +8,8 @@
 in {
   powerManagement.enable = true;
   powerManagement.powerUpCommands = ''
-    ${pkgs.bash}/bin/bash -c '
-      ${pkgs.hdparm}/sbin/hdparm -S 50 -B 127 $(
-        ${pkgs.utillinux}/bin/lsblk -dnp -o name,rota |
-        ${pkgs.gnugrep}/bin/grep '.*\s1' |
-        ${pkgs.coreutils}/bin/cut -d ' ' -f 1
-    )'
+    disk_name=$(lsblk -dnp -o name,rota | grep '.*[[:space:]]1' | cut -d ' ' -f 1)
+    ${pkgs.hdparm}/sbin/hdparm -S 50 -B 127 "$disk_name"
   '';
   powerManagement.powerDownCommands = ''
     ${pkgs.hdparm}/sbin/hdparm -B 255

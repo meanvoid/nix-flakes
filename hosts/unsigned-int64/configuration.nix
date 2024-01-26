@@ -18,12 +18,11 @@ in {
   imports =
     [
       ./hardware-configuration.nix
-      (path + "/modules/unsigned-int64/environment/users.nix")
-      (path + "/modules/shared/settings/opengl.nix")
-      (path + "/modules/shared/settings/nix.nix")
+      (path + "/modules/${hostname}/environment/users.nix")
       (path + "/modules/shared/settings/firmware.nix")
+      (path + "/modules/shared/settings/nix.nix")
+      (path + "/modules/shared/settings/opengl.nix")
       (path + "/modules/shared/settings/settings.nix")
-      (path + "/modules/shared/settings/config.nix")
     ]
     ++ hostModules [
       "networking"
@@ -40,7 +39,6 @@ in {
       wheelNeedsPassword = false;
       execWheelOnly = true;
     };
-    rtkit.enable = true;
     pki.certificateFiles = [
       /etc/ssl/self/ca.crt
     ];
@@ -87,5 +85,5 @@ in {
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "24.05";
 }

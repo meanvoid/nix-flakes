@@ -8,10 +8,11 @@
   ...
 }: {
   imports =
-    [./vscode.nix]
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/utils))
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/dev))
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/misc));
+    [
+      ./vscode.nix
+      (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
+    ]
+    ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
   home = {
     packages = with pkgs; [
       # Make macos useful
@@ -35,6 +36,6 @@
 
       thefuck
     ];
-    stateVersion = "23.05";
+    stateVersion = "24.05";
   };
 }

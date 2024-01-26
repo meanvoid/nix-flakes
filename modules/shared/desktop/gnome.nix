@@ -104,6 +104,7 @@
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";
   };
+  programs.gnupg.agent.pinentryFlavor = "gnome3";
   services.dbus.packages = [pkgs.gcr];
   services.gnome.gnome-browser-connector.enable = true;
 }
