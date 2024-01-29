@@ -61,13 +61,13 @@
         citra-canary
         mgba
         # dolphin-emu
-        # cemu !!!
+        # cemu TODO: uncomment later when package is fixed on upstream
         yuzu-mainline
         ryujinx
 
         # Sony
         duckstation
-        # pcsx2 TODO!!! remove later
+        # pcsx2 TODO: uncomment later when package is fixed on upstream
         ppsspp
         rpcs3
 
