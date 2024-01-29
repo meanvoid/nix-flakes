@@ -23,6 +23,7 @@ in {
     go
     jdk
     rustup
+    alejandra
   ];
   programs.vscode = {
     enable = true;
@@ -72,12 +73,14 @@ in {
       ms-azuretools.vscode-docker # docker
       ms-kubernetes-tools.vscode-kubernetes-tools # kuber
       yzhang.markdown-all-in-one # markdown
+      davidanson.vscode-markdownlint
       redhat.vscode-yaml # yaml
       dotjoshjohnson.xml # xml
       graphql.vscode-graphql # graphql
       lizebang.bash-extension-pack # bash
       bbenoist.nix # nix lsp
       kamadorueda.alejandra # alejandra
+      github.vscode-github-actions # actions
 
       # Utils
       mkhl.direnv # direnv
