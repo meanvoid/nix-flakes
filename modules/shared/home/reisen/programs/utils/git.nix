@@ -6,8 +6,8 @@
 }: {
   programs.git = {
     enable = true;
-    userName = "Fumono";
-    userEmail = "chenisnuenis@waifu.club";
+    userName = "2husecondary";
+    userEmail = "2husecondary.stable254@slmails.com";
     lfs.enable = true;
     delta = {
       enable = true; # syntax highlighter

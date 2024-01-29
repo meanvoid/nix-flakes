@@ -7,9 +7,10 @@
   ...
 }: {
   imports =
-    [ 
+    [
       (path + /modules/shared/home/reisen/programs/dev/vim.nix)
     ]
+    ++ (import (path + /hosts/signed-int16/home/reisen/programs))
     ++ (import (path + /modules/shared/home/reisen/programs/utils));
   home = {
     username = "reisen";
@@ -18,10 +19,8 @@
       tenacity
       pavucontrol
       qpwgraph
-      
+
       # BROWSERS
-      ungoogled-chromium
-      firefox
       librewolf
 
       # Graphics
@@ -36,7 +35,6 @@
 
       # Dev
       lazygit
-      vscodium-fhs
 
       # Gaming
       steam
@@ -60,7 +58,6 @@
       flameshot
       unetbootin
       woeusb-ng
-
     ];
     stateVersion = "24.05";
   };
