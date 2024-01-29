@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  users.mutableUsers = false;
+  users.mutableUsers = true;
   users.groups = {
     reisen.gid = config.users.users.reisen.uid;
   };

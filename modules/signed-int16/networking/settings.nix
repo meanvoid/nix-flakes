@@ -10,15 +10,15 @@
     hostName = "${hostname}";
     hostId = "ac9d16f9";
     interfaces = {
-      "enp6s0" = {
-        name = "enp6s0";
+      "enp3s0" = {
+        name = "enp3s0";
         useDHCP = true;
       };
     };
     nat = {
       enable = true;
       enableIPv6 = true;
-      externalInterface = "enp6s0";
+      externalInterface = "enp3s0";
       internalInterfaces = ["ve-+"];
     };
     networkmanager = {
@@ -40,11 +40,7 @@
     };
     listenAddresses = [
       {
-        addr = "0.0.0.0";
-        port = 22;
-      }
-      {
-        addr = "[::]";
+        addr = "192.168.1.0";
         port = 22;
       }
     ];

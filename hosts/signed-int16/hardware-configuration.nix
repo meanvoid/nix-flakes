@@ -8,18 +8,6 @@
 }: {
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod;
-    kernelModules = [
-      # lvm2
-      "dm-cache"
-      "dm-cache-smq"
-      "dm-persistent-data"
-      "dm-bio-prison"
-      "dm-clone"
-      "dm-crypt"
-      "dm-writecache"
-      "dm-mirror"
-      "dm-snapshot"
-    ];
     supportedFilesystems = ["ntfs"];
   };
   boot.loader = {
@@ -52,27 +40,18 @@
     kernelModules = [
       # modules
       "vfat"
-      # yubico
-      "nls_cp437"
-      "nls_iso8859-1"
-      # lvm2
-      "dm-snapshot"
-      "dm-cache"
-      "dm-cache-smq"
-      "dm-cache-mq"
-      "dm-cache-cleaner"
     ];
   };
   ### ---------------/dev/sda1-------------------- ###
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/19229cb4-73c3-432b-9001-f4a31c0203c9";
+    device = "/dev/disk/by-uuid/79d628c7-481b-4520-9f69-0a039f47d767";
     fsType = "btrfs";
-    options = ["subvol=/root" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = ["subvol=@" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/19229cb4-73c3-432b-9001-f4a31c0203c9";
+    device = "/dev/disk/by-uuid/79d628c7-481b-4520-9f69-0a039f47d767";
     fsType = "btrfs";
-    options = ["subvol=/home" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = ["subvol=@home" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
   ### ---------------/dev/sda1-------------------- ###
   services.btrfs.autoScrub = {

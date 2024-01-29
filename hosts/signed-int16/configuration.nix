@@ -39,6 +39,7 @@ in {
     ];
 
   programs = {
+    steam.enable = true;
     gnupg.dirmngr.enable = true;
     gnupg.agent = {
       enable = true;
