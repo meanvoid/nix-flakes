@@ -61,13 +61,13 @@
         citra-canary
         mgba
         # dolphin-emu
-        cemu
+        # cemu !!!
         yuzu-mainline
         ryujinx
 
         # Sony
         duckstation
-        pcsx2
+        # pcsx2 TODO!!! remove later
         ppsspp
         rpcs3
 
