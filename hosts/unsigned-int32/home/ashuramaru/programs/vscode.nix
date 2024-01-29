@@ -6,6 +6,16 @@
   ...
 }: let
   inherit (inputs.nix-vscode-extensions.extensions.x86_64-linux) vscode-marketplace;
+
+  vscode-overlay = pkgs.vscode.overrideAttrs (oldAttrs: {
+    buildInputs = oldAttrs.buildInputs ++ [pkgs.makeWrapper];
+    postInstall =
+      oldAttrs.postInstall
+      or ""
+      + ''
+        wrapProgram "$out/bin/code" --set GTK_USE_PORTAL=1
+      '';
+  });
 in {
   home.packages = with pkgs; [
     python3Full
@@ -16,7 +26,7 @@ in {
   ];
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode;
+    package = vscode-overlay;
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
     mutableExtensionsDir = false;

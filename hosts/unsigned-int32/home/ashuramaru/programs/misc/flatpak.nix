@@ -21,6 +21,7 @@
 
       # Desktop
       "flathub:app/com.discordapp.Discord/x86_64/stable"
+      "flathub:app/dev.vencord.Vesktop/x86_64/stable"
       "flathub:app/com.github.Matoking.protontricks/x86_64/stable"
       "flathub:app/com.nextcloud.desktopclient.nextcloud/x86_64/stable"
       "flathub:app/io.github.arunsivaramanneo.GPUViewer/x86_64/stable"
@@ -46,10 +47,8 @@
       "flathub:app/sh.ppy.osu/x86_64/stable"
       "flathub:app/io.github.Foldex.AdwSteamGtk/x86_64/stable"
       "flathub:app/net.davidotek.pupgui2/x86_64/stable"
-      "flathub:app/com.valvesoftware.Steam.CompatibilityTool.Protonn/x86_64/stable"
-      "flathub:app/com.valvesoftware.Steam.CompatibilityTool.Proton-GE/x86_64/stable"
-      "flathub:app/com.valvesoftware.Steam.Utility.thcrap_steam_proton_wrapper/x86_64/stable"
       "flathub:app/org.scummvm.ScummVM/x86_64/stable"
+      "flathub:runtime/com.valvesoftware.Steam.Utility.thcrap_steam_proton_wrapper/x86_64/stable"
 
       # Vulkan utils
       "flathub:runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08"
