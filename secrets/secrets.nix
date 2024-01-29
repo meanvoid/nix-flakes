@@ -16,6 +16,7 @@ in {
   "wireguard-shared_fumono.age".publicKeys = matrix;
   "wireguard-shared_jul.age".publicKeys = matrix;
   "tailscale-auth-key.age".publicKeys = matrix;
+  "cert.age".publicKeys = matrix;
 
   "mail.age".publicKeys = [systems.unsigned-int64];
   "proxy.age".publicKeys = [systems.unsigned-int64];
