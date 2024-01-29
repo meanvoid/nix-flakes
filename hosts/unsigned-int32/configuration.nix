@@ -18,6 +18,7 @@
     import (dir + "/${moduleName}");
 
   hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
+  cert = config.age.secrets.cert.path;
 in {
   imports =
     [
@@ -40,6 +41,9 @@ in {
       "services"
       "virtualisation"
     ];
+
+  age.secrets.cert.file = path + /secrets/cert.age;
+
   security = {
     wrappers = {
       doas = {
@@ -95,7 +99,7 @@ in {
       };
     };
     pki.certificateFiles = [
-      /etc/ssl/self/ca.crt
+      cert
     ];
   };
   programs = {

@@ -14,6 +14,7 @@
   in
     import (dir + "/${moduleName}");
   hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
+  cert = config.age.secrets.cert.path;
 in {
   imports =
     [
@@ -30,6 +31,8 @@ in {
       "virtualisation"
     ];
 
+  age.secrets.cert.file = path + /secrets/cert.age;
+
   environment = {
     shells = with pkgs; [zsh bash fish];
   };
@@ -40,7 +43,7 @@ in {
       execWheelOnly = true;
     };
     pki.certificateFiles = [
-      /etc/ssl/self/ca.crt
+      cert
     ];
   };
   services.vscode-server.enable = true;
