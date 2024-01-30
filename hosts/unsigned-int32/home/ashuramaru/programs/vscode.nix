@@ -6,6 +6,16 @@
   ...
 }: let
   inherit (inputs.nix-vscode-extensions.extensions.x86_64-linux) vscode-marketplace;
+
+  vscode-overlay = pkgs.vscode.overrideAttrs (oldAttrs: {
+    buildInputs = oldAttrs.buildInputs ++ [pkgs.makeWrapper];
+    postInstall =
+      oldAttrs.postInstall
+      or ""
+      + ''
+        wrapProgram "$out/bin/code" --set GTK_USE_PORTAL=1
+      '';
+  });
 in {
   home.packages = with pkgs; [
     python3Full
@@ -13,10 +23,11 @@ in {
     go
     jdk
     rustup
+    alejandra
   ];
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode;
+    package = vscode-overlay;
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
     mutableExtensionsDir = false;
@@ -62,12 +73,14 @@ in {
       ms-azuretools.vscode-docker # docker
       ms-kubernetes-tools.vscode-kubernetes-tools # kuber
       yzhang.markdown-all-in-one # markdown
+      davidanson.vscode-markdownlint
       redhat.vscode-yaml # yaml
       dotjoshjohnson.xml # xml
       graphql.vscode-graphql # graphql
       lizebang.bash-extension-pack # bash
       bbenoist.nix # nix lsp
       kamadorueda.alejandra # alejandra
+      github.vscode-github-actions # actions
 
       # Utils
       mkhl.direnv # direnv

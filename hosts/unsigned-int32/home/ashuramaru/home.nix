@@ -12,7 +12,8 @@
       (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
     ]
     ++ (import (path + /hosts/unsigned-int32/home/ashuramaru/programs))
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
+    ++ (import (path + /modules/shared/home/ashuramaru/programs/utils))
+    ++ (import (path + /modules/shared/home/overlays));
   home = {
     username = "ashuramaru";
     packages =
@@ -61,13 +62,13 @@
         citra-canary
         mgba
         # dolphin-emu
-        cemu
+        # cemu TODO: uncomment later when package is fixed on upstream
         yuzu-mainline
         ryujinx
 
         # Sony
         duckstation
-        pcsx2
+        # pcsx2 TODO: uncomment later when package is fixed on upstream
         ppsspp
         rpcs3
 
