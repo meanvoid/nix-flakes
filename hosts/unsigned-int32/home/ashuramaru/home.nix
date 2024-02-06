@@ -10,7 +10,7 @@
   imports =
     [
       ./services/easyeffects.nix
-      ./services/systemd-utils.nix
+      # ./services/systemd-utils.nix
       (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
     ]
     ++ (import (path + /hosts/unsigned-int32/home/ashuramaru/programs))

@@ -6,8 +6,10 @@
 }: {
   services.xserver = {
     enable = true;
-    layout = "us";
-    xkbModel = "evdev";
+    xkb = {
+      layout = "us";
+      model = "evdev";
+    };
   };
   environment.shells = with pkgs; [zsh bash fish];
   environment.localBinInPath = true;
