@@ -18,7 +18,6 @@
     '';
   };
 in {
-  imports = [./arrpc.nix];
   home.packages = [
     discordOverlayGtk
     pkgs.vesktop
