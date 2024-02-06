@@ -82,7 +82,8 @@
         checks = {
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
             src = ./.;
-            hooks.alejandra.enable = true;
+            # nix
+            hooks.alejandra.enable = true; # formatter
           };
         };
         devShells = {
