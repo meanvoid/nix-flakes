@@ -6,4 +6,5 @@ hosts/result
 hosts/darwin/result
 /.pre-commit-config.yaml
 .pre-commit-config.yaml
+.direnv
 secrets/.env
