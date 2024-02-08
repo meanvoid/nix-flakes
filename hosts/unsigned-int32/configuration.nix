@@ -118,14 +118,14 @@ in {
   services.yubikey-agent.enable = true;
   environment = {
     systemPackages = with pkgs; [
-      # Virt
-      virt-top
-      virt-manager
-
       # yubico
       gpgme
       yubioath-flutter
+      xorg.xhost
     ];
+    shellInit = ''
+      [ -n "$DISPLAY" ] && xhost +si:localuser:$USER || true
+    '';
   };
 
   time.timeZone = "Europe/Kyiv";

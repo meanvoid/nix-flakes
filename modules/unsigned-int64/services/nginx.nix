@@ -6,6 +6,18 @@
   path,
   ...
 }: {
+  security.pam.services.nginx.setEnvironment = false;
+  systemd.services.nginx.serviceConfig = {
+    SupplementaryGroups = ["shadow"];
+  };
+  age.secrets.".htpasswd" = {
+    file = path + /secrets/htpasswd.age;
+    path = "/var/lib/secrets/.htpasswd";
+    mode = "0640";
+    owner = "nginx";
+    group = "nginx";
+  };
+
   security.acme = {
     acceptTerms = true;
     defaults = {
@@ -17,6 +29,7 @@
   };
   services.nginx = {
     enable = true;
+    additionalModules = [pkgs.nginxModules.pam];
 
     recommendedGzipSettings = true;
     recommendedOptimisation = true;
@@ -38,12 +51,13 @@
       add_header X-XSS-Protection "1; mode=block";
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
-    virtualHosts."fumoposting.com" = {
-      serverName = "fumoposting.com";
+    virtualHosts."www.tenjin-dk.com" = {
+      serverName = "www.tenjin-dk.com";
       addSSL = true;
       enableACME = true;
-      locations."/static" = {
-        root = "/var/lib/minecraft";
+      locations."/archive" = {
+        root = "/var/lib/backup";
+        basicAuthFile = config.age.secrets.".htpasswd".path;
         extraConfig = ''
           autoindex on;
         '';

@@ -12,9 +12,10 @@
   discordOverlayGtk = pkgs.symlinkJoin {
     name = "discordOverlay";
     paths = [discordOverlay];
-    buildInputs = [pkgs.makeWrapper];
+    buildInputs = [pkgs.makeWrapper pkgs.nvidia-vaapi-driver pkgs.libva-utils pkgs.libva];
     postBuild = ''
-      wrapProgram $out/opt/Discord/Discord --set GTK_USE_PORTAL=1
+      wrapProgram $out/opt/Discord/Discord \
+        --set GTK_USE_PORTAL=1
     '';
   };
 in {

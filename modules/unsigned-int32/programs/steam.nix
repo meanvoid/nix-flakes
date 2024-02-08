@@ -66,7 +66,8 @@ in {
     ++ (with gamePkgs; [
       osu-lazer-bin
       wine-discord-ipc-bridge
-    ]);
+    ])
+    ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [crossover]);
 
   programs = {
     steam = {
@@ -95,6 +96,6 @@ in {
     honkers-railway-launcher.enable = lib.mkDefault true;
   };
   environment.sessionVariables = rec {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = lib.mkForce "\${HOME}/.steam/root/compatibilitytools.d:${gamePkgs.proton-ge}";
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = ["\${HOME}/.steam/root/compatibilitytools.d"];
   };
 }

@@ -6,8 +6,8 @@
 }: {
   programs.git = {
     enable = true;
-    userName = "Mariia Holovata";
-    userEmail = "ashuramaru@riseup.net";
+    userName = "Tenjin";
+    userEmail = "ashuramaru@tenjin-dk.com";
     lfs.enable = true;
     delta = {
       enable = true; # syntax highlighter

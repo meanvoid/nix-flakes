@@ -39,6 +39,8 @@
         inkscape
         godot3
         kdenlive
+        obs-studio
+        blender
 
         # Productivity
         libreoffice-fresh

@@ -11,7 +11,6 @@
       "flathub:runtime/org.kde.Platform/x86_64/5.15-23.08"
       "flathub:runtime/org.kde.PlatformTheme.QGnomePlatform/x86_64/5.15-23.08"
       "flathub:runtime/org.kde.WaylandDecoration.QGnomePlatform-decoration/x86_64/5.15-23.08"
-      "flathub:app/org.blender.Blender/x86_64/stable"
       "flathub:app/com.github.tchx84.Flatseal/x86_64/stable"
       "flathub:app/com.valvesoftware.Steam/x86_64/stable"
       "flathub:runtime/com.valvesoftware.Steam.Utility.thcrap_steam_proton_wrapper/x86_64/stable"

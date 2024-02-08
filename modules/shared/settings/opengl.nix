@@ -14,6 +14,7 @@
       rocmPackages.clr
       # VAAPI
       libva
+      libva-utils
       vaapiVdpau
       libvdpau-va-gl
     ];
