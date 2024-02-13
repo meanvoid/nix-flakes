@@ -153,6 +153,11 @@ in {
     fsType = "cifs";
     options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub4"];
   };
+  fileSystems."/var/lib/backup/archive" = {
+    device = "//u369008-sub4.your-storagebox.de/u369008-sub4/archive";
+    fsType = "cifs";
+    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub4,uid=60,gid=60,dir_mode=0440"];
+  };
   fileSystems."/var/lib/minecraft/backup/solonka" = {
     device = "//u369008-sub6.your-storagebox.de/u369008-sub6";
     fsType = "cifs";
