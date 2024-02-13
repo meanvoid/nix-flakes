@@ -24,5 +24,6 @@ in {
   "vaultwarden-env.age".publicKeys = [systems.unsigned-int64];
   "grafana_pgsql.age".publicKeys = [systems.unsigned-int64];
   "htpasswd.age".publicKeys = [systems.unsigned-int64];
+  "minecraft.age".publicKeys = [systems.unsigned-int64];
   "prometheus.age".publicKeys = [systems.unsigned-int64];
 }

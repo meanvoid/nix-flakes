@@ -10,9 +10,16 @@
   systemd.services.nginx.serviceConfig = {
     SupplementaryGroups = ["shadow"];
   };
-  age.secrets.".htpasswd" = {
+  age.secrets."archive.htpasswd" = {
     file = path + /secrets/htpasswd.age;
-    path = "/var/lib/secrets/.htpasswd";
+    path = "/var/lib/secrets/archive.htpasswd";
+    mode = "0640";
+    owner = "nginx";
+    group = "nginx";
+  };
+  age.secrets."minecraft.htpaswd" = {
+    file = path + /secrets/minecraft.age;
+    path = "/var/lib/secrets/minecraft.htpasswd";
     mode = "0640";
     owner = "nginx";
     group = "nginx";
@@ -53,11 +60,11 @@
     '';
     virtualHosts."www.tenjin-dk.com" = {
       serverName = "www.tenjin-dk.com";
-      addSSL = true;
+      forceSSL = true;
       enableACME = true;
       locations."/archive/" = {
         root = "/var/lib/backup/archive";
-        basicAuthFile = config.age.secrets.".htpasswd".path;
+        basicAuthFile = config.age.secrets."archive.htpasswd".path;
         extraConfig = ''
           autoindex on;
         '';
@@ -65,10 +72,9 @@
     };
     virtualHosts."static.fumoposting.com" = {
       serverName = "static.fumoposting.com";
-      addSSL = true;
+      forceSSL = true;
       enableACME = true;
-      # TODO: make another age for this website
-      basicAuthFile = config.age.secrets.".htpasswd".path;
+      basicAuthFile = config.age.secrets."minecraft.htpaswd".path;
       locations."/" = {
         root = "/var/lib/minecraft/static";
         extraConfig = ''

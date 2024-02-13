@@ -8,3 +8,4 @@ hosts/darwin/result
 .pre-commit-config.yaml
 .direnv
 secrets/.env
+env.sh
