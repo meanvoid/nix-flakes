@@ -56,8 +56,8 @@ in {
       };
     };
   };
-  services.nginx.virtualHosts."${domain}" = {
-    serverName = "${domain}";
+  services.nginx.virtualHosts."bitwarden.tenjin-dk.com" = {
+    serverName = "bitwarden.tenjin-dk.com";
     enableACME = true;
     forceSSL = true;
     locations."/" = {
