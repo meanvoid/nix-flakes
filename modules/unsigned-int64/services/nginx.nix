@@ -56,7 +56,7 @@
       addSSL = true;
       enableACME = true;
       locations."/archive/" = {
-        root = "/var/lib/backup";
+        root = "/var/lib/backup/archive";
         basicAuthFile = config.age.secrets.".htpasswd".path;
         extraConfig = ''
           autoindex on;
