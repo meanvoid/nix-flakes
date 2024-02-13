@@ -57,10 +57,10 @@ in {
     };
   };
   services.nginx.virtualHosts."${domain}" = {
+    serverName = "${domain}";
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      serverName = "${domain}";
       proxyPass = "http://vaultwarden-default";
       proxyWebsockets = true;
     };
