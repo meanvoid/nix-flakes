@@ -55,7 +55,7 @@
       serverName = "www.tenjin-dk.com";
       addSSL = true;
       enableACME = true;
-      locations."/archive" = {
+      locations."/archive/" = {
         root = "/var/lib/backup";
         basicAuthFile = config.age.secrets.".htpasswd".path;
         extraConfig = ''
