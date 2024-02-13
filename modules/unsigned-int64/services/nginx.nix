@@ -63,5 +63,27 @@
         '';
       };
     };
+    virtualHosts."static.fumoposting.com" = {
+      serverName = "static.fumoposting.com";
+      addSSL = true;
+      enableACME = true;
+      # TODO: make another age for this website
+      basicAuthFile = config.age.secrets.".htpasswd".path;
+      locations."/" = {
+        root = "/var/lib/minecraft/static";
+        extraConfig = ''
+          auth_basic off
+          autoindex on
+        '';
+      };
+      locations."/backup/" = {
+        root = "/var/lib/minecraft/backup";
+        extraConfig = ''autoindex on'';
+      };
+      locations."/admin/" = {
+        root = "/var/lib/minecraft";
+        extraConfig = ''autoindex on'';
+      };
+    };
   };
 }

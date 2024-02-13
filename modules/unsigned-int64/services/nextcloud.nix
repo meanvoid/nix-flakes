@@ -36,9 +36,9 @@ in {
       adminuser = "root";
       adminpassFile = config.age.secrets.admin.path;
     };
-    extraOptions = {
-      overwriteProtocol = "https";
-      defaultPhoneRegion = "UA";
+    settings = {
+      overwriteprotocol = "https";
+      default_phone_region = "UA";
       redis = {
         host = "/run/redis-nextcloud/redis.sock";
         port = 0;
