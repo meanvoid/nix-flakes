@@ -16,6 +16,14 @@ in {
     group = "vaultwarden";
   };
 
+  age.secrets."vault.htpasswd" = {
+    file = path + /secrets/vault.age;
+    path = "/var/lib/secrets/vault.htpasswd";
+    mode = "0640";
+    owner = "nginx";
+    group = "nginx";
+  };
+
   services.vaultwarden = {
     enable = true;
     package = pkgs.vaultwarden-postgresql;
@@ -51,7 +59,6 @@ in {
     '';
     servers = {
       "127.0.0.1:8080" = {
-        weight = 0;
         backup = false;
       };
     };
@@ -61,6 +68,11 @@ in {
     enableACME = true;
     forceSSL = true;
     locations."/" = {
+      proxyPass = "http://vaultwarden-default";
+      proxyWebsockets = true;
+    };
+    locations."/admin" = {
+      basicAuthFile = config.age.secrets."vault.htpasswd".path;
       proxyPass = "http://vaultwarden-default";
       proxyWebsockets = true;
     };

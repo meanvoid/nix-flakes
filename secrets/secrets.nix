@@ -25,5 +25,6 @@ in {
   "grafana_pgsql.age".publicKeys = [systems.unsigned-int64];
   "htpasswd.age".publicKeys = [systems.unsigned-int64];
   "minecraft.age".publicKeys = [systems.unsigned-int64];
+  "vault.age".publicKeys = [systems.unsigned-int64];
   "prometheus.age".publicKeys = [systems.unsigned-int64];
 }
