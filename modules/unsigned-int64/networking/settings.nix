@@ -86,7 +86,9 @@
         51820
       ];
       allowedTCPPorts = [
-        # Http
+        # HTTP
+        80
+        # HTTPS
         443
         # Proxy
         1080
