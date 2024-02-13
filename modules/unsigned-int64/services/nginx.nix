@@ -72,17 +72,17 @@
       locations."/" = {
         root = "/var/lib/minecraft/static";
         extraConfig = ''
-          auth_basic off
-          autoindex on
+          auth_basic off;
+          autoindex on;
         '';
       };
       locations."/backup/" = {
         root = "/var/lib/minecraft/backup";
-        extraConfig = ''autoindex on'';
+        extraConfig = ''autoindex on;'';
       };
       locations."/admin/" = {
         root = "/var/lib/minecraft";
-        extraConfig = ''autoindex on'';
+        extraConfig = ''autoindex on;'';
       };
     };
   };
