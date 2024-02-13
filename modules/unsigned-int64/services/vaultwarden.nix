@@ -24,7 +24,7 @@ in {
     config = {
       domain = "https://bitwarden.tenjin-dk.com";
       rocketAddress = "127.0.0.1";
-      rocketPort = 8812;
+      rocketPort = "8080";
       rocketLog = "critical";
 
       websocketEnabled = true;
@@ -45,11 +45,23 @@ in {
       smtpFromName = "Admin of bitwarden.tenjin-dk.com";
     };
   };
+  services.nginx.upstreams."vaultwarden-default" = {
+    extraConfig = ''
+      keepalive 2;
+    '';
+    servers = {
+      "127.0.0.1:8080" = {
+        weight = 0;
+        backup = false;
+      };
+    };
+  };
   services.nginx.virtualHosts."${domain}" = {
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://127.0.0.1:${toString config.services.vaultwarden.config.rocketPort}";
+      serverName = "${domain}";
+      proxyPass = "http://vaultwarden-default";
       proxyWebsockets = true;
     };
   };

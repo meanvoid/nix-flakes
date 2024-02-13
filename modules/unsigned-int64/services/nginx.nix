@@ -62,7 +62,7 @@
       serverName = "www.tenjin-dk.com";
       forceSSL = true;
       enableACME = true;
-      locations."/archive/" = {
+      locations."/archive" = {
         root = "/var/lib/backup/archive";
         basicAuthFile = config.age.secrets."archive.htpasswd".path;
         extraConfig = ''
@@ -82,11 +82,11 @@
           autoindex on;
         '';
       };
-      locations."/backup/" = {
-        root = "/var/lib/minecraft/backup";
+      locations."/backup" = {
+        root = "/var/lib/minecraft";
         extraConfig = ''autoindex on;'';
       };
-      locations."/admin/" = {
+      locations."/admin" = {
         root = "/var/lib/minecraft";
         extraConfig = ''autoindex on;'';
       };
