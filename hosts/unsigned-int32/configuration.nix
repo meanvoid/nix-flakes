@@ -8,6 +8,7 @@
   hostname,
   users,
   path,
+  meanvoid-overlay,
   nur,
   vscode-server,
   ...
@@ -133,6 +134,10 @@ in {
     defaultLocale = "en_US.utf8";
     supportedLocales = ["all"];
   };
-
+  nix.settings = {
+    # todo use age
+    access-tokens = "/etc/nix/token";
+    netrc-file = "/etc/nix/netrc";
+  };
   system.stateVersion = "24.05";
 }

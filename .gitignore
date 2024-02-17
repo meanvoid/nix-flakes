@@ -9,3 +9,4 @@ hosts/darwin/result
 .direnv
 secrets/.env
 env.sh
+*.qcow2

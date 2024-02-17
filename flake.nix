@@ -4,6 +4,7 @@
     ### --- Declarations of flake inputs
     flake-utils.url = "github:numtide/flake-utils";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    frida.url = "github:itstarsun/frida-nix";
 
     ### --- nixpkgs channel
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -46,6 +47,7 @@
     self,
     nixpkgs,
     darwin,
+    meanvoid-overlay,
     hyprland,
     nur,
     agenix,
@@ -69,7 +71,7 @@
       inherit (self) output;
       inherit inputs self nixpkgs darwin;
       inherit home-manager path;
-      inherit nur hyprland agenix;
+      inherit nur meanvoid-overlay hyprland agenix;
       inherit flatpaks aagl spicetify-nix;
       inherit vscode-server;
     };

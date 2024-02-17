@@ -4,6 +4,7 @@
   self,
   nixpkgs,
   darwin,
+  meanvoid-overlay,
   nur,
   agenix,
   home-manager,
@@ -16,7 +17,7 @@
   ...
 }: let
   systems = import ./mkSystemConfig.nix {
-    inherit lib inputs self nixpkgs darwin nur agenix;
+    inherit lib inputs self nixpkgs darwin meanvoid-overlay nur agenix;
     inherit home-manager flatpaks aagl spicetify-nix hyprland;
     inherit path vscode-server;
   };
@@ -38,6 +39,7 @@ in {
     useAagl = true;
     useFlatpak = true;
     useVscodeServer = true;
+    useNvidiaVgpu = true;
     users = [
       "ashuramaru"
       "meanrin"

@@ -24,6 +24,8 @@ in {
     jdk
     rustup
     alejandra
+    clang-tools
+    arduino-language-server
   ];
   programs.vscode = {
     enable = true;
@@ -61,7 +63,7 @@ in {
       # lang and lsp support
       ms-python.python # python
       ms-dotnettools.csharp # csharp
-      ms-vscode.cpptools # cpp
+      ms-vscode.cpptools-extension-pack
       rust-lang.rust-analyzer # rust
       golang.go # golang
       redhat.java # java
@@ -107,9 +109,7 @@ in {
       # C Utils
       formulahendry.code-runner # C/CPP coderunner
       danielpinto8zz6.c-cpp-compile-run # compile and run
-      ms-vscode.cmake-tools # cbuild
       ms-vscode.makefile-tools # cbuild
-      llvm-vs-code-extensions.vscode-clangd # clang
       cschlosser.doxdocgen # doxygen
 
       # Dotnet Utils

@@ -97,9 +97,8 @@ in {
       # C Utils
       formulahendry.code-runner # C/CPP coderunner
       danielpinto8zz6.c-cpp-compile-run # compile and run
-      ms-vscode.cmake-tools # cbuild
+      # ms-vscode.cmake-tools # cbuild
       ms-vscode.makefile-tools # cbuild
-      llvm-vs-code-extensions.vscode-clangd # clang
       cschlosser.doxdocgen # doxygen
 
       # Dotnet Utils

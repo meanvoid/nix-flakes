@@ -3,6 +3,7 @@
   inputs,
   nixpkgs,
   darwin,
+  meanvoid-overlay,
   nur,
   agenix,
   home-manager,
@@ -36,6 +37,7 @@ in {
       useAagl ? false,
       useFlatpak ? false,
       useVscodeServer ? false,
+      useNvidiaVgpu ? false,
       users ? [],
       modules ? [],
       ...
@@ -69,6 +71,7 @@ in {
             config.services.vscode-server.enable = lib.mkDefault true;
           }
         ])
+        (lib.optional useNvidiaVgpu meanvoid-overlay.nixosModules.nvidia-vGPU)
         (lib.optionals useHomeManager (homeManagerModules.nixos hostName users))
         defaults
       ];

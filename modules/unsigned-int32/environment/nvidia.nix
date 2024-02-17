@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  meanvoid-overlay,
   ...
 }: let
   inherit (pkgs) stdenv;
@@ -17,6 +18,7 @@ in {
   services.xserver.videoDrivers = [
     "nvidia"
   ];
+
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -26,8 +28,8 @@ in {
       nvidia-vaapi-driver
     ];
   };
+
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
     # Open drivers (NVreg_OpenRmEnableUnsupportedGpus=1)
     open = false;
     # nvidia-drm.modeset=1
@@ -38,6 +40,13 @@ in {
       finegrained = false;
     };
     nvidiaSettings = true;
+    vgpu = {
+      enable = true;
+      fastapi-dls = {
+        enable = true;
+        local_ipv4 = "::1";
+      };
+    };
   };
   environment.systemPackages = with pkgs; [
     nvtop

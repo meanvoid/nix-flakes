@@ -8,7 +8,7 @@
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_xanmod_stable;
+    kernelPackages = pkgs.linuxPackages_xanmod;
     kernelModules = [
       # dkms
       "kvm-amd"
@@ -37,6 +37,7 @@
       "video=HDMI3:2560x1440@60"
       "video=HDMI4:2560x1440@60"
       ### ------------------------------------ ###
+      "iommu=pt"
     ];
     swraid = {
       enable = true;
@@ -49,7 +50,7 @@
       '';
     };
     # Blacklisted Kernel modules do not change
-    blacklistedKernelModules = ["i915" "amdgpu"];
+    blacklistedKernelModules = ["i915" "amdgpu" "nouveau"];
     supportedFilesystems = ["xfs" "ntfs"];
   };
   boot.loader = {

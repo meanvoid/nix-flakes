@@ -3,10 +3,13 @@
   lib,
   pkgs,
   users,
+  meanvoid-overlay,
   ...
 }: let
   admins = ["ashuramaru" "meanrin"];
 in {
+  imports = [meanvoid-overlay.nixosModules.kvmfr];
+
   boot.extraModprobeConfig = "options kvm_intel kvm_amd nested=1";
   virtualisation.libvirtd = {
     enable = true;
@@ -43,18 +46,11 @@ in {
     spice-webdavd.enable = true;
     spice-vdagentd.enable = true;
   };
-  virtualisation.virtualbox = {
-    host = {
-      enable = true;
-      enableHardening = true;
-      enableExtensionPack = true;
-    };
-  };
+
   users.groups = {
     kvm.members = admins;
     libvirtd.members = admins;
     qemu.members = admins;
-    vboxusers.members = admins;
   };
 
   environment.systemPackages = with pkgs; [
@@ -90,6 +86,17 @@ in {
       source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-arm-vars.fd";
     };
   };
+  virtualisation.kvmfr = {
+    enable = true;
+    shm = {
+      enable = true;
+      size = 128;
+      user = "ashuramaru";
+      group = "libvirtd";
+      mode = "0600";
+    };
+  };
+  systemd.services.libvirtd.path = [pkgs.mdevctl pkgs.swtpm];
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 }
