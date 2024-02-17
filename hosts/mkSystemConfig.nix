@@ -71,20 +71,10 @@ in {
             config.services.vscode-server.enable = lib.mkDefault true;
           }
         ])
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ce8099d (add kvmfr)
         (lib.optionals useNvidiaVgpu [
           meanvoid-overlay.nixosModules.kvmfr
           meanvoid-overlay.nixosModules.nvidia-vGPU
         ])
-<<<<<<< HEAD
-=======
-        (lib.optional useNvidiaVgpu meanvoid-overlay.nixosModules.nvidia-vGPU)
->>>>>>> e4e98da (add kvmfr)
-=======
->>>>>>> ce8099d (add kvmfr)
         (lib.optionals useHomeManager (homeManagerModules.nixos hostName users))
         defaults
       ];

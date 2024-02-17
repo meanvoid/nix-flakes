@@ -51,7 +51,6 @@ in {
   environment.systemPackages = with pkgs; [
     nvtop
     zenith-nvidia
-<<<<<<< HEAD
     binutils
     findutils
     cudatoolkit
@@ -63,25 +62,5 @@ in {
     LD_LIBRARY_PATH = ["${lib.makeLibraryPath libs}"];
     LIBVA_DRIVER_NAME = "nvidia";
     GBM_BACKEND = "nvidia-drm";
-=======
-    cudaPackages_12_0.cudatoolkit
-    cudaPackages_12_0.cudnn
-    linuxPackages.nvidia_x11
-    gcc
-    openblas
-    gnumake
-    cmakeWithGui
-    binutils
-    findutils
-  ];
-  environment.sessionVariables = rec {
-    CUDA_HOME = "${pkgs.cudaPackages_12_0.cudatoolkit}";
-    CUDA_PATH = "\${CUDA_HOME}";
-    LD_LIBRARY_PATH = [
-      "\${LD_LIBRARY_PATH}:${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.cudaPackages_12_0.cudnn}/lib"
-    ];
-    EXTRA_LDFLAGS = "-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib";
-    EXTRA_CCFLAGS = "-I/usr/include";
->>>>>>> 36a3141 (update libs)
   };
 }
