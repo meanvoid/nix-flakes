@@ -816,11 +816,11 @@
         "pre-commit-hooks-nix": "pre-commit-hooks-nix"
       },
       "locked": {
-        "lastModified": 1708185616,
-        "narHash": "sha256-mIAZAdxknFmBxwa2khK03/P0hyHoX8cLwCyvwLM2io0=",
+        "lastModified": 1708186683,
+        "narHash": "sha256-f0o+/h4/82FOefGsNYFev5c8/q/mHjUhEAzuL0Ltebk=",
         "owner": "meanvoid",
         "repo": "nixos-overlay",
-        "rev": "0a4808c2690fc8853d9d77308d237a9440923315",
+        "rev": "369ab757257961216d4cd6e1a4cba30e4f233d0a",
         "type": "github"
       },
       "original": {

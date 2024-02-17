@@ -8,8 +8,6 @@
 }: let
   admins = ["ashuramaru" "meanrin"];
 in {
-  imports = [meanvoid-overlay.nixosModules.kvmfr];
-
   boot.extraModprobeConfig = "options kvm_intel kvm_amd nested=1";
   virtualisation.libvirtd = {
     enable = true;

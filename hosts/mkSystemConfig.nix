@@ -71,7 +71,10 @@ in {
             config.services.vscode-server.enable = lib.mkDefault true;
           }
         ])
-        (lib.optional useNvidiaVgpu meanvoid-overlay.nixosModules.nvidia-vGPU)
+        (lib.optionals useNvidiaVgpu [
+          meanvoid-overlay.nixosModules.kvmfr
+          meanvoid-overlay.nixosModules.nvidia-vGPU
+        ])
         (lib.optionals useHomeManager (homeManagerModules.nixos hostName users))
         defaults
       ];
