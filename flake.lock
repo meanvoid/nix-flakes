@@ -684,11 +684,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1706874416,
-        "narHash": "sha256-s+MwM7U6Eqeb7RwIzMTdgzTpUZKc71Y8A3u1XBstsuo=",
+        "lastModified": 1707059036,
+        "narHash": "sha256-5anBB0t9f/ZDzdxqgFYl8KuTQB0zvwRNx7Bm9gUmslI=",
         "owner": "meanvoid",
         "repo": "nixos-overlay",
-        "rev": "7621783f152730652ddf9f289c63d151fc202348",
+        "rev": "c3abc7f2b07d8e285a8f81fcd5afc214c18f7fa9",
         "type": "github"
       },
       "original": {
