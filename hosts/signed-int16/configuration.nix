@@ -35,11 +35,11 @@ in {
     ++ hostModules [
       "environment"
       "networking"
+      "programs"
       "virtualisation"
     ];
 
   programs = {
-    steam.enable = true;
     gnupg.dirmngr.enable = true;
     gnupg.agent = {
       enable = true;
