@@ -13,13 +13,7 @@
       };
       Service = {
         Type = "oneshot";
-        ExecStart = "${
-          pkgs.writeShellScript "assign_uuid" ''
-            set -eou pipefail
-            PATH=$PATH:/Users/marie/.local/bin:${lib.makeBinPath [pkgs.gawk pkgs.coreutils pkgs.acpi pkgs.bash]}
-            generateuuid.sh -r -d ~/Downloads
-          ''
-        }";
+        ExecStart = "${pkgs.python3Packages.python.interpreter} ${path + /src/generateuuid.py}";
       };
     };
     timers."assign_uuid" = {

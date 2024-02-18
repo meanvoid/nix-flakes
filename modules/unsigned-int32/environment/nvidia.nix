@@ -30,6 +30,7 @@ in {
   };
 
   hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
     # Open drivers (NVreg_OpenRmEnableUnsupportedGpus=1)
     open = false;
     # nvidia-drm.modeset=1
@@ -41,11 +42,8 @@ in {
     };
     nvidiaSettings = true;
     vgpu = {
-      enable = true;
-      fastapi-dls = {
-        enable = true;
-        local_ipv4 = "::1";
-      };
+      enable = false;
+      fastapi-dls.enable = false;
     };
   };
   environment.systemPackages = with pkgs; [

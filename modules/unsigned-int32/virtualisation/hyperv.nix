@@ -60,6 +60,8 @@ in {
     spice-protocol
     win-virtio
     win-spice
+    swtpm
+    looking-glass-client
   ];
   environment.etc = {
     "ovmf/edk2-x86_64-code.fd" = {
@@ -85,16 +87,16 @@ in {
     };
   };
   virtualisation.kvmfr = {
-    enable = true;
+    enable = false;
     shm = {
-      enable = true;
+      enable = false;
       size = 128;
       user = "ashuramaru";
       group = "libvirtd";
-      mode = "0600";
+      mode = "0660";
     };
   };
-  systemd.services.libvirtd.path = [pkgs.mdevctl pkgs.swtpm];
+  systemd.services.libvirtd.path = [pkgs.mdevctl pkgs.swtpm pkgs.looking-glass-client];
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 }
