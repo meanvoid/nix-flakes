@@ -2,10 +2,13 @@
   config,
   lib,
   pkgs,
+  path,
   ...
 }: {
-  virtualisation.waydroid.enable = true;
-  programs.adb.enable = true;
-  users.groups.adbusers.members = ["ashuramaru" "meanrin"];
-  services.udev.packages = [pkgs.android-udev-rules];
+  imports = [(path + /modules/shared/modules/android.nix)];
+  programs.android-development = {
+    enable = true;
+    users = ["ashuramaru" "meanrin"];
+    waydroid.enable = true;
+  };
 }
