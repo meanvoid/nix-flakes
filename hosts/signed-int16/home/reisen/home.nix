@@ -32,6 +32,9 @@
       # Media
       quodlibet
       vlc
+      yt-dlp
+      brasero
+      cdrtools
 
       # Dev
       lazygit

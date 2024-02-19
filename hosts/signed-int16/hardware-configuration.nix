@@ -42,7 +42,7 @@
       "vfat"
     ];
   };
-  ### ---------------/dev/sda1-------------------- ###
+  ### ---------------boot drive-------------------- ###
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/79d628c7-481b-4520-9f69-0a039f47d767";
     fsType = "btrfs";
@@ -53,7 +53,25 @@
     fsType = "btrfs";
     options = ["subvol=@home" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
-  ### ---------------/dev/sda1-------------------- ###
+  ### ---------------boot drive-------------------- ###
+
+  ### ---------------anything else-------------------- ###
+  fileSystems."/volumes/big" = {
+    device = "/dev/disk/by-uuid/74248E2A248DF002";
+    fsType = "ntfs-3g";
+    options = ["rw" "uid=1000"];
+  };
+  fileSystems."/volumes/cursed/wiwi" = {
+    device = "/dev/disk/by-uuid/E4467BA4467B75E0";
+    fsType = "ntfs-3g";
+    options = ["rw" "uid=1000"];
+  };
+  fileSystems."/volumes/cursed/wawa" = {
+    device = "/dev/disk/by-uuid/2394671A7FC8B48D";
+    fsType = "ntfs-3g";
+    options = ["rw" "uid=1000"];
+  };
+  ### ---------------anything else-------------------- ###
   services.btrfs.autoScrub = {
     enable = true;
     interval = "monthly";
