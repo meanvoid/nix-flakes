@@ -22,6 +22,11 @@
       mouse.accelSpeed = "0";
     };
   };
+  qt = {
+    enable = true;
+    style = "breeze";
+    platformTheme = "kde";
+  };
   xdg.portal = {
     enable = true;
     wlr.enable = true;
