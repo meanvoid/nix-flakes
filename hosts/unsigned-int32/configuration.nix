@@ -123,6 +123,8 @@ in {
       gpgme
       yubioath-flutter
       xorg.xhost
+      inputs.nix-software-center.packages.${system}.nix-software-center
+      inputs.nixos-conf-editor.packages.${system}.nixos-conf-editor
     ];
     shellInit = ''
       [ -n "$DISPLAY" ] && xhost +si:localuser:$USER || true

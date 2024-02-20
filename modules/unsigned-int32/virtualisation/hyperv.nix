@@ -30,10 +30,17 @@ in {
     };
     verbatimConfig = ''
       cgroup_device_acl = [
-        "/dev/null", "/dev/full", "/dev/zero",
-        "/dev/random", "/dev/urandom",
-        "/dev/ptmx", "/dev/kvm",
-        "/dev/nvidiactl", "/dev/nvidia0", "/dev/nvidia-modeset", "/dev/dri/renderD128"
+        "/dev/null",
+        "/dev/full",
+        "/dev/zero",
+        "/dev/random",
+        "/dev/urandom",
+        "/dev/ptmx",
+        "/dev/kvm",
+        "/dev/nvidiactl",
+        "/dev/nvidia0",
+        "/dev/nvidia-modeset",
+        "/dev/dri/renderD128"
       ]
     '';
     swtpm.enable = true;
@@ -58,7 +65,8 @@ in {
     spice
     spice-gtk
     spice-protocol
-    win-virtio
+    virtio-win
+    virtiofsd
     win-spice
     swtpm
     looking-glass-client
@@ -96,7 +104,13 @@ in {
       mode = "0660";
     };
   };
-  systemd.services.libvirtd.path = [pkgs.mdevctl pkgs.swtpm pkgs.looking-glass-client];
+  systemd.services.libvirtd.path = with pkgs; [
+    virtiofsd
+    virtio-win
+    mdevctl
+    swtpm
+    looking-glass-client
+  ];
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 }

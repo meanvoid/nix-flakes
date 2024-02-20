@@ -15,39 +15,35 @@ in {
 
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
-      extraPkgs = pkgs:
-        (with pkgs; [
-          yad
-          gnome.zenity
-          xorg.xhost
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
-          curl
-          imagemagick
-          libpng
-          libpulseaudio
-          libvorbis
-          stdenv.cc.cc.lib
-          libkrb5
-          keyutils
-          libgdiplus
-          glxinfo
-          mesa-demos
-          vulkan-tools
-          vulkan-headers
-          vulkan-caps-viewer
-          vulkan-validation-layers
-          vulkan-extension-layer
-          vulkan-loader
-          vkBasalt
-          mangohud
-          steamtinkerlaunch
-        ])
-        ++ (with gamePkgs; [
-          wine-discord-ipc-bridge
-        ]);
+      extraPkgs = pkgs: (with pkgs; [
+        yad
+        gnome.zenity
+        xorg.xhost
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXinerama
+        xorg.libXScrnSaver
+        curl
+        imagemagick
+        libpng
+        libpulseaudio
+        libvorbis
+        stdenv.cc.cc.lib
+        libkrb5
+        keyutils
+        libgdiplus
+        glxinfo
+        mesa-demos
+        vulkan-tools
+        vulkan-headers
+        vulkan-caps-viewer
+        vulkan-validation-layers
+        vulkan-extension-layer
+        vulkan-loader
+        vkBasalt
+        mangohud
+        steamtinkerlaunch
+      ]);
     };
   };
   environment.systemPackages =
@@ -65,7 +61,6 @@ in {
     ])
     ++ (with gamePkgs; [
       osu-lazer-bin
-      wine-discord-ipc-bridge
     ])
     ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [crossover]);
 
