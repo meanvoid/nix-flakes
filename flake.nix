@@ -3,6 +3,7 @@
   inputs = {
     ### --- Declarations of flake inputs
     flake-utils.url = "github:numtide/flake-utils";
+    devshell.url = "github:numtide/devshell";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     ### --- nixpkgs channel
@@ -59,6 +60,7 @@
     nix-gaming,
     spicetify-nix,
     flake-utils,
+    devshell,
     pre-commit-hooks,
     vscode-server,
     ...
@@ -90,11 +92,21 @@
             hooks.alejandra.enable = true; # formatter
           };
         };
-        devShells = {
-          default = nixpkgs.legacyPackages.${system}.mkShell {
-            inherit (self.checks.${system}.pre-commit-check) shellHook;
+        devShells.default = let
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [devshell.overlays.default];
           };
-        };
+        in
+          pkgs.devshell.mkShell {
+            imports = [(pkgs.devshell.importTOML ./devshell.toml)];
+            packages = with pkgs; [
+              git
+              nix-index
+              nix-prefetch-github
+              nix-prefetch-scripts
+            ];
+          };
         formatter = nixpkgs.legacyPackages.${system}.alejandra;
       });
   in

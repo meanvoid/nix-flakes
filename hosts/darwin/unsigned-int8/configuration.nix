@@ -6,18 +6,6 @@
   hostname,
   ...
 }: {
-  nixpkgs.config.allowUnfree = true;
-  nix = {
-    gc = {
-      automatic = true;
-      interval.Day = 7;
-      options = "--delete-older-than 30d";
-    };
-    settings = {
-      auto-optimise-store = true;
-      experimental-features = ["nix-command" "flakes"];
-    };
-  };
   imports =
     []
     ++ (import (path + "/modules/${hostname}/environment"))
@@ -42,7 +30,6 @@
       binutils
       openssh
       git
-      python310Full
       curl
       wget
       nmap
@@ -58,16 +45,18 @@
       neofetch
       hyfetch
 
-      ffmpeg_6-full
+      ffmpeg-full
       imagemagick
       mpv
       mpd
     ];
   };
+
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
   };
+
   programs.nix-index.enable = true;
   services.nix-daemon.enable = true;
   # System configuration

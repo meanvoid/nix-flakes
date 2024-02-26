@@ -20,7 +20,7 @@
     inherit (nixpkgs) lib;
     inherit inputs self nixpkgs darwin;
     inherit home-manager path;
-    inherit nur hyprland agenix flatpaks aagl spicetify-nix vscode-server;
+    inherit nur hyprland agenix flatpaks aagl spicetify-nix vscode-server meanvoid-overlay;
   };
   inherit (systems) mkSystemConfig;
 in {
