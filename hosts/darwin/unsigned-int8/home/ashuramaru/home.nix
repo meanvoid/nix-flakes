@@ -18,8 +18,6 @@
       # Make macos useful
       iina # frontend for ffmpeg
 
-      jetbrains.pycharm-community
-
       # Basado anudo rettopirrudu
       qbittorrent
 

@@ -6,18 +6,17 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     ### --- nixpkgs channel
+    #! f4bda16a49566212d94e1d738220d664f0a20c6f for now because nixos-unstable is broken
     nixpkgs.url = "github:nixos/nixpkgs/f4bda16a49566212d94e1d738220d664f0a20c6f";
-    nur.url = "github:nix-community/nur";
-
     ### --- system specific
     darwin.url = "github:lnl7/nix-darwin/master";
+    home-manager.url = "github:nix-community/home-manager";
 
     ### --- system modules
     agenix.url = "github:ryantm/agenix";
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
 
     ### --- user specific modules
-    home-manager.url = "github:nix-community/home-manager";
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     nix-gaming.url = "github:fufexan/nix-gaming/master";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
@@ -29,9 +28,11 @@
     doom-emacs.url = "github:nix-community/nix-doom-emacs";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     meanvoid-overlay.url = "github:meanvoid/nixos-overlay";
+
     # --- Applications
     nix-software-center.url = "github:snowfallorg/nix-software-center";
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
+
     ### --- de-duplication
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

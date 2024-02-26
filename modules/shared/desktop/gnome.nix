@@ -73,7 +73,14 @@
       breeze-gtk
       breeze-qt5
       dolphin
+      dolphin-plugins
+      ffmpegthumbs
+      kio-admin
+      kio-extras
+      kio-gdrive
+      ktorrent
       filelight
+      lightly
     ])
     ++ (with pkgs.gnome; [
       gnome-boxes

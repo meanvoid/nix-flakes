@@ -105,7 +105,6 @@ in {
         control = "sufficient";
       };
     };
-    pki.certificateFiles = [cert];
   };
   programs = {
     gnupg.dirmngr.enable = true;
