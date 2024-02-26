@@ -13,6 +13,7 @@
   aagl,
   spicetify-nix,
   vscode-server,
+  meanvoid-overlay,
   ...
 }: let
   systems = import (path + /hosts/mkSystemConfig.nix) {
