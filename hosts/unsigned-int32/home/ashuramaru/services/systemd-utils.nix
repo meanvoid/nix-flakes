@@ -13,7 +13,7 @@
       };
       Service = {
         Type = "oneshot";
-        ExecStart = "${pkgs.python3Packages.python.interpreter} ${path + /src/generateuuid.py}";
+        ExecStart = "${pkgs.python3Packages.python.interpreter} ${path + /src/generateuuid.py} ~/Downloads/";
       };
     };
     timers."assign_uuid" = {

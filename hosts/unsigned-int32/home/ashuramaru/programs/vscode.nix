@@ -1,7 +1,5 @@
 {
-  lib,
   inputs,
-  config,
   pkgs,
   ...
 }: let
@@ -23,6 +21,7 @@ in {
     go
     jdk
     rustup
+    nil
     alejandra
     clang-tools
     arduino-language-server
@@ -58,6 +57,33 @@ in {
       "workbench.colorTheme" = "Catppuccin Mocha";
       "workbench.iconTheme" = "material-icon-theme";
       "telemetry.telemetryLevel" = "off";
+      "editor.unicodeHighlight.allowedLocales" = {
+        "ja" = true;
+        "　" = true;
+      };
+      # nix
+      "nix" = {
+        "enableLanguageServer" = true;
+        "serverPath" = "nil";
+        "serverSettings.nil" = {
+          "formatting" = {
+            "command" = ["alejandra"];
+          };
+          "nix" = {
+            "binary" = "nix";
+            "maxMemoryMB" = 8124;
+            "flake.autoArchive" = true;
+            "flake.autoEvalInputs" = true;
+          };
+        };
+        "formatterPath" = "alejandra";
+      };
+      # python
+      "[python]" = {
+        "formatting.provider" = "none";
+        "editor.defaultFormatter" = "omnilib.ufmt";
+        "editor.formatOnSave" = true;
+      };
     };
     extensions = with vscode-marketplace; [
       # lang and lsp support
@@ -79,8 +105,11 @@ in {
       redhat.vscode-yaml # yaml
       dotjoshjohnson.xml # xml
       graphql.vscode-graphql # graphql
+      graphql.vscode-graphql-syntax # syntax
       lizebang.bash-extension-pack # bash
       bbenoist.nix # nix lsp
+      jnoortheen.nix-ide # nix ide
+
       kamadorueda.alejandra # alejandra
       github.vscode-github-actions # actions
 
@@ -109,13 +138,17 @@ in {
       # C Utils
       formulahendry.code-runner # C/CPP coderunner
       danielpinto8zz6.c-cpp-compile-run # compile and run
-      ms-vscode.makefile-tools # cbuild
+      # ms-vscode.makefile-tools # cbuild
       cschlosser.doxdocgen # doxygen
 
       # Dotnet Utils
       ms-dotnettools.vscode-dotnet-runtime
 
       # Python Utils
+      omnilib.ufmt
+      ms-python.black-formatter # formatter
+      ms-python.pylint # linter
+      ms-python.debugpy # debugger
       batisteo.vscode-django # django
       kevinrose.vsc-python-indent # indetation
       wholroyd.jinja # jinja

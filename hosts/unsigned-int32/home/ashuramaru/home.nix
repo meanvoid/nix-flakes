@@ -18,14 +18,16 @@
     ++ (import (path + /modules/shared/home/overlays));
   home = {
     username = "ashuramaru";
-    pointerCursor = {
-      name = "Marisa";
-      package = inputs.meanvoid-overlay.packages.${pkgs.system}.anime-cursors.marisa;
-      gtk.enable = true;
-      x11.enable = true;
-    };
+    # pointerCursor = {
+    #   name = "Marisa";
+    #   package = inputs.meanvoid-overlay.packages.${pkgs.system}.anime-cursors.marisa;
+    #   gtk.enable = true;
+    #   x11.enable = true;
+    # };
     packages =
       (with pkgs; [
+        media-downloader
+        imgbrd-grabber
         qbittorrent
         nicotine-plus
         # Audio
@@ -87,9 +89,7 @@
 
         ### --- Games --- ###
         # Python
-        conda
         android-studio
-
         ### --- Utils --- ###
         (cinnamon.nemo-with-extensions.override {
           extensions = [
@@ -103,6 +103,7 @@
         yt-dlp
       ])
       ++ (with pkgs.jetbrains; [
+        pycharm-community
         idea-ultimate
         datagrip
       ])

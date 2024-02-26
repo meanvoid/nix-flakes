@@ -6,8 +6,8 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     ### --- nixpkgs channel
+    #! f4bda16a49566212d94e1d738220d664f0a20c6f for now because nixos-unstable is broken
     nixpkgs.url = "github:nixos/nixpkgs/f4bda16a49566212d94e1d738220d664f0a20c6f";
-    nur.url = "github:nix-community/nur";
 
     ### --- system specific
     darwin.url = "github:lnl7/nix-darwin/master";
