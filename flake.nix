@@ -3,37 +3,41 @@
   inputs = {
     ### --- Declarations of flake inputs
     flake-utils.url = "github:numtide/flake-utils";
+    devshell.url = "github:numtide/devshell";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     ### --- nixpkgs channel
+    #! f4bda16a49566212d94e1d738220d664f0a20c6f for now because nixos-unstable is broken
     nixpkgs.url = "github:nixos/nixpkgs/f4bda16a49566212d94e1d738220d664f0a20c6f";
-    nur.url = "github:nix-community/nur";
-
     ### --- system specific
     darwin.url = "github:lnl7/nix-darwin/master";
+    home-manager.url = "github:nix-community/home-manager";
 
     ### --- system modules
     agenix.url = "github:ryantm/agenix";
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
 
     ### --- user specific modules
-    home-manager.url = "github:nix-community/home-manager";
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     nix-gaming.url = "github:fufexan/nix-gaming/master";
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    # ! check later if the https://github.com/the-argus/spicetify-nix/pull/53 got merged
+    spicetify-nix.url = "github:Believer1/spicetify-nix";
 
     ### --- overlays
+    nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     hyprland.url = "github:hyprwm/Hyprland";
     doom-emacs.url = "github:nix-community/nix-doom-emacs";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     meanvoid-overlay.url = "github:meanvoid/nixos-overlay";
+
     # --- Applications
     nix-software-center.url = "github:snowfallorg/nix-software-center";
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
+
     ### --- de-duplication
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     aagl.inputs.nixpkgs.follows = "nixpkgs";
@@ -58,6 +62,7 @@
     nix-gaming,
     spicetify-nix,
     flake-utils,
+    devshell,
     pre-commit-hooks,
     vscode-server,
     ...
@@ -89,11 +94,21 @@
             hooks.alejandra.enable = true; # formatter
           };
         };
-        devShells = {
-          default = nixpkgs.legacyPackages.${system}.mkShell {
-            inherit (self.checks.${system}.pre-commit-check) shellHook;
+        devShells.default = let
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [devshell.overlays.default];
           };
-        };
+        in
+          pkgs.devshell.mkShell {
+            imports = [(pkgs.devshell.importTOML ./devshell.toml)];
+            packages = with pkgs; [
+              git
+              nix-index
+              nix-prefetch-github
+              nix-prefetch-scripts
+            ];
+          };
         formatter = nixpkgs.legacyPackages.${system}.alejandra;
       });
   in

@@ -4,11 +4,21 @@
   pkgs,
   ...
 }: {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      packageOverrides = pkgs: {
+        gimp-python = pkgs.gimp.override {withPython = true;};
+      };
+      permittedInsecurePackages = [
+        "python-2.7.18.7"
+        "python-2.7.18.7-env"
+      ];
+    };
+  };
   nix = {
     gc = {
       automatic = true;
-      dates = "weekly";
       options = "--delete-older-than 30d";
     };
     settings = {

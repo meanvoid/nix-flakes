@@ -48,7 +48,6 @@ in {
       wheelNeedsPassword = false;
       execWheelOnly = true;
     };
-    pki.certificateFiles = [cert];
   };
   programs = {
     gnupg.dirmngr.enable = true;
