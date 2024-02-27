@@ -20,9 +20,11 @@
     ### --- user specific modules
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     nix-gaming.url = "github:fufexan/nix-gaming/master";
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    # ! check later if the https://github.com/the-argus/spicetify-nix/pull/53 got merged
+    spicetify-nix.url = "github:Believer1/spicetify-nix";
 
     ### --- overlays
+    nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     hyprland.url = "github:hyprwm/Hyprland";
@@ -35,7 +37,7 @@
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
 
     ### --- de-duplication
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     aagl.inputs.nixpkgs.follows = "nixpkgs";

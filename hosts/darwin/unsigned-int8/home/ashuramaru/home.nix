@@ -9,30 +9,35 @@
 }: {
   imports =
     [
-      ./vscode.nix
       (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
     ]
+    ++ (import ./programs)
     ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
+  # ++ (import (path + /modules/shared/home/overlays));
   home = {
     packages = with pkgs; [
       # Make macos useful
+      alt-tab-macos
+      rectangle
       iina # frontend for ffmpeg
-
-      # Basado anudo rettopirrudu
       qbittorrent
+      # Audio
+      audacity
 
-      # Society(Scary)
-      discord
+      # Graphics
+      gimp
+      inkscape
+      # blender #todo: add later overlay for x86_64-darwin apps
 
       # Games
-      rectangle
+      prismlauncher-unwrapped
       chiaki # Playstation RemotePlay but FOSS
-      gimp
 
-      # yubico shit
       yubikey-manager
 
+      # Misc
       thefuck
+      yt-dlp
     ];
     stateVersion = "24.05";
   };

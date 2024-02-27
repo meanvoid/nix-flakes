@@ -86,8 +86,8 @@
 
         # Minecraft
         prismlauncher
-
         ### --- Games --- ###
+
         # Python
         android-studio
         ### --- Utils --- ###

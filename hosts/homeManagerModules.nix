@@ -36,6 +36,7 @@
     darwin = hostName: users: [
       home-manager.darwinModules.home-manager
       {
+        nixpkgs.overlays = [inputs.nixpkgs-firefox-darwin.overlay];
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {

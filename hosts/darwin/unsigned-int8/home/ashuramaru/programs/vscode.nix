@@ -1,12 +1,9 @@
 {
-  lib,
   inputs,
-  config,
   pkgs,
   ...
 }: let
-  # inherit (inputs.nix-vscode-extensions.extensions.aarch64-darwin) vscode-marketplace;
-  tlist = inputs.nix-vscode-extensions.extensions.aarch64-darwin;
+  inherit (inputs.nix-vscode-extensions.extensions.${pkgs.system}) vscode-marketplace;
 in {
   home.packages = with pkgs; [
     python3Full
@@ -14,16 +11,19 @@ in {
     go
     jdk
     rustup
+    nil
+    alejandra
+    clang-tools
   ];
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
-    mutableExtensionsDir = true;
+    mutableExtensionsDir = false;
     userSettings = {
-      "typescript.suggest.paths" = true;
-      "javascript.suggest.paths" = true;
+      "typescript.suggest.paths" = false;
+      "javascript.suggest.paths" = false;
       "files.autoSave" = "afterDelay";
       "editor.fontSize" = 19;
       "editor.fontFamily" = "'MesloLGL Nerd Font'";
@@ -46,31 +46,61 @@ in {
       "workbench.colorTheme" = "Catppuccin Mocha";
       "workbench.iconTheme" = "material-icon-theme";
       "telemetry.telemetryLevel" = "off";
+      "editor.unicodeHighlight.allowedLocales" = {
+        "ja" = true;
+        "　" = true;
+      };
+      # nix
+      "nix" = {
+        "enableLanguageServer" = true;
+        "serverPath" = "nil";
+        "serverSettings.nil" = {
+          "formatting" = {
+            "command" = ["alejandra"];
+          };
+          "nix" = {
+            "binary" = "nix";
+            "maxMemoryMB" = 8124;
+            "flake.autoArchive" = true;
+            "flake.autoEvalInputs" = true;
+          };
+        };
+        "formatterPath" = "alejandra";
+      };
+      # python
+      "[python]" = {
+        "formatting.provider" = "none";
+        "editor.defaultFormatter" = "omnilib.ufmt";
+        "editor.formatOnSave" = true;
+      };
     };
-    extensions = with tlist.vscode-marketplace; [
+    extensions = with vscode-marketplace; [
       # lang and lsp support
       ms-python.python # python
-      ms-python.vscode-pylance
-      ms-toolsai.jupyter
       ms-dotnettools.csharp # csharp
-      ms-vscode.cpptools # cpp
+      ms-vscode.cpptools-extension-pack
       rust-lang.rust-analyzer # rust
       golang.go # golang
       redhat.java # java
       scala-lang.scala # scala
       mathiasfrohlich.kotlin # kotlin
       fwcd.kotlin # kotlin debug
-      rebornix.ruby # ruby
+      shopify.ruby-lsp # ruby, previous was deprecated
       dart-code.flutter # flutter
       ms-azuretools.vscode-docker # docker
       ms-kubernetes-tools.vscode-kubernetes-tools # kuber
       yzhang.markdown-all-in-one # markdown
+      davidanson.vscode-markdownlint
       redhat.vscode-yaml # yaml
       dotjoshjohnson.xml # xml
       graphql.vscode-graphql # graphql
+      graphql.vscode-graphql-syntax # syntax
       lizebang.bash-extension-pack # bash
       bbenoist.nix # nix lsp
+      jnoortheen.nix-ide # nix ide
+
       kamadorueda.alejandra # alejandra
+      github.vscode-github-actions # actions
 
       # Utils
       mkhl.direnv # direnv
@@ -97,14 +127,17 @@ in {
       # C Utils
       formulahendry.code-runner # C/CPP coderunner
       danielpinto8zz6.c-cpp-compile-run # compile and run
-      # ms-vscode.cmake-tools # cbuild
-      ms-vscode.makefile-tools # cbuild
+      # ms-vscode.makefile-tools # cbuild
       cschlosser.doxdocgen # doxygen
 
       # Dotnet Utils
       ms-dotnettools.vscode-dotnet-runtime
 
       # Python Utils
+      omnilib.ufmt
+      ms-python.black-formatter # formatter
+      ms-python.pylint # linter
+      ms-python.debugpy # debugger
       batisteo.vscode-django # django
       kevinrose.vsc-python-indent # indetation
       wholroyd.jinja # jinja
@@ -122,6 +155,7 @@ in {
       dbaeumer.vscode-eslint # eslint
       jasonnutter.search-node-modules # search trough node_modules
       christian-kohler.npm-intellisense # npm intellisense
+      wallabyjs.quokka-vscode # quokkajs
       prisma.prisma # nodejs.prisma
       wix.vscode-import-cost
       vue.volar
