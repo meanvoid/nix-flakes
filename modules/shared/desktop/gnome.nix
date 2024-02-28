@@ -104,10 +104,11 @@
       pin-app-folders-to-dash
       dash-to-dock
       arcmenu
-    ]) ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [
+    ])
+    ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [
       gradience-git
     ]);
-    
+
   nixpkgs.config.packageOverrides = pkgs: {
     catppuccin-gtk = pkgs.catppuccin-gtk.override {
       accents = ["rosewater"];
