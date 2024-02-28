@@ -31,6 +31,7 @@
       # Gaming
       "flathub:app/com.usebottles.bottles/x86_64/stable"
       "flathub:app/re.chiaki.Chiaki/x86_64/stable"
+      "flathub:app/info.cemu.Cemu/x86_64/stable"
       "flathub:app/sh.ppy.osu/x86_64/stable"
       "flathub:app/io.github.Foldex.AdwSteamGtk/x86_64/stable"
       "flathub:app/net.davidotek.pupgui2/x86_64/stable"
@@ -46,5 +47,20 @@
       "flathub:runtime/org.gtk.Gtk3theme.adw-gtk3-dark/x86_64/3.22"
       "flathub:runtime/org.gtk.Gtk3theme.Catppuccin-Mocha-Red/x86_64/3.22"
     ];
+
+    overrides = {
+      "global" = {
+        filesystems = [
+          "xdg-config/gtk-3.0:ro"
+          "xdg-config/gtk-4.0:ro"
+        ];
+        environment = {
+          "QT_QPA_PLATFORMTHEME" = "qt5ct";
+        };
+      };
+      "com.usebottles.bottles".filesystems = [
+        "xdg-config/MangoHud:ro"
+      ];
+    };
   };
 }

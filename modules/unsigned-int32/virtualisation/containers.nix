@@ -7,6 +7,7 @@
 }: let
   admins = ["ashuramaru" "meanrin"];
 in {
+  virtualisation.containers.cdi.dynamic.nvidia.enable = true;
   virtualisation.docker = {
     enable = true;
     enableNvidia = true;
@@ -22,7 +23,6 @@ in {
   };
   virtualisation.podman = {
     enable = true;
-    enableNvidia = true;
     extraPackages = with pkgs; [
       gvproxy
       tun2socks

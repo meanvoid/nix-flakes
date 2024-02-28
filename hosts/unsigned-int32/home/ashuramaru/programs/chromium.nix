@@ -46,6 +46,6 @@
       }
     ];
     package = pkgs.chromium;
-    commandLineArgs = ["--enable-logging=stderr" "--ignore-gpu-blocklist"];
+    commandLineArgs = ["--enable-logging=stderr" "--ignore-gpu-blocklist" "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"];
   };
 }

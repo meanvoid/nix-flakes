@@ -8,7 +8,10 @@
 
     ### --- nixpkgs channel
     #! f4bda16a49566212d94e1d738220d664f0a20c6f for now because nixos-unstable is broken
-    nixpkgs.url = "github:nixos/nixpkgs/f4bda16a49566212d94e1d738220d664f0a20c6f";
+    # nixpkgs.url = "github:nixos/nixpkgs/f4bda16a49566212d94e1d738220d664f0a20c6f";
+    #! check if got merged
+    nixpkgs.url = "github:K900/nixpkgs/plasma-6";
+    nixpkgs-23_11.url = "github:nixos/nixpkgs/nixos-23.11-small";
     ### --- system specific
     darwin.url = "github:lnl7/nix-darwin/master";
     home-manager.url = "github:nix-community/home-manager";
@@ -40,6 +43,8 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    ### --- Overlays
     aagl.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
@@ -51,6 +56,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-23_11,
     darwin,
     meanvoid-overlay,
     hyprland,
@@ -75,7 +81,7 @@
     commonAttrs = {
       inherit (nixpkgs) lib;
       inherit (self) output;
-      inherit inputs self nixpkgs darwin;
+      inherit inputs self nixpkgs nixpkgs-23_11 darwin;
       inherit home-manager path;
       inherit nur meanvoid-overlay hyprland agenix;
       inherit flatpaks aagl spicetify-nix;
@@ -86,6 +92,7 @@
       eachDefaultSystem
       (system: let
         pkgs = import nixpkgs;
+        pkgs-23_11 = import nixpkgs-23_11;
       in {
         checks = {
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
@@ -99,9 +106,14 @@
             inherit system;
             overlays = [devshell.overlays.default];
           };
+          inherit (self.checks.${pkgs.system}.pre-commit-check) shellHook;
         in
           pkgs.devshell.mkShell {
             imports = [(pkgs.devshell.importTOML ./devshell.toml)];
+            git.hooks = {
+              enable = true;
+              pre-commit.text = shellHook;
+            };
             packages = with pkgs; [
               git
               nix-index

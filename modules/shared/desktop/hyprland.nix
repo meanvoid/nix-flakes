@@ -1,10 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  hyprland,
-  ...
-}: {
+{pkgs, ...}: {
   programs.hyprland = {
     enable = true;
     xwayland = {

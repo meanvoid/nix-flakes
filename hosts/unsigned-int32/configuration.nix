@@ -32,6 +32,7 @@ in {
       (path + "/modules/shared/settings/settings.nix")
       ### ----------------DESKTOP------------------- ###
       (path + "/modules/shared/desktop/gnome.nix")
+      # (path + "/modules/shared/desktop/plasma.nix")
       (path + "/modules/shared/desktop/fonts.nix")
       ### ----------------DESKTOP------------------- ###
     ]
@@ -130,10 +131,16 @@ in {
     '';
   };
 
-  time.timeZone = "Europe/Kyiv";
+  time.timeZone = "Europe/Warsaw";
   i18n = {
     defaultLocale = "en_US.utf8";
     supportedLocales = ["all"];
+    inputMethod = {
+      enabled = "ibus";
+      ibus.engines = with pkgs.ibus-engines; [
+        anthy
+      ];
+    };
   };
   nix.settings = {
     # todo use age
