@@ -2,6 +2,7 @@
   lib,
   inputs,
   nixpkgs,
+  nixpkgs-23_11,
   darwin,
   meanvoid-overlay,
   nur,
@@ -16,7 +17,7 @@
   ...
 }: let
   homeManager = import ./homeManagerModules.nix {
-    inherit lib inputs nixpkgs darwin nur;
+    inherit lib inputs nixpkgs nixpkgs-23_11 darwin nur;
     inherit home-manager spicetify-nix flatpaks;
     inherit path;
   };
@@ -113,7 +114,7 @@ in {
         inherit system;
         specialArgs = {
           inherit inputs hostname users path;
-          inherit darwin nixpkgs;
+          inherit darwin nixpkgs nixpkgs-23_11;
           host = {
             inherit hostName;
           };

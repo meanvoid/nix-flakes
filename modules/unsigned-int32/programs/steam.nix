@@ -54,7 +54,6 @@ in {
     ])
     ++ (with pkgs.wineWowPackages; [
       stagingFull
-      waylandFull
     ])
     ++ (with tenjinPkgs; [
       thcrap-proton

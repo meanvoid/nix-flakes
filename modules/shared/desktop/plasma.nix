@@ -1,31 +1,15 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   services.xserver = {
     enable = true;
     displayManager.sddm = {
       enable = true;
-      # possible changes
     };
-    desktopManager.plasma5 = {
-      enable = true;
-      useQtScaling = true;
-      runUsingSystemd = true;
-      phononBackend = "gstreamer";
-    };
+    desktopManager.plasma6.enable = true;
     libinput = {
       enable = true;
       mouse.accelProfile = "flat";
       mouse.accelSpeed = "0";
     };
-  };
-  qt = {
-    enable = true;
-    style = "breeze";
-    platformTheme = "kde";
   };
   xdg.portal = {
     enable = true;
@@ -36,6 +20,12 @@
       xdg-desktop-portal-gnome
     ];
   };
+  qt = {
+    enable = true;
+    style = "breeze";
+    platformTheme = "kde";
+  };
+
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";
   };

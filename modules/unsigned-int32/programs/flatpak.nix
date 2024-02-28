@@ -7,6 +7,11 @@
   ...
 }: {
   services.flatpak = {
+    remotes = {
+      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
+      "gnome-nightly" = "https://nightly.gnome.org/gnome-nightly.flatpakrepo";
+    };
     packages = [
       "flathub:runtime/org.kde.Platform/x86_64/5.15-23.08"
       "flathub:runtime/org.kde.PlatformTheme.QGnomePlatform/x86_64/5.15-23.08"
@@ -19,7 +24,17 @@
       "flathub:runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
       "flathub:runtime/org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/23.08"
       "flathub:runtime/org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
+      ":${inputs.meanvoid-overlay.packages.${pkgs.system}.gradience-devel.src}/gradience-devel.flatpak"
     ];
+    overrides = {
+      "global".filesystems = [
+        "xdg-config/gtk-3.0:ro"
+        "xdg-config/gtk-4.0:ro"
+      ];
+      "com.valvesoftware.Steam".filesystems = [
+        "xdg-config/MangoHud:ro"
+      ];
+    };
   };
   system.fsPackages = [pkgs.bindfs];
   fileSystems =

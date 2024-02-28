@@ -73,19 +73,19 @@
         # Nintendo
         citra-canary
         mgba
-        # dolphin-emu
-        # cemu TODO: uncomment later when package is fixed on upstream
+        dolphin-emu
+        # cemu # todo:
         yuzu-mainline
         ryujinx
 
         # Sony
         duckstation
-        # pcsx2 TODO: uncomment later when package is fixed on upstream
+        pcsx2
         ppsspp
         rpcs3
 
         # Minecraft
-        prismlauncher
+        prismlauncher-qt5
         ### --- Games --- ###
 
         # Python

@@ -1,7 +1,7 @@
 {
-  config,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   services.gnome = {
@@ -21,12 +21,17 @@
   programs.ssh.askPassword = lib.mkForce "${pkgs.gnome.seahorse}/libexec/seahorse/ssh-askpass}";
 
   services.xserver = {
+    displayManager = {
+      defaultSession = "gnome";
+    };
     displayManager.gdm = {
       enable = true;
       debug = true;
-      autoSuspend = false;
+      autoSuspend = true;
     };
+
     desktopManager.gnome.enable = true;
+
     libinput = {
       enable = true;
       mouse.accelProfile = "flat";
@@ -42,13 +47,14 @@
     enable = true;
     platformTheme = "qt5ct";
   };
+
   programs = {
     gnome-terminal.enable = true;
     calls.enable = true;
     firefox.nativeMessagingHosts.gsconnect = pkgs.gnome-browser-connector;
     kdeconnect = {
       enable = true;
-      package = pkgs.gnomeExtensions.gsconnect;
+      package = lib.mkDefault pkgs.gnomeExtensions.gsconnect;
     };
   };
   environment.systemPackages =
@@ -65,8 +71,10 @@
       sierra-breeze-enhanced
       lightly-qt
       lightly-boehs
-      gradience
       gparted
+    ])
+    ++ (with pkgs.kdePackages; [
+      breeze
     ])
     ++ (with pkgs.libsForQt5; [
       breeze-icons
@@ -96,7 +104,10 @@
       pin-app-folders-to-dash
       dash-to-dock
       arcmenu
+    ]) ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [
+      gradience-git
     ]);
+    
   nixpkgs.config.packageOverrides = pkgs: {
     catppuccin-gtk = pkgs.catppuccin-gtk.override {
       accents = ["rosewater"];
@@ -105,12 +116,14 @@
       variant = "frappe";
     };
   };
+
   environment.gnome.excludePackages = with pkgs; [
     gnome-console
   ];
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";
   };
+
   programs.gnupg.agent.pinentryFlavor = "gnome3";
   services.dbus.packages = [pkgs.gcr];
   services.gnome.gnome-browser-connector.enable = true;

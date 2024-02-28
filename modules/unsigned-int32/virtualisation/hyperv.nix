@@ -94,16 +94,16 @@ in {
       source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-arm-vars.fd";
     };
   };
-  virtualisation.kvmfr = {
-    enable = false;
-    shm = {
-      enable = false;
-      size = 128;
-      user = "ashuramaru";
-      group = "libvirtd";
-      mode = "0660";
-    };
-  };
+  # virtualisation.kvmfr = {
+  #   enable = false;
+  #   shm = {
+  #     enable = false;
+  #     size = 128;
+  #     user = "ashuramaru";
+  #     group = "libvirtd";
+  #     mode = "0660";
+  #   };
+  # };
   systemd.services.libvirtd.path = with pkgs; [
     virtiofsd
     virtio-win
