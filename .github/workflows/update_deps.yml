@@ -1,0 +1,56 @@
+# taken  from https://github.com/Gerg-L/spicetify-nix/blob/master/.github/workflows/update_deps.yaml
+name: update_deps
+
+on:
+  workflow_dispatch: #allow manual triggering
+  schedule:
+    - cron: "0 4 * * *"
+jobs:
+  update_deps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.2.1
+      - uses: DeterminateSystems/nix-installer-action@v14
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: setup git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+      - name: update
+        run: |
+          MESSAGE=""
+
+          nix flake update --no-warn-dirty --commit-lock-file
+
+          if git rev-parse -q HEAD^; then
+
+            MESSAGE="$(git -P log --pretty=format:"%s%n%b" -1)"
+
+            git reset --soft HEAD^
+          fi
+
+          if NPINS=$(nix run nixpkgs#npins -- -d ./pkgs/npins update -f | grep -E '[^\(no changes\)]*url.*'); then
+            MESSAGE="$MESSAGE
+
+          npins url updates:
+          $NPINS"
+          fi
+
+          if [ -z "$MESSAGE" ]; then
+            exit 0
+          fi
+
+          pushd pkgs
+
+          nix run .#fetcher
+
+          popd
+
+          git add -A
+
+          git commit -m "CI update $(date -I)" -m "$MESSAGE"
+
+          git push origin HEAD:${{ github.ref_name }}
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
