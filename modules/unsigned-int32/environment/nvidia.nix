@@ -17,10 +17,10 @@
     cudnn
   ];
 in {
+  nixpkgs.config = {
+    cudaSupport = true;
+  };
   nixpkgs.overlays = [
-    (self: super: {
-      mesa = inputs.nixpkgs-23_11.legacyPackages.${pkgs.system}.mesa;
-    })
     (self: super: {
       ccacheWrapper = super.ccacheWrapper.override {
         extraConfig = ''
@@ -63,21 +63,14 @@ in {
   };
 
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
-    # Open drivers (NVreg_OpenRmEnableUnsupportedGpus=1)
+    package = config.boot.kernelPackages.nvidiaPackages.production;
     open = false;
-    # nvidia-drm.modeset=1
     modesetting.enable = true;
-    # NVreg_PreserveVideoMemoryAllocations=1
     powerManagement = {
       enable = false;
       finegrained = false;
     };
     nvidiaSettings = true;
-    # vgpu = {
-    #   enable = false;
-    #   fastapi-dls.enable = false;
-    # };
   };
   environment.systemPackages = with pkgs; [
     nvtop
@@ -91,8 +84,6 @@ in {
     vulkan-tools
   ];
   boot.blacklistedKernelModules = ["nouveau"];
-  # just in case we blocklist nouveau driver
-  # and add workarounds
   boot.extraModprobeConfig = ''
     blacklist nouveau
   '';
@@ -106,7 +97,6 @@ in {
     MOZ_ENABLE_WAYLAND = "1";
     SDL_VIDEODRIVER = "wayland,x11";
   };
-  # speed up building if we have locally some cache
   programs.ccache = {
     enable = true;
   };
