@@ -72,6 +72,7 @@
       lightly-qt
       lightly-boehs
       gparted
+      gradience
     ])
     ++ (with pkgs.kdePackages; [
       breeze
@@ -104,9 +105,6 @@
       pin-app-folders-to-dash
       dash-to-dock
       arcmenu
-    ])
-    ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [
-      gradience-git
     ]);
 
   nixpkgs.config.packageOverrides = pkgs: {

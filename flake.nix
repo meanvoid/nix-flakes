@@ -7,10 +7,7 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     ### --- nixpkgs channel
-    #! f4bda16a49566212d94e1d738220d664f0a20c6f for now because nixos-unstable is broken
-    # nixpkgs.url = "github:nixos/nixpkgs/f4bda16a49566212d94e1d738220d664f0a20c6f";
-    #! check if got merged
-    nixpkgs.url = "github:K900/nixpkgs/plasma-6";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-23_11.url = "github:nixos/nixpkgs/nixos-23.11-small";
     ### --- system specific
     darwin.url = "github:lnl7/nix-darwin/master";
@@ -23,6 +20,7 @@
     ### --- user specific modules
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     nix-gaming.url = "github:fufexan/nix-gaming/master";
+    
     # ! check later if the https://github.com/the-argus/spicetify-nix/pull/53 got merged
     spicetify-nix.url = "github:Believer1/spicetify-nix";
 
