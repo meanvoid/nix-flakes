@@ -18,6 +18,7 @@
     roboto
     roboto-mono
     powerline-symbols
+    source-han-sans
     wqy_zenhei
     mplus-outline-fonts.githubRelease
     ipafont

@@ -56,7 +56,7 @@ in {
       enableSSHSupport = true;
       enableBrowserSocket = true;
       enableExtraSocket = true;
-      pinentryFlavor = "curses";
+      pinentryPackage = pkgs.pinentry-curses;
     };
     neovim = {
       enable = true;

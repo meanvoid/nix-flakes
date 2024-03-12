@@ -17,9 +17,9 @@
     cudnn
   ];
 in {
-  nixpkgs.config = {
-    cudaSupport = true;
-  };
+  # nixpkgs.config = {
+  #   cudaSupport = true;
+  # };
   nixpkgs.overlays = [
     (self: super: {
       ccacheWrapper = super.ccacheWrapper.override {
@@ -56,7 +56,6 @@ in {
     driSupport = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
-      # Test
       nvidia-vaapi-driver
       egl-wayland
     ];

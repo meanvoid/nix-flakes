@@ -11,6 +11,7 @@
       "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
       "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
       "launcher" = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
+      "gnome-nightly" = "https://nightly.gnome.org/gnome-nightly.flatpakrepo";
     };
     packages = [
       # KDE/Qt
@@ -59,6 +60,9 @@
         };
       };
       "com.usebottles.bottles".filesystems = [
+        "xdg-config/MangoHud:ro"
+      ];
+      "com.valvesoftware.Steam".filesystems = [
         "xdg-config/MangoHud:ro"
       ];
     };

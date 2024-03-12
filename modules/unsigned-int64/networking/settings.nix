@@ -264,22 +264,5 @@
         };
       };
     };
-    # local-data-ptr = [
-    #   "1.31.16.172.in-addr.arpa unsigned-int64.remote"
-    # ];
-    # local-data = [
-    #   # A/AAAA records
-    #   "unsigned-int64.remote IN A 172.16.31.1 3600"
-    #   "unsigned-int64.remote IN AAAA fd17:216b:31bc:1::1 3600"
-
-    #   # CNAME
-    #   "prom.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-    #   "lib.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-    #   "private.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-    #   "public.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-
-    #   # PTR records
-    #   "1.31.16.172.in-addr.arpa. IN PTR static.1.31.16.172.internal.unsigned-int64.com. 3600"
-    # ];
   };
 }

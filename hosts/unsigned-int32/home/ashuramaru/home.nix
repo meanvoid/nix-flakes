@@ -18,12 +18,12 @@
     ++ (import (path + /modules/shared/home/overlays));
   home = {
     username = "ashuramaru";
-    # pointerCursor = {
-    #   name = "Marisa";
-    #   package = inputs.meanvoid-overlay.packages.${pkgs.system}.anime-cursors.marisa;
-    #   gtk.enable = true;
-    #   x11.enable = true;
-    # };
+    pointerCursor = {
+      name = "Marisa";
+      package = inputs.meanvoid-overlay.packages.${pkgs.system}.anime-cursors.marisa;
+      gtk.enable = true;
+      x11.enable = true;
+    };
     packages =
       (with pkgs; [
         media-downloader
@@ -71,11 +71,9 @@
         flycast
 
         # Nintendo
-        citra-canary
         mgba
         dolphin-emu
-        # cemu # todo:
-        yuzu-mainline
+        cemu
         ryujinx
 
         # Sony
@@ -118,7 +116,7 @@
       email = "ashuramaru@tenjin-dk.com";
       base_url = "https://bitwarden.tenjin-dk.com";
       lock_timeout = 600;
-      pinentry = "gnome3";
+      pinentry = "gnome2";
     };
   };
 }
