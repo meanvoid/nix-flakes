@@ -55,6 +55,14 @@
       grafana-piechart-panel
     ];
   };
+  systemd.services.prometheus = {
+    after = ["nginx.service" "unbound.service"];
+    requires = ["nginx.service" "unbound.service"];
+  };
+  systemd.services.loki = {
+    after = ["nginx.service" "unbound.service"];
+    requires = ["nginx.service" "unbound.service"];
+  };
   services.prometheus = {
     enable = true;
     listenAddress = "172.16.31.1";

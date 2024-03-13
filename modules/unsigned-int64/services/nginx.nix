@@ -70,6 +70,25 @@
         '';
       };
     };
+    virtualHosts."_" = {
+      default = true;
+      listen = [
+        {addr = "80";}
+        {addr = "[::]:80";}
+        {
+          addr = "443";
+          ssl = true;
+        }
+        {
+          addr = "[::]:443";
+          ssl = true;
+        }
+      ];
+      extraConfig = ''
+        ssl_reject_handshake on;
+        return 444;
+      '';
+    };
     virtualHosts."static.fumoposting.com" = {
       serverName = "static.fumoposting.com";
       forceSSL = true;

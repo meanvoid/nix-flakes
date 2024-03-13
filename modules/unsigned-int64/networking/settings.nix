@@ -98,6 +98,10 @@
         # ssh
         57255
       ];
+      interfaces."podman+" = {
+        allowedTCPPorts = [ 53 ];
+        allowedUDPPorts = [ 53 ];
+      };
       interfaces."wireguard1" = {
         allowedUDPPorts = [
           # forward all possible dns ports
@@ -136,6 +140,11 @@
         ];
       };
     };
+  };
+  # # Ensures sshd starts after WireGuard1
+  systemd.services.sshd = {
+    after = ["wg-quick-wireguard1.service"];
+    wants = ["wg-quick-wireguard1.service"];
   };
   services = {
     openssh = {
