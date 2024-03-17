@@ -30,6 +30,8 @@
       "flathub:app/im.fluffychat.Fluffychat/x86_64/stable"
 
       # Gaming
+      "flathub:app/com.valvesoftware.Steam/x86_64/stable"
+      "flathub:runtime/com.valvesoftware.Steam.Utility.thcrap_steam_proton_wrapper/x86_64/stable"
       "flathub:app/com.usebottles.bottles/x86_64/stable"
       "flathub:app/re.chiaki.Chiaki/x86_64/stable"
       "flathub:app/info.cemu.Cemu/x86_64/stable"
@@ -61,9 +63,13 @@
       };
       "com.usebottles.bottles".filesystems = [
         "xdg-config/MangoHud:ro"
+        "/Shared/media:rw"
+        "/Shared/media/games:rw"
       ];
       "com.valvesoftware.Steam".filesystems = [
         "xdg-config/MangoHud:ro"
+        "/Shared/media:rw"
+        "/Shared/media/games:rw"
       ];
     };
   };

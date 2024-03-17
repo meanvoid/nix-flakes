@@ -88,6 +88,22 @@
 
         # Python
         android-studio
+        # .NET
+        dotnetPackages.Nuget
+        (with dotnetCorePackages;
+          combinePackages [
+            sdk_6_0
+            sdk_7_0
+            sdk_8_0
+          ])
+        mono
+        powershell
+        (nodejs.override {
+          enableNpm = true;
+          python3 = python311;
+        })
+        sass
+        deno
         ### --- Utils --- ###
         (cinnamon.nemo-with-extensions.override {
           extensions = [
@@ -101,9 +117,7 @@
         yt-dlp
       ])
       ++ (with pkgs.jetbrains; [
-        pycharm-community
-        idea-ultimate
-        datagrip
+        (plugins.addPlugins rider ["python-community-edition" "nixidea"])
       ])
       ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [
         anime-cursors.marisa
