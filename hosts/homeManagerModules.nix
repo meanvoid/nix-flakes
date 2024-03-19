@@ -39,7 +39,7 @@
       {
         nixpkgs.overlays = [
           inputs.nixpkgs-firefox-darwin.overlay
-          # nur.overlay
+          nur.overlay
         ];
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
