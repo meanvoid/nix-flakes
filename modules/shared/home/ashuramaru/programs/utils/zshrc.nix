@@ -6,10 +6,10 @@
 }: {
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
     enableCompletion = true;
     enableVteIntegration = true;
     autocd = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     shellAliases = {
       ls = "ls --color";

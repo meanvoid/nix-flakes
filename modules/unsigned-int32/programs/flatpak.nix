@@ -12,9 +12,6 @@
       "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
       "gnome-nightly" = "https://nightly.gnome.org/gnome-nightly.flatpakrepo";
     };
-    packages = [
-      ":${inputs.meanvoid-overlay.packages.${pkgs.system}.gradience-devel.src}/gradience-devel.flatpak"
-    ];
     overrides = {
       "global".filesystems = [
         "xdg-config/gtk-3.0:ro"

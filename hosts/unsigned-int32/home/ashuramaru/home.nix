@@ -130,7 +130,7 @@
       email = "ashuramaru@tenjin-dk.com";
       base_url = "https://bitwarden.tenjin-dk.com";
       lock_timeout = 600;
-      pinentry = "gnome2";
+      pinentry = pkgs.pinentry-gnome3;
     };
   };
 }

@@ -64,34 +64,6 @@
     group = "jellyfin";
   };
   services.prowlarr.enable = true;
-  systemd.services.transmission = {
-    after = ["var-lib-transmission-public.mount"];
-    requires = ["var-lib-transmission-public.mount"];
-  };
-  systemd.services.radarr = {
-    after = ["var-lib-transmission-public.mount" "var-lib-transmission-private.mount"];
-    requires = ["var-lib-transmission-public.mount" "var-lib-transmission-private.mount"];
-  };
-  systemd.services.sonarr = {
-    after = ["var-lib-transmission-public.mount" "var-lib-transmission-private.mount" "nginx.service" "unbound.service"];
-    requires = ["var-lib-transmission-public.mount" "var-lib-transmission-private.mount"];
-  };
-  systemd.services.lidarr = {
-    after = ["var-lib-transmission-public.mount" "var-lib-transmission-private.mount" "nginx.service" "unbound.service"];
-    requires = ["var-lib-transmission-public.mount" "var-lib-transmission-private.mount"];
-  };
-  systemd.services.readarr = {
-    after = ["var-lib-transmission-public.mount" "var-lib-transmission-private.mount" "nginx.service" "unbound.service"];
-    requires = ["var-lib-transmission-public.mount" "var-lib-transmission-private.mount" "nginx.service" "unbound.service"];
-  };
-  systemd.services.jackett = {
-    after = ["var-lib-transmission-public.mount" "var-lib-transmission-private.mount" "nginx.service" "unbound.service"];
-    requires = ["var-lib-transmission-public.mount" "var-lib-transmission-private.mount"];
-  };
-  systemd.services.bazarr = {
-    after = ["var-lib-transmission-public.mount" "var-lib-transmission-private.mount" "nginx.service" "unbound.service"];
-    requires = ["var-lib-transmission-public.mount" "var-lib-transmission-private.mount"];
-  };
   users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
   users.users.transmission.extraGroups = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
   services.nginx.virtualHosts = {
@@ -186,11 +158,9 @@
     };
     after = [
       "podman-network-transmission_openvpn-default.service"
-      "var-lib-transmission-private.mount"
     ];
     requires = [
       "podman-network-transmission_openvpn-default.service"
-      "var-lib-transmission-private.mount"
     ];
     partOf = [
       "podman-compose-transmission_openvpn-root.target"
