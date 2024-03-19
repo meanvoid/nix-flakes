@@ -12,7 +12,6 @@
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         # necessity
         ublock-origin
-        privacy-badger
         canvasblocker
         mullvad
         darkreader
@@ -35,7 +34,6 @@
         sponsorblock
         return-youtube-dislikes
         video-downloadhelper
-        plasma-integration
         stylus
         steam-database
         search-by-image
@@ -49,6 +47,10 @@
 
         # Dictionaries
         ukrainian-dictionary
+        french-dictionary
+        dictionary-german
+        polish-dictionary
+        bulgarian-dictionary
       ];
       search = {
         force = true;

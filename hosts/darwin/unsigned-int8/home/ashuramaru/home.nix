@@ -21,6 +21,9 @@
         # Audio
         audacity
 
+      # Graphics
+      gimp
+      inkscape
         # Graphics
         gimp
         inkscape

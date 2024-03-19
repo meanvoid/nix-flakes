@@ -39,6 +39,10 @@
       {
         nixpkgs.overlays = [
           inputs.nixpkgs-firefox-darwin.overlay
+          nur.overlay
+        ];
+        nixpkgs.overlays = [
+          inputs.nixpkgs-firefox-darwin.overlay
           # nur.overlay
         ];
         home-manager.useGlobalPkgs = true;
