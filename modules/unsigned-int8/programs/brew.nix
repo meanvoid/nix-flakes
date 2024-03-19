@@ -12,7 +12,6 @@
       cleanup = "zap";
     };
     taps = [
-      "homebrew/cask"
       "homebrew/cask-versions"
     ];
     brews = [
@@ -22,7 +21,9 @@
     ];
     casks = [
       #todo: revisit later
+      # Games
       "wine-staging"
+      "crossover"
       "steam"
       "krita"
       "blender"

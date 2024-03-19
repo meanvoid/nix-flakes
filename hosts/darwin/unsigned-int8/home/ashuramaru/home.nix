@@ -1,10 +1,7 @@
 {
-  lib,
-  config,
   pkgs,
-  darwin,
-  users,
   path,
+  nur,
   ...
 }: {
   imports =
@@ -13,7 +10,6 @@
     ]
     ++ (import ./programs)
     ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
-  # ++ (import (path + /modules/shared/home/overlays));
   home = {
     packages = with pkgs; [
       # Make macos useful
@@ -27,7 +23,6 @@
       # Graphics
       gimp
       inkscape
-      # blender #todo: add later overlay for x86_64-darwin apps
 
       # Games
       prismlauncher-unwrapped
