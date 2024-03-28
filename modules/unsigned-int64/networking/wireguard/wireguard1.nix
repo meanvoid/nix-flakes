@@ -49,7 +49,7 @@ in {
         publicKey = "WxQNVRD5zwzal95wUuSMZbx8Nl0cvKoa/5ICdTYDBnw=";
         presharedKeyFile = preshared;
         allowedIPs = ["172.16.31.5/32" "fd17:216b:31bc:1::5/128"];
-      } 
+      }
       {
         # root@v1
         publicKey = "TX+IdvAXyVV1DtbcyBtPbavney5uMg9mksxXWjoYO3A=";

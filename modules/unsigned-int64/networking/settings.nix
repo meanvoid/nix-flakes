@@ -103,8 +103,8 @@
         57255
       ];
       interfaces."podman+" = {
-        allowedTCPPorts = [ 53 ];
-        allowedUDPPorts = [ 53 ];
+        allowedTCPPorts = [53];
+        allowedUDPPorts = [53];
       };
       interfaces."wireguard1" = {
         allowedUDPPorts = [
