@@ -80,7 +80,8 @@
         duckstation
         pcsx2
         ppsspp
-        rpcs3
+        #! fails to build
+        # rpcs3
 
         # Minecraft
         prismlauncher-qt5

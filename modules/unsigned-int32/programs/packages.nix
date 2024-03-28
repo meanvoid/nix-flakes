@@ -7,7 +7,8 @@
   environment.systemPackages = with pkgs; [
     firefox
     thunderbird
-    awscli2
+    #! currently fails to build
+    # awscli2
     blueman
   ];
 }

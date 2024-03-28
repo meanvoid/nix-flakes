@@ -63,6 +63,7 @@
         "uptime.tenjin.com"
         "public.tenjin.com"
         "private.tenjin.com"
+        "cvat.tenjin.com"
       ];
       "fd17:216b:31bc:1::1" = [
         "www.tenjin.com"
@@ -71,6 +72,7 @@
         "uptime.tenjin.com"
         "public.tenjin.com"
         "private.tenjin.com"
+        "cvat.tenjin.com"
       ];
     };
     firewall = {
@@ -249,6 +251,7 @@
             "\"uptime.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
             "\"public.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
             "\"private.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
+            "\"cvat.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
           ];
         };
         forward-zone = [

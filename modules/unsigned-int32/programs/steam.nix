@@ -9,7 +9,6 @@
 }: let
   gamePkgs = inputs.nix-gaming.packages.${pkgs.system};
   tenjinPkgs = inputs.meanvoid-overlay.packages.${pkgs.system};
-  ipc = gamePkgs.wine-discord-ipc-bridge;
 in {
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
@@ -67,7 +66,7 @@ in {
       remotePlay.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
       extraCompatPackages = [
-        gamePkgs.proton-ge
+        pkgs.proton-ge-bin
       ];
     };
     gamemode = {

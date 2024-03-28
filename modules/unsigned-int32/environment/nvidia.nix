@@ -62,7 +62,7 @@ in {
   };
 
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
     open = false;
     modesetting.enable = true;
     powerManagement = {
@@ -72,7 +72,7 @@ in {
     nvidiaSettings = true;
   };
   environment.systemPackages = with pkgs; [
-    nvtop
+    nvtopPackages.full
     zenith-nvidia
     binutils
     findutils
