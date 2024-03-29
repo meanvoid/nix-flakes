@@ -4,12 +4,18 @@
   ...
 }: let
   inherit (inputs.nix-vscode-extensions.extensions.${pkgs.system}) vscode-marketplace;
+  JDK = with pkgs; [ jdk8 jdk17 jdk];
 in {
+  home.sessionPath = [ "$HOME/.jdks" ];
+  home.file = (builtins.listToAttrs (builtins.map (jdk: {
+    name = ".jdks/${jdk.version}";
+    value = { source = jdk; };
+  }) JDK));
   home.packages = with pkgs; [
     python3Full
     ruby
     go
-    jdk
+    # jdk
     rustup
     nil
     alejandra

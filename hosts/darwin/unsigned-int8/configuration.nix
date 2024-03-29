@@ -34,6 +34,7 @@ in {
   environment = {
     systemPackages = with pkgs; [
       # Utils
+      wireguard-tools
       coreutils
       binutils
       openssh

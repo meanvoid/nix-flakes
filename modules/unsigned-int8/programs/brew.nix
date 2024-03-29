@@ -16,8 +16,6 @@
     ];
     brews = [
       "winetricks"
-      "openjdk"
-      "openjdk@17"
     ];
     casks = [
       #todo: revisit later
@@ -25,6 +23,8 @@
       "wine-staging"
       "crossover"
       "steam"
+      "prismlauncher"
+      # graphics
       "krita"
       "blender"
       "telegram"

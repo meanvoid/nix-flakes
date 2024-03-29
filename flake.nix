@@ -7,6 +7,7 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     ### --- nixpkgs channel
+    # 269ce7215bb5b436546786e8d354d37903e102a8
     nixpkgs.url = "github:nixos/nixpkgs/269ce7215bb5b436546786e8d354d37903e102a8";
     nixpkgs-23_11.url = "github:nixos/nixpkgs/nixos-23.11-small";
     ### --- system specific
