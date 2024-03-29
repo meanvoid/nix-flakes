@@ -69,7 +69,7 @@
 
   ### ----------------BOOT------------------- ###
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/84A7-8AA0";
+    device = "/dev/disk/by-uuid/4186-54D1";
     fsType = "vfat";
   };
   ### ----------------BOOT------------------- ###
@@ -82,9 +82,21 @@
       mitigateDMAAttacks = true;
       devices = {
         "root" = {
-          device = "/dev/disk/by-uuid/baee7f57-7ca2-458d-940b-77f443c992b9";
+          device = "/dev/disk/by-uuid/82e2befb-2fb3-4c22-b921-0ee0bfec66f8";
           allowDiscards = true;
           bypassWorkqueues = true;
+          yubikey = {
+            slot = 2;
+            twoFactor = true;
+            gracePeriod = 30;
+            keyLength = 64;
+            saltLength = 16;
+            storage = {
+              device = "/dev/nvme1n1p1";
+              fsType = "vfat";
+              path = "/crypt-storage/root_slot0";
+            };
+          };
         };
         "fpool" = {
           device = "/dev/md50";
