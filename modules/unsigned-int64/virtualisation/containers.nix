@@ -21,7 +21,7 @@ in {
   };
   virtualisation.podman = {
     enable = true;
-    extraPackages = with pkgs; [gvisor gvproxy tun2socks];
+    extraPackages = with pkgs; [gvisor gvproxy];
     autoPrune = {
       enable = true;
       dates = "weekly";
