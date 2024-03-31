@@ -65,11 +65,13 @@
         "xdg-config/MangoHud:ro"
         "/Shared/media:rw"
         "/Shared/media/games:rw"
+        "/media/games:rw"
       ];
       "com.valvesoftware.Steam".filesystems = [
         "xdg-config/MangoHud:ro"
         "/Shared/media:rw"
         "/Shared/media/games:rw"
+        "/media/games:rw"
       ];
     };
   };

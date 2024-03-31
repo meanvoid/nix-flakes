@@ -163,7 +163,7 @@
       "dm-cache-cleaner"
     ];
   };
-  ### ---------------/dev/nvme0n1p2-------------------- ###
+  ### ---------------/dev/nvme1n1p2-------------------- ###
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/425eeef2-fd32-4c76-aed4-8144b826c6e9";
     fsType = "btrfs";
@@ -192,7 +192,7 @@
     device = "/Users/alex";
     options = ["bind"];
   };
-  ### ---------------/dev/nvme0n1p2-------------------- ###
+  ### ---------------/dev/nvme1n1p2-------------------- ###
 
   ### ---------------/dev/md5-------------------- ###
   fileSystems."/Shared/media" = {
@@ -209,7 +209,7 @@
   ### ---------------/dev/md5-------------------- ###
 
   ### ---------------/dev/md50-------------------- ###
-  fileSystems."/Shared/media/games" = {
+  fileSystems."/media/games" = {
     device = "/dev/mapper/fpool";
     fsType = "btrfs";
     options = ["subvol=games" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];

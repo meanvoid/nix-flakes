@@ -10,3 +10,4 @@ hosts/darwin/result
 secrets/.env
 env.sh
 *.qcow2
+/modules/unsigned-int32/services/passkey

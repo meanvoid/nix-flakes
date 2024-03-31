@@ -73,6 +73,7 @@ in {
   };
   environment.systemPackages = with pkgs; [
     nvtopPackages.full
+    # nvtop
     zenith-nvidia
     binutils
     findutils

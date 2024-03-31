@@ -118,6 +118,7 @@
         yt-dlp
       ])
       ++ (with pkgs.jetbrains; [
+        idea-community
         (plugins.addPlugins rider ["python-community-edition" "nixidea"])
       ])
       ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [
