@@ -23,16 +23,33 @@ in {
   };
   virtualisation.podman = {
     enable = true;
-    extraPackages = with pkgs; [
-      gvproxy
-      # tun2socks
-      gvisor
-    ];
+    extraPackages = with pkgs; [gvproxy gvisor];
     autoPrune = {
       enable = true;
       dates = "weekly";
     };
+    defaultNetwork.settings = {
+      dns_enabled = true;
+    };
   };
+  virtualisation.oci-containers = {
+    backend = "podman";
+    containers = {
+      FlareSolverr = {
+        image = "ghcr.io/flaresolverr/flaresolverr:latest";
+        autoStart = true;
+        ports = ["127.0.0.1:8191:8191"];
+
+        environment = {
+          LOG_LEVEL = "info";
+          LOG_HTML = "false";
+          CAPTCHA_SOLVER = "hcaptcha-solver";
+          TZ = "Europe/Kyiv";
+        };
+      };
+    };
+  };
+  systemd.timers."podman-auto-update".wantedBy = ["timers.target"];
   environment.systemPackages = with pkgs; [
     distrobox
   ];

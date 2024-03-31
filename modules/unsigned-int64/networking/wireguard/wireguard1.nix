@@ -34,7 +34,7 @@ in {
       }
       # root@unsigned-int32
       {
-        publicKey = "3zRz0KCrOUHWaKT4N+UeUDOtc4gIHnFAmxHiy/qdAlc=";
+        publicKey = "iu5l4P1Vo9Lw8SZs5MmNhfR7BP72KdPlDXP9Yq08ijw=";
         presharedKeyFile = preshared;
         allowedIPs = ["172.16.31.3/32" "fd17:216b:31bc:1::3/128"];
       }

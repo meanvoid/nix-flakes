@@ -30,7 +30,23 @@ in {
       dns_enabled = true;
     };
   };
-  virtualisation.oci-containers.backend = "podman";
+  virtualisation.oci-containers = {
+    backend = "podman";
+    containers = {
+      FlareSolverr = {
+        image = "ghcr.io/flaresolverr/flaresolverr:latest";
+        autoStart = true;
+        ports = ["172.16.31.1:8191:8191"];
+
+        environment = {
+          LOG_LEVEL = "info";
+          LOG_HTML = "false";
+          CAPTCHA_SOLVER = "hcaptcha-solver";
+          TZ = "Europe/Kyiv";
+        };
+      };
+    };
+  };
   systemd.timers."podman-auto-update".wantedBy = ["timers.target"];
   environment.systemPackages = with pkgs; [
     distrobox
