@@ -21,12 +21,17 @@ in {
   };
   virtualisation.podman = {
     enable = true;
-    extraPackages = with pkgs; [gvisor gvproxy tun2socks];
+    extraPackages = with pkgs; [gvisor gvproxy];
     autoPrune = {
       enable = true;
       dates = "weekly";
     };
+    defaultNetwork.settings = {
+      dns_enabled = true;
+    };
   };
+  virtualisation.oci-containers.backend = "podman";
+  systemd.timers."podman-auto-update".wantedBy = ["timers.target"];
   environment.systemPackages = with pkgs; [
     distrobox
   ];

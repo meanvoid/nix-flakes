@@ -30,7 +30,7 @@ in {
     enable = true;
     package = vscode-overlay;
     enableUpdateCheck = false;
-    enableExtensionUpdateCheck = false;
+    enableExtensionUpdateCheck = true;
     mutableExtensionsDir = false;
     userSettings = {
       "typescript.suggest.paths" = false;
@@ -130,6 +130,7 @@ in {
       mikestead.dotenv # dotenv
       humao.rest-client # restapi
       aaron-bond.better-comments
+      rubymaniac.vscode-direnv # vscode runtime
 
       # Java utils
       vscjava.vscode-gradle

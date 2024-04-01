@@ -32,7 +32,8 @@
         web-archives
 
         # devtools
-        angular-devtools
+        #!!! not available
+        # angular-devtools
         react-devtools
         reduxdevtools
         vue-js-devtools

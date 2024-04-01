@@ -7,7 +7,7 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     ### --- nixpkgs channel
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-23_11.url = "github:nixos/nixpkgs/nixos-23.11-small";
     ### --- system specific
     darwin.url = "github:lnl7/nix-darwin/master";
@@ -20,7 +20,7 @@
     ### --- user specific modules
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     nix-gaming.url = "github:fufexan/nix-gaming/master";
-    
+
     # ! check later if the https://github.com/the-argus/spicetify-nix/pull/53 got merged
     spicetify-nix.url = "github:Believer1/spicetify-nix";
 
@@ -32,7 +32,7 @@
     doom-emacs.url = "github:nix-community/nix-doom-emacs";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     meanvoid-overlay.url = "github:meanvoid/nixos-overlay";
-
+    nixified-ai.url = "github:nixified-ai/flake";
     # --- Applications
     nix-software-center.url = "github:snowfallorg/nix-software-center";
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
@@ -46,6 +46,7 @@
     aagl.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    nixified-ai.inputs.nixpkgs.follows = "nixpkgs-23_11";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     meanvoid-overlay.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.emacs-overlay.follows = "emacs-overlay";

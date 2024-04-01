@@ -11,7 +11,7 @@
     };
     samba = {
       enable = true;
-      package = pkgs.sambaFull; #
+      package = pkgs.sambaFull;
       openFirewall = true;
       enableWinbindd = true;
       securityType = "user";

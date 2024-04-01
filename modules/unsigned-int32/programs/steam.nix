@@ -9,10 +9,7 @@
 }: let
   gamePkgs = inputs.nix-gaming.packages.${pkgs.system};
   tenjinPkgs = inputs.meanvoid-overlay.packages.${pkgs.system};
-  ipc = gamePkgs.wine-discord-ipc-bridge;
 in {
-  imports = [inputs.nix-gaming.nixosModules.steamCompat];
-
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
       extraPkgs = pkgs: (with pkgs; [
@@ -43,6 +40,8 @@ in {
         vkBasalt
         mangohud
         steamtinkerlaunch
+        source-han-sans
+        wqy_zenhei
       ]);
     };
   };
@@ -60,18 +59,14 @@ in {
     ])
     ++ (with gamePkgs; [
       osu-lazer-bin
-    ])
-    ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [crossover]);
-
+    ]);
   programs = {
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
-      gamescopeSession = {
-        enable = true;
-      };
+      localNetworkGameTransfers.openFirewall = true;
       extraCompatPackages = [
-        gamePkgs.proton-ge
+        pkgs.proton-ge-bin
       ];
     };
     gamemode = {
@@ -90,6 +85,6 @@ in {
     honkers-railway-launcher.enable = lib.mkDefault true;
   };
   environment.sessionVariables = rec {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = ["\${HOME}/.steam/root/compatibilitytools.d"];
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = ["\${HOME}/.steam/root/compatibilitytools.d:${gamePkgs.proton-ge}"];
   };
 }

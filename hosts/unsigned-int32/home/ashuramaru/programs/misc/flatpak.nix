@@ -11,6 +11,7 @@
       "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
       "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
       "launcher" = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
+      "gnome-nightly" = "https://nightly.gnome.org/gnome-nightly.flatpakrepo";
     };
     packages = [
       # KDE/Qt
@@ -29,6 +30,8 @@
       "flathub:app/im.fluffychat.Fluffychat/x86_64/stable"
 
       # Gaming
+      "flathub:app/com.valvesoftware.Steam/x86_64/stable"
+      "flathub:runtime/com.valvesoftware.Steam.Utility.thcrap_steam_proton_wrapper/x86_64/stable"
       "flathub:app/com.usebottles.bottles/x86_64/stable"
       "flathub:app/re.chiaki.Chiaki/x86_64/stable"
       "flathub:app/info.cemu.Cemu/x86_64/stable"
@@ -60,6 +63,13 @@
       };
       "com.usebottles.bottles".filesystems = [
         "xdg-config/MangoHud:ro"
+        "/Shared/media:rw"
+        "/Shared/media/games:rw"
+      ];
+      "com.valvesoftware.Steam".filesystems = [
+        "xdg-config/MangoHud:ro"
+        "/Shared/media:rw"
+        "/Shared/media/games:rw"
       ];
     };
   };

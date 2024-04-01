@@ -18,12 +18,12 @@
     ++ (import (path + /modules/shared/home/overlays));
   home = {
     username = "ashuramaru";
-    # pointerCursor = {
-    #   name = "Marisa";
-    #   package = inputs.meanvoid-overlay.packages.${pkgs.system}.anime-cursors.marisa;
-    #   gtk.enable = true;
-    #   x11.enable = true;
-    # };
+    pointerCursor = {
+      name = "Marisa";
+      package = inputs.meanvoid-overlay.packages.${pkgs.system}.anime-cursors.marisa;
+      gtk.enable = true;
+      x11.enable = true;
+    };
     packages =
       (with pkgs; [
         media-downloader
@@ -71,18 +71,17 @@
         flycast
 
         # Nintendo
-        citra-canary
         mgba
         dolphin-emu
-        # cemu # todo:
-        yuzu-mainline
+        cemu
         ryujinx
 
         # Sony
         duckstation
         pcsx2
         ppsspp
-        rpcs3
+        #! fails to build
+        # rpcs3
 
         # Minecraft
         prismlauncher-qt5
@@ -90,6 +89,22 @@
 
         # Python
         android-studio
+        # .NET
+        dotnetPackages.Nuget
+        (with dotnetCorePackages;
+          combinePackages [
+            sdk_6_0
+            sdk_7_0
+            sdk_8_0
+          ])
+        mono
+        powershell
+        (nodejs.override {
+          enableNpm = true;
+          python3 = python311;
+        })
+        sass
+        deno
         ### --- Utils --- ###
         (cinnamon.nemo-with-extensions.override {
           extensions = [
@@ -103,9 +118,7 @@
         yt-dlp
       ])
       ++ (with pkgs.jetbrains; [
-        pycharm-community
-        idea-ultimate
-        datagrip
+        (plugins.addPlugins rider ["python-community-edition" "nixidea"])
       ])
       ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [
         anime-cursors.marisa
@@ -118,7 +131,7 @@
       email = "ashuramaru@tenjin-dk.com";
       base_url = "https://bitwarden.tenjin-dk.com";
       lock_timeout = 600;
-      pinentry = "gnome3";
+      pinentry = pkgs.pinentry-gnome3;
     };
   };
 }

@@ -27,4 +27,5 @@ in {
   "minecraft.age".publicKeys = [systems.unsigned-int64];
   "vault.age".publicKeys = [systems.unsigned-int64];
   "prometheus.age".publicKeys = [systems.unsigned-int64];
+  "transmission_openvpn-env.age".publicKeys = [systems.unsigned-int64];
 }

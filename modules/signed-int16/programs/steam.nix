@@ -11,8 +11,6 @@
   tenjinPkgs = inputs.meanvoid-overlay.packages.${pkgs.system};
   ipc = gamePkgs.wine-discord-ipc-bridge;
 in {
-  imports = [inputs.nix-gaming.nixosModules.steamCompat];
-
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
       extraPkgs = pkgs:
@@ -71,9 +69,7 @@ in {
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
-      gamescopeSession = {
-        enable = true;
-      };
+      localNetworkGameTransfers.openFirewall = true;
       extraCompatPackages = [
         gamePkgs.proton-ge
       ];
@@ -90,10 +86,8 @@ in {
       enable = true;
       capSysNice = true;
     };
-    #anime-game-launcher.enable = lib.mkDefault true;
-    #honkers-railway-launcher.enable = lib.mkDefault true;
   };
   environment.sessionVariables = rec {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = lib.mkForce "\${HOME}/.steam/root/compatibilitytools.d:${gamePkgs.proton-ge}";
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = ["\${HOME}/.steam/root/compatibilitytools.d:${gamePkgs.proton-ge}"];
   };
 }

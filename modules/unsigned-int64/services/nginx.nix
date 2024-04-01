@@ -70,6 +70,34 @@
         '';
       };
     };
+    virtualHosts."_" = {
+      default = true;
+      listen = [
+        {addr = "80";}
+        {addr = "[::]:80";}
+        {
+          addr = "443";
+          ssl = true;
+        }
+        {
+          addr = "[::]:443";
+          ssl = true;
+        }
+      ];
+      extraConfig = ''
+        ssl_reject_handshake on;
+        return 444;
+      '';
+    };
+    virtualHosts."cvat.fumoposting.com" = {
+      serverName = "cvat.fumoposting.com";
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8010";
+        proxyWebsockets = true;
+      };
+    };
     virtualHosts."static.fumoposting.com" = {
       serverName = "static.fumoposting.com";
       forceSSL = true;

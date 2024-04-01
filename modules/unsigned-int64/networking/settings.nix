@@ -63,6 +63,7 @@
         "uptime.tenjin.com"
         "public.tenjin.com"
         "private.tenjin.com"
+        "cvat.tenjin.com"
       ];
       "fd17:216b:31bc:1::1" = [
         "www.tenjin.com"
@@ -71,6 +72,7 @@
         "uptime.tenjin.com"
         "public.tenjin.com"
         "private.tenjin.com"
+        "cvat.tenjin.com"
       ];
     };
     firewall = {
@@ -79,8 +81,9 @@
         # Proxy
         1080
         3128
-        # Minecraft
+        # Minecraft rcon
         25565
+        35565
         # Wireguard
         51280
         51820
@@ -93,11 +96,16 @@
         # Proxy
         1080
         3128
-        # minecraft
+        # minecraft tcp
         25565
+        35565
         # ssh
         57255
       ];
+      interfaces."podman+" = {
+        allowedTCPPorts = [53];
+        allowedUDPPorts = [53];
+      };
       interfaces."wireguard1" = {
         allowedUDPPorts = [
           # forward all possible dns ports
@@ -136,6 +144,11 @@
         ];
       };
     };
+  };
+  # # Ensures sshd starts after WireGuard1
+  systemd.services.sshd = {
+    after = ["wg-quick-wireguard1.service"];
+    wants = ["wg-quick-wireguard1.service"];
   };
   services = {
     openssh = {
@@ -238,6 +251,7 @@
             "\"uptime.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
             "\"public.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
             "\"private.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
+            "\"cvat.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
           ];
         };
         forward-zone = [
@@ -264,22 +278,5 @@
         };
       };
     };
-    # local-data-ptr = [
-    #   "1.31.16.172.in-addr.arpa unsigned-int64.remote"
-    # ];
-    # local-data = [
-    #   # A/AAAA records
-    #   "unsigned-int64.remote IN A 172.16.31.1 3600"
-    #   "unsigned-int64.remote IN AAAA fd17:216b:31bc:1::1 3600"
-
-    #   # CNAME
-    #   "prom.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-    #   "lib.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-    #   "private.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-    #   "public.tenjin-dk.com IN CNAME unsigned-int64.remote 3600"
-
-    #   # PTR records
-    #   "1.31.16.172.in-addr.arpa. IN PTR static.1.31.16.172.internal.unsigned-int64.com. 3600"
-    # ];
   };
 }
