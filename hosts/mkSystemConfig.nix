@@ -26,6 +26,19 @@
     nixpkgs.config = {
       allowUnfree = lib.mkDefault true;
     };
+    nixpkgs.overlays = [
+      (final: prev: {
+        # Security: xz-5.6.x is trojaned. See https://github.com/NixOS/nixpkgs/issues/300055
+        xz = prev.xz.overrideAttrs (_: rec {
+          version = "5.2.9";
+
+          src = final.fetchurl {
+            url = "https://tukaani.org/xz/xz-${version}.tar.bz2";
+            sha256 = "sZRQf7o6Rip1PFUxSczaoWgze8t97v3dBnuph8g9/OY=";
+          };
+        });
+      })
+    ];
   };
 in {
   mkSystemConfig = {
