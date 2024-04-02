@@ -7,7 +7,6 @@
   path,
   ...
 }: let
-  gamePkgs = inputs.nix-gaming.packages.${pkgs.system};
   tenjinPkgs = inputs.meanvoid-overlay.packages.${pkgs.system};
 in {
   nixpkgs.config.packageOverrides = pkgs: {
@@ -57,7 +56,7 @@ in {
     ++ (with tenjinPkgs; [
       thcrap-proton
     ])
-    ++ (with gamePkgs; [
+    ++ (with inputs.nix-gaming.packages.${pkgs.system}; [
       osu-lazer-bin
     ]);
   programs = {
@@ -85,6 +84,6 @@ in {
     honkers-railway-launcher.enable = lib.mkDefault true;
   };
   environment.sessionVariables = rec {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = ["\${HOME}/.steam/root/compatibilitytools.d:${gamePkgs.proton-ge}"];
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = ["\${HOME}/.steam/root/compatibilitytools.d:${pkgs.proton-ge-bin}"];
   };
 }
