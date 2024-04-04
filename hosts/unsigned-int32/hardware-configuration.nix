@@ -165,22 +165,22 @@
   };
   ### ---------------/dev/nvme1n1p2-------------------- ###
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/425eeef2-fd32-4c76-aed4-8144b826c6e9";
+    device = "/dev/disk/by-uuid/bcdcafa3-baca-479d-a9bc-112f5a6b8ecc";
     fsType = "btrfs";
     options = ["subvol=root" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/425eeef2-fd32-4c76-aed4-8144b826c6e9";
+    device = "/dev/disk/by-uuid/bcdcafa3-baca-479d-a9bc-112f5a6b8ecc";
     fsType = "btrfs";
     options = ["subvol=nix" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
   fileSystems."/var" = {
-    device = "/dev/disk/by-uuid/425eeef2-fd32-4c76-aed4-8144b826c6e9";
+    device = "/dev/disk/by-uuid/bcdcafa3-baca-479d-a9bc-112f5a6b8ecc";
     fsType = "btrfs";
     options = ["subvol=var" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
   fileSystems."/Users" = {
-    device = "/dev/disk/by-uuid/425eeef2-fd32-4c76-aed4-8144b826c6e9";
+    device = "/dev/disk/by-uuid/bcdcafa3-baca-479d-a9bc-112f5a6b8ecc";
     fsType = "btrfs";
     options = ["subvol=Users" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
   };
@@ -219,7 +219,7 @@
   services.btrfs.autoScrub = {
     enable = true;
     interval = "monthly";
-    fileSystems = ["/"];
+    fileSystems = ["/" "/media/games"];
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = lib.mkDefault true;

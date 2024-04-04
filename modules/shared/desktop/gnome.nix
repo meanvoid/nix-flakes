@@ -118,6 +118,7 @@
 
   environment.gnome.excludePackages = with pkgs; [
     gnome-console
+    gnome-builder
   ];
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";

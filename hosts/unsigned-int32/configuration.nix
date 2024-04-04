@@ -47,9 +47,9 @@ in {
   age.secrets."ca.crt" = {
     file = path + /secrets/cert.age;
     path = "/etc/ssl/self/ca.crt";
-      mode = "0775";
-      owner = "root";
-      group = "root";
+    mode = "0775";
+    owner = "root";
+    group = "root";
   };
 
   security = {

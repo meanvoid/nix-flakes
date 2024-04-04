@@ -8,7 +8,8 @@
 
     ### --- nixpkgs channel
     # nixpkgs.url = "github:nixos/nixpkgs/gnome-46";
-    nixpkgs.url = "github:nixos/nixpkgs/57e6b3a9e4ebec5aa121188301f04a6b8c354c9b";
+    # 57e6b3a9e4ebec5aa121188301f04a6b8c354c9b
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-23_11.url = "github:nixos/nixpkgs/nixos-23.11-small";
     ### --- system specific
     darwin.url = "github:lnl7/nix-darwin/master";
@@ -22,7 +23,7 @@
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     nix-gaming.url = "github:fufexan/nix-gaming/master";
 
-    # ! check later if the https://github.com/the-argus/spicetify-nix/pull/53 got merged
+    #! check later if the https://github.com/the-argus/spicetify-nix/pull/53 got merged
     spicetify-nix.url = "github:Believer1/spicetify-nix";
 
     ### --- overlays

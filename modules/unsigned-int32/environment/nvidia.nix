@@ -8,18 +8,16 @@
   ...
 }: let
   inherit (pkgs) stdenv;
-  inherit (pkgs.cudaPackages_12_0) cudatoolkit cudnn;
+  inherit (pkgs.cudaPackages) cudatoolkit libcublas cudnn;
   nvidiaX11 = config.hardware.nvidia.package;
   libs = [
     stdenv.cc.cc.lib
     nvidiaX11
     cudatoolkit
+    libcublas
     cudnn
   ];
 in {
-  # nixpkgs.config = {
-  #   cudaSupport = true;
-  # };
   nixpkgs.overlays = [
     (self: super: {
       ccacheWrapper = super.ccacheWrapper.override {
