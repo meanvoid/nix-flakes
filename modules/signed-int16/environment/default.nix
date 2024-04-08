@@ -1,4 +1,5 @@
 [
+  ./zswap.nix
   ./env.nix
   ./nvidia.nix
   ./openrgb.nix
