@@ -7,8 +7,10 @@
 }: let
   admins = ["reisen"];
 in {
+  virtualisation.containers.cdi.dynamic.nvidia.enable = true;
   virtualisation.docker = {
     enable = true;
+    enableNvidia = true;
     enableOnBoot = true;
     daemon.settings = {
       fixed-cidr-v6 = "fd00::/80";
@@ -21,7 +23,11 @@ in {
   };
   virtualisation.podman = {
     enable = true;
-    extraPackages = with pkgs; [gvisor gvproxy tun2socks];
+    extraPackages = with pkgs; [
+      gvproxy
+      tun2socks
+      gvisor
+    ];
     autoPrune = {
       enable = true;
       dates = "weekly";
