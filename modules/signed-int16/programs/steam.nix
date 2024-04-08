@@ -9,43 +9,40 @@
 }: let
   gamePkgs = inputs.nix-gaming.packages.${pkgs.system};
   tenjinPkgs = inputs.meanvoid-overlay.packages.${pkgs.system};
-  ipc = gamePkgs.wine-discord-ipc-bridge;
 in {
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
-      extraPkgs = pkgs:
-        (with pkgs; [
-          yad
-          gnome.zenity
-          xorg.xhost
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
-          curl
-          imagemagick
-          libpng
-          libpulseaudio
-          libvorbis
-          stdenv.cc.cc.lib
-          libkrb5
-          keyutils
-          libgdiplus
-          glxinfo
-          mesa-demos
-          vulkan-tools
-          vulkan-headers
-          vulkan-caps-viewer
-          vulkan-validation-layers
-          vulkan-extension-layer
-          vulkan-loader
-          vkBasalt
-          mangohud
-          steamtinkerlaunch
-        ])
-        ++ (with gamePkgs; [
-          wine-discord-ipc-bridge
-        ]);
+      extraPkgs = pkgs: (with pkgs; [
+        yad
+        gnome.zenity
+        xorg.xhost
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXinerama
+        xorg.libXScrnSaver
+        curl
+        imagemagick
+        libpng
+        libpulseaudio
+        libvorbis
+        stdenv.cc.cc.lib
+        libkrb5
+        keyutils
+        libgdiplus
+        glxinfo
+        mesa-demos
+        vulkan-tools
+        vulkan-headers
+        vulkan-caps-viewer
+        vulkan-validation-layers
+        vulkan-extension-layer
+        vulkan-loader
+        vkBasalt
+        mangohud
+        steamtinkerlaunch
+        source-han-sans
+        wqy_zenhei
+      ]);
     };
   };
   environment.systemPackages =
@@ -56,22 +53,20 @@ in {
     ])
     ++ (with pkgs.wineWowPackages; [
       stagingFull
-      waylandFull
     ])
     ++ (with tenjinPkgs; [
       thcrap-proton
     ])
     ++ (with gamePkgs; [
-      wine-discord-ipc-bridge
+      osu-stable
     ]);
-
   programs = {
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
       extraCompatPackages = [
-        gamePkgs.proton-ge
+        pkgs.proton-ge-bin
       ];
     };
     gamemode = {
@@ -86,8 +81,10 @@ in {
       enable = true;
       capSysNice = true;
     };
+    #anime-game-launcher.enable = lib.mkDefault true;
+    #honkers-railway-launcher.enable = lib.mkDefault true;
   };
   environment.sessionVariables = rec {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = ["\${HOME}/.steam/root/compatibilitytools.d:${gamePkgs.proton-ge}"];
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = ["\${HOME}/.steam/root/compatibilitytools.d:${pkgs.proton-ge-bin}"];
   };
 }
