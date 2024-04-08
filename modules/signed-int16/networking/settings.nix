@@ -25,7 +25,24 @@
       enable = true;
       unmanaged = ["interface-name:ve-*"];
     };
-    firewall.enable = true;
+    firewall = {
+      enable = true;
+      allowPing = true;
+      allowedUDPPorts = [];
+      allowedTCPPorts = [];
+      allowedUDPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ];
+      allowedTCPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ]; # for kde connect
+    };
   };
   services.resolved.enable = true;
   services.openssh = {
@@ -40,7 +57,7 @@
     };
     listenAddresses = [
       {
-        addr = "192.168.1.0";
+        addr = "192.168.1.0/24";
         port = 22;
       }
     ];
