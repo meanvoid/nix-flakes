@@ -29,6 +29,7 @@ in {
       (path + "/modules/shared/settings/settings.nix")
       ### ----------------DESKTOP------------------- ###
       (path + "/modules/shared/desktop/plasma.nix")
+      (path + "/modules/shared/desktop/hyprland.nix")
       (path + "/modules/shared/desktop/fonts.nix")
       ### ----------------DESKTOP------------------- ###
     ]
