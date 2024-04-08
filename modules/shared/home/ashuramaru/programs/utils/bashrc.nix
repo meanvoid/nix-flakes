@@ -50,7 +50,7 @@
       fastping = "ping -c 100 -s .10";
       ytmp4 = "yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'";
       arch = "distrobox enter arch";
-      void = "distrbox enter void";
+      void = "distrobox enter void";
       gentoo = "distrobox enter gentoo";
       s = "sudo";
       update = "nix flake update /etc/nixos";

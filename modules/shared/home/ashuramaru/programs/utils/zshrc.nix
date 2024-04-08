@@ -46,7 +46,7 @@
       ytmp4 = "yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'";
       ytdlp = "yt-dlp --embed-thumbnail --no-mtime -S res,ext:mp4:m4a --recode mp4";
       arch = "distrobox enter arch";
-      void = "distrbox enter void";
+      void = "distrobox enter void";
       gentoo = "distrobox enter gentoo";
       s = "sudo";
       update = "nix flake update /etc/nixos";
