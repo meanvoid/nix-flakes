@@ -36,13 +36,13 @@
         sponsorblock
         return-youtube-dislikes
         video-downloadhelper
-        plasma-integration
         stylus
         steam-database
         search-by-image
         foxyproxy-standard
         bitwarden
         firefox-translations
+        translate-web-pages
         floccus
         tabliss
         old-reddit-redirect
@@ -137,7 +137,7 @@
             definedAliases = ["@ytm" "@ym"];
           };
         };
-        default = "SearXNG";
+        default = "Google";
       };
     };
   };

@@ -30,19 +30,23 @@
       kdenlive
 
       # Media
-      quodlibet
+      quodlibet-full
       vlc
       yt-dlp
       brasero
-      cdrtools
+      ardour
+      natron
 
       # Dev
       lazygit
+      jetbrains.pycharm-community
+      android-studio
 
       # Gaming
       steam
       steam-tui
       steam-run
+      prismlauncher
 
       # Office
       libreoffice-fresh
@@ -61,6 +65,7 @@
       flameshot
       unetbootin
       woeusb-ng
+      obsidian
     ];
     stateVersion = "24.05";
   };
