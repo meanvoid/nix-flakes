@@ -17,7 +17,6 @@
       # Python
       python311Full
       conda
-      android-studio
     ];
     stateVersion = "24.05";
   };
