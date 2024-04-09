@@ -1,5 +1,4 @@
-_:
-{
+_: {
   services.postgresql = {
     enable = true;
     enableJIT = true;

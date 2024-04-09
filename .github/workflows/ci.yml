@@ -9,7 +9,7 @@ jobs:
       - uses: cachix/install-nix-action@v20
         with:
           github_access_token: ${{ secrets.ACCESS_TOKEN }}
-      - run: nix fmt . -- --check
+      - run: nix fmt $(find * -type d | grep -v .direnv) -- --check
   update:
     runs-on: ubuntu-latest
     steps:

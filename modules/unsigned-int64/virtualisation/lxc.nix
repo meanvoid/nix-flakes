@@ -1,5 +1,4 @@
-_:
-{
+_: {
   virtualisation.lxc.enable = true;
   virtualisation.lxd = {
     enable = true;

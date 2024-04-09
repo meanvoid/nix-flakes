@@ -1,50 +1,50 @@
 {
-  description = "meanvoid nix/nixos/darwin  nix flake configuration";
+  description = "meanvoid nix/nixos/darwin nix flake configuration";
   inputs = {
-    ### --- Declarations of flake inputs
+    ### --- Utils --- ###
     flake-utils.url = "github:numtide/flake-utils";
     devshell.url = "github:numtide/devshell";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    ### --- Utils --- ###
 
-    ### --- nixpkgs channel
-    # nixpkgs.url = "github:nixos/nixpkgs/gnome-46";
-    # 57e6b3a9e4ebec5aa121188301f04a6b8c354c9b
+    ### --- System --- ###
+    ### --- nixpkgs channels --- ###
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-23_11.url = "github:nixos/nixpkgs/nixos-23.11-small";
-    ### --- system specific
+    ### --- nixpkgs channels --- ###
     darwin.url = "github:lnl7/nix-darwin/master";
     home-manager.url = "github:nix-community/home-manager";
+    ### --- System --- ###
 
-    ### --- system modules
+    ### --- ESSENTIAL system modules --- ###
     agenix.url = "github:ryantm/agenix";
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
+    ### --- ESSENTIAL system modules --- ###
 
-    ### --- user specific modules
-    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
-    nix-gaming.url = "github:fufexan/nix-gaming/master";
-
-    #! check later if the https://github.com/the-argus/spicetify-nix/pull/53 got merged
-    spicetify-nix.url = "github:Believer1/spicetify-nix";
-
-    ### --- overlays
+    ### --- Overlays and Applications --- ###
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
+    #! check if the https://github.com/the-argus/spicetify-nix/pull/53 got merged
+    spicetify-nix.url = "github:Believer1/spicetify-nix";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     hyprland.url = "github:hyprwm/Hyprland";
     doom-emacs.url = "github:nix-community/nix-doom-emacs";
-    vscode-server.url = "github:nix-community/nixos-vscode-server";
     meanvoid-overlay.url = "github:meanvoid/nixos-overlay";
+
     nixified-ai.url = "github:nixified-ai/flake";
-    # --- Applications
+    # Utility apps
     nix-software-center.url = "github:snowfallorg/nix-software-center";
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
+    # Games
+    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
+    nix-gaming.url = "github:fufexan/nix-gaming/master";
+    ### --- Overlays and Applications --- ###
 
-    ### --- de-duplication
+    ### --- De-duplication --- ###
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
-
-    ### --- Overlays
     aagl.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
@@ -52,27 +52,33 @@
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     meanvoid-overlay.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.emacs-overlay.follows = "emacs-overlay";
+    ### --- de-duplication --- ###
   };
 
   outputs =
     {
       self,
-      nixpkgs,
-      nixpkgs-23_11,
-      darwin,
-      meanvoid-overlay,
-      hyprland,
-      nur,
-      agenix,
-      home-manager,
-      flatpaks,
-      aagl,
-      nix-gaming,
-      spicetify-nix,
+      # Utils
       flake-utils,
       devshell,
       pre-commit-hooks,
+      # nixpkgs
+      nixpkgs,
+      nixpkgs-23_11,
+      # system
+      darwin,
+      home-manager,
+      # esential modules
+      agenix,
+      flatpaks,
+      nur,
+      # overlays and applications
+      aagl,
+      hyprland,
+      nix-gaming,
+      spicetify-nix,
       vscode-server,
+      meanvoid-overlay,
       ...
     }@inputs:
     let
