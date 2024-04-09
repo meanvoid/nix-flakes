@@ -3,9 +3,9 @@
   imports = [
     (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
   ] ++ (import ./programs) ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
-  # ++ (import (path + /modules/shared/home/overlays));
   home = {
-    packages = with pkgs;
+    packages =
+      with pkgs;
       [
         # Make macos useful
         alt-tab-macos
@@ -15,9 +15,9 @@
         # Audio
         audacity
 
-      # Graphics
-      gimp
-      inkscape
+        # Graphics
+        gimp
+        inkscape
         # Graphics
         gimp
         inkscape
@@ -38,12 +38,14 @@
         # .NET
 
         #         dotnetPackages.Nuget
-        (with dotnetCorePackages;
+        (
+          with dotnetCorePackages;
           combinePackages [
             sdk_6_0
             sdk_7_0
             sdk_8_0
-          ])
+          ]
+        )
         mono
         powershell
         (nodejs.override {
@@ -53,9 +55,7 @@
         sass
         deno
       ]
-      ++ (with pkgs.jetbrains; [
-        rider
-      ]);
+      ++ (with pkgs.jetbrains; [ rider ]);
     stateVersion = "24.05";
   };
 }

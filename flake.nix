@@ -4,7 +4,7 @@
     ### --- Utils --- ###
     flake-utils.url = "github:numtide/flake-utils";
     devshell.url = "github:numtide/devshell";
-    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
     ### --- Utils --- ###
 
     ### --- System --- ###
@@ -107,47 +107,54 @@
         inherit vscode-server;
       };
       #! Migrate from flake-utils to flake-parts
-      flakeOutput = eachDefaultSystem (system: {
-        checks = {
-          pre-commit-check = pre-commit-hooks.lib.${system}.run {
-            src = ./.;
-            ## --- NIX related hooks --- ##
-            # formatter
-            hooks.nixfmt = {
-              enable = true;
-              excludes = [ ".direnv" ];
-              package = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
-            };
-            ## --- NIX related hooks --- ##
-          };
-        };
-        #! Migrate from devshell to devenv
-        devShells.default =
-          let
-            pkgs = import nixpkgs {
-              inherit system;
-              overlays = [ devshell.overlays.default ];
-            };
-            inherit (self.checks.${pkgs.system}.pre-commit-check) shellHook;
-          in
-          pkgs.devshell.mkShell {
-            imports = [ (pkgs.devshell.importTOML ./devshell.toml) ];
-            git.hooks = {
-              enable = true;
-              pre-commit.text = shellHook;
-            };
-            packages = builtins.attrValues {
-              inherit (pkgs)
-                git
-                pre-commit
-                nix-index
-                nix-prefetch-github
-                nix-prefetch-scripts
-                ;
+      flakeOutput = eachDefaultSystem (
+        system:
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        {
+          checks = {
+            pre-commit-check = pre-commit-hooks.lib.${system}.run {
+              src = ./.;
+              ## --- NIX related hooks --- ##
+              # formatter
+              hooks.nixfmt = {
+                enable = true;
+                always_run = true;
+                excludes = [ ".direnv" ];
+                package = pkgs.nixfmt-rfc-style;
+              };
+              ## --- NIX related hooks --- ##
             };
           };
-        formatter = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
-      });
+          #! Migrate from devshell to devenv
+          devShells.default =
+            let
+              pkgs = import nixpkgs {
+                inherit system;
+                overlays = [ devshell.overlays.default ];
+              };
+              inherit (self.checks.${pkgs.system}.pre-commit-check) shellHook;
+            in
+            pkgs.devshell.mkShell {
+              imports = [ (pkgs.devshell.importTOML ./devshell.toml) ];
+              git.hooks = {
+                enable = true;
+                pre-commit.text = shellHook;
+              };
+              packages = builtins.attrValues {
+                inherit (pkgs)
+                  git
+                  pre-commit
+                  nix-index
+                  nix-prefetch-github
+                  nix-prefetch-scripts
+                  ;
+              };
+            };
+          formatter = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
+        }
+      );
     in
     flakeOutput
     // {

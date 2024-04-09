@@ -6,12 +6,8 @@ _: {
       upgrade = true;
       cleanup = "zap";
     };
-    taps = [
-      "homebrew/cask-versions"
-    ];
-    brews = [
-      "winetricks"
-    ];
+    taps = [ "homebrew/cask-versions" ];
+    brews = [ "winetricks" ];
     casks = [
       #todo: revisit later
       # Games
