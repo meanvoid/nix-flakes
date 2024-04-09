@@ -1,11 +1,5 @@
+{ config, path, ... }:
 {
-  lib,
-  config,
-  pkgs,
-  agenix,
-  path,
-  ...
-}: {
   age.secrets.mail = {
     file = path + /secrets/mail.age;
     mode = "770";
@@ -14,13 +8,21 @@
   };
   users.groups.mail = {
     gid = config.users.users.mail.uid;
-    members = ["nextcloud" "vaultwarden" "grafana"];
+    members = [
+      "nextcloud"
+      "vaultwarden"
+      "grafana"
+    ];
   };
   users.users.mail = {
     uid = 4322;
     isSystemUser = true;
     group = "mail";
-    extraGroups = ["nextcloud" "vaultwarden" "grafana"];
+    extraGroups = [
+      "nextcloud"
+      "vaultwarden"
+      "grafana"
+    ];
   };
   programs.msmtp = {
     enable = true;

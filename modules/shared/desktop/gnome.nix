@@ -1,9 +1,5 @@
+{ lib, pkgs, ... }:
 {
-  lib,
-  pkgs,
-  inputs,
-  ...
-}: {
   services.gnome = {
     sushi.enable = true;
     glib-networking.enable = true;
@@ -74,9 +70,7 @@
       gparted
       gradience
     ])
-    ++ (with pkgs.kdePackages; [
-      breeze
-    ])
+    ++ (with pkgs.kdePackages; [ breeze ])
     ++ (with pkgs.libsForQt5; [
       breeze-icons
       breeze-gtk
@@ -109,21 +103,22 @@
 
   nixpkgs.config.packageOverrides = pkgs: {
     catppuccin-gtk = pkgs.catppuccin-gtk.override {
-      accents = ["rosewater"];
+      accents = [ "rosewater" ];
       size = "compact";
-      tweaks = ["rimless"];
+      tweaks = [ "rimless" ];
       variant = "frappe";
     };
   };
 
   environment.gnome.excludePackages = with pkgs; [
     gnome-console
+    gnome-builder
   ];
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";
   };
 
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-gnome3;
-  services.dbus.packages = [pkgs.gcr];
+  services.dbus.packages = [ pkgs.gcr ];
   services.gnome.gnome-browser-connector.enable = true;
 }

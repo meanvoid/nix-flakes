@@ -1,12 +1,10 @@
 {
   config,
-  lib,
   pkgs,
-  agenix,
   path,
   ...
-}: let
-in {
+}:
+{
   age.secrets.admin = {
     file = path + /secrets/admin.age;
     mode = "770";
@@ -18,10 +16,26 @@ in {
     database.createLocally = true;
     package = pkgs.nextcloud28;
     extraApps = with config.services.nextcloud.package.packages.apps; {
-      inherit bookmarks calendar contacts cookbook cospend deck tasks polls forms;
+      inherit
+        bookmarks
+        calendar
+        contacts
+        cookbook
+        cospend
+        deck
+        tasks
+        polls
+        forms
+        ;
       inherit previewgenerator onlyoffice spreed; # files_markdown files_texteditor
       inherit mail groupfolders; # memories music
-      inherit notify_push twofactor_webauthn twofactor_nextcloud_notification user_oidc user_saml; # twofactor_totp
+      inherit
+        notify_push
+        twofactor_webauthn
+        twofactor_nextcloud_notification
+        user_oidc
+        user_saml
+        ; # twofactor_totp
     };
     extraAppsEnable = true;
     hostName = "cloud.tenjin-dk.com";

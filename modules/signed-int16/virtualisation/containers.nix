@@ -1,12 +1,8 @@
+{ pkgs, ... }:
+let
+  admins = [ "reisen" ];
+in
 {
-  config,
-  lib,
-  pkgs,
-  users,
-  ...
-}: let
-  admins = ["reisen"];
-in {
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
@@ -21,15 +17,17 @@ in {
   };
   virtualisation.podman = {
     enable = true;
-    extraPackages = with pkgs; [gvisor gvproxy tun2socks];
+    extraPackages = with pkgs; [
+      gvisor
+      gvproxy
+      tun2socks
+    ];
     autoPrune = {
       enable = true;
       dates = "weekly";
     };
   };
-  environment.systemPackages = with pkgs; [
-    distrobox
-  ];
+  environment.systemPackages = with pkgs; [ distrobox ];
   users.groups = {
     docker.members = admins;
     podman.members = admins;

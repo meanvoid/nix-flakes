@@ -1,49 +1,48 @@
 {
-  config,
   inputs,
   pkgs,
   lib,
-  aagl,
-  path,
   ...
-}: let
-  gamePkgs = inputs.nix-gaming.packages.${pkgs.system};
+}:
+let
   tenjinPkgs = inputs.meanvoid-overlay.packages.${pkgs.system};
-  ipc = gamePkgs.wine-discord-ipc-bridge;
-in {
+in
+{
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
-      extraPkgs = pkgs: (with pkgs; [
-        yad
-        gnome.zenity
-        xorg.xhost
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXinerama
-        xorg.libXScrnSaver
-        curl
-        imagemagick
-        libpng
-        libpulseaudio
-        libvorbis
-        stdenv.cc.cc.lib
-        libkrb5
-        keyutils
-        libgdiplus
-        glxinfo
-        mesa-demos
-        vulkan-tools
-        vulkan-headers
-        vulkan-caps-viewer
-        vulkan-validation-layers
-        vulkan-extension-layer
-        vulkan-loader
-        vkBasalt
-        mangohud
-        steamtinkerlaunch
-        source-han-sans
-        wqy_zenhei
-      ]);
+      extraPkgs =
+        pkgs:
+        (with pkgs; [
+          yad
+          gnome.zenity
+          xorg.xhost
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXinerama
+          xorg.libXScrnSaver
+          curl
+          imagemagick
+          libpng
+          libpulseaudio
+          libvorbis
+          stdenv.cc.cc.lib
+          libkrb5
+          keyutils
+          libgdiplus
+          glxinfo
+          mesa-demos
+          vulkan-tools
+          vulkan-headers
+          vulkan-caps-viewer
+          vulkan-validation-layers
+          vulkan-extension-layer
+          vulkan-loader
+          vkBasalt
+          mangohud
+          steamtinkerlaunch
+          source-han-sans
+          wqy_zenhei
+        ]);
     };
   };
   environment.systemPackages =
@@ -52,23 +51,15 @@ in {
       scummvm
       inotify-tools
     ])
-    ++ (with pkgs.wineWowPackages; [
-      stagingFull
-    ])
-    ++ (with tenjinPkgs; [
-      thcrap-proton
-    ])
-    ++ (with gamePkgs; [
-      osu-lazer-bin
-    ]);
+    ++ (with pkgs.wineWowPackages; [ stagingFull ])
+    ++ (with tenjinPkgs; [ thcrap-proton ])
+    ++ (with inputs.nix-gaming.packages.${pkgs.system}; [ osu-lazer-bin ]);
   programs = {
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
-      extraCompatPackages = [
-        gamePkgs.proton-ge
-      ];
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
     gamemode = {
       enable = true;
@@ -86,6 +77,8 @@ in {
     honkers-railway-launcher.enable = lib.mkDefault true;
   };
   environment.sessionVariables = rec {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = ["\${HOME}/.steam/root/compatibilitytools.d:${gamePkgs.proton-ge}"];
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = [
+      "\${HOME}/.steam/root/compatibilitytools.d:${pkgs.proton-ge-bin}"
+    ];
   };
 }

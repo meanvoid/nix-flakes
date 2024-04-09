@@ -1,9 +1,5 @@
+{ pkgs, ... }:
 {
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
   hardware.gpgSmartcards.enable = true;
   services.hardware.bolt.enable = true;
   hardware.bluetooth = {
@@ -38,9 +34,7 @@
     };
     printing = {
       enable = true;
-      drivers = with pkgs; [
-        gutenprintBin
-      ];
+      drivers = with pkgs; [ gutenprintBin ];
       browsing = true;
     };
     avahi = {

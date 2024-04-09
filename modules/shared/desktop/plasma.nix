@@ -1,8 +1,5 @@
+{ pkgs, ... }:
 {
-  lib,
-  pkgs,
-  ...
-}: {
   services.xserver = {
     enable = true;
     displayManager.sddm = {
@@ -32,5 +29,4 @@
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";
   };
-  programs.gnupg.agent.pinentryPackage = lib.mkDefault pkgs.pinentry-qt;
 }

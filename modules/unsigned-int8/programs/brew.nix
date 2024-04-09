@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+_: {
   homebrew = {
     enable = true;
     onActivation = {

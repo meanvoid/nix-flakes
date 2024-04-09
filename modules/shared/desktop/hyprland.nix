@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   programs.hyprland = {
     enable = true;
     xwayland = {

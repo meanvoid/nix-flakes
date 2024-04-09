@@ -1,11 +1,11 @@
 {
-  lib,
   config,
   pkgs,
   nur,
   ...
-}: {
-  imports = [nur.hmModules.nur];
+}:
+{
+  imports = [ nur.hmModules.nur ];
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-bin;
@@ -68,7 +68,7 @@
               }
             ];
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = ["@np"];
+            definedAliases = [ "@np" ];
           };
           "Nix Options" = {
             urls = [
@@ -87,54 +87,60 @@
               }
             ];
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = ["@nq"];
+            definedAliases = [ "@nq" ];
           };
           "NixOS Wiki" = {
-            urls = [{template = "https://nixos.wiki/index.php?search={searchTerms}";}];
+            urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = ["@nw"];
+            definedAliases = [ "@nw" ];
           };
           "SearXNG" = {
-            urls = [{template = "https://searx.org/search?q={searchTerms}";}];
+            urls = [ { template = "https://searx.org/search?q={searchTerms}"; } ];
             iconUpdateURL = "https://searx.org/static/themes/simple/img/favicon.svg?ee99f2c4793c32451062177672c8ab309dbef940";
             updateInterval = 7 * 24 * 60 * 60 * 1000;
-            definedAliases = ["@sex"];
+            definedAliases = [ "@sex" ];
           };
           "Ecosia" = {
-            urls = [{template = "https://www.ecosia.org/search?q={searchTerms}";}];
+            urls = [ { template = "https://www.ecosia.org/search?q={searchTerms}"; } ];
             iconUpdateURL = "https://cdn-static.ecosia.org/static/icons/favicon.ico";
             updateInterval = 7 * 24 * 60 * 60 * 1000;
-            definedAliases = ["@eco"];
+            definedAliases = [ "@eco" ];
           };
           "Start Page" = {
-            urls = [{template = "https://www.startpage.com/sp/search?query={searchTerms}";}];
+            urls = [ { template = "https://www.startpage.com/sp/search?query={searchTerms}"; } ];
             iconUpdateURL = "https://www.startpage.com/sp/cdn/favicons/favicon--dark.ico";
             updateInterval = 7 * 24 * 60 * 60 * 1000;
-            definedAliases = ["@start"];
+            definedAliases = [ "@start" ];
           };
           "SteamDB" = {
-            urls = [{template = "https://steamdb.info/search/?a=app&q={searchTerms}";}];
+            urls = [ { template = "https://steamdb.info/search/?a=app&q={searchTerms}"; } ];
             iconUpdateURL = "https://steamdb.info/static/logos/512px.png";
             updateInterval = 7 * 24 * 60 * 60 * 1000;
-            definedAliases = ["@steamdb"];
+            definedAliases = [ "@steamdb" ];
           };
           "ProtonDB" = {
-            urls = [{template = "https://www.protondb.com/search?q={searchTerms}";}];
+            urls = [ { template = "https://www.protondb.com/search?q={searchTerms}"; } ];
             iconUpdateURL = "https://www.protondb.com/sites/protondb/images/favicon.ico";
             updateInterval = 7 * 24 * 60 * 60 * 1000;
-            definedAliases = ["@protondb"];
+            definedAliases = [ "@protondb" ];
           };
           "Youtube" = {
-            urls = [{template = "https://youtube.com/search?q={searchTerms}";}];
+            urls = [ { template = "https://youtube.com/search?q={searchTerms}"; } ];
             iconUpdateURL = "https://www.youtube.com/s/desktop/5d5de6d9/img/favicon.ico";
             updateInterval = 7 * 24 * 60 * 60 * 1000;
-            definedAliases = ["@yt" "@youtube"];
+            definedAliases = [
+              "@yt"
+              "@youtube"
+            ];
           };
           "YoutubeMusic" = {
-            urls = [{template = "https://music.youtube.com/search?q={searchTerms}";}];
+            urls = [ { template = "https://music.youtube.com/search?q={searchTerms}"; } ];
             iconUpdateURL = "https://www.youtube.com/s/desktop/5d5de6d9/img/favicon.ico";
             updateInterval = 7 * 24 * 60 * 60 * 1000;
-            definedAliases = ["@ytm" "@ym"];
+            definedAliases = [
+              "@ytm"
+              "@ym"
+            ];
           };
         };
         default = "SearXNG";

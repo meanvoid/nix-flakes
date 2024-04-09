@@ -1,11 +1,5 @@
+{ path, ... }:
 {
-  config,
-  pkgs,
-  lib,
-  agenix,
-  path,
-  ...
-}: {
   age.secrets.proxy = {
     file = path + /secrets/proxy.age;
     path = "/etc/3proxy.conf";
@@ -20,22 +14,32 @@
       {
         type = "socks";
         bindPort = 1080;
-        auth = ["strong"];
+        auth = [ "strong" ];
         acl = [
           {
             rule = "allow";
-            users = ["ashuramaru" "marie" "alex" "fumono"];
+            users = [
+              "ashuramaru"
+              "marie"
+              "alex"
+              "fumono"
+            ];
           }
         ];
       }
       {
         type = "proxy";
         bindPort = 3128;
-        auth = ["strong"];
+        auth = [ "strong" ];
         acl = [
           {
             rule = "allow";
-            users = ["ashuramaru" "marie" "alex" "fumono"];
+            users = [
+              "ashuramaru"
+              "marie"
+              "alex"
+              "fumono"
+            ];
           }
         ];
       }

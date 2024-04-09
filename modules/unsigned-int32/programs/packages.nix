@@ -1,9 +1,5 @@
+{ pkgs, ... }:
 {
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
   environment.systemPackages = with pkgs; [
     firefox
     thunderbird

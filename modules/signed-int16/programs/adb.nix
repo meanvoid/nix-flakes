@@ -1,12 +1,6 @@
+{ pkgs, ... }:
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
-  environment.systemPackages = [
-    pkgs.scrcpy
-  ];
+  environment.systemPackages = [ pkgs.scrcpy ];
   programs.adb.enable = true;
-  users.users.reisen.extraGroups = ["adbusers"];
+  users.users.reisen.extraGroups = [ "adbusers" ];
 }

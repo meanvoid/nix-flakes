@@ -1,14 +1,8 @@
+{ lib, pkgs, ... }:
 {
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  path,
-  ...
-}: {
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod;
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = [ "ntfs" ];
   };
   boot.loader = {
     systemd-boot = {
@@ -46,12 +40,26 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/79d628c7-481b-4520-9f69-0a039f47d767";
     fsType = "btrfs";
-    options = ["subvol=@" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = [
+      "subvol=@"
+      "noatime"
+      "compress-force=zstd:9"
+      "ssd"
+      "discard=async"
+      "space_cache=v2"
+    ];
   };
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/79d628c7-481b-4520-9f69-0a039f47d767";
     fsType = "btrfs";
-    options = ["subvol=@home" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = [
+      "subvol=@home"
+      "noatime"
+      "compress-force=zstd:9"
+      "ssd"
+      "discard=async"
+      "space_cache=v2"
+    ];
   };
   ### ---------------boot drive-------------------- ###
 
@@ -59,28 +67,35 @@
   fileSystems."/volumes/big" = {
     device = "/dev/disk/by-uuid/74248E2A248DF002";
     fsType = "ntfs-3g";
-    options = ["rw" "uid=1000"];
+    options = [
+      "rw"
+      "uid=1000"
+    ];
   };
   fileSystems."/volumes/cursed/wiwi" = {
     device = "/dev/disk/by-uuid/E4467BA4467B75E0";
     fsType = "ntfs-3g";
-    options = ["rw" "uid=1000"];
+    options = [
+      "rw"
+      "uid=1000"
+    ];
   };
   fileSystems."/volumes/cursed/wawa" = {
     device = "/dev/disk/by-uuid/2394671A7FC8B48D";
     fsType = "ntfs-3g";
-    options = ["rw" "uid=1000"];
+    options = [
+      "rw"
+      "uid=1000"
+    ];
   };
   ### ---------------anything else-------------------- ###
   services.btrfs.autoScrub = {
     enable = true;
     interval = "monthly";
-    fileSystems = [
-      "/"
-    ];
+    fileSystems = [ "/" ];
   };
-  system.fsPackages = [pkgs.sshfs];
-  environment.systemPackages = [pkgs.cifs-utils];
+  system.fsPackages = [ pkgs.sshfs ];
+  environment.systemPackages = [ pkgs.cifs-utils ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = lib.mkDefault true;

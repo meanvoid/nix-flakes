@@ -1,14 +1,15 @@
 {
-  lib,
   config,
   pkgs,
   path,
   ...
-}: let
+}:
+let
   private = config.age.secrets.wireguard-client.path;
   shared = config.age.secrets.wireguard-shared.path;
   auth-key = config.age.secrets.tailscale-auth-key.path;
-in {
+in
+{
   networking = {
     hostName = "unsigned-int32";
     hostId = "ab5d64f5";
@@ -26,17 +27,23 @@ in {
       enable = true;
       enableIPv6 = true;
       externalInterface = "enp59s0";
-      internalInterfaces = ["ve-+"];
+      internalInterfaces = [ "ve-+" ];
     };
     networkmanager = {
       enable = true;
-      unmanaged = ["interface-name:ve-*"];
+      unmanaged = [ "interface-name:ve-*" ];
     };
     firewall = {
       enable = true;
       allowPing = true;
-      allowedUDPPorts = [25565 15800];
-      allowedTCPPorts = [80 443];
+      allowedUDPPorts = [
+        25565
+        15800
+      ];
+      allowedTCPPorts = [
+        80
+        443
+      ];
     };
   };
   services.resolved.enable = true;
@@ -87,7 +94,10 @@ in {
   networking.wireguard.enable = true;
   networking.wg-quick.interfaces = {
     wg-ui64 = {
-      address = ["172.16.31.3/32" "fd17:216b:31bc:1::3/128"];
+      address = [
+        "172.16.31.3/32"
+        "fd17:216b:31bc:1::3/128"
+      ];
       privateKeyFile = private;
       postUp = ''
         ${pkgs.systemd}/bin/resolvectl dns wg-ui64 172.16.31.1
@@ -106,13 +116,11 @@ in {
       ];
     };
   };
-  # services.tailscale = {
-  #   enable = true;
-  #   useRoutingFeatures = "both";
-  #   openFirewall = true;
-  #   authKeyFile = auth-key;
-  #   extraUpFlags = [
-  #     "--ssh"
-  #   ];
-  # };
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "both";
+    openFirewall = true;
+    authKeyFile = auth-key;
+    extraUpFlags = [ "--ssh" ];
+  };
 }

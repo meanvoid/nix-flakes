@@ -1,12 +1,6 @@
+{ pkgs, ... }:
 {
-  lib,
-  inputs,
-  config,
-  pkgs,
-  path,
-  ...
-}: {
-  imports = [];
+  imports = [ ];
   home = {
     username = "fumono";
     packages = with pkgs; [

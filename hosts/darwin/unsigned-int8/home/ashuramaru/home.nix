@@ -1,15 +1,9 @@
+{ pkgs, path, ... }:
 {
-  pkgs,
-  path,
-  nur,
-  ...
-}: {
-  imports =
-    [
-      (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
-    ]
-    ++ (import ./programs)
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
+  imports = [
+    (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
+  ] ++ (import ./programs) ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
+  # ++ (import (path + /modules/shared/home/overlays));
   home = {
     packages = with pkgs;
       [

@@ -2,12 +2,12 @@
   config,
   lib,
   pkgs,
-  modulesPath,
-  path,
   ...
-}: let
+}:
+let
   automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-in {
+in
+{
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod;
     kernelModules = [
@@ -25,8 +25,11 @@ in {
       "dm-mirror"
       "dm-snapshot"
     ];
-    extraModulePackages = with config.boot.kernelPackages; [zenpower vendor-reset];
-    supportedFilesystems = ["xfs"];
+    extraModulePackages = with config.boot.kernelPackages; [
+      zenpower
+      vendor-reset
+    ];
+    supportedFilesystems = [ "xfs" ];
     swraid = {
       enable = true;
       mdadmConf = ''
@@ -61,9 +64,15 @@ in {
       ssh = {
         enable = true;
         port = 2222;
-        hostKeys = let
-          pathToSecrets = "/root/secrets/sshd";
-        in ["${pathToSecrets}/ssh_host_ed25519" "${pathToSecrets}/ssh_host_ecdsa" "${pathToSecrets}/ssh_host_rsa_key"];
+        hostKeys =
+          let
+            pathToSecrets = "/root/secrets/sshd";
+          in
+          [
+            "${pathToSecrets}/ssh_host_ed25519"
+            "${pathToSecrets}/ssh_host_ecdsa"
+            "${pathToSecrets}/ssh_host_rsa_key"
+          ];
         authorizedKeys =
           [
             # Fumono
@@ -118,82 +127,129 @@ in {
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/71e6bf9d-3edd-4ef0-a0fd-f7174c136eb3";
     fsType = "btrfs";
-    options = ["subvol=/root" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = [
+      "subvol=/root"
+      "noatime"
+      "compress-force=zstd:9"
+      "ssd"
+      "discard=async"
+      "space_cache=v2"
+    ];
   };
   fileSystems."/var" = {
     device = "/dev/disk/by-uuid/71e6bf9d-3edd-4ef0-a0fd-f7174c136eb3";
     fsType = "btrfs";
-    options = ["subvol=/var" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = [
+      "subvol=/var"
+      "noatime"
+      "compress-force=zstd:9"
+      "ssd"
+      "discard=async"
+      "space_cache=v2"
+    ];
   };
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/71e6bf9d-3edd-4ef0-a0fd-f7174c136eb3";
     fsType = "btrfs";
-    options = ["subvol=/nix" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = [
+      "subvol=/nix"
+      "noatime"
+      "compress-force=zstd:9"
+      "ssd"
+      "discard=async"
+      "space_cache=v2"
+    ];
   };
   fileSystems."/Users" = {
     device = "/dev/disk/by-uuid/71e6bf9d-3edd-4ef0-a0fd-f7174c136eb3";
     fsType = "btrfs";
-    options = ["subvol=/Users" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = [
+      "subvol=/Users"
+      "noatime"
+      "compress-force=zstd:9"
+      "ssd"
+      "discard=async"
+      "space_cache=v2"
+    ];
   };
   ### ---------------/dev/nvme0n1p2-------------------- ###
   fileSystems."/var/lib/nextcloud/data" = {
     device = "/dev/disk/by-uuid/d7aca109-b520-4052-9844-39a4378a1bac";
     fsType = "btrfs";
-    options = ["subvol=/nextcloud" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = [
+      "subvol=/nextcloud"
+      "noatime"
+      "compress-force=zstd:9"
+      "ssd"
+      "discard=async"
+      "space_cache=v2"
+    ];
   };
   ### ---------------SMB/NAS/CIFS-------------------- ###
   ### ---------------backups-------------------- ###
   fileSystems."/Users/ashuramaru/backup" = {
     device = "//u369008-sub3.your-storagebox.de/u369008-sub3";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub3,uid=1000,gid=1000,dir_mode=0770"];
+    options = [
+      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub3,uid=1000,gid=1000,dir_mode=0770"
+    ];
   };
   fileSystems."/var/lib/backup" = {
     device = "//u369008-sub4.your-storagebox.de/u369008-sub4";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub4"];
+    options = [ "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub4" ];
   };
   fileSystems."/var/lib/backup/archive" = {
     device = "//u369008-sub4.your-storagebox.de/u369008-sub4/archive";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub4,uid=60,gid=60,dir_mode=0750"];
+    options = [
+      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub4,uid=60,gid=60,dir_mode=0750"
+    ];
   };
   fileSystems."/var/lib/minecraft/backup/solonka" = {
     device = "//u369008-sub6.your-storagebox.de/u369008-sub6";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub6,uid=5333,gid=5333"];
+    options = [
+      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub6,uid=5333,gid=5333"
+    ];
   };
   fileSystems."/var/lib/minecraft/backup/fumoposting" = {
     device = "//u369008-sub7.your-storagebox.de/u369008-sub7";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub7,uid=5333,gid=5333"];
+    options = [
+      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub7,uid=5333,gid=5333"
+    ];
   };
   ### ---------------media-------------------- ###
   fileSystems."/mnt/media" = {
     device = "//u369008-sub9.your-storagebox.de/u369008-sub9";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub9,uid=991,gid=981,dir_mode=0777,file_mode=0777"];
+    options = [
+      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub9,uid=991,gid=981,dir_mode=0777,file_mode=0777"
+    ];
   };
   fileSystems."/var/lib/transmission/private" = {
     device = "//u369008-sub10.your-storagebox.de/u369008-sub10";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub10,uid=70,gid=70,dir_mode=0777,file_mode=0777"];
+    options = [
+      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub10,uid=70,gid=70,dir_mode=0777,file_mode=0777"
+    ];
   };
   fileSystems."/var/lib/transmission/public" = {
     device = "//u369008-sub11.your-storagebox.de/u369008-sub11";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=/root/secrets/storagebox/u369008-sub11,uid=70,gid=70,dir_mode=0777,file_mode=0777"];
+    options = [
+      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub11,uid=70,gid=70,dir_mode=0777,file_mode=0777"
+    ];
   };
   ### ---------------SMB/NAS/CIFS-------------------- ###
   services.btrfs.autoScrub = {
     enable = true;
     interval = "monthly";
-    fileSystems = [
-      "/"
-    ];
+    fileSystems = [ "/" ];
   };
-  system.fsPackages = [pkgs.sshfs];
-  environment.systemPackages = [pkgs.cifs-utils];
+  system.fsPackages = [ pkgs.sshfs ];
+  environment.systemPackages = [ pkgs.cifs-utils ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = lib.mkDefault true;

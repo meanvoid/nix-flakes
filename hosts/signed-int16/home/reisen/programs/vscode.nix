@@ -1,12 +1,6 @@
+{ pkgs, ... }:
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
-  home.packages = with pkgs; [
-    python3Full
-  ];
+  home.packages = with pkgs; [ python3Full ];
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium-fhs;

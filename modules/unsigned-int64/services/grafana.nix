@@ -1,11 +1,10 @@
 {
   config,
-  lib,
   pkgs,
-  agenix,
   path,
   ...
-}: {
+}:
+{
   age.secrets.grafana_pgsql = {
     file = path + /secrets/grafana_pgsql.age;
     path = "/var/lib/secrets/pgsql.pass";
@@ -51,17 +50,27 @@
         default_language = "en_us";
       };
     };
-    declarativePlugins = with pkgs.grafanaPlugins; [
-      grafana-piechart-panel
-    ];
+    declarativePlugins = with pkgs.grafanaPlugins; [ grafana-piechart-panel ];
   };
   systemd.services.prometheus = {
-    after = ["nginx.service" "unbound.service"];
-    requires = ["nginx.service" "unbound.service"];
+    after = [
+      "nginx.service"
+      "unbound.service"
+    ];
+    requires = [
+      "nginx.service"
+      "unbound.service"
+    ];
   };
   systemd.services.loki = {
-    after = ["nginx.service" "unbound.service"];
-    requires = ["nginx.service" "unbound.service"];
+    after = [
+      "nginx.service"
+      "unbound.service"
+    ];
+    requires = [
+      "nginx.service"
+      "unbound.service"
+    ];
   };
   services.prometheus = {
     enable = true;
@@ -90,21 +99,27 @@
     scrapeConfigs = [
       {
         job_name = "unsigned-int64";
-        static_configs = [{targets = ["127.0.0.1:${toString config.services.prometheus.exporters.node.port}"];}];
+        static_configs = [
+          { targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ]; }
+        ];
       }
       {
         job_name = "wireguard";
-        static_configs = [{targets = ["127.0.0.1:${toString config.services.prometheus.exporters.wireguard.port}"];}];
+        static_configs = [
+          { targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.wireguard.port}" ]; }
+        ];
       }
       {
         job_name = "grafana";
         metrics_path = "/grafana/metrics";
-        static_configs = [{targets = ["127.0.0.1:${toString config.services.grafana.settings.server.http_port}"];}];
+        static_configs = [
+          { targets = [ "127.0.0.1:${toString config.services.grafana.settings.server.http_port}" ]; }
+        ];
       }
       {
         job_name = "prometheus";
         metrics_path = "/metrics";
-        static_configs = [{targets = ["172.16.31.1:${toString config.services.prometheus.port}"];}];
+        static_configs = [ { targets = [ "172.16.31.1:${toString config.services.prometheus.port}" ]; } ];
       }
     ];
   };
@@ -211,7 +226,7 @@
           };
           relabel_configs = [
             {
-              source_labels = ["__journal__systemd_unit"];
+              source_labels = [ "__journal__systemd_unit" ];
               target_label = "unit";
             }
           ];
