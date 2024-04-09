@@ -45,7 +45,6 @@ in {
       "editor.bracketPairColorization.enabled" = true;
       "editor.bracketPairColorization.independentColorPoolPerBracketType" = true;
       "editor.formatOnSave" = true;
-      "diffEditor.maxFileSize" = 0;
       "editor.wordWrap" = "on";
       "editor.minimap.enabled" = false;
       "editor.quickSuggestions" = {
@@ -53,9 +52,11 @@ in {
         "comments" = "on";
         "strings" = "off";
       };
+      "diffEditor.maxFileSize" = 0;
       "terminal.integrated.minimumContrastRatio" = 1;
       "workbench.colorTheme" = "Catppuccin Mocha";
       "workbench.iconTheme" = "material-icon-theme";
+      "workbench.sideBar.location" = "right";
       "telemetry.telemetryLevel" = "off";
       "editor.unicodeHighlight.allowedLocales" = {
         "ja" = true;
