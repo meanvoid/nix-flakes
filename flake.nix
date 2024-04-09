@@ -120,7 +120,6 @@
               # formatter
               hooks.nixfmt = {
                 enable = true;
-                always_run = true;
                 excludes = [ ".direnv" ];
                 package = pkgs.nixfmt-rfc-style;
               };
