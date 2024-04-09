@@ -1,4 +1,4 @@
-{ ... }:
+_:
 {
   services.hardware.openrgb = {
     enable = true;
