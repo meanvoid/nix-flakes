@@ -4,9 +4,15 @@
   pkgs,
   users,
   ...
-}: let
-  admins = ["ashuramaru" "meanrin" "fumono"];
-in {
+}:
+let
+  admins = [
+    "ashuramaru"
+    "meanrin"
+    "fumono"
+  ];
+in
+{
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
@@ -21,7 +27,10 @@ in {
   };
   virtualisation.podman = {
     enable = true;
-    extraPackages = with pkgs; [gvisor gvproxy];
+    extraPackages = with pkgs; [
+      gvisor
+      gvproxy
+    ];
     autoPrune = {
       enable = true;
       dates = "weekly";
@@ -36,7 +45,7 @@ in {
       FlareSolverr = {
         image = "ghcr.io/flaresolverr/flaresolverr:latest";
         autoStart = true;
-        ports = ["172.16.31.1:8191:8191"];
+        ports = [ "172.16.31.1:8191:8191" ];
 
         environment = {
           LOG_LEVEL = "info";
@@ -47,10 +56,8 @@ in {
       };
     };
   };
-  systemd.timers."podman-auto-update".wantedBy = ["timers.target"];
-  environment.systemPackages = with pkgs; [
-    distrobox
-  ];
+  systemd.timers."podman-auto-update".wantedBy = [ "timers.target" ];
+  environment.systemPackages = with pkgs; [ distrobox ];
   users.groups = {
     docker.members = admins;
     podman.members = admins;

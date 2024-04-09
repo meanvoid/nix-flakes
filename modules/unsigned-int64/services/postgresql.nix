@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   services.postgresql = {
     enable = true;
     enableJIT = true;
@@ -32,6 +33,10 @@
   };
   services.postgresqlBackup = {
     enable = true;
-    databases = ["nextcloud" "vaultwarden" "grafana"];
+    databases = [
+      "nextcloud"
+      "vaultwarden"
+      "grafana"
+    ];
   };
 }

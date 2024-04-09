@@ -5,16 +5,20 @@
   path,
   hostname,
   ...
-}: let
-  importModule = moduleName: let
-    dir = path + "/modules/${hostname}";
-  in
+}:
+let
+  importModule =
+    moduleName:
+    let
+      dir = path + "/modules/${hostname}";
+    in
     import (dir + "/${moduleName}");
 
   hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
-in {
+in
+{
   imports =
-    [(path + /modules/shared/settings/nix.nix)]
+    [ (path + /modules/shared/settings/nix.nix) ]
     ++ hostModules [
       "environment"
       "programs"
@@ -27,13 +31,13 @@ in {
   };
   nixpkgs.overlays = [
     (self: super: {
-      swiftPackages =
-        super.swiftPackages
-        // {
-          clang = super.swiftPackages.clang.overrideAttrs (oldAttrs: {
-            postFixup = (oldAttrs.postFixup or "") + ''sed -i "s/'-march=.*'//g" $out/nix-support/add-local-cc-cflags-before.sh'';
-          });
-        };
+      swiftPackages = super.swiftPackages // {
+        clang = super.swiftPackages.clang.overrideAttrs (oldAttrs: {
+          postFixup =
+            (oldAttrs.postFixup or "")
+            + ''sed -i "s/'-march=.*'//g" $out/nix-support/add-local-cc-cflags-before.sh'';
+        });
+      };
     })
   ];
   networking = {

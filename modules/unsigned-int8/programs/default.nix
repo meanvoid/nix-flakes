@@ -1,3 +1,1 @@
-[
-  ./brew.nix
-]
+[ ./brew.nix ]

@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -74,7 +75,12 @@
     '';
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "thefuck" "direnv" "sudo"];
+      plugins = [
+        "git"
+        "thefuck"
+        "direnv"
+        "sudo"
+      ];
       custom = "$HOME/.config/zsh/custom";
     };
     initExtra = ''

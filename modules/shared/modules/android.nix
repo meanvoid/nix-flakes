@@ -4,14 +4,16 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.programs.android-development;
-in {
+in
+{
   options.programs.android-development = {
     enable = mkEnableOption "Enable adb";
     users = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
       description = mdDoc "List of users in adbusers group";
     };
     waydroid = {

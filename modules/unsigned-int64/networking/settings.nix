@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   networking = {
     hostName = "unsigned-int64";
     interfaces = {
@@ -103,8 +104,8 @@
         57255
       ];
       interfaces."podman+" = {
-        allowedTCPPorts = [53];
-        allowedUDPPorts = [53];
+        allowedTCPPorts = [ 53 ];
+        allowedUDPPorts = [ 53 ];
       };
       interfaces."wireguard1" = {
         allowedUDPPorts = [
@@ -147,8 +148,8 @@
   };
   # # Ensures sshd starts after WireGuard1
   systemd.services.sshd = {
-    after = ["wg-quick-wireguard1.service"];
-    wants = ["wg-quick-wireguard1.service"];
+    after = [ "wg-quick-wireguard1.service" ];
+    wants = [ "wg-quick-wireguard1.service" ];
   };
   services = {
     openssh = {

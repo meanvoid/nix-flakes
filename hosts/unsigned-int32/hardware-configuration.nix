@@ -4,8 +4,9 @@
   pkgs,
   modulesPath,
   ...
-}: {
-  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
+}:
+{
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod;
@@ -24,7 +25,10 @@
       "dm-mirror"
       "dm-snapshot"
     ];
-    extraModulePackages = with config.boot.kernelPackages; [zenpower vendor-reset];
+    extraModulePackages = with config.boot.kernelPackages; [
+      zenpower
+      vendor-reset
+    ];
     kernelParams = [
       ### ------------------------------------ ###
       "video=DP-1:2560x1440@60"
@@ -51,8 +55,15 @@
       '';
     };
     # Blacklisted Kernel modules do not change
-    blacklistedKernelModules = ["i915" "amdgpu" "nouveau"];
-    supportedFilesystems = ["xfs" "ntfs"];
+    blacklistedKernelModules = [
+      "i915"
+      "amdgpu"
+      "nouveau"
+    ];
+    supportedFilesystems = [
+      "xfs"
+      "ntfs"
+    ];
   };
   boot.loader = {
     systemd-boot = {
@@ -167,30 +178,58 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/bcdcafa3-baca-479d-a9bc-112f5a6b8ecc";
     fsType = "btrfs";
-    options = ["subvol=root" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = [
+      "subvol=root"
+      "noatime"
+      "compress-force=zstd:9"
+      "ssd"
+      "discard=async"
+      "space_cache=v2"
+    ];
   };
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/bcdcafa3-baca-479d-a9bc-112f5a6b8ecc";
     fsType = "btrfs";
-    options = ["subvol=nix" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = [
+      "subvol=nix"
+      "noatime"
+      "compress-force=zstd:9"
+      "ssd"
+      "discard=async"
+      "space_cache=v2"
+    ];
   };
   fileSystems."/var" = {
     device = "/dev/disk/by-uuid/bcdcafa3-baca-479d-a9bc-112f5a6b8ecc";
     fsType = "btrfs";
-    options = ["subvol=var" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = [
+      "subvol=var"
+      "noatime"
+      "compress-force=zstd:9"
+      "ssd"
+      "discard=async"
+      "space_cache=v2"
+    ];
   };
   fileSystems."/Users" = {
     device = "/dev/disk/by-uuid/bcdcafa3-baca-479d-a9bc-112f5a6b8ecc";
     fsType = "btrfs";
-    options = ["subvol=Users" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = [
+      "subvol=Users"
+      "noatime"
+      "compress-force=zstd:9"
+      "ssd"
+      "discard=async"
+      "space_cache=v2"
+    ];
   };
   fileSystems."/home/ashuramaru" = {
     device = "/Users/marie";
-    options = ["bind"];
+    options = [ "bind" ];
   };
   fileSystems."/home/meanrin" = {
     device = "/Users/alex";
-    options = ["bind"];
+    options = [ "bind" ];
   };
   ### ---------------/dev/nvme1n1p2-------------------- ###
 
@@ -198,13 +237,19 @@
   fileSystems."/Shared/media" = {
     device = "/dev/hddpool/media";
     fsType = "ext4";
-    options = ["noatime" "nofail"];
+    options = [
+      "noatime"
+      "nofail"
+    ];
   };
 
   fileSystems."/var/lib/backup" = {
     device = "/dev/hddpool/backup";
     fsType = "ext4";
-    options = ["noatime" "nofail"];
+    options = [
+      "noatime"
+      "nofail"
+    ];
   };
   ### ---------------/dev/md5-------------------- ###
 
@@ -212,7 +257,14 @@
   fileSystems."/media/games" = {
     device = "/dev/mapper/fpool";
     fsType = "btrfs";
-    options = ["subvol=games" "noatime" "compress-force=zstd:9" "ssd" "discard=async" "space_cache=v2"];
+    options = [
+      "subvol=games"
+      "noatime"
+      "compress-force=zstd:9"
+      "ssd"
+      "discard=async"
+      "space_cache=v2"
+    ];
   };
   ### ---------------/dev/md50-------------------- ###
 
@@ -220,7 +272,7 @@
     enable = true;
     interval = "monthly";
     fileSystems = [
-      "/" 
+      "/"
       "/media/games"
     ];
   };

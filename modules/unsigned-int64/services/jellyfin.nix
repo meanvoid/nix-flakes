@@ -3,15 +3,24 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   services.jellyfin = {
     enable = true;
     user = "jellyfin";
     group = "jellyfin";
     openFirewall = true;
   };
-  users.groups.jellyfin.members = ["ashuramaru" "meanrin" "transmission"];
-  users.users.jellyfin.extraGroups = ["ashuramaru" "meanrin" "transmission"];
+  users.groups.jellyfin.members = [
+    "ashuramaru"
+    "meanrin"
+    "transmission"
+  ];
+  users.users.jellyfin.extraGroups = [
+    "ashuramaru"
+    "meanrin"
+    "transmission"
+  ];
 
   services.nginx.virtualHosts."media.tenjin-dk.com" = {
     enableACME = true;

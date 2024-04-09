@@ -3,13 +3,12 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   nixpkgs = {
     config = {
       allowUnfree = true;
-      packageOverrides = pkgs: {
-        gimp-python = pkgs.gimp.override {withPython = true;};
-      };
+      packageOverrides = pkgs: { gimp-python = pkgs.gimp.override { withPython = true; }; };
       permittedInsecurePackages = [
         "python-2.7.18.7"
         "python-2.7.18.7-env"
@@ -23,7 +22,10 @@
     };
     settings = {
       auto-optimise-store = true;
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       substituters = [
         "https://cuda-maintainers.cachix.org" # cuda builds
         "https://ezkea.cachix.org" # aagl

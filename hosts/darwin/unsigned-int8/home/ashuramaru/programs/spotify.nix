@@ -3,10 +3,12 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
-in {
-  imports = [inputs.spicetify-nix.homeManagerModule];
+in
+{
+  imports = [ inputs.spicetify-nix.homeManagerModule ];
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.catppuccin;
@@ -18,8 +20,6 @@ in {
       hidePodcasts
       copyToClipboard
     ];
-    enabledCustomApps = with spicePkgs.apps; [
-      marketplace
-    ];
+    enabledCustomApps = with spicePkgs.apps; [ marketplace ];
   };
 }

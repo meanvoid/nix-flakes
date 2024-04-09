@@ -4,12 +4,13 @@
   pkgs,
   path,
   ...
-}: let
+}:
+let
   generate_uuid = pkgs.stdenv.mkDerivation {
     pname = "assign_uuid";
     version = "3.11";
 
-    buildInputs = [pkgs.makeWrapper];
+    buildInputs = [ pkgs.makeWrapper ];
 
     dontUnpack = true;
     dontBuild = true;
@@ -24,7 +25,7 @@
     pname = "assign_md5";
     version = "3.11";
 
-    buildInputs = [pkgs.makeWrapper];
+    buildInputs = [ pkgs.makeWrapper ];
 
     dontUnpack = true;
     dontBuild = true;
@@ -39,7 +40,7 @@
     pname = "video2gif";
     version = "3.11";
 
-    buildInputs = [pkgs.makeWrapper];
+    buildInputs = [ pkgs.makeWrapper ];
 
     dontUnpack = true;
     dontBuild = true;
@@ -50,7 +51,8 @@
         --add-flags "-O ${path + /src/video2gif.py}" \
     '';
   };
-in {
+in
+{
   home.packages = [
     generate_uuid
     generate_md5
@@ -60,7 +62,7 @@ in {
     services."assign_uuid" = {
       Unit = {
         Description = "Run assign_uuid.service daily at 10am";
-        Requires = ["default.target"];
+        Requires = [ "default.target" ];
       };
       Service = {
         Type = "oneshot";
@@ -70,7 +72,7 @@ in {
     services."assign_md5" = {
       Unit = {
         Description = "Run assign_md5.service daily at 10am";
-        Requires = ["default.target"];
+        Requires = [ "default.target" ];
       };
       Service = {
         Type = "oneshot";
@@ -82,7 +84,7 @@ in {
         Description = "Run assign_uuid.service daily at 10am";
       };
       Install = {
-        WantedBy = ["default.target"];
+        WantedBy = [ "default.target" ];
       };
       Timer = {
         OnCalendar = "*-*-* 10:00:00";
@@ -95,7 +97,7 @@ in {
         Description = "Run assign_md5.service daily at 10am";
       };
       Install = {
-        WantedBy = ["default.target"];
+        WantedBy = [ "default.target" ];
       };
       Timer = {
         OnCalendar = "*-*-* 10:00:00";

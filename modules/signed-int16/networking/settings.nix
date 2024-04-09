@@ -5,7 +5,8 @@
   path,
   hostname,
   ...
-}: {
+}:
+{
   networking = {
     hostName = "${hostname}";
     hostId = "ac9d16f9";
@@ -19,11 +20,11 @@
       enable = true;
       enableIPv6 = false;
       externalInterface = "enp3s0";
-      internalInterfaces = ["ve-+"];
+      internalInterfaces = [ "ve-+" ];
     };
     networkmanager = {
       enable = true;
-      unmanaged = ["interface-name:ve-*"];
+      unmanaged = [ "interface-name:ve-*" ];
     };
     firewall.enable = true;
   };

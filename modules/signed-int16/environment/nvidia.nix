@@ -3,11 +3,10 @@
   config,
   pkgs,
   ...
-}: {
-  boot.kernelParams = ["module_blacklist=i915"];
-  services.xserver.videoDrivers = [
-    "nvidia"
-  ];
+}:
+{
+  boot.kernelParams = [ "module_blacklist=i915" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -23,7 +22,5 @@
     };
     nvidiaSettings = true;
   };
-  environment.systemPackages = with pkgs; [
-    nvtop
-  ];
+  environment.systemPackages = with pkgs; [ nvtop ];
 }

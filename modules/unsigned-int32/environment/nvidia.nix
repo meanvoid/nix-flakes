@@ -6,7 +6,8 @@
   meanvoid-overlay,
   inputs,
   ...
-}: let
+}:
+let
   inherit (pkgs) stdenv;
   inherit (pkgs.cudaPackages) cudatoolkit libcublas cudnn;
   nvidiaX11 = config.hardware.nvidia.package;
@@ -17,7 +18,8 @@
     libcublas
     cudnn
   ];
-in {
+in
+{
   nixpkgs.overlays = [
     (self: super: {
       ccacheWrapper = super.ccacheWrapper.override {
@@ -45,9 +47,7 @@ in {
       };
     })
   ];
-  services.xserver.videoDrivers = [
-    "nvidia"
-  ];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.opengl = {
     enable = true;
@@ -81,13 +81,13 @@ in {
     glxinfo
     vulkan-tools
   ];
-  boot.blacklistedKernelModules = ["nouveau"];
+  boot.blacklistedKernelModules = [ "nouveau" ];
   boot.extraModprobeConfig = ''
     blacklist nouveau
   '';
   environment.sessionVariables = rec {
     CUDA_PATH = "${cudatoolkit}";
-    LD_LIBRARY_PATH = ["${lib.makeLibraryPath libs}"];
+    LD_LIBRARY_PATH = [ "${lib.makeLibraryPath libs}" ];
     LIBVA_DRIVER_NAME = "nvidia";
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
@@ -101,6 +101,6 @@ in {
   nix.settings = {
     max-jobs = 2;
     cores = 12;
-    extra-sandbox-paths = [config.programs.ccache.cacheDir];
+    extra-sandbox-paths = [ config.programs.ccache.cacheDir ];
   };
 }

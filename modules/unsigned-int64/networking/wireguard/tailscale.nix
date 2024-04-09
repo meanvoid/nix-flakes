@@ -3,10 +3,12 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   auth-key = config.age.secrets.tailscale-auth-key.path;
-in {
-  imports = [./secrets.nix];
+in
+{
+  imports = [ ./secrets.nix ];
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "server";

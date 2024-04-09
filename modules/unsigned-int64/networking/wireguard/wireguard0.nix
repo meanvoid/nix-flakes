@@ -3,13 +3,15 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   private = config.age.secrets.wireguard0-server.path;
   preshared = config.age.secrets.wireguard-shared.path;
   fumono = config.age.secrets.wireguard-shared_fumono.path;
   jul = config.age.secrets.wireguard-shared_jul.path;
-in {
-  imports = [./secrets.nix];
+in
+{
+  imports = [ ./secrets.nix ];
   networking.wg-quick.interfaces.wireguard0 = {
     address = [
       # public

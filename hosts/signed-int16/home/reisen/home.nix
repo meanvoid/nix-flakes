@@ -5,11 +5,10 @@
   pkgs,
   path,
   ...
-}: {
+}:
+{
   imports =
-    [
-      (path + /modules/shared/home/reisen/programs/dev/vim.nix)
-    ]
+    [ (path + /modules/shared/home/reisen/programs/dev/vim.nix) ]
     ++ (import (path + /hosts/signed-int16/home/reisen/programs))
     ++ (import (path + /modules/shared/home/reisen/programs/utils));
   home = {

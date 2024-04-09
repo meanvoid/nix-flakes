@@ -3,11 +3,12 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    sessionVariables = {};
+    sessionVariables = { };
     profileExtra = '''';
     initExtra = ''
       shopt -s autocd

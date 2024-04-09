@@ -4,9 +4,15 @@
   pkgs,
   users,
   ...
-}: let
-  admins = ["ashuramaru" "meanrin" "fumono"];
-in {
+}:
+let
+  admins = [
+    "ashuramaru"
+    "meanrin"
+    "fumono"
+  ];
+in
+{
   boot.extraModprobeConfig = "options kvm_intel kvm_amd nested=1";
   virtualisation.libvirtd = {
     enable = true;
@@ -16,18 +22,16 @@ in {
       "virbr1"
       "vireth0"
     ];
-    extraOptions = [
-      "--verbose"
-    ];
+    extraOptions = [ "--verbose" ];
   };
   virtualisation.libvirtd.qemu = {
     ovmf = {
       enable = true;
-      packages = [
-        pkgs.OVMFFull.fd
-      ];
+      packages = [ pkgs.OVMFFull.fd ];
     };
-    swtpm = {enable = true;};
+    swtpm = {
+      enable = true;
+    };
     runAsRoot = true;
   };
   virtualisation.spiceUSBRedirection.enable = true;

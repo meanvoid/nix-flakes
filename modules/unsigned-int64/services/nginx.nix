@@ -5,10 +5,11 @@
   agenix,
   path,
   ...
-}: {
+}:
+{
   security.pam.services.nginx.setEnvironment = false;
   systemd.services.nginx.serviceConfig = {
-    SupplementaryGroups = ["shadow"];
+    SupplementaryGroups = [ "shadow" ];
   };
   age.secrets."archive.htpasswd" = {
     file = path + /secrets/htpasswd.age;
@@ -36,7 +37,7 @@
   };
   services.nginx = {
     enable = true;
-    additionalModules = [pkgs.nginxModules.pam];
+    additionalModules = [ pkgs.nginxModules.pam ];
 
     recommendedGzipSettings = true;
     recommendedOptimisation = true;
@@ -73,8 +74,8 @@
     virtualHosts."_" = {
       default = true;
       listen = [
-        {addr = "80";}
-        {addr = "[::]:80";}
+        { addr = "80"; }
+        { addr = "[::]:80"; }
         {
           addr = "443";
           ssl = true;

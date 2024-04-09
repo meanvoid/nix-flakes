@@ -6,7 +6,8 @@
   path,
   hostname,
   ...
-}: {
+}:
+{
   imports =
     [
       ./services/easyeffects.nix
@@ -91,12 +92,14 @@
         android-studio
         # .NET
         dotnetPackages.Nuget
-        (with dotnetCorePackages;
+        (
+          with dotnetCorePackages;
           combinePackages [
             sdk_6_0
             sdk_7_0
             sdk_8_0
-          ])
+          ]
+        )
         mono
         powershell
         (nodejs.override {
@@ -119,11 +122,12 @@
       ])
       ++ (with pkgs.jetbrains; [
         idea-community
-        (plugins.addPlugins rider ["python-community-edition" "nixidea"])
+        (plugins.addPlugins rider [
+          "python-community-edition"
+          "nixidea"
+        ])
       ])
-      ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [
-        anime-cursors.marisa
-      ]);
+      ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [ anime-cursors.marisa ]);
     stateVersion = "24.05";
   };
   programs.rbw = {

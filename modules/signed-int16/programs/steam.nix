@@ -6,14 +6,17 @@
   aagl,
   path,
   ...
-}: let
+}:
+let
   gamePkgs = inputs.nix-gaming.packages.${pkgs.system};
   tenjinPkgs = inputs.meanvoid-overlay.packages.${pkgs.system};
   ipc = gamePkgs.wine-discord-ipc-bridge;
-in {
+in
+{
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
-      extraPkgs = pkgs:
+      extraPkgs =
+        pkgs:
         (with pkgs; [
           yad
           gnome.zenity
@@ -43,9 +46,7 @@ in {
           mangohud
           steamtinkerlaunch
         ])
-        ++ (with gamePkgs; [
-          wine-discord-ipc-bridge
-        ]);
+        ++ (with gamePkgs; [ wine-discord-ipc-bridge ]);
     };
   };
   environment.systemPackages =
@@ -58,21 +59,15 @@ in {
       stagingFull
       waylandFull
     ])
-    ++ (with tenjinPkgs; [
-      thcrap-proton
-    ])
-    ++ (with gamePkgs; [
-      wine-discord-ipc-bridge
-    ]);
+    ++ (with tenjinPkgs; [ thcrap-proton ])
+    ++ (with gamePkgs; [ wine-discord-ipc-bridge ]);
 
   programs = {
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
-      extraCompatPackages = [
-        gamePkgs.proton-ge
-      ];
+      extraCompatPackages = [ gamePkgs.proton-ge ];
     };
     gamemode = {
       enable = true;
@@ -88,6 +83,8 @@ in {
     };
   };
   environment.sessionVariables = rec {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = ["\${HOME}/.steam/root/compatibilitytools.d:${gamePkgs.proton-ge}"];
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = [
+      "\${HOME}/.steam/root/compatibilitytools.d:${gamePkgs.proton-ge}"
+    ];
   };
 }

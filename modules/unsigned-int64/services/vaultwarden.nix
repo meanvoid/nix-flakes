@@ -5,9 +5,11 @@
   agenix,
   path,
   ...
-}: let
+}:
+let
   domain = "bitwarden.tenjin-dk.com";
-in {
+in
+{
   age.secrets.vaultwarden-env = {
     file = path + /secrets/vaultwarden-env.age;
     path = "/var/lib/secrets/.env";

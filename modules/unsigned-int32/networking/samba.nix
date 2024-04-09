@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   # make shares visible for windows 10 clients
   services = {
     samba-wsdd = {
@@ -15,7 +16,7 @@
       openFirewall = true;
       enableWinbindd = true;
       securityType = "user";
-      invalidUsers = ["root"];
+      invalidUsers = [ "root" ];
       extraConfig = ''
         workgroup = WORKGROUP
         server string = unsigned-int32
@@ -117,7 +118,5 @@
       };
     };
   };
-  systemd.tmpfiles.rules = [
-    "d /var/spool/samba 1777 root root -"
-  ];
+  systemd.tmpfiles.rules = [ "d /var/spool/samba 1777 root root -" ];
 }

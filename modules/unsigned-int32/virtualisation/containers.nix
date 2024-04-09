@@ -4,9 +4,14 @@
   pkgs,
   users,
   ...
-}: let
-  admins = ["ashuramaru" "meanrin"];
-in {
+}:
+let
+  admins = [
+    "ashuramaru"
+    "meanrin"
+  ];
+in
+{
   virtualisation.containers.cdi.dynamic.nvidia.enable = true;
   virtualisation.docker = {
     enable = true;
@@ -23,7 +28,10 @@ in {
   };
   virtualisation.podman = {
     enable = true;
-    extraPackages = with pkgs; [gvproxy gvisor];
+    extraPackages = with pkgs; [
+      gvproxy
+      gvisor
+    ];
     autoPrune = {
       enable = true;
       dates = "weekly";
@@ -38,7 +46,7 @@ in {
       FlareSolverr = {
         image = "ghcr.io/flaresolverr/flaresolverr:latest";
         autoStart = true;
-        ports = ["127.0.0.1:8191:8191"];
+        ports = [ "127.0.0.1:8191:8191" ];
         environment = {
           LOG_LEVEL = "info";
           LOG_HTML = "false";
@@ -48,10 +56,8 @@ in {
       };
     };
   };
-  systemd.timers."podman-auto-update".wantedBy = ["timers.target"];
-  environment.systemPackages = with pkgs; [
-    distrobox
-  ];
+  systemd.timers."podman-auto-update".wantedBy = [ "timers.target" ];
+  environment.systemPackages = with pkgs; [ distrobox ];
   users.groups = {
     docker.members = admins;
     podman.members = admins;

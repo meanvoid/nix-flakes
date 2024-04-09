@@ -5,8 +5,9 @@
   pkgs,
   path,
   ...
-}: {
-  imports = [];
+}:
+{
+  imports = [ ];
   home = {
     username = "meanrin";
     packages = with pkgs; [

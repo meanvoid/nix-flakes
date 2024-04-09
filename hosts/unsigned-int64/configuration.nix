@@ -8,14 +8,18 @@
   users,
   vscode-server,
   ...
-}: let
-  importModule = moduleName: let
-    dir = path + "/modules/${hostname}";
-  in
+}:
+let
+  importModule =
+    moduleName:
+    let
+      dir = path + "/modules/${hostname}";
+    in
     import (dir + "/${moduleName}");
   hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
   cert = config.age.secrets."ca.crt".path;
-in {
+in
+{
   imports =
     [
       ./hardware-configuration.nix
@@ -40,7 +44,11 @@ in {
   };
 
   environment = {
-    shells = with pkgs; [zsh bash fish];
+    shells = with pkgs; [
+      zsh
+      bash
+      fish
+    ];
   };
 
   security = {

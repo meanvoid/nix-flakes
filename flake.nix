@@ -54,77 +54,95 @@
     doom-emacs.inputs.emacs-overlay.follows = "emacs-overlay";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-23_11,
-    darwin,
-    meanvoid-overlay,
-    hyprland,
-    nur,
-    agenix,
-    home-manager,
-    flatpaks,
-    aagl,
-    nix-gaming,
-    spicetify-nix,
-    flake-utils,
-    devshell,
-    pre-commit-hooks,
-    vscode-server,
-    ...
-  } @ inputs: let
-    inherit (flake-utils.lib) eachSystem eachDefaultSystem;
-    inherit (nixpkgs) lib;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-23_11,
+      darwin,
+      meanvoid-overlay,
+      hyprland,
+      nur,
+      agenix,
+      home-manager,
+      flatpaks,
+      aagl,
+      nix-gaming,
+      spicetify-nix,
+      flake-utils,
+      devshell,
+      pre-commit-hooks,
+      vscode-server,
+      ...
+    }@inputs:
+    let
+      inherit (flake-utils.lib) eachDefaultSystem;
 
-    path = ./.;
+      path = ./.;
 
-    commonAttrs = {
-      inherit (nixpkgs) lib;
-      inherit (self) output;
-      inherit inputs self nixpkgs nixpkgs-23_11 darwin;
-      inherit home-manager path;
-      inherit nur meanvoid-overlay hyprland agenix;
-      inherit flatpaks aagl spicetify-nix;
-      inherit vscode-server;
-    };
-
-    flakeOutput =
-      eachDefaultSystem
-      (system: let
-        pkgs = import nixpkgs;
-        pkgs-23_11 = import nixpkgs-23_11;
-      in {
+      commonAttrs = {
+        inherit (nixpkgs) lib;
+        inherit (self) output;
+        inherit
+          inputs
+          self
+          nixpkgs
+          nixpkgs-23_11
+          darwin
+          ;
+        inherit home-manager path;
+        inherit
+          nur
+          meanvoid-overlay
+          hyprland
+          agenix
+          ;
+        inherit flatpaks aagl spicetify-nix;
+        inherit vscode-server;
+      };
+      #! Migrate from flake-utils to flake-parts
+      flakeOutput = eachDefaultSystem (system: {
         checks = {
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
             src = ./.;
-            # nix
-            hooks.alejandra.enable = true; # formatter
+            ## --- NIX related hooks --- ##
+            # formatter
+            hooks.nixfmt = {
+              enable = true;
+              excludes = [ ".direnv" ];
+              package = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
+            };
+            ## --- NIX related hooks --- ##
           };
         };
-        devShells.default = let
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [devshell.overlays.default];
-          };
-          inherit (self.checks.${pkgs.system}.pre-commit-check) shellHook;
-        in
+        #! Migrate from devshell to devenv
+        devShells.default =
+          let
+            pkgs = import nixpkgs {
+              inherit system;
+              overlays = [ devshell.overlays.default ];
+            };
+            inherit (self.checks.${pkgs.system}.pre-commit-check) shellHook;
+          in
           pkgs.devshell.mkShell {
-            imports = [(pkgs.devshell.importTOML ./devshell.toml)];
+            imports = [ (pkgs.devshell.importTOML ./devshell.toml) ];
             git.hooks = {
               enable = true;
               pre-commit.text = shellHook;
             };
-            packages = with pkgs; [
-              git
-              nix-index
-              nix-prefetch-github
-              nix-prefetch-scripts
-            ];
+            packages = builtins.attrValues {
+              inherit (pkgs)
+                git
+                pre-commit
+                nix-index
+                nix-prefetch-github
+                nix-prefetch-scripts
+                ;
+            };
           };
-        formatter = nixpkgs.legacyPackages.${system}.alejandra;
+        formatter = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
       });
-  in
+    in
     flakeOutput
     // {
       nixosConfigurations = import (path + /hosts) commonAttrs;
