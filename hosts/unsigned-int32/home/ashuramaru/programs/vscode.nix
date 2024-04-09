@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 let
-  inherit (inputs.nix-vscode-extensions.extensions.x86_64-linux) vscode-marketplace;
+  inherit (inputs.nix-vscode-extensions.extensions.${pkgs.system}) vscode-marketplace;
 
   vscode-overlay = pkgs.vscode.overrideAttrs (oldAttrs: {
     buildInputs = oldAttrs.buildInputs ++ [ pkgs.makeWrapper ];
@@ -19,7 +19,7 @@ in
     jdk
     rustup
     nil
-    alejandra
+    nixfmt-rfc-style
     clang-tools
     arduino-language-server
   ];
@@ -65,7 +65,7 @@ in
         "serverPath" = "nil";
         "serverSettings.nil" = {
           "formatting" = {
-            "command" = [ "alejandra" ];
+            "command" = [ "nixfmt -v $(${pkgs.findutils}/bin/find * -type d | ${pkgs.gnugrep}/bin/grep -v \".direnv\")" ];
           };
           "nix" = {
             "binary" = "nix";
@@ -74,7 +74,7 @@ in
             "flake.autoEvalInputs" = true;
           };
         };
-        "formatterPath" = "alejandra";
+        "formatterPath" = "nixfmt";
       };
       # python
       "[python]" = {
@@ -108,11 +108,11 @@ in
       bbenoist.nix # nix lsp
       jnoortheen.nix-ide # nix ide
 
-      kamadorueda.alejandra # alejandra
       github.vscode-github-actions # actions
 
       # Utils
       mkhl.direnv # direnv
+      brettm12345.nixfmt-vscode # formatter
       njpwerner.autodocstring # autodocstring
       ms-vscode.hexeditor # hexediting
       ms-vscode-remote.remote-ssh # vscode ssh

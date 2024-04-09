@@ -31,9 +31,7 @@ in
     (self: super: {
       swiftPackages = super.swiftPackages // {
         clang = super.swiftPackages.clang.overrideAttrs (oldAttrs: {
-          postFixup =
-            (oldAttrs.postFixup or "")
-            + ''sed -i "s/'-march=.*'//g" $out/nix-support/add-local-cc-cflags-before.sh'';
+          postFixup = (oldAttrs.postFixup or "") + ''sed -i "s/'-march=.*'//g" $out/nix-support/add-local-cc-cflags-before.sh'';
         });
       };
     })

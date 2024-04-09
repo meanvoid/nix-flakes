@@ -75,8 +75,6 @@ in
     };
   };
   environment.sessionVariables = rec {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = [
-      "\${HOME}/.steam/root/compatibilitytools.d:${gamePkgs.proton-ge}"
-    ];
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = [ "\${HOME}/.steam/root/compatibilitytools.d:${gamePkgs.proton-ge}" ];
   };
 }
