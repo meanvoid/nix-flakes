@@ -78,16 +78,14 @@
         duckstation
         pcsx2
         ppsspp
-        #! fails to build
+        #! failing to build on the unstable branch
         # rpcs3
 
         # Minecraft
         prismlauncher-qt5
         ### --- Games --- ###
 
-        # Python
         android-studio
-        # .NET
         dotnetPackages.Nuget
         (
           with dotnetCorePackages;
@@ -124,7 +122,8 @@
           "nixidea"
         ])
       ])
-      ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [ anime-cursors.marisa ]);
+      ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [ anime-cursors.marisa ])
+      ++ (with inputs.nixpkgs-23_11.legacyPackages.${pkgs.system}; [ rpcs3 ]);
     stateVersion = "24.05";
   };
   programs.rbw = {
