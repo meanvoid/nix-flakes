@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   # Boot configuration
   # boot.kernelParams = [ "video=efifb:off" ];

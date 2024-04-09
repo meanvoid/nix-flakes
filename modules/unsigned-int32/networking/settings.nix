@@ -1,5 +1,4 @@
 {
-  lib,
   config,
   pkgs,
   path,
@@ -117,13 +116,11 @@ in
       ];
     };
   };
-  # services.tailscale = {
-  #   enable = true;
-  #   useRoutingFeatures = "both";
-  #   openFirewall = true;
-  #   authKeyFile = auth-key;
-  #   extraUpFlags = [
-  #     "--ssh"
-  #   ];
-  # };
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "both";
+    openFirewall = true;
+    authKeyFile = auth-key;
+    extraUpFlags = [ "--ssh" ];
+  };
 }

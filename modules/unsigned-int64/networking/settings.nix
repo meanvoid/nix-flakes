@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ lib, ... }:
 {
   networking = {
     hostName = "unsigned-int64";

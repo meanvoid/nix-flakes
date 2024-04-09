@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, ... }:
 let
   private = config.age.secrets.wireguard0-server.path;
   preshared = config.age.secrets.wireguard-shared.path;

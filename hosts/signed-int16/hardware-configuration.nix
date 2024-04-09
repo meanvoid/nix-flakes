@@ -1,11 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  path,
-  ...
-}:
+{ lib, pkgs, ... }:
 {
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod;

@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  inputs,
-  ...
-}:
+{ lib, pkgs, ... }:
 {
   services.gnome = {
     sushi.enable = true;

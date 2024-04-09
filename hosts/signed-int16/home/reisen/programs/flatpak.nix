@@ -1,10 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  flatpaks,
-  ...
-}:
+{ flatpaks, ... }:
 {
   imports = [ flatpaks.homeManagerModules.default ];
   services.flatpak = {

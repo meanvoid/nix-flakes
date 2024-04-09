@@ -1,10 +1,7 @@
 {
-  config,
   inputs,
   pkgs,
   lib,
-  aagl,
-  path,
   ...
 }:
 let

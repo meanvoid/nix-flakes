@@ -1,12 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  darwin,
-  users,
-  path,
-  ...
-}:
+{ pkgs, path, ... }:
 {
   imports = [
     (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)

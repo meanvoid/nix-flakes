@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  users,
-  ...
-}:
+{ lib, pkgs, ... }:
 let
   admins = [ "reisen" ];
 in

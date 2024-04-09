@@ -1,11 +1,4 @@
-{
-  lib,
-  inputs,
-  config,
-  pkgs,
-  path,
-  ...
-}:
+{ pkgs, path, ... }:
 {
   imports =
     [ (path + /modules/shared/home/reisen/programs/dev/vim.nix) ]

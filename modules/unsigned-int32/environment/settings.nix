@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 {
   hardware.gpgSmartcards.enable = true;
   services.hardware.bolt.enable = true;

@@ -1,12 +1,7 @@
 {
-  config,
   pkgs,
-  lib,
-  agenix,
   path,
   hostname,
-  users,
-  vscode-server,
   ...
 }:
 let
@@ -17,7 +12,6 @@ let
     in
     import (dir + "/${moduleName}");
   hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
-  cert = config.age.secrets."ca.crt".path;
 in
 {
   imports =

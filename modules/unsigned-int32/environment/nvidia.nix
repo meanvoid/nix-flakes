@@ -2,9 +2,6 @@
   config,
   lib,
   pkgs,
-  nixpkgs-23_11,
-  meanvoid-overlay,
-  inputs,
   ...
 }:
 let

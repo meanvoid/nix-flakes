@@ -1,17 +1,4 @@
-{
-  lib,
-  inputs,
-  config,
-  pkgs,
-  agenix,
-  aagl,
-  hostname,
-  users,
-  path,
-  nur,
-  vscode-server,
-  ...
-}:
+{ hostname, path, ... }:
 let
   importModule =
     moduleName:

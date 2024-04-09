@@ -1,10 +1,4 @@
-{
-  path,
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ path, ... }:
 {
   age.secrets.passkey.file = path + /secrets/foldingathome_passkey.age;
   age.secrets.token.file = path + /secrets/foldingathome_token.age;

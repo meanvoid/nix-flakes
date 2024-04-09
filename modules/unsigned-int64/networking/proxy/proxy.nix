@@ -1,11 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  agenix,
-  path,
-  ...
-}:
+{ path, ... }:
 {
   age.secrets.proxy = {
     file = path + /secrets/proxy.age;

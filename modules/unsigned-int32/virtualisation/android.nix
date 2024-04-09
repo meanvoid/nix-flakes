@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  path,
-  ...
-}:
+{ path, ... }:
 {
   imports = [ (path + /modules/shared/modules/android.nix) ];
   programs.android-development = {

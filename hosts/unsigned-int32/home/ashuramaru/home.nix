@@ -1,10 +1,7 @@
 {
-  lib,
   inputs,
-  config,
   pkgs,
   path,
-  hostname,
   ...
 }:
 {

@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 let
   discordOverlay = pkgs.discord.override {
     withOpenASAR = true;

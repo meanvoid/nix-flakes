@@ -52,7 +52,7 @@ in
         users ? [ ],
         modules ? [ ],
         ...
-      }@args:
+      }:
       let
         hostname = hostName;
         defaults = [
@@ -111,7 +111,7 @@ in
         users ? [ ],
         modules ? [ ],
         ...
-      }@args:
+      }:
       let
         hostname = hostName;
         defaults = [ { config = cfg; } ] ++ modules;

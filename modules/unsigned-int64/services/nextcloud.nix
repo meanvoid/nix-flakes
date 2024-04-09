@@ -1,13 +1,9 @@
 {
   config,
-  lib,
   pkgs,
-  agenix,
   path,
   ...
 }:
-let
-in
 {
   age.secrets.admin = {
     file = path + /secrets/admin.age;

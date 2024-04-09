@@ -1,11 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  agenix,
-  path,
-  ...
-}:
+{ config, path, ... }:
 {
   age.secrets.mail = {
     file = path + /secrets/mail.age;

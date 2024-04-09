@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, ... }:
 let
   auth-key = config.age.secrets.tailscale-auth-key.path;
 in

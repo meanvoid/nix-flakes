@@ -2,8 +2,6 @@
   config,
   lib,
   pkgs,
-  users,
-  meanvoid-overlay,
   ...
 }:
 let

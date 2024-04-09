@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ config, ... }:
 {
   users.mutableUsers = true;
   users.groups = {

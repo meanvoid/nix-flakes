@@ -1,14 +1,9 @@
 {
-  lib,
   config,
   pkgs,
-  agenix,
   path,
   ...
 }:
-let
-  domain = "bitwarden.tenjin-dk.com";
-in
 {
   age.secrets.vaultwarden-env = {
     file = path + /secrets/vaultwarden-env.age;

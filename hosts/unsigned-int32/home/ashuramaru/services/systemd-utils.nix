@@ -1,10 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  path,
-  ...
-}:
+{ pkgs, path, ... }:
 let
   generate_uuid = pkgs.stdenv.mkDerivation {
     pname = "assign_uuid";

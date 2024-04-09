@@ -1,12 +1,4 @@
-{
-  config,
-  inputs,
-  pkgs,
-  lib,
-  aagl,
-  path,
-  ...
-}:
+{ inputs, pkgs, ... }:
 let
   gamePkgs = inputs.nix-gaming.packages.${pkgs.system};
   tenjinPkgs = inputs.meanvoid-overlay.packages.${pkgs.system};

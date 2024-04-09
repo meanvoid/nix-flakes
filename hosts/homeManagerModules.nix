@@ -1,7 +1,5 @@
 {
   lib,
-  nixpkgs,
-  nixpkgs-23_11,
   inputs,
   nur,
   darwin,
