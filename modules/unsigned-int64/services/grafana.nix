@@ -99,22 +99,16 @@
     scrapeConfigs = [
       {
         job_name = "unsigned-int64";
-        static_configs = [
-          { targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ]; }
-        ];
+        static_configs = [ { targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ]; } ];
       }
       {
         job_name = "wireguard";
-        static_configs = [
-          { targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.wireguard.port}" ]; }
-        ];
+        static_configs = [ { targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.wireguard.port}" ]; } ];
       }
       {
         job_name = "grafana";
         metrics_path = "/grafana/metrics";
-        static_configs = [
-          { targets = [ "127.0.0.1:${toString config.services.grafana.settings.server.http_port}" ]; }
-        ];
+        static_configs = [ { targets = [ "127.0.0.1:${toString config.services.grafana.settings.server.http_port}" ]; } ];
       }
       {
         job_name = "prometheus";
@@ -210,9 +204,7 @@
         filename = "/tmp/positions.yaml";
       };
       clients = [
-        {
-          url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
-        }
+        { url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push"; }
       ];
       scrape_configs = [
         {

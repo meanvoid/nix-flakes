@@ -78,9 +78,7 @@ in
         "serverPath" = "nil";
         "serverSettings.nil" = {
           "formatting" = {
-            "command" = [
-              "nixfmt -v $(${pkgs.findutils}/bin/find * -type d | ${pkgs.gnugrep}/bin/grep -v \".direnv\")"
-            ];
+            "command" = [ "nixfmt -v $(${pkgs.findutils}/bin/find * -type d | ${pkgs.gnugrep}/bin/grep -v \".direnv\")" ];
           };
           "nix" = {
             "binary" = "nix";
@@ -104,8 +102,7 @@ in
       vscode-remote-extensionpack = vscode-marketplace.ms-vscode-remote.vscode-remote-extensionpack;
       vscode-liveshare = vscode-marketplace.ms-vsliveshare.vsliveshare;
       vscode-intellisense = vscode-marketplace.visualstudioexptteam.vscodeintellicode;
-      vscode-intellicode-api-usage-examples =
-        vscode-marketplace.visualstudioexptteam.intellicode-api-usage-examples;
+      vscode-intellicode-api-usage-examples = vscode-marketplace.visualstudioexptteam.intellicode-api-usage-examples;
       vscode-intellisense-path = vscode-marketplace.christian-kohler.path-intellisense;
       vscode-pull-request = vscode-marketplace.github.vscode-pull-request-github;
       vscode-git-history = vscode-marketplace.donjayamanne.githistory;

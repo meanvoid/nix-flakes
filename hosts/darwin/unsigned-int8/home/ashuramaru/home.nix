@@ -36,8 +36,6 @@
 
         ### --- Le Programming --- ###
         # .NET
-
-        #         dotnetPackages.Nuget
         (
           with dotnetCorePackages;
           combinePackages [

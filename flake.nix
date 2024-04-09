@@ -2,8 +2,10 @@
   description = "meanvoid nix/nixos/darwin nix flake configuration";
   inputs = {
     ### --- Utils --- ###
+    flake-parts.url = "github:hercules-ci/flake-parts";
     flake-utils.url = "github:numtide/flake-utils";
     devshell.url = "github:numtide/devshell";
+    devenv.url = "github:cachix/devenv";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
     ### --- Utils --- ###
 
@@ -59,6 +61,7 @@
     {
       self,
       # Utils
+      flake-parts,
       flake-utils,
       devshell,
       pre-commit-hooks,
@@ -82,40 +85,28 @@
       ...
     }@inputs:
     let
-      inherit (flake-utils.lib) eachDefaultSystem;
-
       path = ./.;
-
-      commonAttrs = {
-        inherit (nixpkgs) lib;
-        inherit (self) output;
-        inherit
-          inputs
-          self
-          nixpkgs
-          nixpkgs-23_11
-          darwin
-          ;
-        inherit home-manager path;
-        inherit
-          nur
-          meanvoid-overlay
-          hyprland
-          agenix
-          ;
-        inherit flatpaks aagl spicetify-nix;
-        inherit vscode-server;
-      };
-      #! Migrate from flake-utils to flake-parts
-      flakeOutput = eachDefaultSystem (
-        system:
-        let
-          pkgs = import nixpkgs { inherit system; };
-        in
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [ inputs.devenv.flakeModule ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+      perSystem =
         {
+          config,
+          system,
+          pkgs,
+          ...
+        }:
+        {
+          _module.args.pkgs = import inputs.nixpkgs { inherit system; };
           checks = {
             pre-commit-check = pre-commit-hooks.lib.${system}.run {
-              src = ./.;
+              src = path;
               ## --- NIX related hooks --- ##
               # formatter
               hooks.nixfmt = {
@@ -127,37 +118,56 @@
             };
           };
           #! Migrate from devshell to devenv
-          devShells.default =
-            let
-              pkgs = import nixpkgs {
-                inherit system;
-                overlays = [ devshell.overlays.default ];
-              };
-              inherit (self.checks.${pkgs.system}.pre-commit-check) shellHook;
-            in
-            pkgs.devshell.mkShell {
-              imports = [ (pkgs.devshell.importTOML ./devshell.toml) ];
-              git.hooks = {
-                enable = true;
-                pre-commit.text = shellHook;
-              };
-              packages = builtins.attrValues {
-                inherit (pkgs)
-                  git
-                  pre-commit
-                  nix-index
-                  nix-prefetch-github
-                  nix-prefetch-scripts
-                  ;
-              };
+          devenv.shells.default = {
+            name = "Flake Environment";
+            languages = {
+              nix.enable = true;
+              shell.enable = true;
             };
-          formatter = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
-        }
-      );
-    in
-    flakeOutput
-    // {
-      nixosConfigurations = import (path + /hosts) commonAttrs;
-      darwinConfigurations = import (path + /hosts/darwin) commonAttrs;
+            pre-commit = {
+              excludes = [
+                ".direnv"
+                ".devenv"
+              ];
+              hooks.nixfmt = {
+                enable = true;
+                excludes = [
+                  ".direnv"
+                  ".devenv"
+                  "pkgs"
+                ];
+                settings.width = 120;
+                package = pkgs.nixfmt-rfc-style;
+              };
+              hooks.shellcheck.enable = true;
+            };
+            packages = builtins.attrValues {
+              inherit (pkgs) git pre-commit;
+              inherit (pkgs) nix-index nix-prefetch-github nix-prefetch-scripts;
+            };
+          };
+          formatter = pkgs.nixfmt-rfc-style;
+        };
+      flake =
+        let
+          commonAttrs = {
+            inherit (nixpkgs) lib;
+            inherit (self) output;
+
+            inherit inputs self;
+            inherit nixpkgs nixpkgs-23_11;
+            inherit darwin;
+
+            inherit home-manager path;
+            inherit nur agenix;
+            inherit meanvoid-overlay hyprland;
+            inherit flatpaks aagl spicetify-nix;
+            inherit vscode-server;
+          };
+        in
+        {
+          nixosConfigurations = import (path + /hosts) commonAttrs;
+          darwinConfigurations = import (path + /hosts/darwin) commonAttrs;
+        };
     };
 }

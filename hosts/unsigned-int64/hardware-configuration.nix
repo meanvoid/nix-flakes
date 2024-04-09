@@ -190,9 +190,7 @@ in
   fileSystems."/Users/ashuramaru/backup" = {
     device = "//u369008-sub3.your-storagebox.de/u369008-sub3";
     fsType = "cifs";
-    options = [
-      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub3,uid=1000,gid=1000,dir_mode=0770"
-    ];
+    options = [ "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub3,uid=1000,gid=1000,dir_mode=0770" ];
   };
   fileSystems."/var/lib/backup" = {
     device = "//u369008-sub4.your-storagebox.de/u369008-sub4";
@@ -202,23 +200,17 @@ in
   fileSystems."/var/lib/backup/archive" = {
     device = "//u369008-sub4.your-storagebox.de/u369008-sub4/archive";
     fsType = "cifs";
-    options = [
-      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub4,uid=60,gid=60,dir_mode=0750"
-    ];
+    options = [ "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub4,uid=60,gid=60,dir_mode=0750" ];
   };
   fileSystems."/var/lib/minecraft/backup/solonka" = {
     device = "//u369008-sub6.your-storagebox.de/u369008-sub6";
     fsType = "cifs";
-    options = [
-      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub6,uid=5333,gid=5333"
-    ];
+    options = [ "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub6,uid=5333,gid=5333" ];
   };
   fileSystems."/var/lib/minecraft/backup/fumoposting" = {
     device = "//u369008-sub7.your-storagebox.de/u369008-sub7";
     fsType = "cifs";
-    options = [
-      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub7,uid=5333,gid=5333"
-    ];
+    options = [ "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub7,uid=5333,gid=5333" ];
   };
   ### ---------------media-------------------- ###
   fileSystems."/mnt/media" = {

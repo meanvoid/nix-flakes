@@ -1,6 +1,0 @@
-imports = ["language.c", "git.hooks"]
-language.c.includes = ["zlib", "cyrus_sasl"]
-language.c.libraries = ["zlib", "ffmpeg", "imagemagick"]
-
-[devshell]
-name = "Default Shell"
