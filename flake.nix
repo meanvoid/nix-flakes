@@ -63,6 +63,7 @@
       # Utils
       flake-parts,
       flake-utils,
+      devenv,
       devshell,
       pre-commit-hooks,
       # nixpkgs
