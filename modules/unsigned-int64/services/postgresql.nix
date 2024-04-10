@@ -5,7 +5,7 @@ _: {
     ensureDatabases = [
       "vaultwarden"
       "grafana"
-      "cvat"
+      # "cvat"
     ];
     ensureUsers = [
       {
@@ -24,10 +24,10 @@ _: {
         name = "grafana";
         ensureDBOwnership = true;
       }
-      {
-        name = "cvat";
-        ensureDBOwnership = true;
-      }
+      # {
+      #   name = "cvat";
+      #   ensureDBOwnership = true;
+      # }
     ];
   };
   services.postgresqlBackup = {
