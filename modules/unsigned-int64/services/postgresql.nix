@@ -5,6 +5,7 @@ _: {
     ensureDatabases = [
       "vaultwarden"
       "grafana"
+      "cvat"
     ];
     ensureUsers = [
       {
@@ -21,6 +22,10 @@ _: {
       }
       {
         name = "grafana";
+        ensureDBOwnership = true;
+      }
+      {
+        name = "cvat";
         ensureDBOwnership = true;
       }
     ];
