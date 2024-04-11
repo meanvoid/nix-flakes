@@ -65,6 +65,10 @@
         "sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBCzoNOzhhF9uYDu7CbuzVRJ2K6dClXLrEoJrQvIYjnxHTBMqKuByi9M2HEmkpGO+a3H3WjeeXfqjH2CwZJ97jmIAAAAEc3NoOg== meanrin@outlook.com"
         "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL/sxoDT+ZRXSuyIEzguSL6SVRyGDJXGF1GOXPqn00NG8xKa0zFcrqRLWQdJ7aGn5ZBdJy5rZG3m2+ZAIVYwL/k= root@www.tenjin-dk.com"
         ### --- alex --- ###
+
+        #! Temp
+        ### --- fumono --- ###
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHBeBj6thLiVFNGZI1NuTHKIPvh332Szad2zsgjdzhR mc-server"
       ];
     };
     ashuramaru = {
@@ -120,6 +124,7 @@
         "docker"
         "podman"
         "minecraft"
+        "wheel"
       ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHBeBj6thLiVFNGZI1NuTHKIPvh332Szad2zsgjdzhR mc-server"
