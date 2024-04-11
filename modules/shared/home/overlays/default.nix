@@ -1,4 +1,4 @@
 [
   ./discord.nix
-  ./ai.nix
+  # ./ai.nix
 ]

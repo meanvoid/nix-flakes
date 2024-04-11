@@ -11,7 +11,7 @@
 
     ### --- System --- ###
     ### --- nixpkgs channels --- ###
-    nixpkgs.url = "github:nixos/nixpkgs/4cba8b53da471aea2ab2b0c1f30a81e7c451f4b6";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-23_11.url = "github:nixos/nixpkgs/nixos-23.11-small";
     ### --- nixpkgs channels --- ###
     darwin.url = "github:lnl7/nix-darwin/master";
