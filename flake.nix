@@ -4,7 +4,6 @@
     ### --- Utils --- ###
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-utils.url = "github:numtide/flake-utils";
-    devshell.url = "github:numtide/devshell";
     devenv.url = "github:cachix/devenv";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
     ### --- Utils --- ###
@@ -35,6 +34,11 @@
     meanvoid-overlay.url = "github:meanvoid/nixos-overlay";
 
     nixified-ai.url = "github:nixified-ai/flake";
+
+    # devenv dependencies
+    nix2container.url = "github:nlewo/nix2container";
+    mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
+
     # Utility apps
     nix-software-center.url = "github:snowfallorg/nix-software-center";
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
@@ -51,6 +55,7 @@
     doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
     nixified-ai.inputs.nixpkgs.follows = "nixpkgs-23_11";
+    nix2container.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     meanvoid-overlay.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.emacs-overlay.follows = "emacs-overlay";
@@ -64,7 +69,6 @@
       flake-parts,
       flake-utils,
       devenv,
-      devshell,
       pre-commit-hooks,
       # nixpkgs
       nixpkgs,
@@ -112,13 +116,16 @@
               # formatter
               hooks.nixfmt = {
                 enable = true;
-                excludes = [ ".direnv" ];
+                excludes = [
+                  ".direnv"
+                  ".devenv"
+                ];
+                settings.width = 120;
                 package = pkgs.nixfmt-rfc-style;
               };
               ## --- NIX related hooks --- ##
             };
           };
-          #! Migrate from devshell to devenv
           devenv.shells.default = {
             name = "Flake Environment";
             languages = {
