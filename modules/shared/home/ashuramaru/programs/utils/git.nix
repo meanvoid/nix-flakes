@@ -4,6 +4,9 @@ _: {
     userName = "Tenjin";
     userEmail = "ashuramaru@tenjin-dk.com";
     lfs.enable = true;
+    aliases = {
+      "lg" = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+    };
     delta = {
       enable = true; # syntax highlighter
       options = {
