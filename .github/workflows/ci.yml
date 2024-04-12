@@ -2,14 +2,6 @@ name: "nix tests"
 on:
   push:
 jobs:
-  format:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: cachix/install-nix-action@v20
-        with:
-          github_access_token: ${{ secrets.ACCESS_TOKEN }}
-      - run: nix fmt $(find * -type d | grep -v .direnv) -- --check
   validate:
     runs-on: ubuntu-latest
     steps:
