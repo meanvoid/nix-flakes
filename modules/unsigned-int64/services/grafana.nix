@@ -118,7 +118,7 @@
     ];
   };
   services.loki = {
-    enable = true;
+    enable = false;
     configuration = {
       server.http_listen_port = 3100;
       auth_enabled = false;
