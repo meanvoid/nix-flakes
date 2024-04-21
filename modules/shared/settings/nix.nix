@@ -1,4 +1,6 @@
-_: {
+{ inputs, ... }:
+{
+  environment.etc."nix/path/nixpkgs".source = inputs.nixpkgs;
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -33,5 +35,7 @@ _: {
         "ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc=" # nixified-ai
       ];
     };
+    nixPath = [ "/etc/nix/path" ];
+    registry.nixpkgs.flake = inputs.nixpkgs;
   };
 }

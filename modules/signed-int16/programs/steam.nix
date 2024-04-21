@@ -37,6 +37,7 @@ in
           vkBasalt
           mangohud
           steamtinkerlaunch
+          thcrap-steam-proton-wrapper
         ])
         ++ (with gamePkgs; [ wine-discord-ipc-bridge ]);
     };
@@ -51,7 +52,6 @@ in
       stagingFull
       waylandFull
     ])
-    ++ (with tenjinPkgs; [ thcrap-proton ])
     ++ (with gamePkgs; [ wine-discord-ipc-bridge ]);
 
   programs = {

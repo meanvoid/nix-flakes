@@ -80,6 +80,7 @@
         # Minecraft rcon
         25565
         35565
+        45565
         # Wireguard
         51280
         51820
@@ -95,6 +96,7 @@
         # minecraft tcp
         25565
         35565
+        45565
         # ssh
         57255
       ];

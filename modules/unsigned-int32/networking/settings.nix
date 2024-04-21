@@ -116,6 +116,10 @@ in
       ];
     };
   };
+  services.mullvad-vpn = {
+    enable = true;
+    enableExcludeWrapper = false;
+  };
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "both";

@@ -42,6 +42,7 @@ in
           steamtinkerlaunch
           source-han-sans
           wqy_zenhei
+          thcrap-steam-proton-wrapper
         ]);
     };
   };
@@ -52,7 +53,6 @@ in
       inotify-tools
     ])
     ++ (with pkgs.wineWowPackages; [ stagingFull ])
-    ++ (with tenjinPkgs; [ thcrap-proton ])
     ++ (with inputs.nix-gaming.packages.${pkgs.system}; [ osu-lazer-bin ]);
   programs = {
     steam = {
