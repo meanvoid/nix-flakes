@@ -96,7 +96,7 @@
       pop-shell
       blur-my-shell
       aylurs-widgets
-      pin-app-folders-to-dash
+      # pin-app-folders-to-dash
       dash-to-dock
       arcmenu
     ]);
