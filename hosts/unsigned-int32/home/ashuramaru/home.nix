@@ -26,6 +26,7 @@
     };
     packages =
       (with pkgs; [
+        anki
         media-downloader
         imgbrd-grabber
         qbittorrent
