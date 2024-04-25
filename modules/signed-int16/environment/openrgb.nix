@@ -13,7 +13,6 @@
     done
   '';
 in {
-  # I STOLE FROM THE WIKI AGAIN I AM IN SHAMBLES DUE TO MY OWN INCOMPETENCE
   config = {
     services.udev.packages = [pkgs.openrgb];
     boot.kernelModules = ["i2c-dev"];

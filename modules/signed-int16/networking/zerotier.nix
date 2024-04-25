@@ -6,6 +6,6 @@
 }: {
   services.zerotierone = {
     enable = true;
-    package = pkgs.zerotierone; # hmmm quite boring
+    package = pkgs.zerotierone;
   };
 }

@@ -50,6 +50,7 @@ in {
       winetricks
       scummvm
       inotify-tools
+      steam-run
     ])
     ++ (with pkgs.wineWowPackages; [
       stagingFull
@@ -81,8 +82,6 @@ in {
       enable = true;
       capSysNice = true;
     };
-    #anime-game-launcher.enable = lib.mkDefault true;
-    #honkers-railway-launcher.enable = lib.mkDefault true;
   };
   environment.sessionVariables = rec {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = ["\${HOME}/.steam/root/compatibilitytools.d:${pkgs.proton-ge-bin}"];
