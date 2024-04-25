@@ -5,7 +5,7 @@
   ...
 }: let
   yuyuko = pkgs.writeScriptBin "yuyuko" ''
-    #!/bin/sh
+    #!/usr/bin/env sh
     NUM_DEVICES=$(${pkgs.openrgb}/bin/openrgb --list-devices | grep -E '^[0-9]+: ' | wc -l)
 
     for i in $(seq 0 $(($NUM_DEVICES - 1))); do

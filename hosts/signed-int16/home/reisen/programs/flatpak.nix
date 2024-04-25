@@ -10,12 +10,12 @@
     remotes = {
       "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
       "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
-      #"launcher" = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
     };
     overrides = {
       "sh.ppy.osu" = {
         filesystems = [
-          "host"
+          "/volumes/cursed/wiwi/osu-lazer"
+          "/home/reisen/Music"
         ];
       };
       "com.valvesoftware.Steam" = {

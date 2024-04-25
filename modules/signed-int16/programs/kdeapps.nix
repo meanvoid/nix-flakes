@@ -5,12 +5,14 @@
   pkgs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [
-    kdePackages.merkuro
-    kdePackages.konversation
-    kdePackages.kdeconnect-kde
-    kdePackages.plasmatube
-  ];
+environment.systemPackages = builtins.attrValues {
+  inherit(pkgs.kdePackages)
+  merkuro
+  konversation
+  kdeconnect-kde
+  plasmatube
+  ;
+};
   environment.plasma5.excludePackages = with pkgs.libsForQt5; [
     plasma-browser-integration
   ];

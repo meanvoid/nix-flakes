@@ -5,7 +5,7 @@
   inputs,
   ...
 }: let
-  inherit (inputs.nix-vscode-extensions.extensions.x86_64-linux) vscode-marketplace;
+  inherit (inputs.nix-vscode-extensions.extensions.${pkgs.system}) vscode-marketplace;
 in {
   home.packages = with pkgs; [
     python3Full

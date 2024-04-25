@@ -43,9 +43,6 @@
       android-studio
 
       # Gaming
-      steam
-      steam-tui
-      steam-run
       prismlauncher
 
       # Office
@@ -61,6 +58,7 @@
       nextcloud-client
       thefuck
       qbittorrent
+      nicotine-plus
       glxinfo
       flameshot
       unetbootin
