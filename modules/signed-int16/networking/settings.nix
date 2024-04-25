@@ -30,18 +30,6 @@
       allowPing = true;
       allowedUDPPorts = [];
       allowedTCPPorts = [];
-      allowedUDPPortRanges = [
-        {
-          from = 1714;
-          to = 1764;
-        }
-      ];
-      allowedTCPPortRanges = [
-        {
-          from = 1714;
-          to = 1764;
-        }
-      ]; # for kde connect
     };
   };
   services.resolved.enable = true;
