@@ -28,7 +28,6 @@
       "flathub:app/com.valvesoftware.Steam/x86_64/stable"
       "flathub:runtime/com.valvesoftware.Steam.Utility.thcrap_steam_proton_wrapper/x86_64/stable"
       "flathub:app/com.usebottles.bottles/x86_64/stable"
-      "flathub:app/re.chiaki.Chiaki/x86_64/stable"
       "flathub:app/info.cemu.Cemu/x86_64/stable"
       "flathub:app/sh.ppy.osu/x86_64/stable"
       "flathub:app/io.github.Foldex.AdwSteamGtk/x86_64/stable"

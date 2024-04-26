@@ -124,7 +124,7 @@ in
     '';
   };
 
-  time.timeZone = "Europe/Warsaw";
+  time.timeZone = "Europe/Kyiv";
   i18n = {
     defaultLocale = "en_US.utf8";
     supportedLocales = [ "all" ];

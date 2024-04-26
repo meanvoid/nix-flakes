@@ -56,6 +56,7 @@
         mullvad
 
         ### --- Games --- ###
+        chiaki
         goverlay
         mangohud
         heroic
