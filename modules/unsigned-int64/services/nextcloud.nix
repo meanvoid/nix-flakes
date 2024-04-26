@@ -34,7 +34,6 @@
         twofactor_webauthn
         twofactor_nextcloud_notification
         user_oidc
-        user_saml
         ; # twofactor_totp
     };
     extraAppsEnable = true;
