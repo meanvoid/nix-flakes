@@ -50,9 +50,6 @@ in {
     ])
     ++ (with tenjinPkgs; [
       thcrap-proton
-    ])
-    ++ (with gamePkgs; [
-      osu-stable
     ]);
   programs = {
     steam = {
