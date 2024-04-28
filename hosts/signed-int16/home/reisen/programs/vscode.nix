@@ -1,5 +1,6 @@
-{ pkgs, ... }:
-{
+{ pkgs, inputs, ... } : let
+  inherit (inputs.nix-vscode-extensions.extensions.${pkgs.system}) vscode-marketplace;
+in {
   home.packages = with pkgs; [ python3Full ];
   programs.vscode = {
     enable = true;

@@ -17,8 +17,4 @@
     plasma-browser-integration
   ];
   programs.firefox.nativeMessagingHosts.packages = [pkgs.kdePackages.plasma-browser-integration];
-  programs.kdeconnect = {
-    enable = true;
-    package = pkgs.kdePackages.kdeconnect-kde;
-  };
 }

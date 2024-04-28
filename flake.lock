@@ -1077,7 +1077,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_7",
+        "systems": "systems_8",
         "wlroots": "wlroots",
         "xdph": "xdph"
       },
@@ -2485,7 +2485,7 @@
     },
     "utils_2": {
       "inputs": {
-        "systems": "systems_10"
+        "systems": "systems_11"
       },
       "locked": {
         "lastModified": 1689068808,
