@@ -17,16 +17,12 @@ in {
       "virbr1"
       "vireth0"
     ];
-    extraOptions = [
-      "--verbose"
-    ];
+    extraOptions = [ "--verbose" ];
   };
   virtualisation.libvirtd.qemu = {
     ovmf = {
       enable = true;
-      packages = [
-        pkgs.OVMFFull.fd
-      ];
+      packages = [ pkgs.OVMFFull.fd ];
     };
     swtpm.enable = true;
     runAsRoot = true;

@@ -1,9 +1,5 @@
+{ lib, ... }:
 {
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
   networking = {
     hostName = "unsigned-int64";
     interfaces = {
@@ -84,6 +80,7 @@
         # Minecraft rcon
         25565
         35565
+        45565
         # Wireguard
         51280
         51820
@@ -99,12 +96,13 @@
         # minecraft tcp
         25565
         35565
+        45565
         # ssh
         57255
       ];
       interfaces."podman+" = {
-        allowedTCPPorts = [53];
-        allowedUDPPorts = [53];
+        allowedTCPPorts = [ 53 ];
+        allowedUDPPorts = [ 53 ];
       };
       interfaces."wireguard1" = {
         allowedUDPPorts = [
@@ -147,8 +145,8 @@
   };
   # # Ensures sshd starts after WireGuard1
   systemd.services.sshd = {
-    after = ["wg-quick-wireguard1.service"];
-    wants = ["wg-quick-wireguard1.service"];
+    after = [ "wg-quick-wireguard1.service" ];
+    wants = [ "wg-quick-wireguard1.service" ];
   };
   services = {
     openssh = {

@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+_: {
   homebrew = {
     enable = true;
     onActivation = {
@@ -11,19 +6,16 @@
       upgrade = true;
       cleanup = "zap";
     };
-    taps = [
-      "homebrew/cask"
-      "homebrew/cask-versions"
-    ];
-    brews = [
-      "winetricks"
-      "openjdk"
-      "openjdk@17"
-    ];
+    taps = [ "homebrew/cask-versions" ];
+    brews = [ "winetricks" ];
     casks = [
       #todo: revisit later
+      # Games
       "wine-staging"
+      "crossover"
       "steam"
+      "prismlauncher"
+      # graphics
       "krita"
       "blender"
       "telegram"

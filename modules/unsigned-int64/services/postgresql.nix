@@ -1,15 +1,11 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+_: {
   services.postgresql = {
     enable = true;
     enableJIT = true;
     ensureDatabases = [
       "vaultwarden"
       "grafana"
+      # "cvat"
     ];
     ensureUsers = [
       {
@@ -28,10 +24,18 @@
         name = "grafana";
         ensureDBOwnership = true;
       }
+      # {
+      #   name = "cvat";
+      #   ensureDBOwnership = true;
+      # }
     ];
   };
   services.postgresqlBackup = {
     enable = true;
-    databases = ["nextcloud" "vaultwarden" "grafana"];
+    databases = [
+      "nextcloud"
+      "vaultwarden"
+      "grafana"
+    ];
   };
 }

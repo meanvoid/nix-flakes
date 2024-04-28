@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   users.mutableUsers = false;
   users.groups = {
     ashuramaru.gid = config.users.users.ashuramaru.uid;
@@ -6,25 +7,42 @@
     fumono.gid = config.users.users.fumono.uid;
     android = {
       gid = config.users.users.android.uid;
-      members = ["ashuramaru" "meanrin" "fumono"];
+      members = [
+        "ashuramaru"
+        "meanrin"
+        "fumono"
+      ];
     };
     minecraft = {
       gid = config.users.users.minecraft.uid;
-      members = ["ashuramaru" "meanrin" "fumono" "minecraft" "nginx"];
+      members = [
+        "ashuramaru"
+        "meanrin"
+        "fumono"
+        "minecraft"
+        "nginx"
+      ];
     };
     password = {
       gid = config.users.users.password.uid;
-      members = ["ashuramaru" "meanrin" "nextcloud"];
+      members = [
+        "ashuramaru"
+        "meanrin"
+        "nextcloud"
+      ];
     };
-    nginx.members = ["minecraft"];
+    nginx.members = [ "minecraft" ];
   };
   users.users = {
     password = {
       isSystemUser = true;
       group = "password";
-      extraGroups = ["ashuramaru" "meanrin"];
+      extraGroups = [
+        "ashuramaru"
+        "meanrin"
+      ];
     };
-    nginx.extraGroups = ["minecraft"];
+    nginx.extraGroups = [ "minecraft" ];
     root = {
       initialHashedPassword = "";
       openssh.authorizedKeys.keys = [
@@ -47,6 +65,10 @@
         "sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBCzoNOzhhF9uYDu7CbuzVRJ2K6dClXLrEoJrQvIYjnxHTBMqKuByi9M2HEmkpGO+a3H3WjeeXfqjH2CwZJ97jmIAAAAEc3NoOg== meanrin@outlook.com"
         "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL/sxoDT+ZRXSuyIEzguSL6SVRyGDJXGF1GOXPqn00NG8xKa0zFcrqRLWQdJ7aGn5ZBdJy5rZG3m2+ZAIVYwL/k= root@www.tenjin-dk.com"
         ### --- alex --- ###
+
+        #! Temp
+        ### --- fumono --- ###
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHBeBj6thLiVFNGZI1NuTHKIPvh332Szad2zsgjdzhR mc-server"
       ];
     };
     ashuramaru = {
@@ -55,7 +77,13 @@
       home = "/Users/ashuramaru";
       description = "Marie";
       initialHashedPassword = "";
-      extraGroups = ["ashuramaru" "wheel" "docker" "podman" "minecraft"];
+      extraGroups = [
+        "ashuramaru"
+        "wheel"
+        "docker"
+        "podman"
+        "minecraft"
+      ];
       openssh.authorizedKeys.keys = [
         "sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBNR1p1OviZgAkv5xQ10NTLOusPT8pQUG2qCTpO3AhmxaZM2mWNePVNqPnjxNHjWN+a/FcZ5on74QZQJtwXI5m80AAAAOc3NoOnJlbW90ZS1kc2E= email:ashuramaru@tenjin-dk.com id:ashuramaru@unsigned-int32"
         ### --- ecdsa-sk --- ###
@@ -75,7 +103,13 @@
       home = "/Users/meanrin";
       description = "Alex";
       initialHashedPassword = "";
-      extraGroups = ["meanrin" "wheel" "docker" "podman" "minecraft"];
+      extraGroups = [
+        "meanrin"
+        "wheel"
+        "docker"
+        "podman"
+        "minecraft"
+      ];
       openssh.authorizedKeys.keys = [
         "sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBCzoNOzhhF9uYDu7CbuzVRJ2K6dClXLrEoJrQvIYjnxHTBMqKuByi9M2HEmkpGO+a3H3WjeeXfqjH2CwZJ97jmIAAAAEc3NoOg== meanrin@outlook.com"
       ];
@@ -85,7 +119,13 @@
       home = "/Users/fumono";
       description = "Fumono";
       initialHashedPassword = "";
-      extraGroups = ["fumono" "docker" "podman" "minecraft"];
+      extraGroups = [
+        "fumono"
+        "docker"
+        "podman"
+        "minecraft"
+        "wheel"
+      ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHBeBj6thLiVFNGZI1NuTHKIPvh332Szad2zsgjdzhR mc-server"
       ];
@@ -95,7 +135,14 @@
       isNormalUser = true;
       home = "/var/lib/minecraft";
       initialHashedPassword = "";
-      extraGroups = ["minecraft" "ashuramaru" "meanrin" "fumono" "docker" "nginx"];
+      extraGroups = [
+        "minecraft"
+        "ashuramaru"
+        "meanrin"
+        "fumono"
+        "docker"
+        "nginx"
+      ];
       openssh.authorizedKeys.keys = [
         ### --- marie --- ###
         ### --- ecdsa-sk --- ###
@@ -136,7 +183,10 @@
       home = "/Users/android";
       description = "Android";
       initialHashedPassword = "";
-      extraGroups = ["podman" "docker"];
+      extraGroups = [
+        "podman"
+        "docker"
+      ];
       openssh.authorizedKeys.keys = [
         # ashuramaru
         "sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBNR1p1OviZgAkv5xQ10NTLOusPT8pQUG2qCTpO3AhmxaZM2mWNePVNqPnjxNHjWN+a/FcZ5on74QZQJtwXI5m80AAAAOc3NoOnJlbW90ZS1kc2E= email:ashuramaru@tenjin-dk.com id:ashuramaru@unsigned-int32"

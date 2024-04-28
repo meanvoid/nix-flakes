@@ -33,9 +33,7 @@ in {
       dates = "weekly";
     };
   };
-  environment.systemPackages = with pkgs; [
-    distrobox
-  ];
+  environment.systemPackages = with pkgs; [ distrobox ];
   users.groups = {
     docker.members = admins;
     podman.members = admins;

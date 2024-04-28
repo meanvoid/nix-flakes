@@ -16,20 +16,38 @@
   path,
   vscode-server,
   ...
-}: let
+}:
+let
   systems = import ./mkSystemConfig.nix {
-    inherit lib inputs self nixpkgs nixpkgs-23_11 darwin meanvoid-overlay nur agenix;
-    inherit home-manager flatpaks aagl spicetify-nix hyprland;
+    inherit
+      lib
+      inputs
+      self
+      nixpkgs
+      nixpkgs-23_11
+      darwin
+      meanvoid-overlay
+      nur
+      agenix
+      ;
+    inherit
+      home-manager
+      flatpaks
+      aagl
+      spicetify-nix
+      hyprland
+      ;
     inherit path vscode-server;
   };
   inherit (systems) mkSystemConfig;
-in {
+in
+{
   signed-int16 = mkSystemConfig.linux {
     hostName = "signed-int16";
     system = "x86_64-linux";
     useHomeManager = true;
     useFlatpak = true;
-    users = ["reisen"];
+    users = [ "reisen" ];
   };
   unsigned-int32 = mkSystemConfig.linux {
     hostName = "unsigned-int32";

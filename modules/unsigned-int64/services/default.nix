@@ -9,4 +9,6 @@
   ./jellyfin.nix
   ./torrent.nix
   ./misc.nix
+  ./cvat.nix
+  ./ankisync.nix
 ]

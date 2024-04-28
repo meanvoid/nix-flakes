@@ -1,44 +1,59 @@
+{ pkgs, path, ... }:
 {
-  lib,
-  config,
-  pkgs,
-  darwin,
-  users,
-  path,
-  ...
-}: {
-  imports =
-    [
-      (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
-    ]
-    ++ (import ./programs)
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
-  # ++ (import (path + /modules/shared/home/overlays));
+  imports = [
+    (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
+  ] ++ (import ./programs) ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
   home = {
-    packages = with pkgs; [
-      # Make macos useful
-      alt-tab-macos
-      rectangle
-      iina # frontend for ffmpeg
-      qbittorrent
-      # Audio
-      audacity
+    packages =
+      with pkgs;
+      [
+        # Make macos useful
+        alt-tab-macos
+        rectangle
+        iina # frontend for ffmpeg
+        qbittorrent
+        # Audio
+        audacity
 
-      # Graphics
-      gimp
-      inkscape
-      # blender #todo: add later overlay for x86_64-darwin apps
+        # Graphics
+        gimp
+        inkscape
+        # Graphics
+        gimp
+        inkscape
 
-      # Games
-      prismlauncher-unwrapped
-      chiaki # Playstation RemotePlay but FOSS
+        # Games
+        (chiaki.overrideAttrs (prev: {
+          installPhase = ''
+            mkdir -p "$out/Applications"
+            cp -ar "${pkgs.chiaki}/bin/chiaki.app" "$out/Applications"
+          '';
+        })) # Playstation RemotePlay but FOSS
 
-      yubikey-manager
+        yubikey-manager
+        thefuck
+        yt-dlp
 
-      # Misc
-      thefuck
-      yt-dlp
-    ];
+        ### --- Le Programming --- ###
+        # .NET
+        (
+          with dotnetCorePackages;
+          combinePackages [
+            sdk_6_0
+            sdk_7_0
+            sdk_8_0
+          ]
+        )
+        mono
+        powershell
+        (nodejs.override {
+          enableNpm = true;
+          python3 = python311;
+        })
+        sass
+        deno
+      ]
+      ++ (with pkgs.jetbrains; [ rider ]);
     stateVersion = "24.05";
   };
 }

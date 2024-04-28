@@ -1,11 +1,5 @@
+{ path, ... }:
 {
-  lib,
-  config,
-  pkgs,
-  agenix,
-  path,
-  ...
-}: {
   age.secrets = {
     wireguard-server.file = path + /secrets/wireguard-server.age;
     wireguard0-server.file = path + /secrets/wireguard0-server.age;

@@ -1,12 +1,10 @@
 {
-  lib,
   inputs,
-  config,
   pkgs,
   path,
-  hostname,
   ...
-}: {
+}:
+{
   imports =
     [
       ./services/easyeffects.nix
@@ -58,6 +56,7 @@
         mullvad
 
         ### --- Games --- ###
+        chiaki
         goverlay
         mangohud
         heroic
@@ -81,23 +80,23 @@
         duckstation
         pcsx2
         ppsspp
-        #! fails to build
+        #! failing to build on the unstable branch
         # rpcs3
 
         # Minecraft
         prismlauncher-qt5
         ### --- Games --- ###
 
-        # Python
         android-studio
-        # .NET
         dotnetPackages.Nuget
-        (with dotnetCorePackages;
+        (
+          with dotnetCorePackages;
           combinePackages [
             sdk_6_0
             sdk_7_0
             sdk_8_0
-          ])
+          ]
+        )
         mono
         powershell
         (nodejs.override {
@@ -119,11 +118,14 @@
         yt-dlp
       ])
       ++ (with pkgs.jetbrains; [
-        (plugins.addPlugins rider ["python-community-edition" "nixidea"])
+        idea-community
+        (plugins.addPlugins rider [
+          "python-community-edition"
+          "nixidea"
+        ])
       ])
-      ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [
-        anime-cursors.marisa
-      ]);
+      ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [ anime-cursors.marisa ])
+      ++ (with inputs.nixpkgs-23_11.legacyPackages.${pkgs.system}; [ rpcs3 ]);
     stateVersion = "24.05";
   };
   programs.rbw = {

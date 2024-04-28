@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+_: {
   services.hardware.openrgb = {
     enable = true;
     motherboard = "amd";

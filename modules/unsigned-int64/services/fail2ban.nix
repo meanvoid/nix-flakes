@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+_: {
   services.fail2ban = {
     enable = false;
     maxretry = 3;

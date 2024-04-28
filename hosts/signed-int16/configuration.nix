@@ -1,23 +1,14 @@
-{
-  lib,
-  inputs,
-  config,
-  pkgs,
-  agenix,
-  aagl,
-  hostname,
-  users,
-  path,
-  nur,
-  vscode-server,
-  ...
-}: let
-  importModule = moduleName: let
-    dir = path + "/modules/${hostname}";
-  in
+{ hostname, path, ... }:
+let
+  importModule =
+    moduleName:
+    let
+      dir = path + "/modules/${hostname}";
+    in
     import (dir + "/${moduleName}");
   hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
-in {
+in
+{
   imports =
     [
       ### ----------------ESSENTIAL------------------- ###
@@ -53,7 +44,7 @@ in {
   time.timeZone = "Asia/Baku";
   i18n = {
     defaultLocale = "en_US.utf8";
-    supportedLocales = ["all"];
+    supportedLocales = [ "all" ];
   };
 
   system.stateVersion = "24.05";

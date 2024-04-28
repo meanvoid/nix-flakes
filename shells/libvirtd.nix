@@ -1,26 +1,25 @@
+{ pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}: {
   # Boot configuration
   # boot.kernelParams = [ "video=efifb:off" ];
   # boot.kernelModules = [ "vfio-pci" ];
 
   systemd.services.libvirtd = {
-    path = let
-      env = pkgs.buildEnv {
-        name = "qemu-hook-env";
-        paths = with pkgs; [
-          bash
-          libvirt
-          kmod
-          systemd
-          ripgrep
-          sd
-        ];
-      };
-    in [env];
+    path =
+      let
+        env = pkgs.buildEnv {
+          name = "qemu-hook-env";
+          paths = with pkgs; [
+            bash
+            libvirt
+            kmod
+            systemd
+            ripgrep
+            sd
+          ];
+        };
+      in
+      [ env ];
   };
 
   # Link hooks to the correct directory

@@ -1,26 +1,21 @@
 {
-  lib,
   inputs,
-  config,
   pkgs,
-  agenix,
-  aagl,
   hostname,
-  users,
   path,
-  meanvoid-overlay,
-  nur,
-  vscode-server,
   ...
-}: let
-  importModule = moduleName: let
-    dir = path + "/modules/${hostname}";
-  in
+}:
+let
+  importModule =
+    moduleName:
+    let
+      dir = path + "/modules/${hostname}";
+    in
     import (dir + "/${moduleName}");
 
   hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
-  cert = config.age.secrets."ca.crt".path;
-in {
+in
+{
   imports =
     [
       ### ----------------ESSENTIAL------------------- ###
@@ -71,9 +66,7 @@ in {
     };
     polkit = {
       enable = true;
-      adminIdentities = [
-        "unix-group:wheel"
-      ];
+      adminIdentities = [ "unix-group:wheel" ];
     };
     pam = {
       services = {
@@ -131,10 +124,10 @@ in {
     '';
   };
 
-  time.timeZone = "Europe/Warsaw";
+  time.timeZone = "Europe/Kyiv";
   i18n = {
     defaultLocale = "en_US.utf8";
-    supportedLocales = ["all"];
+    supportedLocales = [ "all" ];
     inputMethod = {
       enabled = "ibus";
       ibus.engines = with pkgs.ibus-engines; [

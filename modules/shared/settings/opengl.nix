@@ -1,9 +1,5 @@
+{ pkgs, ... }:
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -24,7 +20,5 @@
       libvdpau-va-gl
     ];
   };
-  systemd.tmpfiles.rules = with pkgs; [
-    "L+    /opt/rocm/hip   -    -    -     -    ${rocmPackages.clr}"
-  ];
+  systemd.tmpfiles.rules = with pkgs; [ "L+    /opt/rocm/hip   -    -    -     -    ${rocmPackages.clr}" ];
 }

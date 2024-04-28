@@ -1,13 +1,12 @@
+{ pkgs, ... }:
 {
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
   console = {
     earlySetup = true;
     keyMap = "us";
-    packages = with pkgs; [tamzen terminus_font];
+    packages = with pkgs; [
+      tamzen
+      terminus_font
+    ];
   };
 
   sound = {
@@ -114,7 +113,10 @@
         };
         url = {
           "https://github.com/" = {
-            insteadOf = ["gh:" "github:"];
+            insteadOf = [
+              "gh:"
+              "github:"
+            ];
           };
         };
       };

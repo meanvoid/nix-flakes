@@ -1,14 +1,8 @@
+{ pkgs, path, ... }:
 {
-  lib,
-  inputs,
-  config,
-  pkgs,
-  path,
-  ...
-}: {
-  imports =
-    [(path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)]
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
+  imports = [
+    (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
+  ] ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
   home = {
     username = "ashuramaru";
     packages = with pkgs; [

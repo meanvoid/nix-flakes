@@ -1,8 +1,5 @@
+{ pkgs, ... }:
 {
-  lib,
-  pkgs,
-  ...
-}: {
   services.xserver = {
     enable = true;
     displayManager.sddm = {

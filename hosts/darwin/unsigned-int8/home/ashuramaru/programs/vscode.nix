@@ -1,15 +1,13 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: let
+{ inputs, pkgs, ... }:
+let
   inherit (inputs.nix-vscode-extensions.extensions.${pkgs.system}) vscode-marketplace;
-in {
+in
+{
   home.packages = with pkgs; [
     python3Full
     ruby
     go
-    jdk
+    # jdk
     rustup
     nil
     alejandra
@@ -56,7 +54,7 @@ in {
         "serverPath" = "nil";
         "serverSettings.nil" = {
           "formatting" = {
-            "command" = ["alejandra"];
+            "command" = [ "alejandra" ];
           };
           "nix" = {
             "binary" = "nix";
@@ -113,7 +111,7 @@ in {
       christian-kohler.path-intellisense # file name intellisense
       tamasfe.even-better-toml # toml support
       editorconfig.editorconfig # editorconfig support
-      github.vscode-pull-request-github #
+      github.vscode-pull-request-github
       donjayamanne.githistory # git history
       eamodio.gitlens # gitlens
       mikestead.dotenv # dotenv
