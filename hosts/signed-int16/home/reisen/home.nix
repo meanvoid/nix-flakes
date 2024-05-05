@@ -28,6 +28,7 @@
       brasero
       ardour
       natron
+      handbrake
 
       # Dev
       lazygit
