@@ -29,12 +29,7 @@ in
       enable = true;
       unmanaged = [ "interface-name:ve-*" ];
     };
-    firewall = {
-      enable = true;
-      allowPing = true;
-      allowedUDPPorts = [ ];
-      allowedTCPPorts = [ ];
-    };
+    firewall.enable = true;
   };
   services.resolved.enable = true;
   services.openssh = {
@@ -55,8 +50,8 @@ in
     ];
   };
   age.secrets = {
-    wireguard-client.file = path + /secrets/wireguard-client.age;
-    wireguard-shared.file = path + /secrets/wireguard-shared.age;
+    wireguard-client_fumono.file = path + /secrets/wireguard-client_fumono.age;
+    wireguard-shared_fumono.file = path + /secrets/wireguard-shared_fumono.age;
   };
   services.wg-netmanager.enable = true;
   networking.wireguard.enable = true;
