@@ -1,16 +1,16 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{ config, pkgs, ... }:
+let
   private = config.age.secrets.wireguard-server.path;
   preshared = config.age.secrets.wireguard-shared.path;
   fumono = config.age.secrets.wireguard-shared_fumono.path;
-in {
-  imports = [./secrets.nix];
+in
+{
+  imports = [ ./secrets.nix ];
   networking.wg-quick.interfaces.wireguard1 = {
-    address = ["172.16.31.1/24" "fd17:216b:31bc:1::1/64"];
+    address = [
+      "172.16.31.1/24"
+      "fd17:216b:31bc:1::1/64"
+    ];
     listenPort = 51280;
     privateKeyFile = private;
     postUp = ''
@@ -30,31 +30,46 @@ in {
       {
         publicKey = "iH6vtvDU/6TKA7unZAd0xTeiaIcc8a2bnXEiqZOYH2g=";
         presharedKeyFile = preshared;
-        allowedIPs = ["172.16.31.2/32" "fd17:216b:31bc:1::2/128"];
+        allowedIPs = [
+          "172.16.31.2/32"
+          "fd17:216b:31bc:1::2/128"
+        ];
       }
       # root@unsigned-int32
       {
-        publicKey = "3zRz0KCrOUHWaKT4N+UeUDOtc4gIHnFAmxHiy/qdAlc=";
+        publicKey = "iu5l4P1Vo9Lw8SZs5MmNhfR7BP72KdPlDXP9Yq08ijw=";
         presharedKeyFile = preshared;
-        allowedIPs = ["172.16.31.3/32" "fd17:216b:31bc:1::3/128"];
+        allowedIPs = [
+          "172.16.31.3/32"
+          "fd17:216b:31bc:1::3/128"
+        ];
       }
       # root@unsigned-int8
       {
         publicKey = "znpZ26tP+y+aF/LoOT4TyLXqBNt9wuZKK0ktnk18GHA=";
         presharedKeyFile = preshared;
-        allowedIPs = ["172.16.31.4/32" "fd17:216b:31bc:1::4/128"];
+        allowedIPs = [
+          "172.16.31.4/32"
+          "fd17:216b:31bc:1::4/128"
+        ];
       }
       # @pixel7pro
       {
         publicKey = "WxQNVRD5zwzal95wUuSMZbx8Nl0cvKoa/5ICdTYDBnw=";
         presharedKeyFile = preshared;
-        allowedIPs = ["172.16.31.5/32" "fd17:216b:31bc:1::5/128"];
+        allowedIPs = [
+          "172.16.31.5/32"
+          "fd17:216b:31bc:1::5/128"
+        ];
       }
       {
         # root@v1
-        publicKey = "TX+IdvAXyVV1DtbcyBtPbavney5uMg9mksxXWjoYO3A=";
-        presharedKeyFile = preshared;
-        allowedIPs = ["172.16.31.10/32" "fd17:216b:31bc:1::10/128"];
+        publicKey = "4WCatIaSouTOmlpVjHWsB3zZN6ikStYGyg6esqejhQo=";
+        presharedKeyFile = fumono;
+        allowedIPs = [
+          "172.16.31.10/32"
+          "fd17:216b:31bc:1::10/128"
+        ];
       }
     ];
   };
