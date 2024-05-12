@@ -64,8 +64,8 @@ in
       }
       {
         # root@v1
-        publicKey = "TX+IdvAXyVV1DtbcyBtPbavney5uMg9mksxXWjoYO3A=";
-        presharedKeyFile = preshared;
+        publicKey = "4WCatIaSouTOmlpVjHWsB3zZN6ikStYGyg6esqejhQo=";
+        presharedKeyFile = fumono;
         allowedIPs = [
           "172.16.31.10/32"
           "fd17:216b:31bc:1::10/128"
