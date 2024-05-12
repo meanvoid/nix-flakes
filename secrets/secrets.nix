@@ -2,9 +2,10 @@ let
   users = {
     ashuramaru = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKQMN46+uS3zGbh+OnyPfmh16YwQtWJ9RuFgILnmLRWx";
     meanrin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFS10V6yIxDfxjepo1jmYam1qQ67NMpkPeUFDJokhOJj";
+    reisen = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHBeBj6thLiVFNGZI1NuTHKIPvh332Szad2zsgjdzhR";
   };
   systems = {
-    signed-int16 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHBeBj6thLiVFNGZI1NuTHKIPvh332Szad2zsgjdzhR";
+    signed-int16 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJQO7pHms4qW4zhWF7TxCP+ycOhfQ/8H6zgku7WHrols root@signed-int16";
     unsigned-int32 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJQV9RnBPh3xOoh7fhaxS74YfgTH6BgqV9zsTSVdiWDI root@unsigned-int32";
     unsigned-int64 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKdiVn6zgj+VGj3BIGiwMFH3AumoGSCzaVukcbQWVz1K root@unsigned-int64";
   };
