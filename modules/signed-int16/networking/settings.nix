@@ -29,7 +29,12 @@ in
       enable = true;
       unmanaged = [ "interface-name:ve-*" ];
     };
-    firewall.enable = true;
+    firewall = {
+      enable = true;
+      allowPing = true;
+      allowedUDPPorts = [ ];
+      allowedTCPPorts = [ ];
+    };
   };
   services.resolved.enable = true;
   services.openssh = {
@@ -44,7 +49,7 @@ in
     };
     listenAddresses = [
       {
-        addr = "192.168.1.0";
+        addr = "192.168.1.70";
         port = 22;
       }
     ];
