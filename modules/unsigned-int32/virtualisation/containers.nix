@@ -6,7 +6,6 @@ let
   ];
 in
 {
-  virtualisation.containers.cdi.dynamic.nvidia.enable = true;
   virtualisation.docker = {
     enable = true;
     enableNvidia = true;

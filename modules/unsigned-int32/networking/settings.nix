@@ -1,6 +1,7 @@
 {
-  config,
   pkgs,
+  config,
+  hostname,
   path,
   ...
 }:
@@ -11,7 +12,7 @@ let
 in
 {
   networking = {
-    hostName = "unsigned-int32";
+    hostName = "${hostname}";
     hostId = "ab5d64f5";
     interfaces = {
       "enp57s0" = {
@@ -84,7 +85,6 @@ in
       }
     ];
   };
-
   age.secrets = {
     wireguard-client.file = path + /secrets/wireguard-client.age;
     wireguard-shared.file = path + /secrets/wireguard-shared.age;

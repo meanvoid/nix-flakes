@@ -17,22 +17,18 @@
   programs.ssh.askPassword = lib.mkForce "${pkgs.gnome.seahorse}/libexec/seahorse/ssh-askpass}";
 
   services.xserver = {
-    displayManager = {
-      defaultSession = "gnome";
-    };
     displayManager.gdm = {
       enable = true;
       debug = true;
       autoSuspend = true;
     };
-
     desktopManager.gnome.enable = true;
-
-    libinput = {
-      enable = true;
-      mouse.accelProfile = "flat";
-      mouse.accelSpeed = "0";
-    };
+  };
+  services.displayManager.defaultSession = "gnome";
+  services.libinput = {
+    enable = true;
+    mouse.accelProfile = "flat";
+    mouse.accelSpeed = "0";
   };
   xdg.portal = {
     enable = true;
