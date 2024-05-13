@@ -10,7 +10,7 @@
 
     ### --- System --- ###
     ### --- nixpkgs channels --- ###
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-23_11.url = "github:nixos/nixpkgs/nixos-23.11-small";
     ### --- nixpkgs channels --- ###
     darwin.url = "github:lnl7/nix-darwin/master";
@@ -19,6 +19,7 @@
 
     ### --- ESSENTIAL system modules --- ###
     agenix.url = "github:ryantm/agenix";
+    sops-nix.url = "github:Mic92/sops-nix";
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
     ### --- ESSENTIAL system modules --- ###
 
@@ -77,6 +78,7 @@
       darwin,
       home-manager,
       # esential modules
+      sops-nix,
       agenix,
       flatpaks,
       nur,
@@ -167,7 +169,7 @@
             inherit darwin;
 
             inherit home-manager path;
-            inherit nur agenix;
+            inherit nur agenix sops-nix;
             inherit meanvoid-overlay hyprland;
             inherit flatpaks aagl spicetify-nix;
             inherit vscode-server;

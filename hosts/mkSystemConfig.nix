@@ -3,11 +3,12 @@
   inputs,
   nixpkgs,
   nixpkgs-23_11,
+  home-manager,
   darwin,
   meanvoid-overlay,
   nur,
+  sops-nix,
   agenix,
-  home-manager,
   flatpaks,
   aagl,
   spicetify-nix,
@@ -57,6 +58,7 @@ in
         hostname = hostName;
         defaults = [
           { config = cfg; }
+          sops-nix.nixosModules.sops
           agenix.nixosModules.default
         ] ++ modules;
         sharedModules = lib.flatten [

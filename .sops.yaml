@@ -1,0 +1,11 @@
+keys:
+  - &unsigned-int32 409D201E94508732A49ED0FC6BDAF874006808DF
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - pgp:
+      - *unsigned-int32
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - pgp:
+      - *unsigned-int32
