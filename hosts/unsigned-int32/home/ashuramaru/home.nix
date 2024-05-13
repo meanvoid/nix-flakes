@@ -22,110 +22,117 @@
       gtk.enable = true;
       x11.enable = true;
     };
-    packages =
-      (with pkgs; [
-        anki
+    packages = builtins.attrValues {
+
+      # Multimedia
+      inherit (pkgs)
+        anki # Flashcard app
         media-downloader
         imgbrd-grabber
+        yt-dlp
         qbittorrent
         nicotine-plus
-        # Audio
-        tenacity
-        pavucontrol
-        helvum
+        tenacity # Audio recording/editing
+        pavucontrol # PulseAudio volume control
+        helvum # Font manager
+        ;
 
-        # Working with graphics
-        krita
-        gimp
-        inkscape
-        godot3
-        kdenlive
-        obs-studio
-        blender
+      # Graphics & Design
+      inherit (pkgs)
+        krita # Digital painting
+        gimp # Image editing
+        inkscape # Vector graphics
+        godot3 # Game engine
+        kdenlive # Video editing
+        obs-studio # Streaming and recording
+        blender # 3D creation suite
+        ;
 
-        # Productivity
-        libreoffice-fresh
+      # Productivity
+      inherit (pkgs) libreoffice-fresh;
 
-        # Socials
-        tdesktop
-        element-desktop
+      # Social & Communication
+      inherit (pkgs)
+        tdesktop # Telegram desktop
+        element-desktop # Matrix client
+        ;
 
+      # Utilities
+      inherit (pkgs)
+        ani-cli # Anime downloader
+        thefuck # Correcting previous command
+        mullvad # VPN service
+        ;
+
+      # Gaming
+      inherit (pkgs)
         # Utils
-        ani-cli
-        thefuck
-        mullvad
+        mangohud # Vulkan overlay
+        goverlay # Game overlay for Linux
 
-        ### --- Games --- ###
-        chiaki
-        goverlay
-        mangohud
-        heroic
-        gogdl
-        # Xbox
-        xemu
-
-        # pc98
-        np2kai
-
-        # Sega
-        flycast
+        # Misc
+        xemu # Xbox emulator
+        np2kai # PC-98 emulator
+        flycast # Sega Dreamcast emulator
+        prismlauncher # Minecraft launcher
 
         # Nintendo
-        mgba
-        dolphin-emu
-        cemu
-        ryujinx
+        mgba # Game Boy Advance emulator
+        dolphin-emu # GameCube and Wii emulator
+        cemu # Wii U emulator
+        ryujinx # Nintendo Switch emulator
 
-        # Sony
-        duckstation
-        pcsx2
-        ppsspp
-        #! failing to build on the unstable branch
-        # rpcs3
+        # PlayStation
+        chiaki # PS4 Remote Play
+        duckstation # PlayStation 1 emulator
+        pcsx2 # PlayStation 2 emulator
+        ppsspp # PlayStation Portable emulator
+        rpcs3 # PlayStation 3 emulator
 
-        # Minecraft
-        prismlauncher-qt5
-        ### --- Games --- ###
+        # Stores
+        heroic # Epic Games Store client
+        gogdl # GOG Galaxy downloader
+        ;
 
-        android-studio
-        dotnetPackages.Nuget
-        (
-          with dotnetCorePackages;
-          combinePackages [
-            sdk_6_0
-            sdk_7_0
-            sdk_8_0
-          ]
-        )
-        mono
-        powershell
-        (nodejs.override {
-          enableNpm = true;
-          python3 = python311;
-        })
-        sass
-        deno
-        ### --- Utils --- ###
-        (cinnamon.nemo-with-extensions.override {
-          extensions = [
-            nemo-qml-plugin-dbus
-            cinnamon.nemo-python
-            cinnamon.nemo-emblems
-            cinnamon.nemo-fileroller
-            cinnamon.folder-color-switcher
-          ];
-        })
-        yt-dlp
-      ])
-      ++ (with pkgs.jetbrains; [
-        idea-community
-        (plugins.addPlugins rider [
-          "python-community-edition"
-          "nixidea"
-        ])
-      ])
-      ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [ anime-cursors.marisa ])
-      ++ (with inputs.nixpkgs-23_11.legacyPackages.${pkgs.system}; [ rpcs3 ]);
+      # File Management & Desktop Enhancements
+      cinnamon = pkgs.cinnamon.nemo-with-extensions.override {
+        extensions = [
+          pkgs.nemo-qml-plugin-dbus
+          pkgs.cinnamon.nemo-python
+          pkgs.cinnamon.nemo-emblems
+          pkgs.cinnamon.nemo-fileroller
+          pkgs.cinnamon.folder-color-switcher
+        ];
+      };
+
+      # Development Tools
+      inherit (pkgs) android-studio;
+      inherit (pkgs) mono powershell;
+      inherit (pkgs) sass deno;
+      inherit (pkgs.jetbrains) idea-community;
+      dotnetCorePackages = pkgs.dotnetCorePackages.combinePackages [
+        pkgs.dotnetCorePackages.sdk_6_0
+        pkgs.dotnetCorePackages.sdk_7_0
+        pkgs.dotnetCorePackages.sdk_8_0
+      ];
+      nodejs = pkgs.nodejs.override {
+        enableNpm = true;
+        python3 = pkgs.python311;
+      };
+
+      riderWithPlugins = pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider [
+        "python-community-edition"
+        "nixidea"
+        "csv-editor"
+        "ini"
+      ];
+      clionWithPlugins = pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.clion [
+        "rust"
+        "nixidea"
+        "csv-editor"
+        "ini"
+      ];
+    };
     stateVersion = "24.05";
   };
   programs.rbw = {
