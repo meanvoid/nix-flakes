@@ -14,7 +14,7 @@
   services.nextcloud = {
     enable = true;
     database.createLocally = true;
-    package = pkgs.nextcloud28;
+    package = pkgs.nextcloud29;
     extraApps = with config.services.nextcloud.package.packages.apps; {
       # admin
       inherit notify_push twofactor_webauthn twofactor_nextcloud_notification;

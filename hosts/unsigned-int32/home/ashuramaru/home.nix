@@ -53,8 +53,10 @@
 
       # Social & Communication
       inherit (pkgs)
+        signal-desktop # Signal desktop client
         tdesktop # Telegram desktop
         element-desktop # Matrix client
+        dino # Jabber client
         ;
 
       # Utilities

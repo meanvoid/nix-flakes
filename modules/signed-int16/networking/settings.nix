@@ -6,8 +6,8 @@
   ...
 }:
 let
-  private = config.age.secrets.wireguard-client_fumono.path;
-  shared = config.age.secrets.wireguard-shared_fumono.path;
+  private = config.age.secrets."wireguard-client_fumono".path;
+  shared = config.age.secrets."wireguard-shared_fumono".path;
 in
 {
   networking = {
@@ -50,8 +50,8 @@ in
     ];
   };
   age.secrets = {
-    wireguard-client_fumono.file = path + /secrets/wireguard-client_fumono.age;
-    wireguard-shared_fumono.file = path + /secrets/wireguard-shared_fumono.age;
+    "wireguard-client_fumono".file = path + /secrets/wireguard-client_fumono.age;
+    "wireguard-shared_fumono".file = path + /secrets/wireguard-shared_fumono.age;
   };
   services.wg-netmanager.enable = true;
   networking.wireguard.enable = true;

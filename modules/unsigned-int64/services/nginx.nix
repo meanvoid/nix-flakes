@@ -103,7 +103,7 @@
       enableACME = true;
       basicAuthFile = config.age.secrets."minecraft.htpaswd".path;
       locations."/" = {
-        root = "/var/lib/minecraft/static";
+        root = "/var/lib/www/minecraft/static";
         extraConfig = ''
           auth_basic off;
           autoindex on;

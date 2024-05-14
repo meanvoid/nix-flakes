@@ -5,16 +5,18 @@
   ] ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
   home = {
     username = "ashuramaru";
-    packages = with pkgs; [
+    packages = builtins.attrValues {
       # Utils
-      ani-cli
-      thefuck
+      inherit (pkgs)
+        ani-cli
+        thefuck
 
-      # Python
-      python311Full
-      conda
-      android-studio
-    ];
+        # Python
+        python311Full
+        conda
+        android-studio
+        ;
+    };
     stateVersion = "24.05";
   };
 }

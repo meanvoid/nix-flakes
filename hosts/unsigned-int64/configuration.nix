@@ -36,15 +36,7 @@ in
     owner = "root";
     group = "root";
   };
-
-  environment = {
-    shells = with pkgs; [
-      zsh
-      bash
-      fish
-    ];
-  };
-
+  environment.shells = builtins.attrValues { inherit (pkgs) zsh bash fish; };
   security = {
     sudo = {
       wheelNeedsPassword = false;

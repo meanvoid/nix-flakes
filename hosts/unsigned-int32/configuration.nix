@@ -111,14 +111,16 @@ in
   };
   services.yubikey-agent.enable = true;
   environment = {
-    systemPackages = with pkgs; [
-      # yubico
-      gpgme
-      yubioath-flutter
-      xorg.xhost
-      inputs.nix-software-center.packages.${system}.nix-software-center
-      inputs.nixos-conf-editor.packages.${system}.nixos-conf-editor
-    ];
+    systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        # yubico
+        gpgme
+        yubioath-flutter
+        ;
+      inherit (pkgs.xorg) xhost;
+      inherit (inputs.nix-software-center.packages.${pkgs.system}) nix-software-center;
+      inherit (inputs.nixos-conf-editor.packages.${pkgs.system}) nixos-conf-editor;
+    };
     shellInit = ''
       [ -n "$DISPLAY" ] && xhost +si:localuser:$USER || true
     '';
@@ -130,10 +132,7 @@ in
     supportedLocales = [ "all" ];
     inputMethod = {
       enabled = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [
-        anthy
-        mozc
-      ];
+      ibus.engines = builtins.attrValues { inherit (pkgs.ibus-engines) anthy; };
     };
   };
   nix.settings = {
