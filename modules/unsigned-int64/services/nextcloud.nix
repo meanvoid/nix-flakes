@@ -24,7 +24,7 @@
 
       # productivity
       inherit mail groupfolders;
-      inherit tasks polls forms;
+      inherit polls forms;
       inherit previewgenerator onlyoffice spreed;
 
       # misc
