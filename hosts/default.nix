@@ -3,7 +3,6 @@
   inputs,
   self,
   nixpkgs,
-  nixpkgs-23_11,
   home-manager,
   darwin,
   meanvoid-overlay,
@@ -25,7 +24,7 @@ let
     inherit inputs self path;
 
     # pkgs
-    inherit nixpkgs nixpkgs-23_11 darwin;
+    inherit nixpkgs darwin;
     inherit home-manager nur;
 
     # essential

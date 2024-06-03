@@ -10,8 +10,7 @@
 
     ### --- System --- ###
     ### --- nixpkgs channels --- ###
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-23_11.url = "github:nixos/nixpkgs/nixos-23.11-small";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     ### --- nixpkgs channels --- ###
     darwin.url = "github:lnl7/nix-darwin/master";
     home-manager.url = "github:nix-community/home-manager";
@@ -55,7 +54,7 @@
     aagl.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
-    nixified-ai.inputs.nixpkgs.follows = "nixpkgs-23_11";
+    nixified-ai.inputs.nixpkgs.follows = "";
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     meanvoid-overlay.inputs.nixpkgs.follows = "nixpkgs";
@@ -73,7 +72,6 @@
       pre-commit-hooks,
       # nixpkgs
       nixpkgs,
-      nixpkgs-23_11,
       # system
       darwin,
       home-manager,
@@ -165,7 +163,7 @@
             inherit (self) output;
 
             inherit inputs self;
-            inherit nixpkgs nixpkgs-23_11;
+            inherit nixpkgs;
             inherit darwin;
 
             inherit home-manager path;

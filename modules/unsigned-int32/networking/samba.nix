@@ -1,7 +1,7 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
-  nixpkgs.overlays = [ (self: super: { sambaFull = inputs.nixpkgs-23_11.legacyPackages.${pkgs.system}.sambaFull; }) ];
-  # make shares visible for windows 10 clients
+  # nixpkgs.overlays = [ (self: super: { sambaFull = inputs.nixpkgs-23_11.legacyPackages.${pkgs.system}.sambaFull; }) ];
+  # # make shares visible for windows 10 clients
   services = {
     samba-wsdd = {
       enable = true;

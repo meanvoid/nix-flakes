@@ -2,7 +2,6 @@
   lib,
   inputs,
   nixpkgs,
-  nixpkgs-23_11,
   home-manager,
   darwin,
   meanvoid-overlay,
@@ -23,7 +22,6 @@ let
       lib
       inputs
       nixpkgs
-      nixpkgs-23_11
       darwin
       nur
       ;
@@ -131,7 +129,7 @@ in
             users
             path
             ;
-          inherit darwin nixpkgs nixpkgs-23_11;
+          inherit darwin nixpkgs;
           host = {
             inherit hostName;
           };

@@ -2,7 +2,6 @@
   inputs,
   self,
   nixpkgs,
-  nixpkgs-23_11,
   path,
   darwin,
   home-manager,
@@ -23,7 +22,6 @@ let
       inputs
       self
       nixpkgs
-      nixpkgs-23_11
       darwin
       ;
     inherit home-manager path;

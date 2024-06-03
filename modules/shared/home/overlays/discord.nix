@@ -50,5 +50,5 @@ in
     pkgs.discord-rpc
     pkgs.discord-gamesdk
   ];
-  services.arrpc.enable = true;
+  # services.arrpc.enable = true;
 }
