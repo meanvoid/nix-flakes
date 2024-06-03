@@ -8,6 +8,7 @@
   nur,
   hyprland,
   agenix,
+  sops-nix,
   flatpaks,
   aagl,
   spicetify-nix,
@@ -29,6 +30,7 @@ let
       nur
       hyprland
       agenix
+      sops-nix
       flatpaks
       aagl
       spicetify-nix

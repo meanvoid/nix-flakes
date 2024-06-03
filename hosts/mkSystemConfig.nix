@@ -31,7 +31,7 @@ let
   inherit (homeManager) homeManagerModules;
   cfg = {
     nixpkgs.config = {
-      allowUnfree = lib.mkDefault true;
+      allowUnfree = true;
     };
   };
 in
