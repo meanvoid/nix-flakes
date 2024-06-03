@@ -22,6 +22,8 @@ _: {
       "iina"
       "nextcloud"
       "easy-move-plus-resize"
+      # yubico
+      "yubico-authenticator"
     ];
   };
 }

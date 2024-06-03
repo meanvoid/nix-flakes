@@ -4,9 +4,8 @@
     (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
   ] ++ (import ./programs) ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
   home = {
-    packages =
-      with pkgs;
-      [
+    packages = builtins.attrValues {
+      inherit (pkgs)
         # Make macos useful
         alt-tab-macos
         rectangle
@@ -18,42 +17,33 @@
         # Graphics
         gimp
         inkscape
-        # Graphics
-        gimp
-        inkscape
-
-        # Games
-        (chiaki.overrideAttrs (prev: {
-          installPhase = ''
-            mkdir -p "$out/Applications"
-            cp -ar "${pkgs.chiaki}/bin/chiaki.app" "$out/Applications"
-          '';
-        })) # Playstation RemotePlay but FOSS
 
         yubikey-manager
         thefuck
         yt-dlp
+        ;
 
-        ### --- Le Programming --- ###
-        # .NET
-        (
-          with dotnetCorePackages;
-          combinePackages [
-            sdk_6_0
-            sdk_7_0
-            sdk_8_0
-          ]
-        )
-        mono
-        powershell
-        (nodejs.override {
-          enableNpm = true;
-          python3 = python311;
-        })
-        sass
-        deno
-      ]
-      ++ (with pkgs.jetbrains; [ rider ]);
+      #! make overlay
+      # Playstation RemotePlay but FOSS
+      chiaki = pkgs.chiaki.overrideAttrs (prev: {
+        installPhase = ''
+          mkdir -p "$out/Applications"
+          cp -ar "${pkgs.chiaki}/bin/chiaki.app" "$out/Applications"
+        '';
+      });
+      inherit (pkgs) mono powershell;
+      inherit (pkgs) sass deno;
+      inherit (pkgs.jetbrains) rider clion;
+      dotnetCorePackages = pkgs.dotnetCorePackages.combinePackages [
+        pkgs.dotnetCorePackages.sdk_6_0
+        pkgs.dotnetCorePackages.sdk_7_0
+        pkgs.dotnetCorePackages.sdk_8_0
+      ];
+      nodejs = pkgs.nodejs.override {
+        enableNpm = true;
+        python3 = pkgs.python311;
+      };
+    };
     stateVersion = "24.05";
   };
 }

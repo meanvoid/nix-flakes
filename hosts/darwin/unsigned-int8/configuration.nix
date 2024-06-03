@@ -34,33 +34,35 @@ in
   };
 
   # Environment
-  environment.systemPackages = with pkgs; [
-    # Utils
-    wireguard-tools
-    coreutils
-    binutils
-    openssh
-    git
-    curl
-    wget
-    nmap
-    dig
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
+      # Utils
+      wireguard-tools
+      coreutils
+      binutils
+      openssh
+      git
+      curl
+      wget
+      nmap
+      dig
 
-    zip
-    unzip
-    rar
-    lz4
-    p7zip
+      zip
+      unzip
+      rar
+      lz4
+      p7zip
 
-    # utils
-    neofetch
-    hyfetch
+      # utils
+      neofetch
+      hyfetch
 
-    ffmpeg-full
-    imagemagick
-    mpv
-    mpd
-  ];
+      ffmpeg-full
+      imagemagick
+      mpv
+      mpd
+      ;
+  };
 
   programs.gnupg.agent = {
     enable = true;

@@ -23,7 +23,6 @@
       x11.enable = true;
     };
     packages = builtins.attrValues {
-
       # Multimedia
       inherit (pkgs)
         anki # Flashcard app
