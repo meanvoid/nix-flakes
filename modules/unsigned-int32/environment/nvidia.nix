@@ -50,10 +50,7 @@ in
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      nvidia-vaapi-driver
-      egl-wayland
-    ];
+    extraPackages = builtins.attrValues { inherit (pkgs) nvidia-vaapi-driver egl-wayland; };
   };
 
   hardware.nvidia = {
@@ -98,8 +95,8 @@ in
     enable = true;
   };
   nix.settings = {
-    max-jobs = 2;
-    cores = 12;
+    max-jobs = 3;
+    cores = 8;
     extra-sandbox-paths = [ config.programs.ccache.cacheDir ];
   };
 }

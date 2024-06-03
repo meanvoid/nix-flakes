@@ -17,12 +17,11 @@
   };
   services = {
     udev = {
-      packages = with pkgs; [
-        gnome.gnome-settings-daemon
-        gnome2.GConf
-        opentabletdriver
-        yubikey-personalization
-      ];
+      packages = builtins.attrValues {
+        inherit (pkgs.gnome) gnome-settings-daemon;
+        inherit (pkgs.gnome2) GConf;
+        inherit (pkgs) opentabletdriver yubikey-personalization;
+      };
       extraRules = ''
         # XP-Pen CT1060
         SUBSYSTEM=="hidraw", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="0932", MODE="0666"
@@ -34,7 +33,7 @@
     };
     printing = {
       enable = true;
-      drivers = with pkgs; [ gutenprintBin ];
+      drivers = [ pkgs.gutenprintBin ];
       browsing = true;
     };
     avahi = {
