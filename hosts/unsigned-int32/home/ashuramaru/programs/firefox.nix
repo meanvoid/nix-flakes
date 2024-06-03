@@ -1,6 +1,6 @@
 {
-  config,
   pkgs,
+  config,
   nur,
   ...
 }:
@@ -16,48 +16,52 @@
       settings = {
         "widget.use-xdg-desktop-portal.file-picker" = 1;
       };
-      extensions = with config.nur.repos.rycee.firefox-addons; [
-        # necessity
-        ublock-origin
-        privacy-badger
-        canvasblocker
-        mullvad
-        darkreader
-        tampermonkey
-        facebook-container
+      extensions = builtins.attrValues {
+        inherit (config.nur.repos.rycee.firefox-addons)
+          # necessity
+          ublock-origin
+          canvasblocker
+          mullvad
+          darkreader
 
-        # bypass-paywalls-clean
-        clearurls
-        user-agent-string-switcher
-        web-archives
+          tampermonkey
+          facebook-container
 
-        # devtools
-        #!!! not available
-        # angular-devtools
-        react-devtools
-        reduxdevtools
-        vue-js-devtools
+          # bypass-paywalls-clean
+          clearurls
+          user-agent-string-switcher
+          web-archives
 
-        # utils
-        multi-account-containers
-        sponsorblock
-        return-youtube-dislikes
-        video-downloadhelper
-        plasma-integration
-        stylus
-        steam-database
-        search-by-image
-        foxyproxy-standard
-        bitwarden
-        firefox-translations
-        floccus
-        tabliss
-        old-reddit-redirect
-        reddit-enhancement-suite
+          # devtools
+          angular-devtools
+          react-devtools
+          reduxdevtools
+          vue-js-devtools
 
-        # Dictionaries
-        ukrainian-dictionary
-      ];
+          # utils
+          multi-account-containers
+          sponsorblock
+          return-youtube-dislikes
+          video-downloadhelper
+          stylus
+          steam-database
+          search-by-image
+          foxyproxy-standard
+          bitwarden
+          firefox-translations
+          floccus
+          tabliss
+          old-reddit-redirect
+          reddit-enhancement-suite
+
+          # Dictionaries
+          ukrainian-dictionary
+          french-dictionary
+          dictionary-german
+          polish-dictionary
+          bulgarian-dictionary
+          ;
+      };
       search = {
         force = true;
         engines = {

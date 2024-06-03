@@ -9,12 +9,14 @@ in
     theme = spicePkgs.themes.catppuccin;
     colorScheme = "mocha";
 
-    enabledExtensions = with spicePkgs.extensions; [
-      fullAppDisplay
-      shuffle # shuffle+ (special characters are sanitized out of ext names)
-      hidePodcasts
-      copyToClipboard
-    ];
-    enabledCustomApps = with spicePkgs.apps; [ marketplace ];
+    enabledExtensions = builtins.attrValues {
+      inherit (spicePkgs.extensions)
+        fullAppDisplay
+        shuffle # shuffle+ (special characters are sanitized out of ext names)
+        hidePodcasts
+        copyToClipboard
+        ;
+    };
+    enabledCustomApps = builtins.attrValues { inherit (spicePkgs.apps) marketplace; };
   };
 }

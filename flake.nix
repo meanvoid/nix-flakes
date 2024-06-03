@@ -44,7 +44,7 @@
     nix-software-center.url = "github:snowfallorg/nix-software-center";
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
     # Games
-    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
+    aagl.url = "github:ezKEa/aagl-gtk-on-nix/release-24.05";
     nix-gaming.url = "github:fufexan/nix-gaming/master";
     ### --- Overlays and Applications --- ###
 
@@ -55,7 +55,7 @@
     aagl.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
-    nixified-ai.inputs.nixpkgs.follows = "";
+    nixified-ai.inputs.nixpkgs.follows = "nixpkgs";
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     meanvoid-overlay.inputs.nixpkgs.follows = "nixpkgs";
