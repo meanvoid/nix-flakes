@@ -10,6 +10,7 @@ _: {
     brews = [ "winetricks" ];
     casks = [
       #todo: revisit later
+      "signal"
       # Games
       "wine-staging"
       "crossover"
