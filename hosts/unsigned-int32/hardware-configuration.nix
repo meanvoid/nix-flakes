@@ -14,6 +14,7 @@
       # dkms
       "kvm-amd"
       "zenpower"
+      "v4l2loopback" # scrcpy
       # lvm2
       "dm-cache"
       "dm-cache-smq"
@@ -28,20 +29,22 @@
     extraModulePackages = with config.boot.kernelPackages; [
       zenpower
       vendor-reset
+      v4l2loopback
     ];
     kernelParams = [
       ### ------------------------------------ ###
-      "video=DP-1:2560x1440@60"
-      "video=DP-2:2560x1440@60"
-      "video=DP-3:2560x1440@60"
-      "video=DP-4:2560x1440@60"
+      "video=DP-1:2560x1440@120"
+      "video=DP-2:2560x1440@120"
+      "video=DP-3:2560x1440@120"
+      "video=DP-4:2560x1440@120"
       ### ------------------------------------ ###
-      "video=HDMI1:2560x1440@60"
-      "video=HDMI2:2560x1440@60"
-      "video=HDMI3:2560x1440@60"
-      "video=HDMI4:2560x1440@60"
+      "video=HDMI1:2560x1440@120"
+      "video=HDMI2:2560x1440@120"
+      "video=HDMI3:2560x1440@120"
+      "video=HDMI4:2560x1440@120"
       ### ------------------------------------ ###
-      "video=Virtual-1:2560x1440@60"
+      # "video=Virtual-1:2560x1440@60"
+      "nvidia_drm.fbdev=1"
       "iommu=pt"
     ];
     swraid = {
