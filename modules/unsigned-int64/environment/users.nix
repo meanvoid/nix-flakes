@@ -69,6 +69,9 @@
         #! Temp
         ### --- fumono --- ###
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHBeBj6thLiVFNGZI1NuTHKIPvh332Szad2zsgjdzhR mc-server"
+
+        ### --- jalemi --- ###
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4sGaPM8lq6Mt4C4NaXmsDVi+/E4KZ9f4znjPnz+L5k Jalemi@DESKTOP-8ABNMG9 snikersdaun@gmail.com"
       ];
     };
     ashuramaru = {
