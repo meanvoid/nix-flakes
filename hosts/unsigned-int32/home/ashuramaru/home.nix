@@ -54,6 +54,7 @@
       inherit (pkgs)
         signal-desktop # Signal desktop client
         tdesktop # Telegram desktop
+        kotatogram-desktop # telegram's fork
         element-desktop # Matrix client
         dino # Jabber client
         ;

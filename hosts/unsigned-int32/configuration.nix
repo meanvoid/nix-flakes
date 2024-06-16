@@ -108,6 +108,10 @@ in
       enableBrowserSocket = true;
       enableExtraSocket = true;
     };
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
   };
   services.yubikey-agent.enable = true;
   environment = {
