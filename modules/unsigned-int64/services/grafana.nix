@@ -115,6 +115,10 @@
         metrics_path = "/metrics";
         static_configs = [ { targets = [ "172.16.31.1:${toString config.services.prometheus.port}" ]; } ];
       }
+      {
+        job_name = "ecoflow";
+        static_configs = [ { targets = [ "172.16.31.1:9981" ]; } ];
+      }
     ];
   };
   services.loki = {

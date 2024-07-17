@@ -77,10 +77,6 @@
         # Proxy
         1080
         3128
-        # Minecraft rcon
-        25565
-        35565
-        45565
         # Wireguard
         51280
         51820
@@ -93,10 +89,6 @@
         # Proxy
         1080
         3128
-        # minecraft tcp
-        25565
-        35565
-        45565
         # ssh
         57255
       ];
