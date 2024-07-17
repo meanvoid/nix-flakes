@@ -4,9 +4,6 @@
   lib,
   ...
 }:
-let
-  tenjinPkgs = inputs.meanvoid-overlay.packages.${pkgs.system};
-in
 {
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
