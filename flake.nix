@@ -11,6 +11,7 @@
     ### --- System --- ###
     ### --- nixpkgs channels --- ###
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     ### --- nixpkgs channels --- ###
     darwin.url = "github:lnl7/nix-darwin/master";
     home-manager.url = "github:nix-community/home-manager/release-24.05";

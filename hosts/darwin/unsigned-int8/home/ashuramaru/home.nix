@@ -1,4 +1,9 @@
-{ pkgs, path, ... }:
+{
+  inputs,
+  pkgs,
+  path,
+  ...
+}:
 {
   imports = [
     (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
@@ -15,6 +20,7 @@
         audacity
 
         # Graphics
+        blender
         gimp
         inkscape
 
@@ -22,8 +28,7 @@
         thefuck
         yt-dlp
         ;
-
-      #! make overlay
+      inherit (inputs.unstable.legacyPackages.${pkgs.system}) prismlauncher;
       # Playstation RemotePlay but FOSS
       chiaki = pkgs.chiaki.overrideAttrs (prev: {
         installPhase = ''
@@ -41,9 +46,12 @@
       ];
       nodejs = pkgs.nodejs.override {
         enableNpm = true;
-        python3 = pkgs.python311;
+        python3 = pkgs.python312;
       };
     };
     stateVersion = "24.05";
   };
+  nixpkgs.overlays = [
+
+  ];
 }

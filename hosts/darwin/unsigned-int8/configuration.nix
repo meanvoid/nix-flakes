@@ -20,17 +20,13 @@ in
     ++ hostModules [
       "environment"
       "programs"
+      "networking"
     ];
 
   security = {
     pam = {
       enableSudoTouchIdAuth = true;
     };
-  };
-
-  networking = {
-    computerName = "${hostname}";
-    hostName = "${hostname}";
   };
 
   # Environment
@@ -53,14 +49,23 @@ in
       lz4
       p7zip
 
-      # utils
+      # misc
       neofetch
       hyfetch
 
+      # Graphics/Video/enc/dec
       ffmpeg-full
       imagemagick
       mpv
       mpd
+
+      # Virtualization
+      podman
+      podman-compose
+
+      # Android
+      android-tools
+      scrcpy
       ;
   };
 

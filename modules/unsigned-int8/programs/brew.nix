@@ -6,19 +6,23 @@ _: {
       upgrade = true;
       cleanup = "zap";
     };
-    taps = [ "homebrew/cask-versions" ];
-    brews = [ "winetricks" ];
+    taps = [
+      "homebrew/cask-versions"
+      "cfergeau/crc"
+    ];
+    brews = [
+      "winetricks"
+      # virtualization
+      "vfkit"
+    ];
     casks = [
-      #todo: revisit later
       "signal"
       # Games
       "wine-staging"
       "crossover"
       "steam"
-      "prismlauncher"
       # graphics
       "krita"
-      "blender"
       "telegram"
       "iina"
       "nextcloud"

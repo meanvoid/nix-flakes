@@ -7,10 +7,8 @@ in
     python3Full
     ruby
     go
-    # jdk
-    rustup
     nil
-    alejandra
+    rustup
     clang-tools
   ];
   programs.vscode = {
