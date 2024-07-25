@@ -29,8 +29,8 @@ in
       ${pkgs.iptables}/bin/iptables -A FORWARD -i wireguard0 -j ACCEPT
 
       # NAT rules for IPv4 and IPv6 traffic
-      ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.64.10.1/24 -o eth0 -j MASQUERADE
-      ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -s fd02:f8eb:7ca4:5f4c::1/64 -o eth0 -j MASQUERADE
+      ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.64.10.1/24 -o eth1 -j MASQUERADE
+      ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -s fd02:f8eb:7ca4:5f4c::1/64 -o eth1 -j MASQUERADE
     '';
     preDown = ''
       # Drop incoming SSH traffic on wireguard0 interface
@@ -43,8 +43,8 @@ in
       ${pkgs.iptables}/bin/iptables -D FORWARD -i wireguard0 -j ACCEPT
 
       # NAT rules for IPv4 and IPv6 traffic
-      ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.64.10.1/24 -o eth0 -j MASQUERADE
-      ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -s fd02:f8eb:7ca4:5f4c::1/64 -o eth0 -j MASQUERADE
+      ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.64.10.1/24 -o eth1 -j MASQUERADE
+      ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -s fd02:f8eb:7ca4:5f4c::1/64 -o eth1 -j MASQUERADE
     '';
 
     peers = [

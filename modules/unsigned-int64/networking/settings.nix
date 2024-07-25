@@ -3,8 +3,8 @@
   networking = {
     hostName = "unsigned-int64";
     interfaces = {
-      "eth0" = {
-        name = "eth0";
+      "eth1" = {
+        name = "eth1";
         useDHCP = lib.mkDefault true;
         ipv4.addresses = [
           {
@@ -27,18 +27,18 @@
           }
         ];
       };
-      "eth1" = {
-        name = "eth1";
-        useDHCP = lib.mkDefault false;
+      "eth0" = {
+        name = "eth0";
+        useDHCP = lib.mkDefault true;
       };
     };
     defaultGateway = {
       address = "116.202.39.1";
-      interface = "eth0";
+      interface = "eth1";
     };
     defaultGateway6 = {
       address = "fe80::1";
-      interface = "eth0";
+      interface = "eth1";
     };
     nameservers = [
       "127.0.0.1"
@@ -47,7 +47,7 @@
     nat = {
       enable = true;
       enableIPv6 = true;
-      externalInterface = "eth0";
+      externalInterface = "eth1";
       internalInterfaces = [
         "ve-+"
         "virbr0"
