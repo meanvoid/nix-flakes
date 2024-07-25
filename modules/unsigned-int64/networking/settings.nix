@@ -5,6 +5,10 @@
     interfaces = {
       "eth0" = {
         name = "eth0";
+        useDHCP = lib.mkDefault false;
+      };
+      "eth1" = {
+        name = "eth1";
         useDHCP = lib.mkDefault true;
         ipv4.addresses = [
           {
@@ -22,23 +26,19 @@
             prefixLength = 128;
           }
           {
-            address = "2a01:4f8:2b01:300::::2";
+            address = "2a01:4f8:2b01:300::2";
             prefixLength = 128;
           }
         ];
       };
-      "eth1" = {
-        name = "eth1";
-        useDHCP = lib.mkDefault false;
-      };
     };
     defaultGateway = {
       address = "116.202.39.1";
-      interface = "eth0";
+      interface = "eth1";
     };
     defaultGateway6 = {
       address = "fe80::1";
-      interface = "eth0";
+      interface = "eth1";
     };
     nameservers = [
       "127.0.0.1"
@@ -47,7 +47,7 @@
     nat = {
       enable = true;
       enableIPv6 = true;
-      externalInterface = "eth0";
+      externalInterface = "eth1";
       internalInterfaces = [
         "ve-+"
         "virbr0"
