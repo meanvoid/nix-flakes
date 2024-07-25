@@ -3,7 +3,7 @@
   networking = {
     hostName = "unsigned-int64";
     interfaces = {
-      "enp4s0" = {
+      "eth0" = {
         name = "eth0";
         useDHCP = lib.mkDefault true;
         ipv4.addresses = [
@@ -27,7 +27,7 @@
           }
         ];
       };
-      "eth0" = {
+      "eth1" = {
         name = "eth1";
         useDHCP = lib.mkDefault false;
       };
