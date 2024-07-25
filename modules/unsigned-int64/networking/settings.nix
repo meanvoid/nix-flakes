@@ -3,38 +3,42 @@
   networking = {
     hostName = "unsigned-int64";
     interfaces = {
-      "eno1" = {
-        name = "eno1";
+      "enp4s0" = {
+        name = "eth0";
         useDHCP = lib.mkDefault true;
         ipv4.addresses = [
           {
-            address = "176.9.10.47";
-            prefixLength = 27;
+            address = "116.202.39.70";
+            prefixLength = 25;
           }
         ];
         ipv6.addresses = [
           {
-            address = "2a01:4f8:141:5330::";
+            address = "2a01:4f8:2b01:300::";
             prefixLength = 64;
           }
           {
-            address = "2a01:4f8:141:5330::1";
+            address = "2a01:4f8:2b01:300::1";
             prefixLength = 128;
           }
           {
-            address = "2a01:4f8:141:5330::2";
+            address = "2a01:4f8:2b01:300::::2";
             prefixLength = 128;
           }
         ];
       };
+      "eth0" = {
+        name = "eth1";
+        useDHCP = lib.mkDefault false;
+      };
     };
     defaultGateway = {
-      address = "176.9.10.31";
-      interface = "eno1";
+      address = "116.202.39.1";
+      interface = "eth0";
     };
     defaultGateway6 = {
       address = "fe80::1";
-      interface = "eno1";
+      interface = "eth0";
     };
     nameservers = [
       "127.0.0.1"
@@ -43,7 +47,7 @@
     nat = {
       enable = true;
       enableIPv6 = true;
-      externalInterface = "eno1";
+      externalInterface = "eth0";
       internalInterfaces = [
         "ve-+"
         "virbr0"

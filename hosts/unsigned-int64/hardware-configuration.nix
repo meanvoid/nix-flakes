@@ -107,7 +107,8 @@ in
       "usb_storage"
       "uas"
       "sd_mod"
-      "igc"
+      "ixgbe" # Intel 10gig NIC
+      "igc" # Intel 2.5gbe NIC
     ];
     kernelModules = [
       # modules
