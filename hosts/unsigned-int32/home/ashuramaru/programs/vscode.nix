@@ -98,6 +98,7 @@ in
     };
     extensions = builtins.attrValues {
       ## -- Vscode specific -- ##
+      remote-development = vscode-marketplace.ms-vscode-remote.vscode-remote-extensionpack;
       vscode-hexeditor = vscode-marketplace.ms-vscode.hexeditor;
       vscode-remote-extensionpack = vscode-marketplace.ms-vscode-remote.vscode-remote-extensionpack;
       vscode-liveshare = vscode-marketplace.ms-vsliveshare.vsliveshare;
