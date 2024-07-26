@@ -6,10 +6,12 @@ let
   };
   systems = {
     signed-int16 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJQO7pHms4qW4zhWF7TxCP+ycOhfQ/8H6zgku7WHrols root@signed-int16";
+    unsigned-int8 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIILMnyShWFM4IWZYdExMXcTwA9sC4KLbIGrLJHbZ+mxy";
     unsigned-int32 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJQV9RnBPh3xOoh7fhaxS74YfgTH6BgqV9zsTSVdiWDI root@unsigned-int32";
     unsigned-int64 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKdiVn6zgj+VGj3BIGiwMFH3AumoGSCzaVukcbQWVz1K root@unsigned-int64";
   };
   matrixTenjin = [
+    systems.unsigned-int8
     systems.unsigned-int32
     systems.unsigned-int64
   ];
@@ -22,6 +24,9 @@ in
   # signed-int16
   "wireguard-client_fumono.age".publicKeys = [ systems.signed-int16 ];
   "wireguard-shared_fumono.age".publicKeys = matrixFumono;
+
+  # unsigned-int8
+  "wireguard-client_mac.age".publicKeys = [ systems.unsigned-int8 ];
 
   # unsigned-int32
   "foldingathome_passkey.age".publicKeys = [ systems.unsigned-int32 ];

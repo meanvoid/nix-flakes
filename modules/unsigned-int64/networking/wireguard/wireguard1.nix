@@ -46,7 +46,7 @@ in
       }
       # root@unsigned-int8
       {
-        publicKey = "znpZ26tP+y+aF/LoOT4TyLXqBNt9wuZKK0ktnk18GHA=";
+        publicKey = "lvoQeRPrRE3pHLVlOpcAzg5FmSVhAk9quT2NVIbZGlk=";
         presharedKeyFile = preshared;
         allowedIPs = [
           "172.16.31.4/32"
