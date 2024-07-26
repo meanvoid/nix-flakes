@@ -1,4 +1,5 @@
 {
+  lib,
   config,
   pkgs,
   path,
@@ -13,8 +14,31 @@
   };
   services.nextcloud = {
     enable = true;
+    enableImagemagick = true;
     database.createLocally = true;
     package = pkgs.nextcloud29;
+    extraOptions = {
+      enablePreview = true;
+      enabledPreviewProviders = [
+        "OC\\Preview\\Image"
+        "OC\\Preview\\Movie"
+        "OC\\Preview\\BMP"
+        "OC\\Preview\\GIF"
+        "OC\\Preview\\JPEG"
+        "OC\\Preview\\Krita"
+        "OC\\Preview\\MarkDown"
+        "OC\\Preview\\MP3"
+        "OC\\Preview\\MP4"
+        "OC\\Preview\\MKV"
+        "OC\\Preview\\AVI"
+        "OC\\Preview\\OpenDocument"
+        "OC\\Preview\\PNG"
+        "OC\\Preview\\TXT"
+        "OC\\Preview\\XBitmap"
+        "OC\\Preview\\HEIC"
+      ];
+    };
+
     extraApps = with config.services.nextcloud.package.packages.apps; {
       # admin
       inherit notify_push twofactor_webauthn twofactor_nextcloud_notification;
@@ -26,8 +50,17 @@
       inherit mail groupfolders;
       inherit polls forms;
       inherit previewgenerator onlyoffice spreed;
-
-      # misc
+      # # Camera raw previes
+      # camerarawpreviews = pkgs.fetchNextcloudApp {
+      #   appName = "camerarawpreviews";
+      #   homepage = "https://github.com/ariselseng/camerarawpreviews";
+      #   description = "Camera RAW Previews";
+      #   url = "https://github.com/ariselseng/camerarawpreviews/releases/download/v0.8.5/camerarawpreviews_nextcloud.tar.gz";
+      #   sha256 = "sha256-suJZfs040xSTW5HUnbsMButMdppeKHPhBMzL/XajWq8=";
+      #   license = lib.licenses.agpl3Only;
+      #   appVersion = "0.8.5";
+      # };
+      # # misc
       inherit bookmarks cookbook cospend;
     };
     extraAppsEnable = true;
