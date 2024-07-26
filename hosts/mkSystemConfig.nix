@@ -117,6 +117,7 @@ in
         defaults = [ { config = cfg; } ] ++ modules;
         sharedModules = lib.flatten [
           (lib.optional useHomeManager (homeManagerModules.darwin hostName users))
+          agenix.darwinModules.default
           defaults
         ];
       in
