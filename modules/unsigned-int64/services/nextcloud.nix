@@ -69,7 +69,7 @@
         homepage = "https://github.com/ariselseng/camerarawpreviews";
         description = "Camera Raw Previews app for Nextcloud";
         url = "https://github.com/ariselseng/camerarawpreviews/releases/download/v0.8.5/camerarawpreviews_nextcloud.tar.gz";
-        sha256 = "sha256-suJZfs040xSTW5HUnbsMButMdppeKHPhBMzL/XajWq8=";
+        sha256 = "sha256-4e4paLmnNcv2x17RXwVKXSUr+Ze0Z7S0330BGZX1hso=";
         license = "${lib.licenses.agpl3Only.shortName}";
         appVersion = "0.8.5";
       };
