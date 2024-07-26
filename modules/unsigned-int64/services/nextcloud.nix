@@ -17,7 +17,7 @@
     enableImagemagick = true;
     database.createLocally = true;
     package = pkgs.nextcloud29;
-    extraOptions = {
+    settings = {
       enablePreview = true;
       enabledPreviewProviders = [
         "OC\\Preview\\Image"
@@ -39,18 +39,31 @@
       ];
     };
 
-    extraApps = with config.services.nextcloud.package.packages.apps; {
-      # admin
-      inherit notify_push twofactor_webauthn twofactor_nextcloud_notification;
-      inherit user_oidc;
-      # ical
-      inherit calendar contacts deck;
-
-      # productivity
-      inherit mail groupfolders;
-      inherit polls forms;
-      inherit previewgenerator onlyoffice spreed;
-      # # Camera raw previes
+    extraApps = {
+      inherit (config.services.nextcloud.package.packages.apps)
+        # admin
+        notify_push
+        twofactor_webauthn
+        twofactor_nextcloud_notification
+        user_oidc
+        # ical
+        calendar
+        contacts
+        deck
+        # productivity
+        mail
+        groupfolders
+        polls
+        forms
+        previewgenerator
+        onlyoffice
+        spreed
+        # misc
+        bookmarks
+        cookbook
+        cospend
+        ;
+      # Camera raw previes
       # camerarawpreviews = pkgs.fetchNextcloudApp {
       #   appName = "camerarawpreviews";
       #   homepage = "https://github.com/ariselseng/camerarawpreviews";
@@ -60,8 +73,6 @@
       #   license = lib.licenses.agpl3Only;
       #   appVersion = "0.8.5";
       # };
-      # # misc
-      inherit bookmarks cookbook cospend;
     };
     extraAppsEnable = true;
     hostName = "cloud.tenjin-dk.com";
