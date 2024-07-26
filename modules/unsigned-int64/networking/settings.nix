@@ -6,6 +6,10 @@
       "eth0" = {
         name = "eth0";
         useDHCP = lib.mkDefault true;
+        wakeOnLan = {
+          enable = true;
+          policy = [ "magic" ];
+        };
         ipv4.addresses = [
           {
             address = "116.202.39.70";
@@ -21,15 +25,11 @@
             address = "2a01:4f8:2b01:300::1";
             prefixLength = 128;
           }
-          {
-            address = "2a01:4f8:2b01:300::2";
-            prefixLength = 128;
-          }
         ];
       };
       "eth1" = {
         name = "eth1";
-        useDHCP = lib.mkDefault false;
+        useDHCP = lib.mkForce false;
       };
     };
     defaultGateway = {

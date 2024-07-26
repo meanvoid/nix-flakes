@@ -107,8 +107,8 @@ in
       "usb_storage"
       "uas"
       "sd_mod"
-      "ixgbe" # Intel 10gig NIC
-      "igc" # Intel 2.5gbe NIC
+      "ixgbe" # Intel 10gbe SFP+ NIC
+      # "igc" No longer needed in initrd might get handy in a future, Intel 2.5gbe NIC
     ];
     kernelModules = [
       # modules
