@@ -1,16 +1,15 @@
 { pkgs, ... }:
 {
-  services.xserver = {
-    enable = true;
+  services = {
     displayManager.sddm = {
       enable = true;
     };
-    desktopManager.plasma6.enable = true;
     libinput = {
       enable = true;
       mouse.accelProfile = "flat";
       mouse.accelSpeed = "0";
     };
+    desktopManager.plasma6.enable = true;
   };
   xdg.portal = {
     enable = true;

@@ -17,5 +17,5 @@
     };
     nvidiaSettings = true;
   };
-  environment.systemPackages = [ pkgs.nvtop ];
+  environment.systemPackages = [ pkgs.nvtopPackages.full ];
 }

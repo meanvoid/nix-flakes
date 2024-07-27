@@ -56,7 +56,7 @@
       enable = true;
       remotePlay.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
-      extraCompatPackages = [ pkgs.proton-ge ];
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
     gamemode = {
       enable = true;
@@ -72,6 +72,6 @@
     };
   };
   environment.sessionVariables = rec {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = [ "\${HOME}/.steam/root/compatibilitytools.d:${pkgs.proton-ge}" ];
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = [ "\${HOME}/.steam/root/compatibilitytools.d:${pkgs.proton-ge-bin}" ];
   };
 }
