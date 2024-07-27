@@ -50,7 +50,7 @@
         default_language = "en_us";
       };
     };
-    declarativePlugins = with pkgs.grafanaPlugins; [ grafana-piechart-panel ];
+    declarativePlugins = builtins.attrValues { inherit (pkgs.grafanaPlugins) grafana-piechart-panel; };
   };
   systemd.services.prometheus = {
     after = [

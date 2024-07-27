@@ -25,10 +25,7 @@ in
       "dm-mirror"
       "dm-snapshot"
     ];
-    extraModulePackages = with config.boot.kernelPackages; [
-      zenpower
-      vendor-reset
-    ];
+    extraModulePackages = builtins.attrValues { inherit (config.boot.kernelPackages) vendor-reset zenpower; };
     supportedFilesystems = [ "xfs" ];
     swraid = {
       enable = true;

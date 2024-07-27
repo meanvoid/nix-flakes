@@ -3,10 +3,7 @@
   console = {
     earlySetup = true;
     keyMap = "us";
-    packages = with pkgs; [
-      tamzen
-      terminus_font
-    ];
+    packages = builtins.attrValues { inherit (pkgs) tamzen terminus_font; };
   };
 
   sound = {
@@ -33,8 +30,8 @@
     gvfs.enable = true;
   };
 
-  environment.systemPackages =
-    (with pkgs; [
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
       # essential
       curl
       wget
@@ -71,8 +68,8 @@
       xclip
       wl-clipboard
       wl-clipboard-x11
-    ])
-    ++ (with pkgs.gst_all_1; [
+      ;
+    inherit (pkgs.gst_all_1)
       gstreamer
       gst-vaapi
       gstreamermm
@@ -83,12 +80,17 @@
       gst-plugins-good
       gst-plugins-base
       gst-editing-services
-    ]);
+      ;
+  };
   programs = {
     neovim = {
       enable = true;
       viAlias = true;
       vimAlias = true;
+      defaultEditor = true;
+      withPython3 = true;
+      withNodeJs = true;
+      withRuby = true;
     };
     htop = {
       enable = true;

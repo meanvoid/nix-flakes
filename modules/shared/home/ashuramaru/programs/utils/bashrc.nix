@@ -50,11 +50,13 @@ _: {
       s = "sudo";
       update = "nix flake update /etc/nixos";
       check = "nix flake check";
-      rebuild = "nixos-rebuild switch --use-remote-sudo --flake /etc/nixos#unsigned-int32";
+      darwin-update = "darwin-rebuld switch --flake /etc/nixos#unsigned-int8";
+      linux-rebuild = "nixos-rebuild switch --use-remote-sudo --flake /etc/nixos#unsigned-int32";
       vms = "nixos-build-vms";
       buildvm = "nixos-rebuild build-vm";
       buildvm_ = "nixos-rebuild build-vm-with-bootloader";
-      test = "nixos-rebuild test --flake /etc/nixos#unsigned-int32";
+      darwin-test = "nixos-rebuild check --flake /etc/nixos#unsigned-int32";
+      linux-test = "nixos-rebuild test --flake /etc/nixos#unsigned-int32";
       ".." = "cd ..";
       ".3" = "cd ../../";
       ".4" = "cd ../../..";

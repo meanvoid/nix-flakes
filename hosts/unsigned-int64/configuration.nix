@@ -56,6 +56,10 @@ in
       enable = true;
       viAlias = true;
       vimAlias = true;
+      defaultEditor = true;
+      withPython3 = true;
+      withNodeJs = true;
+      withRuby = true;
     };
     htop = {
       enable = true;

@@ -5,10 +5,10 @@
     daemon.enable = true;
   };
   services.udev = {
-    packages = with pkgs; [
-      gnome.gnome-settings-daemon
-      gnome2.GConf
-      opentabletdriver
-    ];
+    packages = {
+      inherit (pkgs) opentabletdriver;
+      inherit (pkgs.gnome) gnome-settings-daemon;
+      inherit (pkgs.gnome2) GConf;
+    };
   };
 }

@@ -7,22 +7,14 @@
 {
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
-      extraPkgs =
-        pkgs:
-        (with pkgs; [
+      extraPkgs = builtins.attrValues {
+        inherit (pkgs)
           yad
-          gnome.zenity
-          xorg.xhost
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
           curl
           imagemagick
           libpng
           libpulseaudio
           libvorbis
-          stdenv.cc.cc.lib
           libkrb5
           keyutils
           libgdiplus
@@ -37,20 +29,29 @@
           vkBasalt
           mangohud
           steamtinkerlaunch
+          thcrap-steam-proton-wrapper
           source-han-sans
           wqy_zenhei
-          thcrap-steam-proton-wrapper
-        ]);
+          ;
+        inherit (pkgs.xorg)
+          xhost
+          libXcursor
+          libXi
+          libXinerama
+          libXScrnSaver
+          ;
+        inherit (pkgs.gnome) zenity;
+        inherit (pkgs.stdenv.cc.cc) lib;
+        inherit (inputs.nix-gaming.packages.${pkgs.system}) wine-discord-ipc-bridge;
+      };
     };
   };
-  environment.systemPackages =
-    (with pkgs; [
-      winetricks
-      scummvm
-      inotify-tools
-    ])
-    ++ (with pkgs.wineWowPackages; [ stagingFull ])
-    ++ (with inputs.nix-gaming.packages.${pkgs.system}; [ osu-lazer-bin ]);
+
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs) winetricks scummvm inotify-tools;
+    inherit (pkgs.wineWowPackages) stagingFull;
+    inherit (inputs.nix-gaming.packages.${pkgs.system}) wine-discord-ipc-bridge osu-lazer-bin;
+  };
   programs = {
     steam = {
       enable = true;

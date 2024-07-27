@@ -164,7 +164,7 @@ in
       c-cpp-extension-pack = vscode-marketplace.ms-vscode.cpptools-extension-pack;
       code-runner = vscode-marketplace.formulahendry.code-runner;
       compile-and-run = vscode-marketplace.danielpinto8zz6.c-cpp-compile-run;
-      #makefile-tools = vscode-marketplace.ms-vscode.makefile-tools; #! fails to build
+      makefile-tools = vscode-marketplace.ms-vscode.makefile-tools;
       doxygen = vscode-marketplace.cschlosser.doxdocgen;
       ## -- C/C++ Utils -- ##
 

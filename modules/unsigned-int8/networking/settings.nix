@@ -1,9 +1,7 @@
 {
-  pkgs,
   config,
   hostname,
   path,
-  age,
   ...
 }:
 let
@@ -20,12 +18,20 @@ in
       "Thunderbolt Bridge"
       "Wi-Fi"
     ];
+    dns = [
+      "192.168.1.1"
+      "172.16.31.1"
+      "fd17:216b:31bc:1::1"
+    ];
   };
   age.secrets = {
     wireguard-client_mac.file = path + /secrets/wireguard-client_mac.age;
     wireguard-shared.file = path + /secrets/wireguard-shared.age;
   };
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    # overrideLocalDns = true;
+  };
   networking.wg-quick.interfaces = {
     wg-ui64 = {
       address = [
@@ -33,16 +39,12 @@ in
         "fd17:216b:31bc:1::4/128"
       ];
       privateKeyFile = private;
-      dns = [
-        "172.16.31.1"
-        "fd17:216b:31bc:1::1"
-      ];
       peers = [
         {
           publicKey = "X6OBa2aMpoLGx9lYSa+p1U8OAx0iUxAE6Te9Mucu/HQ=";
           presharedKeyFile = shared;
           allowedIPs = [
-            "172.16.31.0/24"
+            "172.16.31.1/24"
             "fd17:216b:31bc:1::1/128"
           ];
           endpoint = "www.tenjin-dk.com:51280";

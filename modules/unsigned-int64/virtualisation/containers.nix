@@ -21,10 +21,7 @@ in
   };
   virtualisation.podman = {
     enable = true;
-    extraPackages = with pkgs; [
-      gvisor
-      gvproxy
-    ];
+    extraPackages = builtins.attrValues { inherit (pkgs) gvisor gvproxy; };
     autoPrune = {
       enable = true;
       dates = "weekly";
@@ -39,19 +36,22 @@ in
       FlareSolverr = {
         image = "ghcr.io/flaresolverr/flaresolverr:latest";
         autoStart = true;
-        ports = [ "172.16.31.1:8191:8191" ];
+        ports = [
+          "172.16.31.1:8191:8191"
+          "127.0.0.1:8191:8191"
+        ];
 
         environment = {
           LOG_LEVEL = "info";
           LOG_HTML = "false";
           CAPTCHA_SOLVER = "hcaptcha-solver";
-          TZ = "Europe/Kyiv";
+          TZ = "Europe/Berlin";
         };
       };
     };
   };
   systemd.timers."podman-auto-update".wantedBy = [ "timers.target" ];
-  environment.systemPackages = with pkgs; [ distrobox ];
+  environment.systemPackages = [ pkgs.distrobox ];
   users.groups = {
     docker.members = admins;
     podman.members = admins;

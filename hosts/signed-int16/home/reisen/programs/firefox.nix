@@ -1,11 +1,5 @@
+{ inputs, pkgs, ... }:
 {
-  config,
-  pkgs,
-  nur,
-  ...
-}:
-{
-  imports = [ nur.hmModules.nur ];
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-bin;
@@ -16,38 +10,40 @@
       settings = {
         "widget.use-xdg-desktop-portal.file-picker" = 1;
       };
-      extensions = with config.nur.repos.rycee.firefox-addons; [
-        # necessity
-        ublock-origin
-        privacy-badger
-        canvasblocker
-        mullvad
-        darkreader
-        tampermonkey
-        facebook-container
+      extensions = builtins.attrValues {
+        inherit (inputs.firefox-addons.packages.${pkgs.system})
+          # necessity
+          ublock-origin
+          privacy-badger
+          canvasblocker
+          mullvad
+          darkreader
+          tampermonkey
+          facebook-container
 
-        # bypass-paywalls-clean
-        clearurls
-        user-agent-string-switcher
-        web-archives
+          # bypass-paywalls-clean
+          clearurls
+          user-agent-string-switcher
+          web-archives
 
-        # utils
-        multi-account-containers
-        sponsorblock
-        return-youtube-dislikes
-        video-downloadhelper
-        plasma-integration
-        stylus
-        steam-database
-        search-by-image
-        foxyproxy-standard
-        bitwarden
-        firefox-translations
-        floccus
-        tabliss
-        old-reddit-redirect
-        reddit-enhancement-suite
-      ];
+          # utils
+          multi-account-containers
+          sponsorblock
+          return-youtube-dislikes
+          video-downloadhelper
+          plasma-integration
+          stylus
+          steam-database
+          search-by-image
+          foxyproxy-standard
+          bitwarden
+          firefox-translations
+          floccus
+          tabliss
+          old-reddit-redirect
+          reddit-enhancement-suite
+          ;
+      };
       search = {
         force = true;
         engines = {

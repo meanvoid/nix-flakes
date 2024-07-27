@@ -17,17 +17,13 @@ in
   };
   virtualisation.podman = {
     enable = true;
-    extraPackages = with pkgs; [
-      gvisor
-      gvproxy
-      tun2socks
-    ];
+    extraPackages = builtins.attrValues { inherit (pkgs) gvisor gvproxy tun2socks; };
     autoPrune = {
       enable = true;
       dates = "weekly";
     };
   };
-  environment.systemPackages = with pkgs; [ distrobox ];
+  environment.systemPackages = [ pkgs.distrobox ];
   users.groups = {
     docker.members = admins;
     podman.members = admins;

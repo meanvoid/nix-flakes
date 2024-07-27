@@ -6,54 +6,51 @@
     ++ (import (path + /modules/shared/home/reisen/programs/utils));
   home = {
     username = "reisen";
-    packages = with pkgs; [
-      # Audio
-      tenacity
-      pavucontrol
-      qpwgraph
+    packages = builtins.attrValues {
+      inherit (pkgs)
+        # Audio
+        tenacity
+        pavucontrol
+        qpwgraph
 
-      # BROWSERS
-      librewolf
+        # BROWSERS
+        librewolf
 
-      # Graphics
-      krita
-      gimp
-      inkscape
-      kdenlive
+        # Graphics
+        krita
+        gimp
+        inkscape
+        kdenlive
 
-      # Media
-      quodlibet
-      vlc
-      yt-dlp
-      brasero
-      cdrtools
+        # Media
+        quodlibet
+        vlc
+        yt-dlp
+        brasero
+        cdrtools
 
-      # Dev
-      lazygit
+        # Dev
+        lazygit
 
-      # Gaming
-      steam
-      steam-tui
-      steam-run
+        # Office
+        libreoffice-fresh
 
-      # Office
-      libreoffice-fresh
+        # Communication
+        tdesktop
+        element-desktop
+        thunderbird
+        keepassxc
 
-      # Communication
-      tdesktop
-      element-desktop
-      thunderbird
-      keepassxc
-
-      # Utils
-      nextcloud-client
-      thefuck
-      qbittorrent
-      glxinfo
-      flameshot
-      unetbootin
-      woeusb-ng
-    ];
+        # Utils
+        nextcloud-client
+        thefuck
+        qbittorrent
+        glxinfo
+        flameshot
+        unetbootin
+        woeusb-ng
+        ;
+    };
     stateVersion = "24.05";
   };
 }

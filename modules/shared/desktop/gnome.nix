@@ -49,15 +49,14 @@
       package = lib.mkDefault pkgs.gnomeExtensions.gsconnect;
     };
   };
-  environment.systemPackages =
-    (with pkgs; [
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
       adw-gtk3
       adwaita-qt
       adwaita-qt6
       theme-obsidian2
       lounge-gtk-theme
       capitaine-cursors
-      catppuccin-gtk
       catppuccin-kde
       catppuccin-kvantum
       sierra-breeze-enhanced
@@ -65,9 +64,9 @@
       lightly-boehs
       gparted
       gradience
-    ])
-    ++ (with pkgs.kdePackages; [ breeze ])
-    ++ (with pkgs.libsForQt5; [
+      ;
+    inherit (pkgs.kdePackages) breeze;
+    inherit (pkgs.libsForQt5)
       breeze-icons
       breeze-gtk
       breeze-qt5
@@ -80,14 +79,14 @@
       ktorrent
       filelight
       lightly
-    ])
-    ++ (with pkgs.gnome; [
+      ;
+    inherit (pkgs.gnome)
       gnome-boxes
       gnome-tweaks
       gnome-themes-extra
       adwaita-icon-theme
-    ])
-    ++ (with pkgs.gnomeExtensions; [
+      ;
+    inherit (pkgs.gnomeExtensions)
       appindicator
       pop-shell
       blur-my-shell
@@ -95,9 +94,8 @@
       # pin-app-folders-to-dash
       dash-to-dock
       arcmenu
-    ]);
+      ;
 
-  nixpkgs.config.packageOverrides = pkgs: {
     catppuccin-gtk = pkgs.catppuccin-gtk.override {
       accents = [ "rosewater" ];
       size = "compact";
@@ -106,10 +104,7 @@
     };
   };
 
-  environment.gnome.excludePackages = with pkgs; [
-    gnome-console
-    gnome-builder
-  ];
+  environment.gnome.excludePackages = builtins.attrValues { inherit (pkgs) gnome-console gnome-builder; };
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";
   };

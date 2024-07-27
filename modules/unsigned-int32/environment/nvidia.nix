@@ -65,18 +65,19 @@ in
   };
   hardware.nvidia-container-toolkit.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    nvtopPackages.full
-    # nvtop
-    zenith-nvidia
-    binutils
-    findutils
-    cudatoolkit
-    nvidia-vaapi-driver
-    egl-wayland
-    glxinfo
-    vulkan-tools
-  ];
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
+      zenith-nvidia
+      binutils
+      findutils
+      cudatoolkit
+      nvidia-vaapi-driver
+      egl-wayland
+      glxinfo
+      vulkan-tools
+      ;
+    inherit (pkgs.nvtopPackages) full;
+  };
   boot.blacklistedKernelModules = [ "nouveau" ];
   boot.extraModprobeConfig = ''
     blacklist nouveau
@@ -94,6 +95,7 @@ in
   programs.ccache = {
     enable = true;
   };
+  # move to a different place
   nix.settings = {
     max-jobs = 3;
     cores = 8;

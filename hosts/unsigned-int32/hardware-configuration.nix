@@ -26,11 +26,7 @@
       "dm-mirror"
       "dm-snapshot"
     ];
-    extraModulePackages = with config.boot.kernelPackages; [
-      zenpower
-      vendor-reset
-      v4l2loopback
-    ];
+    extraModulePackages = builtins.attrValues { inherit (config.boot.kernelPackages) zenpower vendor-reset v4l2loopback; };
     kernelParams = [
       ### ------------------------------------ ###
       "video=DP-1:2560x1440@120"

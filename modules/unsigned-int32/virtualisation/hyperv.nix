@@ -57,19 +57,21 @@ in
     qemu.members = admins;
   };
 
-  environment.systemPackages = with pkgs; [
-    virt-manager
-    virt-viewer
-    virt-top
-    spice
-    spice-gtk
-    spice-protocol
-    virtio-win
-    virtiofsd
-    win-spice
-    swtpm
-    looking-glass-client
-  ];
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
+      virt-manager
+      virt-viewer
+      virt-top
+      spice
+      spice-gtk
+      spice-protocol
+      virtio-win
+      virtiofsd
+      win-spice
+      swtpm
+      looking-glass-client
+      ;
+  };
   environment.etc = {
     "ovmf/edk2-x86_64-code.fd" = {
       source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-x86_64-code.fd";
@@ -103,13 +105,13 @@ in
   #     mode = "0660";
   #   };
   # };
-  systemd.services.libvirtd.path = with pkgs; [
-    virtiofsd
-    virtio-win
-    mdevctl
-    swtpm
-    looking-glass-client
-  ];
-  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
+  systemd.services.libvirtd.path = builtins.attrValues {
+    inherit (pkgs)
+      virtiofsd
+      virtio-win
+      mdevctl
+      swtpm
+      looking-glass-client
+      ;
+  };
 }

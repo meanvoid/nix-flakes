@@ -21,10 +21,7 @@ in
   };
   virtualisation.podman = {
     enable = true;
-    extraPackages = with pkgs; [
-      gvproxy
-      gvisor
-    ];
+    extraPackages = builtins.attrValues { inherit (pkgs) gvproxy gvisor; };
     autoPrune = {
       enable = true;
       dates = "weekly";
@@ -50,7 +47,7 @@ in
     };
   };
   systemd.timers."podman-auto-update".wantedBy = [ "timers.target" ];
-  environment.systemPackages = with pkgs; [ distrobox ];
+  environment.systemPackages = [ pkgs.distrobox ];
   users.groups = {
     docker.members = admins;
     podman.members = admins;

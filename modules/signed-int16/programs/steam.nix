@@ -1,28 +1,15 @@
 { inputs, pkgs, ... }:
-let
-  gamePkgs = inputs.nix-gaming.packages.${pkgs.system};
-  tenjinPkgs = inputs.meanvoid-overlay.packages.${pkgs.system};
-  ipc = gamePkgs.wine-discord-ipc-bridge;
-in
 {
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
-      extraPkgs =
-        pkgs:
-        (with pkgs; [
+      extraPkgs = builtins.attrValues {
+        inherit (pkgs)
           yad
-          gnome.zenity
-          xorg.xhost
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
           curl
           imagemagick
           libpng
           libpulseaudio
           libvorbis
-          stdenv.cc.cc.lib
           libkrb5
           keyutils
           libgdiplus
@@ -38,28 +25,34 @@ in
           mangohud
           steamtinkerlaunch
           thcrap-steam-proton-wrapper
-        ])
-        ++ (with gamePkgs; [ wine-discord-ipc-bridge ]);
+          source-han-sans
+          wqy_zenhei
+          ;
+        inherit (pkgs.xorg)
+          xhost
+          libXcursor
+          libXi
+          libXinerama
+          libXScrnSaver
+          ;
+        inherit (pkgs.gnome) zenity;
+        inherit (pkgs.stdenv.cc.cc) lib;
+        inherit (inputs.nix-gaming.packages.${pkgs.system}) wine-discord-ipc-bridge;
+      };
     };
   };
-  environment.systemPackages =
-    (with pkgs; [
-      winetricks
-      scummvm
-      inotify-tools
-    ])
-    ++ (with pkgs.wineWowPackages; [
-      stagingFull
-      waylandFull
-    ])
-    ++ (with gamePkgs; [ wine-discord-ipc-bridge ]);
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs) winetricks scummvm inotify-tools;
+    inherit (pkgs.wineWowPackages) stagingFull waylandFull;
+    inherit (inputs.nix-gaming.packages.${pkgs.system}) wine-discord-ipc-bridge;
+  };
 
   programs = {
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
-      extraCompatPackages = [ gamePkgs.proton-ge ];
+      extraCompatPackages = [ pkgs.proton-ge ];
     };
     gamemode = {
       enable = true;

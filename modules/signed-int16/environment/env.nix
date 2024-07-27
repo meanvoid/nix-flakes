@@ -7,11 +7,7 @@
       model = "evdev";
     };
   };
-  environment.shells = with pkgs; [
-    zsh
-    bash
-    fish
-  ];
+  environment.shells = builtins.attrValues { inherit (pkgs) zsh bash fish; };
   environment.localBinInPath = true;
   environment.sessionVariables = rec {
     XDG_CACHE_HOME = "\${HOME}/.cache";

@@ -4,27 +4,34 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
+    vimdiffAlias = true;
+    defaultEditor = true;
+    withPython3 = true;
+    withNodeJs = true;
+    withRuby = true;
 
-    plugins = with pkgs.vimPlugins; [
-      # Syntax
-      vim-nix
-      vim-markdown
+    plugins = builtins.attrValues {
+      inherit (pkgs.vimPlugins)
+        # Syntax
+        vim-nix
+        vim-markdown
 
-      # Quality of life
-      vim-lastplace # Opens document where you left it
-      auto-pairs # Print double quotes/brackets/etc.
-      vim-gitgutter # See uncommitted changes of file :GitGutterEnable
+        # Quality of life
+        vim-lastplace # Opens document where you left it
+        auto-pairs # Print double quotes/brackets/etc.
+        vim-gitgutter # See uncommitted changes of file :GitGutterEnable
 
-      # File Tree
-      nerdtree # File Manager - set in extraConfig to F6
+        # File Tree
+        nerdtree # File Manager - set in extraConfig to F6
 
-      # Customization
-      wombat256-vim # Color scheme for lightline
-      srcery-vim # Color scheme for text
+        # Customization
+        wombat256-vim # Color scheme for lightline
+        srcery-vim # Color scheme for text
 
-      lightline-vim # Info bar at bottom
-      indent-blankline-nvim # Indentation lines
-    ];
+        lightline-vim # Info bar at bottom
+        indent-blankline-nvim # Indentation lines
+        ;
+    };
     extraConfig = ''
       syntax enable                             " Syntax highlighting
       colorscheme srcery                        " Color scheme text
