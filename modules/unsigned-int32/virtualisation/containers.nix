@@ -21,7 +21,7 @@ in
   };
   virtualisation.podman = {
     enable = true;
-    extraPackages = builtins.attrValues { inherit (pkgs) gvproxy gvisor; };
+    extraPackages = builtins.attrValues { inherit (pkgs) gvproxy gvisor tun2socks; };
     autoPrune = {
       enable = true;
       dates = "weekly";

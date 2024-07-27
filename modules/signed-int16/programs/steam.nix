@@ -1,46 +1,50 @@
 { inputs, pkgs, ... }:
 {
-  nixpkgs.config.packageOverrides = pkgs: {
-    steam = pkgs.steam.override {
-      extraPkgs = builtins.attrValues {
-        inherit (pkgs)
-          yad
-          curl
-          imagemagick
-          libpng
-          libpulseaudio
-          libvorbis
-          libkrb5
-          keyutils
-          libgdiplus
-          glxinfo
-          mesa-demos
-          vulkan-tools
-          vulkan-headers
-          vulkan-caps-viewer
-          vulkan-validation-layers
-          vulkan-extension-layer
-          vulkan-loader
-          vkBasalt
-          mangohud
-          steamtinkerlaunch
-          thcrap-steam-proton-wrapper
-          source-han-sans
-          wqy_zenhei
-          ;
-        inherit (pkgs.xorg)
-          xhost
-          libXcursor
-          libXi
-          libXinerama
-          libXScrnSaver
-          ;
-        inherit (pkgs.gnome) zenity;
-        inherit (pkgs.stdenv.cc.cc) lib;
-        inherit (inputs.nix-gaming.packages.${pkgs.system}) wine-discord-ipc-bridge;
+  nixpkgs.overlays = [
+    (self: super: {
+      steam = super.steam.override {
+        extraPkgs =
+          super:
+          builtins.attrValues {
+            inherit (super)
+              yad
+              curl
+              imagemagick
+              libpng
+              libpulseaudio
+              libvorbis
+              libkrb5
+              keyutils
+              libgdiplus
+              glxinfo
+              mesa-demos
+              vulkan-tools
+              vulkan-headers
+              vulkan-caps-viewer
+              vulkan-validation-layers
+              vulkan-extension-layer
+              vulkan-loader
+              vkBasalt
+              mangohud
+              steamtinkerlaunch
+              thcrap-steam-proton-wrapper
+              source-han-sans
+              wqy_zenhei
+              ;
+            inherit (super.xorg)
+              xhost
+              libXcursor
+              libXi
+              libXinerama
+              libXScrnSaver
+              ;
+            inherit (super.gnome) zenity;
+            inherit (super.stdenv.cc.cc) lib;
+            inherit (inputs.nix-gaming.packages.${super.system}) wine-discord-ipc-bridge;
+          };
       };
-    };
-  };
+    })
+  ];
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs) winetricks scummvm inotify-tools;
     inherit (pkgs.wineWowPackages) stagingFull waylandFull;
@@ -68,6 +72,6 @@
     };
   };
   environment.sessionVariables = rec {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = [ "\${HOME}/.steam/root/compatibilitytools.d:${gamePkgs.proton-ge}" ];
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = [ "\${HOME}/.steam/root/compatibilitytools.d:${pkgs.proton-ge}" ];
   };
 }

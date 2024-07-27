@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = {
+  environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
       firefox
       thunderbird
