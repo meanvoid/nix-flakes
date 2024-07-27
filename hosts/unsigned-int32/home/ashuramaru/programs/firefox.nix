@@ -20,14 +20,15 @@
         inherit (config.nur.repos.rycee.firefox-addons)
           # necessity
           ublock-origin
+          privacy-badger
           canvasblocker
           mullvad
           darkreader
 
-          tampermonkey
+          firemonkey
           facebook-container
 
-          # bypass-paywalls-clean
+          bypass-paywalls-clean
           clearurls
           user-agent-string-switcher
           web-archives
@@ -39,6 +40,7 @@
           vue-js-devtools
 
           # utils
+          gnome-shell-integration
           multi-account-containers
           sponsorblock
           return-youtube-dislikes

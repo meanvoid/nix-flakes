@@ -11,14 +11,15 @@
         inherit (inputs.firefox-addons.packages.${pkgs.system})
           # necessity
           ublock-origin
+          privacy-badger
           canvasblocker
           mullvad
           darkreader
 
-          # tampermonkey
+          firemonkey
           facebook-container
 
-          # bypass-paywalls-clean
+          bypass-paywalls-clean
           clearurls
           user-agent-string-switcher
           web-archives
@@ -33,7 +34,6 @@
           multi-account-containers
           sponsorblock
           return-youtube-dislikes
-          # video-downloadhelper
           stylus
           steam-database
           search-by-image

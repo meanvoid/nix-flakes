@@ -18,10 +18,11 @@
           canvasblocker
           mullvad
           darkreader
-          tampermonkey
+
+          firemonkey
           facebook-container
 
-          # bypass-paywalls-clean
+          bypass-paywalls-clean
           clearurls
           user-agent-string-switcher
           web-archives
