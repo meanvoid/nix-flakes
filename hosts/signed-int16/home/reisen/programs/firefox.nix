@@ -31,7 +31,6 @@
           multi-account-containers
           sponsorblock
           return-youtube-dislikes
-          video-downloadhelper
           plasma-integration
           stylus
           steam-database
