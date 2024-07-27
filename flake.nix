@@ -110,7 +110,10 @@
           ...
         }:
         {
-          _module.args.pkgs = import inputs.nixpkgs { inherit system; };
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
           checks = {
             pre-commit-check = pre-commit-hooks.lib.${system}.run {
               src = path;
