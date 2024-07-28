@@ -10,6 +10,7 @@
     [
       ### ----------------PROGRAMS------------------- ###
       ./programs/firefox.nix
+      (path + /home/shared/programs/discord.nix)
       (path + /home/shared/programs/spotify.nix)
       ### ----------------PROGRAMS------------------- ###
     ]

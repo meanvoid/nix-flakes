@@ -26,8 +26,7 @@
     ### --- Overlays and Applications --- ###
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-    #! check if the https://github.com/the-argus/spicetify-nix/pull/53 got merged
-    spicetify-nix.url = "github:Believer1/spicetify-nix";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     emacs-overlay.url = "github:nix-community/emacs-overlay";

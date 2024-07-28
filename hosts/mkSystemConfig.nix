@@ -54,7 +54,6 @@ in
       }:
       let
         hostname = hostName;
-        system = lib.nixosSystem { inherit system; };
         defaults = [
           { config = cfg; }
           sops-nix.nixosModules.sops
@@ -84,7 +83,7 @@ in
             meanvoid-overlay.nixosModules.kvmfr
             meanvoid-overlay.nixosModules.nvidia-vGPU
           ])
-          (lib.optionals useHomeManager (homeManagerModules.nixos system hostname users))
+          (lib.optionals useHomeManager (homeManagerModules.nixos hostname users))
           defaults
         ];
       in
@@ -116,10 +115,9 @@ in
       }:
       let
         hostname = hostName;
-        system = darwin.lib.darwinSystem { inherit system; };
         defaults = [ { config = cfg; } ] ++ modules;
         sharedModules = lib.flatten [
-          (lib.optional useHomeManager (homeManagerModules.darwin system hostname users))
+          (lib.optional useHomeManager (homeManagerModules.darwin hostname users))
           agenix.darwinModules.default
           defaults
         ];

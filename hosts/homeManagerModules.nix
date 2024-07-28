@@ -11,7 +11,7 @@
 }:
 {
   homeManagerModules = {
-    nixos = system: hostName: users: [
+    nixos = hostName: users: [
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
@@ -19,7 +19,7 @@
         home-manager.extraSpecialArgs = {
           inherit
             inputs
-            system
+
             users
             path
             ;
@@ -38,7 +38,7 @@
       }
     ];
 
-    darwin = system: hostName: users: [
+    darwin = hostName: users: [
       home-manager.darwinModules.home-manager
       {
         nixpkgs.overlays = [ inputs.nixpkgs-firefox-darwin.overlay ];
@@ -47,7 +47,7 @@
         home-manager.extraSpecialArgs = {
           inherit
             inputs
-            system
+
             darwin
             users
             path
