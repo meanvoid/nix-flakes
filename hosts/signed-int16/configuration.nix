@@ -17,11 +17,12 @@ in
       (path + "/modules/shared/settings/nix.nix")
       (path + "/modules/shared/settings/nvidia.nix")
       (path + "/modules/shared/settings/opengl.nix")
-      ### ----------------ESSENTIAL------------------- ###
       (path + "/modules/shared/settings/settings.nix")
+      ### ----------------ESSENTIAL------------------- ###
       ### ----------------DESKTOP------------------- ###
       (path + "/modules/shared/desktop/plasma.nix")
       (path + "/modules/shared/desktop/fonts.nix")
+      (path + "/modules/shared/desktop/steam.nix")
       ### ----------------DESKTOP------------------- ###
     ]
     ++ hostModules [

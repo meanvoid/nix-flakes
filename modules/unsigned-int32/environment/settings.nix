@@ -11,6 +11,10 @@
       Experimental = true;
     };
   };
+  services.hardware.openrgb = {
+    enable = true;
+    motherboard = "amd";
+  };
   hardware.opentabletdriver = {
     enable = true;
     daemon.enable = true;

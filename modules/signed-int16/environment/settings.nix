@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-
+  services.hardware.openrgb = {
+    enable = true;
+    motherboard = "intel";
+  };
   hardware.opentabletdriver = {
     enable = true;
     daemon.enable = true;
