@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  hostname,
+  ...
+}:
 {
   boot.blacklistedKernelModules = [
     "nouveau"
@@ -8,7 +13,11 @@
     blacklist nouveau
   '';
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package =
+      if hostname == "signed-int16" then
+        config.boot.kernelPackages.nvidiaPackages.latest
+      else
+        config.boot.kernelPackages.nvidiaPackages.production;
     open = true;
     modesetting.enable = true;
     powerManagement = {

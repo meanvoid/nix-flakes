@@ -5,7 +5,6 @@ let
   discordOverlay = pkgs.discord.override {
     withOpenASAR = true;
     withVencord = true;
-    withTTS = true;
   };
 
   vesktopOverlay = inputs.unstable.legacyPackages.${pkgs.system}.vesktop.override {

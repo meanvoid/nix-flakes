@@ -31,7 +31,7 @@ in
       options = "--delete-older-than 30d";
     };
     settings = {
-      auto-optimise-store = true;
+      auto-optimise-store = if isLinux then true else false;
       experimental-features = [
         "nix-command"
         "flakes"

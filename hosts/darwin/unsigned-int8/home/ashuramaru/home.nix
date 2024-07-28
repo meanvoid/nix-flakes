@@ -40,7 +40,7 @@
         thefuck
         yt-dlp
 
-        vesktop
+        osu-lazer-bin
         ;
       inherit (inputs.unstable.legacyPackages.${pkgs.system}) prismlauncher;
       # Playstation RemotePlay but FOSS

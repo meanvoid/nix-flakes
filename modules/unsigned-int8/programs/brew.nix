@@ -16,19 +16,24 @@ _: {
       "vfkit"
     ];
     casks = [
-      "signal"
-      # Games
-      "wine-staging"
-      "crossover"
-      "steam"
-      # graphics
-      "krita"
+      ### --- Socials --- ###
       "telegram"
-      "iina"
+      "signal" # Telegram but if it wasnt owned by multimillioner living in Dubai
+      ### --- Socials
+      ### --- Gayming --- ###
+      "wine-staging" # Based
+      "crossover" # Supporting wine project
+      "steam" # Gayming
+      ### --- Gayming --- ###
+      ### --- Graphics --- ###
+      "krita" # Soyjak drawing program
+      ### --- Graphics --- ###
+      ### --- Utilities --- ###
+      "forklift"
       "nextcloud"
       "easy-move-plus-resize"
-      # yubico
       "yubico-authenticator"
+      ### --- Utilities --- ###
     ];
   };
 }

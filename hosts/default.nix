@@ -42,6 +42,7 @@ in
     hostName = "signed-int16";
     system = "x86_64-linux";
     useHomeManager = true;
+    useAagl = true;
     useFlatpak = true;
     users = [ "reisen" ];
   };

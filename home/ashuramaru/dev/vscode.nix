@@ -15,7 +15,7 @@ in
   home.packages = builtins.attrValues {
     inherit (pkgs)
       # c/c++
-      cmakeWithGui
+      cmakeCurses
       clang-tools
       gnumake
       # Python
