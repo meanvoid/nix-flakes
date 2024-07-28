@@ -22,7 +22,7 @@ in
       ### ----------------DESKTOP------------------- ###
       (path + "/modules/shared/desktop/plasma.nix")
       (path + "/modules/shared/desktop/fonts.nix")
-      (path + "/modules/shared/desktop/steam.nix")
+      (path + "/modules/shared/programs/steam.nix")
       ### ----------------DESKTOP------------------- ###
     ]
     ++ hostModules [

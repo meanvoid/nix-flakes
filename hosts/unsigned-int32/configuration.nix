@@ -29,7 +29,7 @@ in
       ### ----------------DESKTOP------------------- ###
       (path + "/modules/shared/desktop/gnome.nix")
       (path + "/modules/shared/desktop/fonts.nix")
-      (path + "/modules/shared/desktop/steam.nix")
+      (path + "/modules/shared/programs/steam.nix")
       ### ----------------DESKTOP------------------- ###
     ]
     ++ hostModules [
@@ -126,9 +126,6 @@ in
       inherit (inputs.nix-software-center.packages.${pkgs.system}) nix-software-center;
       inherit (inputs.nixos-conf-editor.packages.${pkgs.system}) nixos-conf-editor;
     };
-    shellInit = ''
-      [ -n "$DISPLAY" ] && xhost +si:localuser:$USER || true
-    '';
   };
 
   time.timeZone = "Europe/Kyiv";
