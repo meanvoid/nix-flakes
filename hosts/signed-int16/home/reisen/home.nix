@@ -1,9 +1,26 @@
-{ pkgs, path, ... }:
+{
+  lib,
+  pkgs,
+  path,
+  ...
+}:
 {
   imports =
-    [ (path + /modules/shared/home/reisen/programs/dev/vim.nix) ]
-    ++ (import (path + /hosts/signed-int16/home/reisen/programs))
-    ++ (import (path + /modules/shared/home/reisen/programs/utils));
+    [
+      ### ----------------PROGRAMS------------------- ###
+      ./programs/firefox.nix
+      ./programs/chromium.nix
+      ./programs/flatpak.nix
+      (path + /home/shared/programs/discord.nix)
+      (path + /home/shared/programs/spotify.nix)
+      ### ----------------PROGRAMS------------------- ###
+    ]
+    ++ lib.flatten [
+      (lib.concatLists [
+        (import ./programs/dev/default.nix)
+        (import ./programs/utils/default.nix)
+      ])
+    ];
   home = {
     username = "reisen";
     packages = builtins.attrValues {

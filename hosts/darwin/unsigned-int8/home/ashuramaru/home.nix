@@ -1,13 +1,25 @@
 {
   inputs,
+  lib,
   pkgs,
   path,
   ...
 }:
 {
-  imports = [
-    (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
-  ] ++ (import ./programs) ++ (import (path + /modules/shared/home/ashuramaru/programs/utils));
+  imports =
+    [
+      ### ----------------PROGRAMS------------------- ###
+      ./programs/firefox.nix
+      ./programs/discord.nix
+      (path + /home/shared/programs/spotify.nix)
+      ### ----------------PROGRAMS------------------- ###
+    ]
+    ++ lib.flatten [
+      (lib.concatLists [
+        (import (path + /home/ashuramaru/dev/default.nix))
+        (import (path + /home/ashuramaru/utils/default.nix))
+      ])
+    ];
   home = {
     packages = builtins.attrValues {
       inherit (pkgs)

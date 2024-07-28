@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   pkgs,
   path,
   ...
@@ -7,13 +8,25 @@
 {
   imports =
     [
+      ### ----------------SERVICES------------------- ###
       ./services/easyeffects.nix
       ./services/systemd-utils.nix
-      (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
+      ### ----------------SERVICES------------------- ###
+      ### ----------------PROGRAMS------------------- ###
+      ./programs/firefox.nix
+      ./programs/chromium.nix
+      ./programs/flatpak.nix
+      (path + /home/shared/programs/discord.nix)
+      (path + /home/shared/programs/spotify.nix)
+      ### ----------------PROGRAMS------------------- ###
     ]
-    ++ (import (path + /hosts/unsigned-int32/home/ashuramaru/programs))
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/utils))
-    ++ (import (path + /modules/shared/home/overlays));
+    ++ lib.flatten [
+      (lib.concatLists [
+        (import (path + /home/ashuramaru/dev/default.nix))
+        (import (path + /home/ashuramaru/utils/default.nix))
+      ])
+    ];
+
   home = {
     username = "ashuramaru";
     pointerCursor = {
