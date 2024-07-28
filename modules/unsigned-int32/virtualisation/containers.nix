@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   admins = [
     "ashuramaru"
@@ -45,6 +45,10 @@ in
         };
       };
     };
+  };
+  hardware.nvidia-container-toolkit = {
+    enable = if config.hardware.nvidia.modesetting.enable then true else false;
+    mount-nvidia-executables = true;
   };
   systemd.timers."podman-auto-update".wantedBy = [ "timers.target" ];
   environment.systemPackages = [ pkgs.distrobox ];

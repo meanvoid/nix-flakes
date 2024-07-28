@@ -49,6 +49,7 @@
 
       # Productivity
       inherit (pkgs) libreoffice-fresh;
+      inherit (pkgs) wezterm; # lags like shit
 
       # Social & Communication
       inherit (pkgs)
@@ -63,7 +64,6 @@
       inherit (pkgs)
         ani-cli # Anime downloader
         thefuck # Correcting previous command
-        mullvad # VPN service
         ;
 
       # Gaming

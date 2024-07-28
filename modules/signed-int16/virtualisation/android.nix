@@ -4,10 +4,7 @@
   environment.systemPackages = builtins.attrValues { inherit (pkgs) scrcpy v4l-utils; };
   programs.android-development = {
     enable = true;
-    users = [
-      "ashuramaru"
-      "meanrin"
-    ];
+    users = [ "reisen" ];
     waydroid.enable = true;
   };
 }

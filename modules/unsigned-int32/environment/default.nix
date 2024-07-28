@@ -1,6 +1,6 @@
 [
   ./env.nix
-  ./nvidia.nix
+  ./ccache.nix
   ./openrgb.nix
   ./settings.nix
   ./users.nix

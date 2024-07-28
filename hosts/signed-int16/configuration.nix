@@ -15,6 +15,7 @@ in
       ./hardware-configuration.nix
       (path + "/modules/shared/settings/firmware.nix")
       (path + "/modules/shared/settings/nix.nix")
+      (path + "/modules/shared/settings/nvidia.nix")
       (path + "/modules/shared/settings/opengl.nix")
       ### ----------------ESSENTIAL------------------- ###
       (path + "/modules/shared/settings/settings.nix")
@@ -26,7 +27,6 @@ in
     ++ hostModules [
       "environment"
       "networking"
-      "programs"
       "virtualisation"
     ];
 

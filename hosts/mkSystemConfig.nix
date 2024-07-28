@@ -95,6 +95,7 @@ in
             hostname
             users
             path
+            system
             ;
           host = {
             inherit hostName;
@@ -129,6 +130,7 @@ in
             hostname
             users
             path
+            system
             ;
           inherit darwin nixpkgs;
           host = {

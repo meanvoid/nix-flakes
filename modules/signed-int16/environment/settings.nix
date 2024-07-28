@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+
   hardware.opentabletdriver = {
     enable = true;
     daemon.enable = true;
@@ -11,4 +12,6 @@
       inherit (pkgs.gnome2) GConf;
     };
   };
+  services.ratbagd.enable = true;
+  environment.systemPackages = [ pkgs.piper ];
 }

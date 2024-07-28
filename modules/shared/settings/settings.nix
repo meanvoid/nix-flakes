@@ -33,41 +33,43 @@
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
       # essential
-      curl
-      wget
-      nmap
-      dig
-
       zip
       unzip
       rar
       lz4
       p7zip
+      lm_sensors
 
       # utils
-      neofetch
-      hyfetch
+      binutils
+      findutils
+      util-linux
+      fio # disk benchmark
 
       ffmpeg_6-full
       imagemagick
       mpv
       mpd
+
       # Networking
       finger_bsd
-
-      util-linux
+      curl
+      wget
+      nmap
+      dig
 
       pciutils
       usbutils
       nvme-cli
-      libva-utils
 
-      fio
-      lm_sensors
-
+      # nvim clipboard
       xclip
       wl-clipboard
       wl-clipboard-x11
+
+      # misc
+      neofetch
+      hyfetch
       ;
     inherit (pkgs.gst_all_1)
       gstreamer

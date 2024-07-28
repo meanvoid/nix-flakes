@@ -16,7 +16,10 @@ let
 in
 {
   imports =
-    [ (path + /modules/shared/settings/nix.nix) ]
+    [
+      (path + /modules/shared/settings/nix.nix)
+      (path + /modules/shared/desktop/fonts.nix)
+    ]
     ++ hostModules [
       "environment"
       "programs"

@@ -119,6 +119,7 @@ in
   };
   services.mullvad-vpn = {
     enable = true;
+    package = pkgs.mullvad-vpn;
     enableExcludeWrapper = false;
   };
   services.tailscale = {

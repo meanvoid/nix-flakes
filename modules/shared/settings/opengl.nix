@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   hardware.opengl = {
     enable = true;
@@ -8,13 +8,11 @@
       inherit (pkgs)
         # VAAPI
         libva
-        libva-utils
         vaapiVdpau
         libvdpau-va-gl
         ;
-      # AMD
-      inherit (pkgs.rocmPackages) clr;
-      inherit (pkgs.rocmPackages.clr) icd;
+      nvidia-vaapi = if config.hardware.nvidia.modesetting.enable then pkgs.nvidia-vaapi-driver else null;
+      egl-wayland = if config.hardware.nvidia.modesetting.enable then pkgs.egl-wayland else null;
     };
     extraPackages32 = builtins.attrValues {
       inherit (pkgs.driversi686Linux)
@@ -24,5 +22,4 @@
         ;
     };
   };
-  systemd.tmpfiles.rules = [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
 }
