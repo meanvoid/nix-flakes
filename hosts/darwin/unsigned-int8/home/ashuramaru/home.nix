@@ -10,7 +10,6 @@
     [
       ### ----------------PROGRAMS------------------- ###
       ./programs/firefox.nix
-      ./programs/discord.nix
       (path + /home/shared/programs/spotify.nix)
       ### ----------------PROGRAMS------------------- ###
     ]
@@ -39,6 +38,8 @@
         yubikey-manager
         thefuck
         yt-dlp
+
+        vesktop
         ;
       inherit (inputs.unstable.legacyPackages.${pkgs.system}) prismlauncher;
       # Playstation RemotePlay but FOSS

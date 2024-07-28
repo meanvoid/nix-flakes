@@ -11,13 +11,18 @@
 }:
 {
   homeManagerModules = {
-    nixos = hostName: users: [
+    nixos = system: hostName: users: [
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
-          inherit inputs users path;
+          inherit
+            inputs
+            system
+            users
+            path
+            ;
           inherit nur spicetify-nix flatpaks;
           host = {
             inherit hostName;
@@ -33,7 +38,7 @@
       }
     ];
 
-    darwin = hostName: users: [
+    darwin = system: hostName: users: [
       home-manager.darwinModules.home-manager
       {
         nixpkgs.overlays = [ inputs.nixpkgs-firefox-darwin.overlay ];
@@ -42,6 +47,7 @@
         home-manager.extraSpecialArgs = {
           inherit
             inputs
+            system
             darwin
             users
             path
