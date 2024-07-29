@@ -25,9 +25,11 @@
       inherit (pkgs)
         # Make macos useful
         alt-tab-macos
+        hidden-bar
         rectangle
         iina # frontend for ffmpeg
         qbittorrent
+
         # Audio
         audacity
 
@@ -40,7 +42,7 @@
         thefuck
         yt-dlp
 
-        osu-lazer-bin
+        osu-lazer-bin # gayming
         ;
       inherit (inputs.unstable.legacyPackages.${pkgs.system}) prismlauncher;
       # Playstation RemotePlay but FOSS

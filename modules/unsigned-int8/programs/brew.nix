@@ -4,7 +4,12 @@ _: {
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      cleanup = "zap";
+      cleanup = "uninstall";
+    };
+    caskArgs = {
+      appdir = "~/Applications";
+      no_quarantine = true;
+      require_sha = true;
     };
     taps = [
       "homebrew/cask-versions"
@@ -12,6 +17,7 @@ _: {
     ];
     brews = [
       "winetricks"
+      "smartmontools"
       # virtualization
       "vfkit"
     ];
@@ -19,15 +25,18 @@ _: {
       ### --- Socials --- ###
       "telegram"
       "signal" # Telegram but if it wasnt owned by multimillioner living in Dubai
+      "element" # alo based department?
+      "thunderbird"
       ### --- Socials
-      ### --- Gayming --- ###
-      "wine-staging" # Based
+      ### --- Gayming --- ###      
       "crossover" # Supporting wine project
       "whisky" # just for the wine
       "steam" # Gayming
       ### --- Gayming --- ###
       ### --- Graphics --- ###
       "krita" # Soyjak drawing program
+      "affinity-photo" # Proffessional soyjak drawing program
+      "affinity-designer" # Proffessional soyjak designer program
       ### --- Graphics --- ###
       ### --- Utilities --- ###
       "forklift"

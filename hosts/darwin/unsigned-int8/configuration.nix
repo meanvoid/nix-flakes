@@ -37,6 +37,7 @@ in
     inherit (pkgs)
       # Utils
       wireguard-tools
+      util-linux
       coreutils
       binutils
       openssh

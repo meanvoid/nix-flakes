@@ -43,6 +43,7 @@ in
     enableExtensionUpdateCheck = true;
     mutableExtensionsDir = false;
     userSettings = {
+      "search.followSymlinks" = false;
       "typescript.suggest.paths" = false;
       "javascript.suggest.paths" = false;
       "files.autoSave" = "afterDelay";
