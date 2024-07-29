@@ -23,6 +23,7 @@ _: {
       ### --- Gayming --- ###
       "wine-staging" # Based
       "crossover" # Supporting wine project
+      "whisky" # just for the wine
       "steam" # Gayming
       ### --- Gayming --- ###
       ### --- Graphics --- ###
