@@ -41,7 +41,7 @@ in
     package = vscode-overlay;
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = true;
-    mutableExtensionsDir = false;
+    mutableExtensionsDir = true;
     userSettings = {
       "search.followSymlinks" = false;
       "typescript.suggest.paths" = false;
@@ -120,7 +120,6 @@ in
       cpptools-extension-pack = vscode-marketplace.ms-vscode.cpptools-extension-pack;
       rust-lang = vscode-marketplace.rust-lang.rust-analyzer;
       golang = vscode-marketplace.golang.go;
-      java = vscode-marketplace.redhat.java;
       scala = vscode-marketplace.scala-lang.scala;
       kotlin = vscode-marketplace.mathiasfrohlich.kotlin;
       kotlin-debugger = vscode-marketplace.fwcd.kotlin;
@@ -155,11 +154,12 @@ in
       nixfmt = vscode-marketplace.brettm12345.nixfmt-vscode;
       ## -- Nix Utils -- ##
 
-      # -- Java Utils -- ##
+      ## -- Java Utils -- ##
+      java = vscode-marketplace.redhat.java;
       gradle = vscode-marketplace.vscjava.vscode-gradle;
       java-debugger = vscode-marketplace.vscjava.vscode-java-debug;
       java-extension-pack = vscode-marketplace.vscjava.vscode-java-pack;
-      # -- Java Utils -- ##
+      ## -- Java Utils -- ##
 
       ## -- C/C++ Utils -- ##
       c-cpp-extension-pack = vscode-marketplace.ms-vscode.cpptools-extension-pack;
