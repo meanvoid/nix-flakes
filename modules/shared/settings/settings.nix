@@ -130,6 +130,7 @@
       enableZshIntegration = true;
     };
   };
+  #TODO make false if theres no xserver
   security.rtkit.enable = true;
   programs.dconf.enable = true;
 }

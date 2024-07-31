@@ -29,14 +29,13 @@ in
       "virtualisation"
     ];
 
-  age.secrets."ca.crt" = {
-    file = path + /secrets/cert.age;
-    path = "/etc/ssl/self/ca.crt";
-    mode = "0775";
-    owner = "root";
-    group = "root";
-  };
-  environment.shells = builtins.attrValues { inherit (pkgs) zsh bash fish; };
+  # age.secrets."ca.crt" = {
+  #   file = path + /secrets/cert.age;
+  #   path = "/etc/ssl/self/ca.crt";
+  #   mode = "0775";
+  #   owner = "root";
+  #   group = "root";
+  # };
   security = {
     sudo = {
       wheelNeedsPassword = false;
@@ -52,38 +51,13 @@ in
       enableExtraSocket = true;
       pinentryPackage = pkgs.pinentry-curses;
     };
-    neovim = {
-      enable = true;
-      viAlias = true;
-      vimAlias = true;
-      defaultEditor = true;
-      withPython3 = true;
-      withNodeJs = true;
-      withRuby = true;
-    };
-    htop = {
-      enable = true;
-      settings = {
-        hide_kernel_threads = true;
-        hide_userland_threads = true;
-      };
-    };
-    tmux = {
-      enable = true;
-      keyMode = "vi";
-      resizeAmount = 10;
-      escapeTime = 250;
-    };
     git = {
       enable = true;
       lfs.enable = true;
     };
-    nix-index = {
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-    };
-    dconf.enable = true;
   };
+
+  environment.shells = builtins.attrValues { inherit (pkgs) zsh bash fish; };
 
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_US.UTF-8";
