@@ -28,14 +28,6 @@ in
       "services"
       "virtualisation"
     ];
-
-  # age.secrets."ca.crt" = {
-  #   file = path + /secrets/cert.age;
-  #   path = "/etc/ssl/self/ca.crt";
-  #   mode = "0775";
-  #   owner = "root";
-  #   group = "root";
-  # };
   security = {
     sudo = {
       wheelNeedsPassword = false;
@@ -50,10 +42,6 @@ in
       enableBrowserSocket = true;
       enableExtraSocket = true;
       pinentryPackage = pkgs.pinentry-curses;
-    };
-    git = {
-      enable = true;
-      lfs.enable = true;
     };
   };
 
