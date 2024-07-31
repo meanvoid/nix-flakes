@@ -52,7 +52,6 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
-    aagl.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
     nixified-ai.inputs.nixpkgs.follows = "nixpkgs";

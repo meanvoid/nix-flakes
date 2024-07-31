@@ -68,6 +68,11 @@
         "/Shared/media:rw"
         "/media/games:rw"
       ];
+      "moe.launcher.an-anime-game-launcher".filesystems = [
+        "xdg-config/MangoHud:ro"
+        "/Shared/media:rw"
+        "/media/games:rw"
+      ];
     };
   };
 }
