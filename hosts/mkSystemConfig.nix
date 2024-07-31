@@ -1,38 +1,30 @@
 {
   lib,
   inputs,
+  path,
   nixpkgs,
-  home-manager,
   darwin,
-  meanvoid-overlay,
-  nur,
   sops-nix,
   agenix,
+  home-manager,
+  spicetify-nix,
+  nur,
+  hyprland,
+  vscode-server,
   flatpaks,
   aagl,
-  spicetify-nix,
-  hyprland,
-  path,
-  vscode-server,
   ...
 }:
 let
   homeManager = import ./homeManagerModules.nix {
-    inherit
-      lib
-      inputs
-      nixpkgs
-      darwin
-      nur
-      ;
-    inherit home-manager spicetify-nix flatpaks;
-    inherit path;
+    inherit lib inputs path;
+    inherit nixpkgs darwin;
+    inherit home-manager nur;
+    inherit spicetify-nix;
   };
   inherit (homeManager) homeManagerModules;
   cfg = {
-    nixpkgs.config = {
-      allowUnfree = true;
-    };
+    nixpkgs.config.allowUnfree = true;
   };
 in
 {
@@ -42,12 +34,12 @@ in
         hostName,
         system,
         useHomeManager ? false,
-        useHyprland ? false,
         useNur ? false,
-        useAagl ? false,
-        useFlatpak ? false,
+        useHyprland ? false,
         useVscodeServer ? false,
         useNvidiaVgpu ? false,
+        useFlatpak ? false,
+        useAagl ? false,
         users ? [ ],
         modules ? [ ],
         ...
@@ -79,10 +71,7 @@ in
             vscode-server.nixosModules.default
             { config.services.vscode-server.enable = lib.mkDefault true; }
           ])
-          (lib.optionals useNvidiaVgpu [
-            meanvoid-overlay.nixosModules.kvmfr
-            meanvoid-overlay.nixosModules.nvidia-vGPU
-          ])
+          # (lib.optionals useNvidiaVgpu [ meanvoid-overlay.nixosModules.nvidia-vGPU ])
           (lib.optionals useHomeManager (homeManagerModules.nixos hostname users))
           defaults
         ];
@@ -90,18 +79,13 @@ in
       lib.nixosSystem {
         inherit system;
         specialArgs = {
-          inherit
-            inputs
-            hostname
-            users
-            path
-            system
-            ;
+          inherit inputs system hostname;
+          inherit path users;
           host = {
             inherit hostName;
           };
         };
-        modules = [ (path + "/hosts/${hostName}/configuration.nix") ] ++ sharedModules;
+        modules = [ "${path}/hosts/${hostName}/configuration.nix" ] ++ sharedModules;
       };
 
     darwin =
@@ -125,19 +109,14 @@ in
       darwin.lib.darwinSystem {
         inherit system;
         specialArgs = {
-          inherit
-            inputs
-            system
-            hostname
-            users
-            path
-            ;
+          inherit inputs system hostname;
+          inherit path users;
           inherit darwin nixpkgs;
           host = {
             inherit hostName;
           };
         };
-        modules = [ (path + /hosts/darwin/${hostName}/configuration.nix) ] ++ sharedModules;
+        modules = [ "${path}/hosts/darwin/${hostName}/configuration.nix" ] ++ sharedModules;
       };
   };
 }

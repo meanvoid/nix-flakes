@@ -1,42 +1,44 @@
 {
+  lib,
   inputs,
   self,
-  nixpkgs,
   path,
+  nixpkgs,
   darwin,
   home-manager,
+  spicetify-nix,
   nur,
-  hyprland,
   agenix,
   sops-nix,
   flatpaks,
-  aagl,
-  spicetify-nix,
+  hyprland,
   vscode-server,
-  meanvoid-overlay,
+  aagl,
   ...
 }:
 let
   systems = import (path + /hosts/mkSystemConfig.nix) {
-    inherit (nixpkgs) lib;
+    ### ----------------FLAKE------------------- ###
+    inherit lib;
+    inherit inputs self path;
+    ### ----------------FLAKE------------------- ###
+
+    ### ----------------SYSTEM------------------- ###
+    inherit nixpkgs darwin;
+    ### ----------------SYSTEM------------------- ###
+
+    ### ----------------MODULES & OVERLAYS------------------- ###
+    inherit agenix sops-nix;
+    inherit home-manager nur;
+    inherit spicetify-nix;
+    # linux stuff
     inherit
-      inputs
-      self
-      nixpkgs
-      darwin
-      ;
-    inherit home-manager path;
-    inherit
-      nur
+      vscode-server
       hyprland
-      agenix
-      sops-nix
       flatpaks
       aagl
-      spicetify-nix
-      vscode-server
-      meanvoid-overlay
       ;
+    ### ----------------MODULES & OVERLAYS------------------- ###
   };
   inherit (systems) mkSystemConfig;
 in

@@ -55,6 +55,7 @@
     inherit (pkgs) winetricks scummvm inotify-tools;
     inherit (pkgs.wineWowPackages) stagingFull;
     inherit (inputs.nix-gaming.packages.${pkgs.system}) wine-discord-ipc-bridge osu-lazer-bin;
+
   };
   programs = {
     steam = {

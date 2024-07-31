@@ -94,6 +94,7 @@
       # pin-app-folders-to-dash
       dash-to-dock
       arcmenu
+      customize-ibus
       ;
 
     catppuccin-gtk = pkgs.catppuccin-gtk.override {

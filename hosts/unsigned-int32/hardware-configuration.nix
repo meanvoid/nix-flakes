@@ -67,7 +67,7 @@
   boot.loader = {
     systemd-boot = {
       enable = true;
-      consoleMode = "max";
+      consoleMode = "keep";
       netbootxyz.enable = true;
       configurationLimit = 30;
     };

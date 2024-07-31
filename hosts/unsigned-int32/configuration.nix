@@ -138,7 +138,6 @@ in
     };
   };
   nix.settings = {
-    # todo use age
     access-tokens = "/etc/nix/token";
     netrc-file = "/etc/nix/netrc";
   };

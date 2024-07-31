@@ -1,11 +1,10 @@
 {
   lib,
   inputs,
-  nur,
   darwin,
   home-manager,
   spicetify-nix,
-  flatpaks,
+  nur,
   path,
   ...
 }:
@@ -17,13 +16,8 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
-          inherit
-            inputs
-
-            users
-            path
-            ;
-          inherit nur spicetify-nix flatpaks;
+          inherit inputs users path;
+          inherit spicetify-nix nur;
           host = {
             inherit hostName;
           };
@@ -45,13 +39,8 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
-          inherit
-            inputs
-
-            darwin
-            users
-            path
-            ;
+          inherit inputs users path;
+          inherit darwin;
           host = {
             inherit hostName;
           };

@@ -50,7 +50,7 @@
 
     ### --- De-duplication --- ###
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "unstable";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
@@ -70,23 +70,18 @@
       flake-utils,
       devenv,
       pre-commit-hooks,
-      # nixpkgs
       nixpkgs,
-      # system
       darwin,
       home-manager,
-      # esential modules
+      hyprland,
       sops-nix,
       agenix,
       flatpaks,
       nur,
-      # overlays and applications
       aagl,
-      hyprland,
       nix-gaming,
       spicetify-nix,
       vscode-server,
-      meanvoid-overlay,
       ...
     }@inputs:
     let
@@ -164,16 +159,21 @@
           commonAttrs = {
             inherit (nixpkgs) lib;
             inherit (self) output;
+            ### ----------------FLAKE------------------- ###
+            inherit inputs self path;
+            ### ----------------FLAKE------------------- ###
 
-            inherit inputs self;
-            inherit nixpkgs;
-            inherit darwin;
+            ### ----------------SYSTEM------------------- ###
+            inherit nixpkgs darwin;
+            ### ----------------SYSTEM------------------- ###
 
-            inherit home-manager path;
-            inherit nur agenix sops-nix;
-            inherit meanvoid-overlay hyprland;
-            inherit flatpaks aagl spicetify-nix;
-            inherit vscode-server;
+            ### ----------------MODULES & OVERLAYS------------------- ###
+            inherit hyprland;
+            inherit agenix sops-nix;
+            inherit home-manager spicetify-nix nur;
+            inherit vscode-server flatpaks;
+            inherit aagl;
+            ### ----------------MODULES & OVERLAYS------------------- ###
           };
         in
         {

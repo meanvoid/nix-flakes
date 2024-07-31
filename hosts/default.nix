@@ -2,38 +2,42 @@
   lib,
   inputs,
   self,
+  path,
   nixpkgs,
-  home-manager,
   darwin,
-  meanvoid-overlay,
-  nur,
   sops-nix,
   agenix,
+  home-manager,
+  spicetify-nix,
+  nur,
+  hyprland,
+  vscode-server,
   flatpaks,
   aagl,
-  spicetify-nix,
-  hyprland,
-  path,
-  vscode-server,
   ...
 }:
 let
   systems = import ./mkSystemConfig.nix {
-    # flake
+    ### ----------------FLAKE------------------- ###
     inherit lib;
     inherit inputs self path;
+    ### ----------------FLAKE------------------- ###  
 
-    # pkgs
+    ### ----------------SYSTEM------------------- ###
     inherit nixpkgs darwin;
-    inherit home-manager nur;
+    ### ----------------SYSTEM------------------- ###
 
-    # essential
-    inherit agenix sops-nix flatpaks;
+    ### ----------------MODULES & OVERLAYS------------------- ###
+    inherit agenix sops-nix;
+    inherit home-manager spicetify-nix nur;
 
-    # optional 
-    inherit meanvoid-overlay aagl;
-    inherit spicetify-nix hyprland;
-    inherit vscode-server;
+    ### ----------------DESKTOP------------------- ###
+    inherit hyprland;
+    ### ----------------DESKTOP------------------- ###
+
+    inherit vscode-server flatpaks;
+    inherit aagl;
+    ### ----------------MODULES & OVERLAYS------------------- ###
   };
   inherit (systems) mkSystemConfig;
 in
@@ -55,7 +59,6 @@ in
     useAagl = true;
     useFlatpak = true;
     useVscodeServer = true;
-    useNvidiaVgpu = false;
     users = [
       "ashuramaru"
       "meanrin"
