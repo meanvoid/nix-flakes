@@ -167,16 +167,6 @@
         ### --- fumono --- ###
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHBeBj6thLiVFNGZI1NuTHKIPvh332Szad2zsgjdzhR mc-server"
         ### --- fumono --- ###
-
-        ### --- jalemi --- ###
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM7Y6rWriIoPAs/4UwyR6idg+qoltoMqpzrFfRxvfNl8 jolym@DESKTOP-8ABNMG9"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH5vW/3EeOQV9Et0BtNFk7AwRQHG0BpYPiV+7NA73+mx joly@joly-BOD-WXX9"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4sGaPM8lq6Mt4C4NaXmsDVi+/E4KZ9f4znjPnz+L5k Jalemi@DESKTOP-8ABNMG9 snikersdaun@gmail.com"
-        ### --- jalemi --- ###
-
-        ### --- solonka --- ###
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJoMLTIKqlgWkHGaaNVIzySieiixhld1xB/a7VXuwdrK solonkamay@gmail.com"
-        ### --- solonka --- ###
       ];
     };
     android = {
