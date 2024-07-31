@@ -55,20 +55,23 @@ in
     };
 
     /**
-      https://github.com/DontEatOreo/nix-dotfiles/blob/2370a16f6555f0fadbe570aa9b2781ac97cc01d3/hosts/nixos/users/nyx/nix.nix#L9C5-L10C62
-      This will additionally add your inputs to the system's legacy channels
-      Making legacy nix commands consistent as well, awesome!
+          https://github.com/DontEatOreo/nix-dotfiles/blob/2370a16f6555f0fadbe570aa9b2781ac97cc01d3/hosts/nixos/users/nyx/nix.nix#L9C5-L10C62
+          This will additionally add your inputs to the system's legacy channels
+          Making legacy nix commands consistent as well, awesome!
     */
-    nixPath = [ "/etc/nix/path" ];
-    registry = lib.mapAttrs (_: flake: { inherit flake; }) lib.filterAttrs (_: value: lib.isType "flake" value) inputs;
+    nixPath = [ "/etc/nix/inputs" ];
+    /**
+      https://github.com/DontEatOreo/nix-dotfiles/blob/2370a16f6555f0fadbe570aa9b2781ac97cc01d3/hosts/nixos/users/nyx/nix.nix#L5C5-L7C7
+    */
+    registry = (lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
   };
   /**
     # Add inputs to legacy (nix2) channels, making legacy nix commands consistent
     https://github.com/DontEatOreo/nix-dotfiles/blob/2370a16f6555f0fadbe570aa9b2781ac97cc01d3/hosts/nixos/configuration.nix#L40C3-L44C26
     *
   */
-  environment.etc = lib.mapAttrs (name: value: {
-    name = "nix/path/${name}";
+  environment.etc = lib.mapAttrs' (name: value: {
+    name = "nix/inputs/${name}";
     value.source = value.flake;
   }) config.nix.registry;
 }
