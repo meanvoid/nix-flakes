@@ -19,7 +19,7 @@ in
       ./hardware-configuration.nix
       (path + /modules/${hostname}/environment/users.nix)
       (path + /modules/shared/settings/firmware.nix)
-      # (path + /modules/shared/settings/nix.nix)
+      (path + /modules/shared/settings/nix.nix)
       (path + /modules/shared/settings/opengl.nix)
       (path + /modules/shared/settings/settings.nix)
     ]
