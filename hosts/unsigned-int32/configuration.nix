@@ -1,5 +1,6 @@
 {
   inputs,
+  config,
   pkgs,
   hostname,
   path,
@@ -14,6 +15,12 @@ let
     import (dir + "/${moduleName}");
 
   hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
+  add-23_11-packages = final: _prev: {
+    nixpkgs-23_11 = import inputs.nixpkgs-23_11 {
+      system = final.system;
+      config = config.nixpkgs.config;
+    };
+  };
 in
 {
   imports =
@@ -77,15 +84,17 @@ in
           enableGnomeKeyring = true;
           enableKwallet = true;
         };
+        su = {
+          sshAgentAuth = true;
+          u2fAuth = true;
+        };
         sudo = {
           sshAgentAuth = true;
           u2fAuth = true;
-          yubicoAuth = true;
         };
         sshd = {
           sshAgentAuth = true;
           u2fAuth = true;
-          yubicoAuth = true;
           enableGnomeKeyring = true;
           enableKwallet = true;
           googleOsLoginAuthentication = true;
@@ -93,11 +102,10 @@ in
           googleAuthenticator.enable = true;
         };
       };
-      yubico = {
+      u2f = {
         enable = true;
-        id = "20693163";
-        mode = "client";
-        control = "sufficient";
+        cue = true;
+        control = "required";
       };
     };
   };
@@ -134,12 +142,16 @@ in
     supportedLocales = [ "all" ];
     inputMethod = {
       enabled = "ibus";
-      ibus.engines = builtins.attrValues { inherit (pkgs.ibus-engines) anthy; };
+      ibus.engines = builtins.attrValues { inherit (pkgs.nixpkgs-23_11.ibus-engines) anthy; };
     };
   };
   nix.settings = {
     access-tokens = "/etc/nix/token";
     netrc-file = "/etc/nix/netrc";
   };
+  nixpkgs.overlays = [
+    add-23_11-packages
+    (self: super: { ibus = super.nixpkgs-23_11.ibus; })
+  ];
   system.stateVersion = "24.05";
 }
