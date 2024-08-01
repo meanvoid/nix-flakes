@@ -78,7 +78,6 @@
     };
     anime-game-launcher.enable = true;
     honkers-railway-launcher.enable = true;
-    anime-games-launcher.enable = true;
   };
   environment.sessionVariables = rec {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = [ "\${HOME}/.steam/root/compatibilitytools.d:${pkgs.proton-ge-bin}" ];
