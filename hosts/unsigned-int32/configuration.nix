@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   config,
   pkgs,
   hostname,
@@ -142,7 +143,7 @@ in
     supportedLocales = [ "all" ];
     inputMethod = {
       enabled = "ibus";
-      ibus.engines = builtins.attrValues { inherit (pkgs.nixpkgs-23_11.ibus-engines) anthy; };
+      ibus.engines = [ pkgs.nixpkgs-23_11.ibus-engines.anthy ];
     };
   };
   nix.settings = {
@@ -153,5 +154,11 @@ in
     add-23_11-packages
     (self: super: { ibus = super.nixpkgs-23_11.ibus; })
   ];
+  #! Temp workaround until "https://github.com/NixOS/nixpkgs/pull/303509" gets merged
+  environment.variables = {
+    "GTK_IM_MODULE" = lib.mkForce "";
+    "QT_IM_MODULE" = lib.mkForce "";
+  };
+
   system.stateVersion = "24.05";
 }

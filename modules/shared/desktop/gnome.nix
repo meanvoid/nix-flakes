@@ -53,6 +53,7 @@
     inherit (pkgs)
       adw-gtk3
       adwaita-qt
+      adwsteamgtk
       adwaita-qt6
       theme-obsidian2
       lounge-gtk-theme
@@ -64,6 +65,7 @@
       lightly-boehs
       gparted
       gradience
+      authenticator
       ;
     inherit (pkgs.kdePackages) breeze;
     inherit (pkgs.libsForQt5)

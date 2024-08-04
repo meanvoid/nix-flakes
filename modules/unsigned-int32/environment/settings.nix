@@ -1,5 +1,22 @@
 { pkgs, ... }:
 {
+  systemd.services.lock-sessions = {
+    description = "Lock sessions after device removal";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.systemd}/bin/loginctl lock-sessions";
+    };
+  };
+
+  systemd.timers.lock-sessions = {
+    description = "Timer to lock sessions after a delay";
+    timerConfig = {
+      OnActiveSec = "30s";
+      Persistent = false;
+    };
+    wantedBy = [ "timers.target" ];
+  };
+
   hardware.gpgSmartcards.enable = true;
   services.hardware.bolt.enable = true;
   hardware.bluetooth = {
@@ -24,20 +41,23 @@
       packages = builtins.attrValues {
         inherit (pkgs.gnome) gnome-settings-daemon;
         inherit (pkgs.gnome2) GConf;
-        inherit (pkgs) opentabletdriver yubikey-personalization;
+        inherit (pkgs) opentabletdriver libwacom yubikey-personalization;
       };
       extraRules = ''
         # XP-Pen CT1060
-        SUBSYSTEM=="hidraw", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="0932", MODE="0666"
-        SUBSYSTEM=="usb", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="0932", MODE="0666"
-        SUBSYSTEM=="hidraw", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="5201", MODE="0666"
-        SUBSYSTEM=="usb", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="5201", MODE="0666"
+        SUBSYSTEM=="hidraw", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="0932", MODE="0644"
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="0932", MODE="0644"
+        SUBSYSTEM=="hidraw", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="5201", MODE="0644"
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="5201", MODE="0644"
         SUBSYSTEM=="input", ATTRS{idVendor}=="28bd", ATTRS{idProduct}=="5201", ENV{LIBINPUT_IGNORE_DEVICE}="1"
 
+        # Wacom PTH-460
+        KERNEL=="hidraw*", ATTRS{idVendor}=="056a", ATTRS{idProduct}=="03dc", MODE="0644", TAG+="uaccess", TAG+="udev-acl"
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="056a", ATTRS{idProduct}=="03dc", MODE="0644", TAG+="uaccess", TAG+="udev-acl"
+
+        # Yubico
         ACTION=="remove", ENV{ID_BUS}=="usb", ENV{ID_MODEL_ID}=="0407", ENV{ID_VENDOR_ID}=="1050", ENV{ID_VENDOR}=="Yubico",\
-          RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
-        ACTION=="remove", ENV{ID_BUS}=="usb", ENV{ID_MODEL_ID}=="0402", ENV{ID_VENDOR_ID}=="1050", ENV{ID_VENDOR}=="Yubico",\
-          RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
+          RUN+="${pkgs.systemd}/bin/systemctl start lock-sessions.timer"
       '';
     };
     printing = {
@@ -56,5 +76,6 @@
     };
     lvm.boot.thin.enable = true;
     pcscd.enable = true;
+    xserver.wacom.enable = true;
   };
 }

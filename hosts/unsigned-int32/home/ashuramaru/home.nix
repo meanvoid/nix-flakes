@@ -69,7 +69,7 @@
         signal-desktop # Signal desktop client
         tdesktop # Telegram desktop
         kotatogram-desktop # telegram's fork
-        element-desktop # Matrix client
+        fluffychat # Matrix client
         dino # Jabber client
         ;
 
@@ -88,7 +88,9 @@
         # Misc
         xemu # Xbox emulator
         np2kai # PC-98 emulator
+        bottles # Play On Linux but modern
         flycast # Sega Dreamcast emulator
+        osu-lazer-bin # *click click click
         prismlauncher # Minecraft launcher
 
         # Nintendo

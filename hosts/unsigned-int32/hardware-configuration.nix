@@ -1,15 +1,25 @@
 {
-  config,
+  inputs,
   lib,
+  config,
   pkgs,
+  system,
   modulesPath,
   ...
 }:
+let
+  addUnstablePackages = final: _prev: {
+    unstable = import inputs.unstable {
+      inherit system;
+      config = config.nixpkgs.config;
+    };
+  };
+in
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-
+  nixpkgs.overlays = [ addUnstablePackages ];
   boot = {
-    kernelPackages = pkgs.linuxPackages_xanmod;
+    kernelPackages = pkgs.unstable.linuxPackages_xanmod;
     kernelModules = [
       # dkms
       "kvm-amd"
@@ -35,11 +45,6 @@
       "video=DP-4:2560x1440@120"
       ### ------------------------------------ ###
       "video=HDMI1:2560x1440@120"
-      "video=HDMI2:2560x1440@120"
-      "video=HDMI3:2560x1440@120"
-      "video=HDMI4:2560x1440@120"
-      ### ------------------------------------ ###
-      # "video=Virtual-1:2560x1440@60"
       "nvidia_drm.fbdev=1"
       "iommu=pt"
     ];
@@ -67,8 +72,7 @@
   boot.loader = {
     systemd-boot = {
       enable = true;
-      consoleMode = "keep";
-      netbootxyz.enable = true;
+      consoleMode = "max";
       configurationLimit = 30;
     };
     generationsDir.copyKernels = true;

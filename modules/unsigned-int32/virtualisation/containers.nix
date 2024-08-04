@@ -8,7 +8,6 @@ in
 {
   virtualisation.docker = {
     enable = true;
-    enableNvidia = true;
     enableOnBoot = true;
     daemon.settings = {
       fixed-cidr-v6 = "fd00::/80";
