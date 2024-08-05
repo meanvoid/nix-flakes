@@ -90,7 +90,6 @@
         np2kai # PC-98 emulator
         bottles # Play On Linux but modern
         flycast # Sega Dreamcast emulator
-        osu-lazer-bin # *click click click
         prismlauncher # Minecraft launcher
 
         # Nintendo
@@ -149,6 +148,7 @@
         "csv-editor"
         "ini"
       ];
+      inherit (pkgs.unstable) osu-lazer-bin;
     };
     stateVersion = "24.05";
   };
