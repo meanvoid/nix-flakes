@@ -1,15 +1,6 @@
 { inputs, pkgs, ... }:
 let
   inherit (inputs.nix-vscode-extensions.extensions.${pkgs.system}) vscode-marketplace;
-
-  vscode-overlay = pkgs.vscode.overrideAttrs (oldAttrs: {
-    buildInputs = oldAttrs.buildInputs ++ [ pkgs.makeWrapper ];
-    postInstall =
-      oldAttrs.postInstall or ""
-      + ''
-        wrapProgram "$out/bin/code" --set GTK_USE_PORTAL=1
-      '';
-  });
 in
 {
   home.packages = builtins.attrValues {
@@ -38,7 +29,7 @@ in
   };
   programs.vscode = {
     enable = true;
-    package = vscode-overlay;
+    package = pkgs.vscode;
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = true;
     mutableExtensionsDir = true;
@@ -218,5 +209,8 @@ in
       japanese = vscode-marketplace.ms-ceintl.vscode-language-pack-ja;
       ## -- Dictionary/Languages support -- ##
     };
+  };
+  home.sessionVariables = {
+    GO_PATH = "$XDG_DATA_HOME/go";
   };
 }

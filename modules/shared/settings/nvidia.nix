@@ -17,7 +17,7 @@
       if hostname == "signed-int16" then
         config.boot.kernelPackages.nvidiaPackages.latest
       else
-        config.boot.kernelPackages.nvidiaPackages.beta;
+        config.boot.kernelPackages.nvidiaPackages.latest;
     open = true;
     modesetting.enable = true;
     powerManagement = {
@@ -31,9 +31,6 @@
     nvtop = pkgs.nvtopPackages.full;
   };
   environment.sessionVariables = rec {
-    #LIBVA_DRIVER_NAME = "nvidia";
-    # GBM_BACKEND = "nvidia-drm";
-    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     NVD_BACKEND = "direct";
   };
   services.xserver.videoDrivers = [ "nvidia" ];

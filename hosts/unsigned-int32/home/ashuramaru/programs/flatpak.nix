@@ -15,7 +15,6 @@
 
       # Gaming
       "flathub:app/com.valvesoftware.Steam/x86_64/stable"
-      "moe-launcher:app/moe.launcher.an-anime-game-launcher/x86_64/master"
 
       # Vulkan utils
       "flathub:runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08"

@@ -89,12 +89,11 @@
       adwaita-icon-theme
       ;
     inherit (pkgs.gnomeExtensions)
+      clipboard-history
+      blur-my-shell
+      dash-to-dock
       appindicator
       pop-shell
-      blur-my-shell
-      aylurs-widgets
-      # pin-app-folders-to-dash
-      dash-to-dock
       arcmenu
       ;
 
