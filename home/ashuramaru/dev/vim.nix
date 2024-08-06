@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   programs.neovim = {
     enable = true;
@@ -9,7 +9,10 @@
     withPython3 = true;
     withNodeJs = true;
     withRuby = true;
-
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+    };
     plugins = builtins.attrValues {
       inherit (pkgs.vimPlugins)
         # Syntax

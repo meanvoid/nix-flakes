@@ -6,7 +6,13 @@
     enableVteIntegration = true;
     autocd = true;
     autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
+    syntaxHighlighting = {
+      enable = true;
+      catppuccin = {
+        enable = true;
+        flavor = "mocha";
+      };
+    };
     shellAliases = {
       ls = "ls --color";
       lt = "ls --human-readable --size -1 -S --classify";

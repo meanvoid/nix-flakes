@@ -6,6 +6,7 @@
   nixpkgs,
   darwin,
   home-manager,
+  catppuccin,
   spicetify-nix,
   nur,
   agenix,
@@ -34,6 +35,7 @@ let
     # linux stuff
     inherit
       vscode-server
+      catppuccin
       hyprland
       flatpaks
       aagl

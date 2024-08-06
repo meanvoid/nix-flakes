@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   pkgs,
   path,
@@ -8,6 +7,7 @@
 {
   imports =
     [
+      ./_.env.nix
       ### ----------------SERVICES------------------- ###
       ./services/easyeffects.nix
       ./services/systemd-utils.nix
@@ -29,12 +29,6 @@
 
   home = {
     username = "ashuramaru";
-    pointerCursor = {
-      name = "Marisa";
-      package = inputs.meanvoid-overlay.packages.${pkgs.system}.anime-cursors.marisa;
-      gtk.enable = true;
-      x11.enable = true;
-    };
     packages = builtins.attrValues {
       # Multimedia
       inherit (pkgs)
@@ -152,13 +146,33 @@
     };
     stateVersion = "24.05";
   };
-  programs.rbw = {
-    enable = true;
-    settings = {
-      email = "ashuramaru@tenjin-dk.com";
-      base_url = "https://bitwarden.tenjin-dk.com";
-      lock_timeout = 600;
-      pinentry = pkgs.pinentry-gnome3;
+  programs = {
+    rbw = {
+      enable = true;
+      settings = {
+        email = "ashuramaru@tenjin-dk.com";
+        base_url = "https://bitwarden.tenjin-dk.com";
+        lock_timeout = 600;
+        pinentry = pkgs.pinentry-gnome3;
+      };
+    };
+    mpv = {
+      #TODO: write mpv config
+      enable = true;
+      catppuccin = {
+        enable = true;
+        flavor = "mocha";
+        accent = "rosewater";
+      };
+    };
+    tmux = {
+      enable = true;
+      catppuccin = {
+        flavor = "mocha";
+        extraConfig = ''
+          set -g @catppuccin_status_modules_right "application session user host date_time"
+        '';
+      };
     };
   };
 }

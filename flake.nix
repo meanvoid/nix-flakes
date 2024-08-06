@@ -27,13 +27,14 @@
     ### --- Overlays and Applications --- ###
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
-    hyprland.url = "github:hyprwm/Hyprland";
     doom-emacs.url = "github:nix-community/nix-doom-emacs";
     meanvoid-overlay.url = "github:meanvoid/nixos-overlay";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    catppuccin.url = "github:catppuccin/nix";
+    hyprland.url = "github:hyprwm/Hyprland";
 
     nixified-ai.url = "github:nixified-ai/flake";
 
@@ -51,7 +52,7 @@
 
     ### --- De-duplication --- ###
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.inputs.nixpkgs.follows = "unstable";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
@@ -74,6 +75,7 @@
       nixpkgs,
       darwin,
       home-manager,
+      catppuccin,
       hyprland,
       sops-nix,
       agenix,
@@ -173,7 +175,7 @@
             inherit agenix sops-nix;
             inherit home-manager spicetify-nix nur;
             inherit vscode-server flatpaks;
-            inherit aagl;
+            inherit catppuccin aagl;
             ### ----------------MODULES & OVERLAYS------------------- ###
           };
         in

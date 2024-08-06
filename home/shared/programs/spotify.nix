@@ -1,16 +1,12 @@
-{ pkgs, inputs, ... }:
-let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-in
+{ pkgs, ... }:
 {
-  imports = [ inputs.spicetify-nix.homeManagerModules.default ];
   programs.spicetify = {
     enable = true;
-    theme = spicePkgs.themes.catppuccin;
+    theme = pkgs.spicetify.themes.catppuccin;
     colorScheme = "mocha";
 
     enabledExtensions = builtins.attrValues {
-      inherit (spicePkgs.extensions)
+      inherit (pkgs.spicetify.extensions)
         adblock
         fullAppDisplay
         shuffle # shuffle+ (special characters are sanitized out of ext names)
@@ -18,6 +14,6 @@ in
         copyToClipboard
         ;
     };
-    enabledCustomApps = builtins.attrValues { inherit (spicePkgs.apps) marketplace localFiles; };
+    enabledCustomApps = builtins.attrValues { inherit (pkgs.spicetify.apps) marketplace localFiles; };
   };
 }

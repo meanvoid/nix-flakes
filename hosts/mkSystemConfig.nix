@@ -7,6 +7,7 @@
   sops-nix,
   agenix,
   home-manager,
+  catppuccin,
   spicetify-nix,
   nur,
   hyprland,
@@ -20,7 +21,8 @@ let
     inherit lib inputs path;
     inherit nixpkgs darwin;
     inherit home-manager nur;
-    inherit spicetify-nix;
+    inherit catppuccin spicetify-nix;
+    # inherit system;
   };
   inherit (homeManager) homeManagerModules;
   cfg = {
@@ -72,7 +74,7 @@ in
             { config.services.vscode-server.enable = lib.mkDefault true; }
           ])
           # (lib.optionals useNvidiaVgpu [ meanvoid-overlay.nixosModules.nvidia-vGPU ])
-          (lib.optionals useHomeManager (homeManagerModules.nixos hostname users))
+          (lib.optionals useHomeManager (homeManagerModules.nixos hostname users system))
           defaults
         ];
       in
@@ -101,7 +103,7 @@ in
         hostname = hostName;
         defaults = [ { config = cfg; } ] ++ modules;
         sharedModules = lib.flatten [
-          (lib.optional useHomeManager (homeManagerModules.darwin hostname users))
+          (lib.optional useHomeManager (homeManagerModules.darwin hostname users system))
           agenix.darwinModules.default
           defaults
         ];

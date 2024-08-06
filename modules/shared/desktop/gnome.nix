@@ -90,21 +90,20 @@
       ;
     inherit (pkgs.gnomeExtensions)
       clipboard-history
+      rounded-corners
       blur-my-shell
       dash-to-dock
       appindicator
       pop-shell
       arcmenu
       ;
-
     catppuccin-gtk = pkgs.catppuccin-gtk.override {
       accents = [ "rosewater" ];
       size = "compact";
-      tweaks = [ "rimless" ];
-      variant = "frappe";
+      tweaks = [ "normal" ];
+      variant = "mocha";
     };
   };
-
   environment.gnome.excludePackages = builtins.attrValues { inherit (pkgs) gnome-console gnome-builder; };
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";

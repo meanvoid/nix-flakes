@@ -8,6 +8,7 @@
   sops-nix,
   agenix,
   home-manager,
+  catppuccin,
   spicetify-nix,
   nur,
   hyprland,
@@ -36,7 +37,7 @@ let
     ### ----------------DESKTOP------------------- ###
 
     inherit vscode-server flatpaks;
-    inherit aagl;
+    inherit catppuccin aagl;
     ### ----------------MODULES & OVERLAYS------------------- ###
   };
   inherit (systems) mkSystemConfig;
