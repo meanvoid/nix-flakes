@@ -175,6 +175,22 @@
         }
       ];
     };
+    # dnscrypt proxy and wrapper, wrapper will be used for systems that cannot access my unbound configuration as an actual dnscrypt server, while proxy will be used for unbound configurtion
+    dscrypt-proxy2 = {
+      enable = true;
+      settings = {
+        listen_addresses = [
+          "127.0.0.1:5353"
+          "[::1]:5353"
+          "172.16.31.1:5353"
+          "[fd17:216b:31bc:1::1]:5353"
+        ];
+        ipv6_servers = true;
+        odoh_servers = true;
+        require_dnssec = true;
+      };
+      upstreamDefaults = true;
+    };
     unbound = {
       enable = true;
       enableRootTrustAnchor = true;
@@ -199,7 +215,9 @@
           prefetch-key = "yes";
           num-threads = "2";
           hide-identity = "yes";
-          identity = "\"static.unsigned-int64.your-server.de\"";
+          hide-version = "yes";
+          minimal-responses = "no";
+          rrset-roundrobin = "yes";
           access-control = [
             "127.0.0.0/8 allow"
             "172.16.0.0/12 allow"
@@ -223,6 +241,7 @@
             "\"172.in-addr.arpa.\" static"
             "\"tenjin.com.\" static"
           ];
+          identity = "\"static.unsigned-int64.your-server.de\"";
           local-data = [
             "\"internal.com. 10800 IN NS ns1.internal.com.\""
             "\"internal.com. 10800 IN SOA ns1.internal.com. admin@cloud.tenjin-dk.com. 1 3600 1200 604800 10800\""
@@ -252,6 +271,7 @@
           {
             name = ".";
             forward-addr = [
+              "127.0.0.1@5353" # test
               "1.1.1.1@853#cloudflare-dns.com"
               "1.0.0.1@853#cloudflare-dns.com"
               "2606:4700:4700::1111@853#cloudflare-dns.com"
