@@ -35,6 +35,7 @@ in
 
   # unsigned-int64
   "mail.age".publicKeys = [ systems.unsigned-int64 ];
+  "shadowsocks.age".publicKeys = [ systems.unsigned-int64 ];
   "proxy.age".publicKeys = [ systems.unsigned-int64 ];
   "admin.age".publicKeys = [ systems.unsigned-int64 ];
   "vaultwarden-env.age".publicKeys = [ systems.unsigned-int64 ];
