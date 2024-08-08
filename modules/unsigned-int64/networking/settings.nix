@@ -273,7 +273,7 @@
               # dnscrypt odoh
               "127.0.0.1@5353"
               "::1"
-              
+
               # Authoritive recursive DNS for robot.hetzner
               "185.12.64.1"
               "185.12.64.2"
