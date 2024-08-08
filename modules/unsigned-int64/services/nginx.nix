@@ -88,15 +88,18 @@
         return 444;
       '';
     };
-    # virtualHosts."cvat.fumoposting.com" = {
-    #   serverName = "cvat.fumoposting.com";
-    #   forceSSL = true;
-    #   enableACME = true;
-    #   locations."/" = {
-    #     proxyPass = "http://127.0.0.1:8010";
-    #     proxyWebsockets = true;
-    #   };
-    # };
+    virtualHosts."ss.tenjin-dk.com" = {
+      serverName = "ss.tenjin-dk.com";
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:10001";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_redirect off;
+        '';
+      };
+    };
     virtualHosts."static.fumoposting.com" = {
       serverName = "static.fumoposting.com";
       forceSSL = true;
