@@ -70,7 +70,7 @@ in
       };
       Service = {
         Type = "oneshot";
-        ExecStart = "${generate_md5}/bin/assign_md5 /Shared/media/Media/DP";
+        ExecStart = "${generate_md5}/bin/assign_md5 /Shared/media/Porn";
       };
     };
     timers."assign_uuid" = {

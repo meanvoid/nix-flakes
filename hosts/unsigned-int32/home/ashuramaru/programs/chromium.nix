@@ -27,7 +27,6 @@
       { id = "aapbdbdomjkkjkaonfhkkikfgjllcleb"; } # google translate
       { id = "gebbhagfogifgggkldgodflihgfeippi"; } # youtubedislikes
       { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # sponsor block
-      { id = "ohnjgmpcibpbafdlkimncjhflgedgpam"; } # 4chanX
       { id = "hkgfoiooedgoejojocmhlaklaeopbecg"; } # picture in picture
       { id = "jgejdcdoeeabklepnkdbglgccjpdgpmf"; } # old twitter layout
       {

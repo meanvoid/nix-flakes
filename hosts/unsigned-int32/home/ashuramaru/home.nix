@@ -9,6 +9,7 @@
     [
       ./_.env.nix
       ### ----------------SERVICES------------------- ###
+      ./services/proton.nix
       ./services/easyeffects.nix
       ./services/systemd-utils.nix
       ### ----------------SERVICES------------------- ###
@@ -59,8 +60,8 @@
       inherit (pkgs) wezterm; # lags like shit
 
       # Social & Communication
+      inherit (pkgs.unstable) signal-desktop; # Signal desktop client
       inherit (pkgs)
-        signal-desktop # Signal desktop client
         tdesktop # Telegram desktop
         kotatogram-desktop # telegram's fork
         fluffychat # Matrix client

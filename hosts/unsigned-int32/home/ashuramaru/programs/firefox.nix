@@ -159,7 +159,7 @@
             ];
           };
         };
-        default = "Ecosia";
+        default = "Google";
       };
     };
   };

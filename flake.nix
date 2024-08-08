@@ -12,6 +12,7 @@
     ### --- nixpkgs channels --- ###
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    master.url = "github:nixos/nixpkgs/master"; # Only for debug purposes e.g. nix run
     nixpkgs-23_11.url = "github:nixos/nixpkgs/nixos-23.11";
     ### --- nixpkgs channels --- ###
     darwin.url = "github:lnl7/nix-darwin/master";
@@ -32,7 +33,7 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     doom-emacs.url = "github:nix-community/nix-doom-emacs";
     meanvoid-overlay.url = "github:meanvoid/nixos-overlay";
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix/master";
     catppuccin.url = "github:catppuccin/nix";
     hyprland.url = "github:hyprwm/Hyprland";
 
@@ -56,6 +57,7 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
     nixified-ai.inputs.nixpkgs.follows = "nixpkgs";
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
