@@ -186,6 +186,7 @@
           "[fd17:216b:31bc:1::1]:5353"
         ];
         ipv6_servers = true;
+        doh_servers = false;
         odoh_servers = true;
         require_dnssec = true;
       };
@@ -271,11 +272,8 @@
           {
             name = ".";
             forward-addr = [
-              "127.0.0.1@5353" # test
-              "1.1.1.1@853#cloudflare-dns.com"
-              "1.0.0.1@853#cloudflare-dns.com"
-              "2606:4700:4700::1111@853#cloudflare-dns.com"
-              "2606:4700:4700::1001@853#cloudflare-dns.com"
+              "127.0.0.1@5353"
+              "[::1]@5353"
             ];
             forward-tls-upstream = "yes";
           }
