@@ -182,8 +182,6 @@
         listen_addresses = [
           "127.0.0.1:5353"
           "[::1]:5353"
-          "172.16.31.1:5353"
-          "[fd17:216b:31bc:1::1]:5353"
         ];
         ipv6_servers = true;
         doh_servers = false;
@@ -274,6 +272,10 @@
             forward-addr = [
               "127.0.0.1@5353"
               "[::1]@5353"
+              # "1.1.1.1@853#cloudflare-dns.com"
+              # "1.0.0.1@853#cloudflare-dns.com"
+              # "2606:4700:4700::1111@853#cloudflare-dns.com"
+              # "2606:4700:4700::1001@853#cloudflare-dns.com"
             ];
             forward-tls-upstream = "yes";
           }
