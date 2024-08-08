@@ -176,7 +176,7 @@
       ];
     };
     # dnscrypt proxy and wrapper, wrapper will be used for systems that cannot access my unbound configuration as an actual dnscrypt server, while proxy will be used for unbound configurtion
-    dscrypt-proxy2 = {
+    dnscrypt-proxy2 = {
       enable = true;
       settings = {
         listen_addresses = [
