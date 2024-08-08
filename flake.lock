@@ -1282,6 +1282,22 @@
         "type": "github"
       }
     },
+    "master": {
+      "locked": {
+        "lastModified": 1723129109,
+        "narHash": "sha256-g/7jywW0I0ANZXF95IcBIREqTaFJWunD+gbeAS5HYSA=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5544b2785f7ddbda8210178efc0a57656be22191",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "meanvoid-overlay": {
       "inputs": {
         "devshell": "devshell",
@@ -2025,15 +2041,17 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1721914019,
-        "narHash": "sha256-GxUnSVtfPCLHIJJ6OiwQUaFIPL0xMaH0wf+TuxS6Cwg=",
-        "path": "/nix/store/fg77h9ryk7sjnz0y4an9szl5804l75vf-source",
-        "rev": "a6a34c95c22e8cddd6049a470fb843989d08ee86",
-        "type": "path"
+        "lastModified": 1723128305,
+        "narHash": "sha256-J9XTRGCSkz4lV/ofjr38KUb20IgfuxB1e6iZcSYZ2dE=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "18702583c7f9e7c309e3c801ea3a25a184852fd9",
+        "type": "github"
       },
       "original": {
-        "id": "nur",
-        "type": "indirect"
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
       }
     },
     "ob-racket": {
@@ -2245,6 +2263,7 @@
         "flatpaks": "flatpaks",
         "home-manager": "home-manager_2",
         "hyprland": "hyprland",
+        "master": "master",
         "meanvoid-overlay": "meanvoid-overlay",
         "mk-shell-bin": "mk-shell-bin",
         "nix-gaming": "nix-gaming",

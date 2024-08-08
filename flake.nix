@@ -12,10 +12,12 @@
     ### --- nixpkgs channels --- ###
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-23_11.url = "github:nixos/nixpkgs/nixos-23.11";
+    master.url = "github:nixos/nixpkgs/master"; # Only for debug purposes e.g. nix run
+    nixpkgs-23_11.url = "github:nixos/nixpkgs/nixos-23.11"; # for ibus
     ### --- nixpkgs channels --- ###
     darwin.url = "github:lnl7/nix-darwin/master";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
+    nur.url = "github:nix-community/NUR";
     ### --- System --- ###
 
     ### --- ESSENTIAL system modules --- ###

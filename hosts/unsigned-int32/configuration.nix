@@ -48,14 +48,21 @@ in
       "virtualisation"
     ];
 
-  age.secrets."ca.crt" = {
-    file = path + /secrets/cert.age;
-    path = "/etc/ssl/self/ca.crt";
-    mode = "0775";
-    owner = "root";
-    group = "root";
+  age.secrets = {
+    "ca.crt" = {
+      file = path + /secrets/cert.age;
+      path = "/etc/ssl/self/ca.crt";
+      mode = "0775";
+      owner = "root";
+      group = "root";
+    };
+    "gh_token" = {
+      file = path + /secrets/gh_token.age;
+      mode = "0640";
+      owner = "root";
+      group = "root";
+    };
   };
-
   security = {
     wrappers = {
       doas = {
@@ -147,8 +154,8 @@ in
     };
   };
   nix.settings = {
-    access-tokens = "/etc/nix/token";
-    netrc-file = "/etc/nix/netrc";
+    access-tokens = config.age.secrets."gh_token".path;
+    netrc-file = "/etc/nix/netrc"; # TODO: add netrc token as age
   };
   nixpkgs.overlays = [
     add-23_11-packages

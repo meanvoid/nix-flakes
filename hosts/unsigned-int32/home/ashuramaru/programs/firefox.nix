@@ -1,11 +1,5 @@
+{ inputs, pkgs, ... }:
 {
-  pkgs,
-  config,
-  nur,
-  ...
-}:
-{
-  imports = [ nur.hmModules.nur ];
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-bin;
@@ -17,7 +11,7 @@
         "widget.use-xdg-desktop-portal.file-picker" = 1;
       };
       extensions = builtins.attrValues {
-        inherit (config.nur.repos.rycee.firefox-addons)
+        inherit (inputs.firefox-addons.packages.${pkgs.system})
           # necessity
           ublock-origin
           privacy-badger
@@ -44,7 +38,7 @@
           multi-account-containers
           sponsorblock
           return-youtube-dislikes
-          video-downloadhelper
+          # video-downloadhelper
           stylus
           steam-database
           search-by-image
