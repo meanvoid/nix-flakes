@@ -1282,22 +1282,6 @@
         "type": "github"
       }
     },
-    "master": {
-      "locked": {
-        "lastModified": 1723117177,
-        "narHash": "sha256-lGRS9I+X1Oquj9h+2KFzN9dK5JQTPBSdV/ooLAuOdPQ=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "a6f768881a04bfb124a89bc4941d8559dc3f3336",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "meanvoid-overlay": {
       "inputs": {
         "devshell": "devshell",
@@ -2261,7 +2245,6 @@
         "flatpaks": "flatpaks",
         "home-manager": "home-manager_2",
         "hyprland": "hyprland",
-        "master": "master",
         "meanvoid-overlay": "meanvoid-overlay",
         "mk-shell-bin": "mk-shell-bin",
         "nix-gaming": "nix-gaming",
