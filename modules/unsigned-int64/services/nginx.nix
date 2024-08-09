@@ -92,12 +92,15 @@
       serverName = "ss.tenjin-dk.com";
       forceSSL = true;
       enableACME = true;
-      locations."/" = {
+      locations."/ray" = {
         proxyPass = "http://127.0.0.1:10800";
         proxyWebsockets = true;
-        extraConfig = ''
-          proxy_redirect off;
-        '';
+        # extraConfig = ''
+        #   if ($http_upgrade != "websocket") {
+        #     return 404;
+        #   }
+        #   proxy_redirect off;
+        # '';
       };
     };
     virtualHosts."static.fumoposting.com" = {

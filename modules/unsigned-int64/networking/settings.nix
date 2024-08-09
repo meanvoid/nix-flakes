@@ -77,25 +77,27 @@
     };
     firewall = {
       enable = true;
-      allowedUDPPorts = [
-        # Proxy
-        1080
-        3128
-        # Wireguard
-        51280
-        51820
-      ];
-      allowedTCPPorts = [
-        # HTTP
-        80
-        # HTTPS
-        443
-        # Proxy
-        1080
-        3128
-        # ssh
-        57255
-      ];
+      interfaces."eth0" = {
+        allowedUDPPorts = [
+          # Proxy
+          1080
+          3128
+          # Wireguard
+          51280
+          51820
+        ];
+        allowedTCPPorts = [
+          # HTTP
+          80
+          # HTTPS
+          443
+          # Proxy
+          1080
+          3128
+          # ssh
+          57255
+        ];
+      };
       interfaces."podman+" = {
         allowedTCPPorts = [ 53 ];
         allowedUDPPorts = [ 53 ];
@@ -175,7 +177,6 @@
         }
       ];
     };
-    # dnscrypt proxy and wrapper, wrapper will be used for systems that cannot access my unbound configuration as an actual dnscrypt server, while proxy will be used for unbound configurtion
     dnscrypt-proxy2 = {
       enable = true;
       settings = {

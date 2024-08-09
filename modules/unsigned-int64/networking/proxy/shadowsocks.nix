@@ -7,20 +7,31 @@
 {
   age.secrets.shadowsocks = {
     file = path + /secrets/shadowsocks.age;
-    mode = "0644";
+    mode = "775";
     owner = "nobody";
     group = "nobody";
   };
-
   services.shadowsocks = {
     enable = true;
     fastOpen = true;
     port = 10800;
     extraConfig = {
       nameserver = "127.0.0.1";
-      local_port = 1080;
+      plugin = "${pkgs.shadowsocks-v2ray-plugin}/bin/v2ray-plugin";
+      plugin_opts = ''
+        server;
+        mode=websocket;
+        path=/ray;
+        host=ss.tenjin-dk.com;
+        cert=/var/lib/acme/ss.tenjin-dk.com/fullchain.pem;
+        key=/var/lib/acme/ss.tenjin-dk.com/key.pem;
+        loglevel=warn
+        tls;
+      '';
     };
-    mode = "tcp_only";
+    localAddress = [
+      "0.0.0.0"
+    ];
     passwordFile = config.age.secrets."shadowsocks".path; 
   };
 }
