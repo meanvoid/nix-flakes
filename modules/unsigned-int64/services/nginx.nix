@@ -93,7 +93,7 @@
       forceSSL = true;
       enableACME = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:10001";
+        proxyPass = "http://127.0.0.1:10800";
         proxyWebsockets = true;
         extraConfig = ''
           proxy_redirect off;

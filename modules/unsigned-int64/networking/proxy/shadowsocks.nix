@@ -15,19 +15,12 @@
   services.shadowsocks = {
     enable = true;
     fastOpen = true;
-    port = 10001;
-    plugin = "${pkgs.shadowsocks-v2ray-plugin}/bin/v2ray-plugin";
-    pluginOpts = ''
-      server;tls;host=ss.tenjin-dk.com;cert=/var/lib/acme/ss.tenjin-dk.com/fullchain.pem;key=/var/lib/acme/ss.tenjin-dk.com/key.pem;loglevel=WARN"
-    '';
-    localAddress = [
-      "127.0.0.1" 
-      "[::1]"
-    ];
+    port = 10800;
     extraConfig = {
-      nameserver = "127.0.0.1:53";
+      nameserver = "127.0.0.1";
+      local_port = 1080;
     };
     mode = "tcp_only";
-    passwordFile = config.age.secrets."shadowsocks".path;
+    passwordFile = config.age.secrets."shadowsocks".path; 
   };
 }
