@@ -22,7 +22,7 @@
           firemonkey
           facebook-container
 
-          bypass-paywalls-clean
+          # bypass-paywalls-clean
           clearurls
           user-agent-string-switcher
           web-archives
@@ -156,5 +156,10 @@
         default = "Google";
       };
     };
+    nativeMessagingHosts = [
+      pkgs.firefoxpwa
+      pkgs.gnome-browser-connector
+    ];
   };
+  home.packages = [ pkgs.firefoxpwa ];
 }

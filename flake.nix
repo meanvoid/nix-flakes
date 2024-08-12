@@ -50,6 +50,8 @@
     # Games
     aagl.url = "github:ezKEa/aagl-gtk-on-nix/release-24.05";
     nix-gaming.url = "github:fufexan/nix-gaming/master";
+
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     ### --- Overlays and Applications --- ###
 
     ### --- De-duplication --- ###
