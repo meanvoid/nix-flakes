@@ -71,6 +71,9 @@ in
     useHomeManager = true;
     useVscodeServer = true;
     users = [
+      "root"
+      "minecraft"
+
       "ashuramaru"
       "meanrin"
       "fumono"
