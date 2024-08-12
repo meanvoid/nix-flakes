@@ -88,21 +88,6 @@
         return 444;
       '';
     };
-    virtualHosts."ss.tenjin-dk.com" = {
-      serverName = "ss.tenjin-dk.com";
-      forceSSL = true;
-      enableACME = true;
-      locations."/ray" = {
-        proxyPass = "http://127.0.0.1:10800";
-        proxyWebsockets = true;
-        # extraConfig = ''
-        #   if ($http_upgrade != "websocket") {
-        #     return 404;
-        #   }
-        #   proxy_redirect off;
-        # '';
-      };
-    };
     virtualHosts."static.fumoposting.com" = {
       serverName = "static.fumoposting.com";
       forceSSL = true;
