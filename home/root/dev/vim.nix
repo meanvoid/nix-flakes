@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   programs.neovim = {
     enable = true;
@@ -33,7 +33,13 @@
 
         lightline-vim # Info bar at bottom
         indent-blankline-nvim # Indentation lines
+
+        # Preview support
+        vimtex
+        vimpreviewpandoc
+        image-nvim
         ;
+      tree-sitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
     };
     extraConfig = ''
       syntax enable                             " Syntax highlighting
@@ -45,6 +51,7 @@
       hi Normal guibg=NONE ctermbg=NONE         " Remove background, better for personal theme
 
       set number                                " Set numbers
+      set relativenumber                        " Set relative number
       nmap <F6> :NERDTreeToggle<CR>             " F6 opens NERDTree
     '';
   };
