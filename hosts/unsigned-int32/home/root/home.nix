@@ -17,7 +17,7 @@
     username = "root";
     packages = builtins.attrValues {
       # Utils
-      inherit (pkgs) thefuck;
+      inherit (pkgs) ani-cli thefuck;
     };
     stateVersion = "24.05";
   };
