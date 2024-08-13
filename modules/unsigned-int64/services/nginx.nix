@@ -58,7 +58,7 @@
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
     virtualHosts."ss.tenjin-dk.com" = {
-      serverName = "www.tenjin-dk.com";
+      serverName = "ss.tenjin-dk.com";
       forceSSL = true;
       enableACME = true;
       locations."/ray" = {
