@@ -77,27 +77,25 @@
     };
     firewall = {
       enable = true;
-      interfaces."eth0" = {
-        allowedUDPPorts = [
-          # Proxy
-          1080
-          3128
-          # Wireguard
-          51280
-          51820
-        ];
-        allowedTCPPorts = [
-          # HTTP
-          80
-          # HTTPS
-          443
-          # Proxy
-          1080
-          3128
-          # ssh
-          57255
-        ];
-      };
+      allowedUDPPorts = [
+        # Proxy
+        1080
+        3128
+        # Wireguard
+        51280
+        51820
+      ];
+      allowedTCPPorts = [
+        # HTTP
+        80
+        # HTTPS
+        443
+        # Proxy
+        1080
+        3128
+        # ssh
+        57255
+      ];
       interfaces."podman+" = {
         allowedTCPPorts = [ 53 ];
         allowedUDPPorts = [ 53 ];

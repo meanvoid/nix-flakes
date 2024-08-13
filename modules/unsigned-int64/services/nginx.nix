@@ -57,6 +57,15 @@
       add_header X-XSS-Protection "1; mode=block";
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
+    virtualHosts."ss.tenjin-dk.com" = {
+      serverName = "www.tenjin-dk.com";
+      forceSSL = true;
+      enableACME = true;
+      locations."/ray" = {
+        proxyPass = "127.0.0.1:10800";
+        proxyWebsockets = true;
+      };
+    };
     virtualHosts."www.tenjin-dk.com" = {
       serverName = "www.tenjin-dk.com";
       forceSSL = true;
