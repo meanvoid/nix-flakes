@@ -21,20 +21,6 @@
         betterLibrary
         ;
     };
-    enabledSnippets = builtins.attrValues {
-      inherit (pkgs.spicetify.snippets)
-        smooth-progress-bar
-        fix-DJ-icon
-        fix-liked-button
-        fix-liked-icon
-        fix-listening-on
-        fix-main-view-width
-        fix-now-playing-icon
-        fix-playlist-and-folder-position
-        fix-playlist-hover
-        fix-progress-bar
-        ;
-    };
     alwaysEnableDevTools = true;
     spotifyLaunchFlags = "--show-console";
   };

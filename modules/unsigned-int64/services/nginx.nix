@@ -62,7 +62,7 @@
       forceSSL = true;
       enableACME = true;
       locations."/ray" = {
-        proxyPass = "127.0.0.1:10800";
+        proxyPass = "http://127.0.0.1:10800";
         proxyWebsockets = true;
       };
     };

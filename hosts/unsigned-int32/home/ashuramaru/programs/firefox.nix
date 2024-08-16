@@ -8,6 +8,12 @@
       name = "main";
       isDefault = true;
       settings = {
+        # hacks
+        "gfx.webrender.all" = true; # Force enable GPU acceleration
+        "media.ffmpeg.vaapi.enabled" = true;
+        "widget.dmabuf.force-enabled" = true; # Required in recent Firefoxes
+
+        # settings
         "widget.use-xdg-desktop-portal.file-picker" = 1;
       };
       extensions = builtins.attrValues {
