@@ -1,23 +1,21 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
-  system,
   modulesPath,
   ...
 }:
-let
-  addUnstablePackages = final: _prev: {
-    unstable = import inputs.unstable {
-      inherit system;
-      config = config.nixpkgs.config;
-    };
-  };
-in
+# let
+#   addUnstablePackages = final: _prev: {
+#     unstable = import inputs.unstable {
+#       inherit system;
+#       config = config.nixpkgs.config;
+#     };
+#   };
+# in
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-  nixpkgs.overlays = [ addUnstablePackages ];
+  # nixpkgs.overlays = [ addUnstablePackages ];
   boot = {
     kernelPackages = pkgs.unstable.linuxPackages_xanmod;
     kernelModules = [
