@@ -1,1 +1,4 @@
-[ ./settings.nix ]
+[
+  ./settings.nix
+  ./mullvad.nix
+]
