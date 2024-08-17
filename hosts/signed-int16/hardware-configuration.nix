@@ -44,7 +44,7 @@
   };
   ### ---------------boot drive-------------------- ###
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/79d628c7-481b-4520-9f69-0a039f47d767";
+    device = "/dev/disk/by-uuid/fbd60dcd-5a5c-41e1-9fe1-46f86de28161";
     fsType = "btrfs";
     options = [
       "subvol=@"
@@ -56,7 +56,7 @@
     ];
   };
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/79d628c7-481b-4520-9f69-0a039f47d767";
+    device = "/dev/disk/by-uuid/fbd60dcd-5a5c-41e1-9fe1-46f86de28161";
     fsType = "btrfs";
     options = [
       "subvol=@home"
@@ -80,14 +80,6 @@
   };
   fileSystems."/volumes/cursed/wiwi" = {
     device = "/dev/disk/by-uuid/E4467BA4467B75E0";
-    fsType = "ntfs-3g";
-    options = [
-      "rw"
-      "uid=1000"
-    ];
-  };
-  fileSystems."/volumes/cursed/wawa" = {
-    device = "/dev/disk/by-uuid/2394671A7FC8B48D";
     fsType = "ntfs-3g";
     options = [
       "rw"
