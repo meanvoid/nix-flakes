@@ -40,7 +40,7 @@
         kdenlive
 
         # Media
-        quodlibet
+        quodlibet-full
         vlc
         yt-dlp
         brasero
