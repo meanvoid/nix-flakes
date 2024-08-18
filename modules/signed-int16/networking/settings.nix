@@ -61,6 +61,7 @@ in
         "172.16.31.10/32"
         "fd17:216b:31bc:1::10/128"
       ];
+      dns = [ "172.16.31.1" ];
       privateKeyFile = private;
       postUp = ''
         ${pkgs.systemd}/bin/resolvectl dns wg-ui64 172.16.31.1
