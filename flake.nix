@@ -37,6 +37,7 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix/master";
     catppuccin.url = "github:catppuccin/nix";
     hyprland.url = "github:hyprwm/Hyprland";
+    nixcord.url = "github:KaylorBen/nixcord";
 
     nixified-ai.url = "github:nixified-ai/flake";
 

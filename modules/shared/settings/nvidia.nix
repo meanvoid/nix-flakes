@@ -6,10 +6,10 @@
   ...
 }:
 {
-  boot.blacklistedKernelModules = [
-    "nouveau"
-    "module_blacklist=i915"
-  ];
+  # boot.blacklistedKernelModules = [
+  #   "nouveau"
+  #   "module_blacklist=i915"
+  # ];
   boot.extraModprobeConfig =
     "options nvidia "
     + lib.concatStringsSep " " [
