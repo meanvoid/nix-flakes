@@ -1,9 +1,12 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.python3Full ];
+  home.packages = [
+    pkgs.python3Full
+    pkgs.go
+  ];
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium-fhs;
+    package = pkgs.vscode;
     enableUpdateCheck = false;
     mutableExtensionsDir = true;
     userSettings = {
