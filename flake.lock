@@ -1527,6 +1527,21 @@
         "type": "github"
       }
     },
+    "nixcord": {
+      "locked": {
+        "lastModified": 1722899954,
+        "narHash": "sha256-6Bvb8OgsQTc7SqN1Xxig7Iyl5M7Be4PQWP7c13+Usug=",
+        "owner": "KaylorBen",
+        "repo": "nixcord",
+        "rev": "7f92af829b6bb814ba9fb6bc539ec5e5bb3c8708",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KaylorBen",
+        "repo": "nixcord",
+        "type": "github"
+      }
+    },
     "nixified-ai": {
       "inputs": {
         "flake-parts": "flake-parts_4",
@@ -2339,6 +2354,7 @@
         "nix-software-center": "nix-software-center",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nix2container": "nix2container",
+        "nixcord": "nixcord",
         "nixified-ai": "nixified-ai",
         "nixos-conf-editor": "nixos-conf-editor",
         "nixos-cosmic": "nixos-cosmic",

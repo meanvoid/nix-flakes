@@ -5,17 +5,8 @@
   modulesPath,
   ...
 }:
-# let
-#   addUnstablePackages = final: _prev: {
-#     unstable = import inputs.unstable {
-#       inherit system;
-#       config = config.nixpkgs.config;
-#     };
-#   };
-# in
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-  # nixpkgs.overlays = [ addUnstablePackages ];
   boot = {
     kernelPackages = pkgs.unstable.linuxPackages_xanmod;
     kernelModules = [
@@ -68,17 +59,20 @@
     ];
   };
   boot.loader = {
-    systemd-boot = {
+    grub = {
       enable = true;
-      consoleMode = "max";
-      configurationLimit = 30;
+      device = "nodev";
+      efiSupport = true;
+      configurationLimit = 15;
+      font = "${pkgs.hack-font}/share/fonts/truetype/Hack-Regular.ttf";
+      fontSize = 36;
     };
     generationsDir.copyKernels = true;
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot";
-    timeout = 30;
+    timeout = 15;
   };
-
+  boot.plymouth.enable = true;
   ### ----------------BOOT------------------- ###
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/4186-54D1";
