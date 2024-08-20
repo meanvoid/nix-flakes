@@ -66,6 +66,8 @@
         flameshot
         unetbootin
         woeusb-ng
+        fsearch
+        obsidian
         ;
     };
     stateVersion = "24.05";
