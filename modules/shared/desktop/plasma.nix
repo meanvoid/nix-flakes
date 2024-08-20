@@ -25,4 +25,5 @@
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";
   };
+  environment.systemPackages = builtins.attrValues { inherit (pkgs.kdePackages) kclock merkuro; };
 }
