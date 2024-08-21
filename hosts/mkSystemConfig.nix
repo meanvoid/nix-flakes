@@ -31,7 +31,6 @@ let
       config = final.config;
     };
   };
-
   cfg = {
     nixpkgs.config.allowUnfree = true;
     nixpkgs.overlays = [ addUnstablePackages ];

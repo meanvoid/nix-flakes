@@ -33,15 +33,13 @@
     packages = builtins.attrValues {
       # Multimedia
       inherit (pkgs)
-        anki # Flashcard app
-        media-downloader
-        imgbrd-grabber
-        yt-dlp
-        qbittorrent
+        quodlibet
+        vlc
+
+        brasero # cd/dvd burner
+        deluge # just as a backup
+        qbittorrent # understandable have a nice day
         nicotine-plus
-        tenacity # Audio recording/editing
-        pavucontrol # PulseAudio volume control
-        helvum # Font manager
         ;
 
       # Graphics & Design
@@ -56,9 +54,11 @@
         ;
 
       # Productivity
-      inherit (pkgs) libreoffice-fresh;
-      inherit (pkgs) wezterm; # lags like shit
-
+      inherit (pkgs)
+        libreoffice-fresh
+        anki # Flashcard app
+        tenacity # Audio recording/editing
+        ;
       # Social & Communication
       inherit (pkgs.unstable) signal-desktop; # Signal desktop client
       inherit (pkgs)
@@ -70,8 +70,16 @@
 
       # Utilities
       inherit (pkgs)
+        pavucontrol # PulseAudio volume control
+        qpwgraph
+        helvum # Jack controls
+
+        yt-dlp # youtube and whatnot media downloader
         ani-cli # Anime downloader
         thefuck # Correcting previous command
+        cdrtools # cd burner CLI
+        imgbrd-grabber
+        media-downloader
         ;
 
       # Gaming

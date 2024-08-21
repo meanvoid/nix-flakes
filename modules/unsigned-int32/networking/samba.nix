@@ -105,7 +105,7 @@
           "create mask" = "0644";
           "directory mask" = "0770";
           "valid users" = "ashuramaru meanrin";
-          "force user" = "root";
+          "force user" = "backup";
           "force group" = "users";
           "fruit:aapl" = "yes";
           "fruit:time machine" = "yes";
@@ -113,6 +113,12 @@
         };
       };
     };
+  };
+  users.users.backup = {
+    isNormalUser = true;
+    home = "/var/lib/backup";
+    initialHashedPassword = "";
+    extraGroups = [ "users" ];
   };
   systemd.tmpfiles.rules = [ "d /var/spool/samba 1777 root root -" ];
 }

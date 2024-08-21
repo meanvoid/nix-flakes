@@ -60,6 +60,7 @@
             "${userName}" = {
               imports = [
                 (path + "/hosts/darwin/${hostName}/home/${userName}/home.nix")
+                catppuccin.homeManagerModules.catppuccin
                 spicetify-nix.homeManagerModules.default
               ];
             };
