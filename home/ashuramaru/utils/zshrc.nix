@@ -131,12 +131,13 @@
       autoload -Uz compinit && compinit
       # Custom completion styles
 
-      zstyle ':completion:*' menu select
-      zstyle ':completion:*' list-colors 'di=36;1'
+      zstyle ":completion:*" menu select
+      zstyle ":completion:*:descriptions" format ""
+      zstyle ":completion:*:descriptions" style ""
+      zstyle ":completion:*:descriptions" color ""
 
       # Define a custom style for the selected completion item
-      zstyle ':completion:*' menu select=2
-      zstyle ':completion:*:descriptions' format '%F{white}%B%d%b%f'
+      zstyle ":completion:*" list-colors ""
 
       bindkey "^A" vi-beginning-of-line
       bindkey "^E" vi-end-of-line
