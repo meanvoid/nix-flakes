@@ -70,7 +70,7 @@ in
         "serverPath" = "nil";
         "serverSettings.nil" = {
           "formatting" = {
-            "command" = [ "nixfmt -v $(${pkgs.findutils}/bin/find * -type d | ${pkgs.gnugrep}/bin/grep -v \".direnv\")" ];
+            "command" = [ "nixfmt -w=120 -v $(${pkgs.findutils}/bin/find * -type d | ${pkgs.gnugrep}/bin/grep -v \".direnv\")" ];
           };
           "nix" = {
             "binary" = "nix";

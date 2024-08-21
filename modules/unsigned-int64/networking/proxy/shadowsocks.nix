@@ -29,9 +29,7 @@
         tls;
       '';
     };
-    localAddress = [
-      "0.0.0.0"
-    ];
-    passwordFile = config.age.secrets."shadowsocks".path; 
+    localAddress = [ "0.0.0.0" ];
+    passwordFile = config.age.secrets."shadowsocks".path;
   };
 }

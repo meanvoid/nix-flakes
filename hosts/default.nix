@@ -43,6 +43,12 @@ let
   inherit (systems) mkSystemConfig;
 in
 {
+  OpenIris = mkSystemConfig.linux {
+    hostName = "OpenIris";
+    system = "x86_64-linux";
+    useHomeManager = true;
+    users = [ "jalemi" ];
+  };
   signed-int16 = mkSystemConfig.linux {
     hostName = "signed-int16";
     system = "x86_64-linux";

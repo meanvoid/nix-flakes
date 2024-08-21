@@ -1,9 +1,4 @@
-{
-  inputs,
-  pkgs,
-  lib,
-  ...
-}:
+{ inputs, pkgs, ... }:
 {
   nixpkgs.overlays = [
     (self: super: {
@@ -78,8 +73,6 @@
       enable = true;
       capSysNice = true;
     };
-    anime-game-launcher.enable = true;
-    honkers-railway-launcher.enable = true;
   };
   environment.sessionVariables = rec {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = [ "\${HOME}/.steam/root/compatibilitytools.d:${pkgs.proton-ge-bin}" ];

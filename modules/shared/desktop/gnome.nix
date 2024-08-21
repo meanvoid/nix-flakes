@@ -66,6 +66,7 @@
       gparted
       gradience
       authenticator
+      pop-launcher
       ;
     inherit (pkgs.kdePackages) breeze;
     inherit (pkgs.libsForQt5)
