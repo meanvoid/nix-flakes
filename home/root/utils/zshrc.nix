@@ -128,20 +128,24 @@
       path = "${config.xdg.dataHome}/zsh/history";
     };
     initExtra = ''
-      autoload -Uz compinit && compinit
+      autoload -U compinit; compinit
       # Custom completion styles
 
-      zstyle ':completion:*' menu select
-      zstyle ':completion:*' list-colors 'di=36;1'
+      # Custom completion settings
+      zstyle ":completion:*" menu select
+      zstyle ":completion:*:descriptions" format ""
+      zstyle ":completion:*:descriptions" style ""
+      zstyle ":completion:*:descriptions" color ""
 
-      # Define a custom style for the selected completion item
-      zstyle ':completion:*' menu select=2
-      zstyle ':completion:*:descriptions' format '%F{white}%B%d%b%f'
+      # Hide specific types of completions
+      zstyle ":completion:*" list-colors ""
 
       bindkey "^A" vi-beginning-of-line
       bindkey "^E" vi-end-of-line
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
+      bindkey "^[[1;3C" forward-word 
+      bindkey "^[[1;3D" backward-word
     '';
   };
 }
