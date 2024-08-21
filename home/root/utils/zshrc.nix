@@ -1,5 +1,62 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+    enableZshIntegration = true;
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+    };
+    settings = {
+      "$schema" = "https://starship.rs/config-schema.json";
+      scan_timeout = 10;
+      add_newline = false;
+
+      format = "[\\[$username[@](bold green)$hostname $directory\\]](bold red) $character";
+      right_format = "$git_branch $git_status";
+
+      character = {
+        success_symbol = "[➜](bold green)";
+        error_symbol = "[➜](bold red)";
+      };
+      username = {
+        disabled = false;
+        show_always = true;
+        style_user = "bold yellow";
+        style_root = "bold red";
+        format = "[$user]($style)";
+      };
+      hostname = {
+        trim_at = ".";
+        ssh_only = false;
+        disabled = false;
+        style = "bold yellow";
+        format = "[$ssh_symbol$hostname]($style)";
+      };
+      directory = {
+        truncation_length = 0;
+        truncate_to_repo = false;
+        style = "bold purple";
+        format = "[$path]($style)[$read_only]($read_only_style)";
+        use_os_path_sep = true;
+        home_symbol = "/root";
+        read_only = "";
+        read_only_style = "bold red";
+        disabled = false;
+      };
+      nix_shell = {
+        format = " [via](bold green) [$symbol$state(\\($name\\))]($style)";
+        symbol = "❄️ ";
+        style = "bold blue";
+        impure_msg = "[impure shell](bold red)";
+        pure_msg = "[pure shell](bold green)";
+        unknown_msg = "[unknown shell](bold yellow)";
+        disabled = false;
+      };
+    };
+  };
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -53,11 +110,11 @@
       s = "sudo";
       update = "nix flake update /etc/nixos";
       check = "nix flake check";
-      rebuild = "nixos-rebuild switch --use-remote-sudo --flake /etc/nixos#unsigned-int32";
+      rebuild = "nixos-rebuild switch --use-remote-sudo --flake /etc/nixos#unsigned-int64";
       vms = "nixos-build-vms";
       buildvm = "nixos-rebuild build-vm";
       buildvm_ = "nixos-rebuild build-vm-with-bootloader";
-      test = "nixos-rebuild test --flake /etc/nixos#unsigned-int32";
+      test = "nixos-rebuild test --flake /etc/nixos#unsigned-int64";
       ".." = "../";
       ".3" = "../../";
       ".4" = "../../..";
@@ -70,61 +127,21 @@
       share = true;
       path = "${config.xdg.dataHome}/zsh/history";
     };
-    initExtraBeforeCompInit = ''
-      export ZSH_DISABLE_COMPFIX=true
-    '';
-    oh-my-zsh = {
-      enable = true;
-      plugins = [
-        "git"
-        "thefuck"
-        "direnv"
-        "sudo"
-      ];
-      custom = "$HOME/.config/zsh/custom";
-    };
     initExtra = ''
-      source ${pkgs.spaceship-prompt}/share/zsh/site-functions/prompt_spaceship_setup
+      autoload -Uz compinit && compinit
+      # Custom completion styles
 
-      autoload -U promptinit; promptinit
-      SPACESHIP_PROMPT_ORDER=(
-        user
-        host
-        dir
-        nix_shell
-        char
-      )
-      SPACESHIP_RPROMPT_ORDER=(
-        git
-      )
-      SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true
-      SPACESHIP_RPROMPT_FIRST_PREFIX_SHOW=true
+      zstyle ':completion:*' menu select
+      zstyle ':completion:*' list-colors 'di=36;1'
 
-      SPACESHIP_USER_COLOR=yellow
-      SPACESHIP_USER_COLOR_ROOT=red
-      SPACESHIP_USER_PREFIX="%F{red}[%f"
-      SPACESHIP_USER_SUFFIX='%F{green}@%f'
-      SPACESHIP_USER_SHOW=always
+      # Define a custom style for the selected completion item
+      zstyle ':completion:*' menu select=2
+      zstyle ':completion:*:descriptions' format '%F{white}%B%d%b%f'
 
-      SPACESHIP_HOST_COLOR=blue
-      SPACESHIP_HOST_PREFIX=""
-      SPACESHIP_HOST_SUFFIX=""
-      SPACESHIP_HOST_SHOW=always
-
-      SPACESHIP_DIR_COLOR=magenta
-      SPACESHIP_DIR_PREFIX=" "
-      SPACESHIP_DIR_SUFFIX="%F{red}]%f"
-      SPACESHIP_DIR_TRUNC=0
-      SPACESHIP_DIR_TRUNC_REPO=false
-
-      SPACESHIP_CHAR_SYMBOL="$ "
-      SPACESHIP_CHAR_SYMBOL_SUCCESS="$ "
-      SPACESHIP_CHAR_SYMBOL_FAILURE="$ "
-      SPACESHIP_CHAR_SYMBOL_SECONDARY="$ "
-      SPACESHIP_CHAR_PREFIX=""
-      SPACESHIP_CHAR_SUFFIX=""
-
-      SPACESHIP_GIT_BRANCH_SHOW=true
+      bindkey "^A" vi-beginning-of-line
+      bindkey "^E" vi-end-of-line
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[1;5D" backward-word
     '';
   };
 }
