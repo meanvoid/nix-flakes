@@ -103,7 +103,7 @@
           writeable = "yes";
           "read only" = "no";
           "create mask" = "0644";
-          "directory mask" = "0770";
+          "directory mask" = "0775";
           "valid users" = "ashuramaru meanrin";
           "force user" = "backup";
           "force group" = "users";
@@ -115,10 +115,12 @@
     };
   };
   users.users.backup = {
-    isNormalUser = true;
+    isSystemUser = true;
     home = "/var/lib/backup";
     initialHashedPassword = "";
     extraGroups = [ "users" ];
+    group = "backup";
   };
+  users.groups.backup = { };
   systemd.tmpfiles.rules = [ "d /var/spool/samba 1777 root root -" ];
 }

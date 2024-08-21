@@ -65,7 +65,7 @@
       efiSupport = true;
       configurationLimit = 15;
       font = "${pkgs.hack-font}/share/fonts/truetype/Hack-Regular.ttf";
-      fontSize = 36;
+      fontSize = 24;
     };
     generationsDir.copyKernels = true;
     efi.canTouchEfiVariables = true;

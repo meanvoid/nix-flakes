@@ -78,7 +78,6 @@
       kio-admin
       kio-extras
       kio-gdrive
-      ktorrent
       filelight
       lightly
       ;

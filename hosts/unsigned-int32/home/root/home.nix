@@ -9,8 +9,8 @@
     [ ]
     ++ lib.flatten [
       (lib.concatLists [
-        (import (path + /home/ashuramaru/dev/default.nix))
-        (import (path + /home/ashuramaru/utils/default.nix))
+        (import (path + /home/root/dev/default.nix))
+        (import (path + /home/root/utils/default.nix))
       ])
     ];
   home = {

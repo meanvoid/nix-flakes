@@ -25,5 +25,20 @@ _: {
     gitCredentialHelper.enable = true;
     settings.git_protocol = "ssh";
   };
+  programs.gh-dash = {
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+      accent = "rosewater";
+    };
+  };
+  programs.lazygit = {
+    enable = true;
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+      accent = "rosewater";
+    };
+  };
   programs.git-credential-oauth.enable = true;
 }

@@ -33,7 +33,7 @@
     packages = builtins.attrValues {
       # Multimedia
       inherit (pkgs)
-        quodlibet
+        quodlibet-full
         vlc
 
         brasero # cd/dvd burner
@@ -182,6 +182,10 @@
           set -g @catppuccin_status_modules_right "application session user host date_time"
         '';
       };
+    };
+    btop = {
+      enable = true;
+      catppuccin.flavor = "mocha";
     };
   };
 }
