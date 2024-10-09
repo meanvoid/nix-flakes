@@ -4,9 +4,14 @@
   pkgs,
   users,
   ...
-}: let
-  admins = ["ashuramaru" "meanrin"];
-in {
+}:
+let
+  admins = [
+    "ashuramaru"
+    "meanrin"
+  ];
+in
+{
   virtualisation.containers.cdi.dynamic.nvidia.enable = true;
   virtualisation.docker = {
     enable = true;
@@ -25,7 +30,7 @@ in {
     enable = true;
     extraPackages = with pkgs; [
       gvproxy
-      tun2socks
+      # tun2socks
       gvisor
     ];
     autoPrune = {
@@ -33,9 +38,7 @@ in {
       dates = "weekly";
     };
   };
-  environment.systemPackages = with pkgs; [
-    distrobox
-  ];
+  environment.systemPackages = with pkgs; [ distrobox ];
   users.groups = {
     docker.members = admins;
     podman.members = admins;

@@ -26,7 +26,7 @@ def main():
     for fn in not_hashed:
         path, filename_ext = os.path.split(fn)
         only_filename, ext = os.path.splitext(filename_ext)
-        
+
         md5_hash = hashlib.md5(only_filename.encode()).hexdigest()
 
         src = f"{path}/{only_filename}{ext}"

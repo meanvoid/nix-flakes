@@ -6,7 +6,8 @@
   path,
   hostname,
   ...
-}: {
+}:
+{
   imports =
     [
       ./services/easyeffects.nix
@@ -80,7 +81,8 @@
         duckstation
         pcsx2
         ppsspp
-        rpcs3
+        #! fails to build
+        # rpcs3
 
         # Minecraft
         prismlauncher-qt5
@@ -90,12 +92,14 @@
         android-studio
         # .NET
         dotnetPackages.Nuget
-        (with dotnetCorePackages;
+        (
+          with dotnetCorePackages;
           combinePackages [
             sdk_6_0
             sdk_7_0
             sdk_8_0
-          ])
+          ]
+        )
         mono
         powershell
         (nodejs.override {
@@ -117,11 +121,12 @@
         yt-dlp
       ])
       ++ (with pkgs.jetbrains; [
-        (plugins.addPlugins rider ["python-community-edition" "nixidea"])
+        (plugins.addPlugins rider [
+          "python-community-edition"
+          "nixidea"
+        ])
       ])
-      ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [
-        anime-cursors.marisa
-      ]);
+      ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [ anime-cursors.marisa ]);
     stateVersion = "24.05";
   };
   programs.rbw = {
