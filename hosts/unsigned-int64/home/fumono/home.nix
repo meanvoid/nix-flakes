@@ -1,24 +1,12 @@
+{ pkgs, path, ... }:
 {
-  lib,
-  inputs,
-  config,
-  pkgs,
-  path,
-  ...
-}: {
-  imports = [];
+  imports = [ (path + /home/ashuramaru/dev/vim.nix) ] ++ (import (path + /home/ashuramaru/utils/default.nix));
   home = {
     username = "fumono";
-    packages = with pkgs; [
+    packages = builtins.attrValues {
       # Utils
-      ani-cli
-      thefuck
-
-      # Python
-      python311Full
-      conda
-      android-studio
-    ];
+      inherit (pkgs) thefuck;
+    };
     stateVersion = "24.05";
   };
 }

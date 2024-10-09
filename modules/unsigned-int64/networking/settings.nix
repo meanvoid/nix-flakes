@@ -1,44 +1,44 @@
+{ lib, ... }:
 {
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
   networking = {
     hostName = "unsigned-int64";
     interfaces = {
-      "eno1" = {
-        name = "eno1";
+      "eth0" = {
+        name = "eth0";
         useDHCP = lib.mkDefault true;
+        wakeOnLan = {
+          enable = true;
+          policy = [ "magic" ];
+        };
         ipv4.addresses = [
           {
-            address = "176.9.10.47";
-            prefixLength = 27;
+            address = "116.202.39.70";
+            prefixLength = 25;
           }
         ];
         ipv6.addresses = [
           {
-            address = "2a01:4f8:141:5330::";
+            address = "2a01:4f8:2b01:300::";
             prefixLength = 64;
           }
           {
-            address = "2a01:4f8:141:5330::1";
-            prefixLength = 128;
-          }
-          {
-            address = "2a01:4f8:141:5330::2";
+            address = "2a01:4f8:2b01:300::1";
             prefixLength = 128;
           }
         ];
       };
+      "eth1" = {
+        name = "eth1";
+        useDHCP = lib.mkForce false;
+      };
     };
     defaultGateway = {
-      address = "176.9.10.31";
-      interface = "eno1";
+      address = "116.202.39.1";
+      interface = "eth0";
     };
     defaultGateway6 = {
       address = "fe80::1";
-      interface = "eno1";
+      interface = "eth0";
     };
     nameservers = [
       "127.0.0.1"
@@ -47,12 +47,11 @@
     nat = {
       enable = true;
       enableIPv6 = true;
-      externalInterface = "eno1";
+      externalInterface = "eth0";
       internalInterfaces = [
         "ve-+"
         "virbr0"
         "wireguard0"
-        "wireguard1"
       ];
     };
     hosts = {
@@ -63,6 +62,7 @@
         "uptime.tenjin.com"
         "public.tenjin.com"
         "private.tenjin.com"
+        "cvat.tenjin.com"
       ];
       "fd17:216b:31bc:1::1" = [
         "www.tenjin.com"
@@ -71,6 +71,7 @@
         "uptime.tenjin.com"
         "public.tenjin.com"
         "private.tenjin.com"
+        "cvat.tenjin.com"
       ];
     };
     firewall = {
@@ -79,12 +80,9 @@
         # Proxy
         1080
         3128
-        # Minecraft rcon
-        25565
-        35565
         # Wireguard
         51280
-        51820
+        # 51820
       ];
       allowedTCPPorts = [
         # HTTP
@@ -94,9 +92,6 @@
         # Proxy
         1080
         3128
-        # minecraft tcp
-        25565
-        35565
         # ssh
         57255
       ];
@@ -104,7 +99,7 @@
         allowedTCPPorts = [ 53 ];
         allowedUDPPorts = [ 53 ];
       };
-      interfaces."wireguard1" = {
+      interfaces."wireguard0" = {
         allowedUDPPorts = [
           # forward all possible dns ports
           53
@@ -143,10 +138,10 @@
       };
     };
   };
-  # # Ensures sshd starts after WireGuard1
+  # # Ensures sshd starts after WireGuard0
   systemd.services.sshd = {
-    after = ["wg-quick-wireguard1.service"];
-    wants = ["wg-quick-wireguard1.service"];
+    after = [ "wg-quick-wireguard0.service" ];
+    wants = [ "wg-quick-wireguard0.service" ];
   };
   services = {
     openssh = {
@@ -168,7 +163,7 @@
           addr = "[::]";
           port = 57255;
         }
-        # wireguard1
+        # wireguard0
         {
           addr = "172.16.31.1";
           port = 22;
@@ -178,6 +173,20 @@
           port = 22;
         }
       ];
+    };
+    dnscrypt-proxy2 = {
+      enable = true;
+      settings = {
+        listen_addresses = [
+          "127.0.0.1:5353"
+          "[::1]:5353"
+        ];
+        ipv6_servers = true;
+        doh_servers = false;
+        odoh_servers = true;
+        require_dnssec = true;
+      };
+      upstreamDefaults = true;
     };
     unbound = {
       enable = true;
@@ -203,7 +212,9 @@
           prefetch-key = "yes";
           num-threads = "2";
           hide-identity = "yes";
-          identity = "\"static.unsigned-int64.your-server.de\"";
+          hide-version = "yes";
+          minimal-responses = "no";
+          rrset-roundrobin = "yes";
           access-control = [
             "127.0.0.0/8 allow"
             "172.16.0.0/12 allow"
@@ -227,6 +238,7 @@
             "\"172.in-addr.arpa.\" static"
             "\"tenjin.com.\" static"
           ];
+          identity = "\"static.unsigned-int64.your-server.de\"";
           local-data = [
             "\"internal.com. 10800 IN NS ns1.internal.com.\""
             "\"internal.com. 10800 IN SOA ns1.internal.com. admin@cloud.tenjin-dk.com. 1 3600 1200 604800 10800\""
@@ -249,12 +261,24 @@
             "\"uptime.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
             "\"public.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
             "\"private.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
+            "\"cvat.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
           ];
         };
         forward-zone = [
           {
             name = ".";
             forward-addr = [
+              # dnscrypt odoh
+              "127.0.0.1@5353"
+              "::1"
+
+              # Authoritive recursive DNS for robot.hetzner
+              "185.12.64.1"
+              "185.12.64.2"
+              "2a01:4ff:ff00::add:1"
+              "2a01:4ff:ff00::add:2"
+
+              # Backup cloudflare DoT
               "1.1.1.1@853#cloudflare-dns.com"
               "1.0.0.1@853#cloudflare-dns.com"
               "2606:4700:4700::1111@853#cloudflare-dns.com"
@@ -275,5 +299,6 @@
         };
       };
     };
+    vnstat.enable = true;
   };
 }

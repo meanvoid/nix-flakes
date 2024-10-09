@@ -1,4 +1,1 @@
-[
-  ./users.nix
-  ./fonts.nix
-]
+[ ./users.nix ]

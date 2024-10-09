@@ -1,51 +1,58 @@
+{ pkgs, ... }:
 {
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
   programs.chromium = {
     enable = true;
     extensions = [
-      {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
-      {id = "hkgfoiooedgoejojocmhlaklaeopbecg";} # Picture in Picture
-      {id = "eimadpbcbfnmbkopoojfekhnkhdbieeh";} # dark reader
-      {id = "dhdgffkkebhmkfjojejmpbldmpobfkfo";} # tempermonkey
-      {id = "njdfdhgcmkocbgbhcioffdbicglldapd";} # localcdn
-      {id = "nomnklagbgmgghhjidfhnoelnjfndfpd";} # canvas blocker
-      {id = "hipekcciheckooncpjeljhnekcoolahp";} # tabliss
-      {id = "clngdbkpkpeebahjckkjfobafhncgmne";} # stylus
-      {id = "gcknhkkoolaabfmlnjonogaaifnjlfnp";} # foxyproxy
-      {id = "oboonakemofpalcgghocfoadofidjkkk";} # keepassxc
-      {id = "nngceckbapebfimnlniiiahkandclblb";} # bitwarden
-      {id = "fmkadmapgofadopljbjfkapdkoienihi";} # react devtools
-      {id = "lmhkpmbekcpmknklioeibfkpmmfibljd";} # redux devtools
-      {id = "nhdogjmejiglipccpnnnanhbledajbpd";} # vuejs devtools
-      {id = "ienfalfjdbdpebioblfackkekamfmbnh";} # angular
-      {id = "kmcfjchnmmaeeagadbhoofajiopoceel";} # solidjs
-      {id = "bhchdcejhohfmigjafbampogmaanbfkg";} # user agent
-      {id = "hkligngkgcpcolhcnkgccglchdafcnao";} # web archives
-      {id = "kbmfpngjjgdllneeigpgjifpgocmfgmb";} # reddit enhancment
-      {id = "dneaehbmnbhcippjikoajpoabadpodje";} # old reddit
-      {id = "cnojnbdhbhnkbcieeekonklommdnndci";} # search by image
-      {id = "aapbdbdomjkkjkaonfhkkikfgjllcleb";} # google translate
-      {id = "gebbhagfogifgggkldgodflihgfeippi";} # youtubedislikes
-      {id = "mnjggcdmjocbbbhaepdhchncahnbgone";} # sponsor block
-      {id = "nljkibfhlpcnanjgbnlnbjecgicbjkge";} # downthemall
-      {id = "ohnjgmpcibpbafdlkimncjhflgedgpam";} # 4chanX
-      {id = "hkgfoiooedgoejojocmhlaklaeopbecg";} # picture in picture
-      {id = "jgejdcdoeeabklepnkdbglgccjpdgpmf";} # old twitter layout
-      {id = "dbmaeobgdodeimjdjnkipbfhgeldnmeb";} # MrBeastify
-      {
-        id = "dcpihecpambacapedldabdbpakmachpb"; # bypass paywalls
-        updateUrl = "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/src/updates/updates.xml";
-      }
+      # necessity
+      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
+      { id = "pkehgijcmpdhfbdbbnkijodmdjhbjlgp"; } # PrivacyBadger
+      { id = "nomnklagbgmgghhjidfhnoelnjfndfpd"; } # canvas blocker
+      { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # dark reader
+      { id = "jinjaccalgkegednnccohejagnlnfdag"; } # violentmonkey
+
+      { id = "lckanjgmijmafbedllaakclkaicjfmnk"; } # clearurls
+      { id = "hkligngkgcpcolhcnkgccglchdafcnao"; } # web archives
+
+      # devtools
+      { id = "fmkadmapgofadopljbjfkapdkoienihi"; } # react devtools
+      { id = "lmhkpmbekcpmknklioeibfkpmmfibljd"; } # redux devtools
+      { id = "nhdogjmejiglipccpnnnanhbledajbpd"; } # vuejs devtools
+      { id = "ienfalfjdbdpebioblfackkekamfmbnh"; } # angular
+      { id = "kmcfjchnmmaeeagadbhoofajiopoceel"; } # solidjs
+      { id = "bhchdcejhohfmigjafbampogmaanbfkg"; } # user agent
+
+      { id = "hkgfoiooedgoejojocmhlaklaeopbecg"; } # Picture in Picture
+      { id = "hipekcciheckooncpjeljhnekcoolahp"; } # tabliss
+      { id = "clngdbkpkpeebahjckkjfobafhncgmne"; } # stylus
+      { id = "gcknhkkoolaabfmlnjonogaaifnjlfnp"; } # foxyproxy
+      { id = "oboonakemofpalcgghocfoadofidjkkk"; } # keepassxc
+      { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
+      { id = "kbmfpngjjgdllneeigpgjifpgocmfgmb"; } # reddit enhancment
+      { id = "dneaehbmnbhcippjikoajpoabadpodje"; } # old reddit
+      { id = "cnojnbdhbhnkbcieeekonklommdnndci"; } # search by image
+      { id = "aapbdbdomjkkjkaonfhkkikfgjllcleb"; } # google translate
+      { id = "gebbhagfogifgggkldgodflihgfeippi"; } # youtubedislikes
+      { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # sponsor block
+      { id = "hkgfoiooedgoejojocmhlaklaeopbecg"; } # picture in picture
+      { id = "jgejdcdoeeabklepnkdbglgccjpdgpmf"; } # old twitter layout
       {
         id = "lkbebcjgcmobigpeffafkodonchffocl";
-        updateUrl = "https://gitlab.com/magnolia1234/bypass-paywalls-chrome-clean/-/raw/master/updates.xml";
+        updateUrl = "https://raw.githubusercontent.com/bpc-clone/bypass-paywalls-chrome-clean/refs/heads/master/updates.xml";
       }
     ];
     package = pkgs.chromium;
-    commandLineArgs = ["--enable-logging=stderr" "--ignore-gpu-blocklist" "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"];
+    commandLineArgs = [
+      # debug
+      "--enable-logging=stderr"
+      # webgpu
+      "--ignore-gpu-blocklist"
+      "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
+      # wayland
+      "--ozone-platform-hint=auto"
+      "--enable-wayland-ime"
+      "--wayland-text-input-version=3"
+      "--enable-features=TouchpadOverscrollHistoryNavigation"
+      "--enable-blink-features=MiddleClickAutoscroll"
+    ];
   };
 }

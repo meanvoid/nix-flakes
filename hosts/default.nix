@@ -2,34 +2,60 @@
   lib,
   inputs,
   self,
+  path,
   nixpkgs,
-  nixpkgs-23_11,
   darwin,
-  meanvoid-overlay,
-  nur,
+  sops-nix,
   agenix,
   home-manager,
+  catppuccin,
+  spicetify-nix,
+  nur,
+  hyprland,
+  vscode-server,
   flatpaks,
   aagl,
-  spicetify-nix,
-  hyprland,
-  path,
-  vscode-server,
   ...
-}: let
+}:
+let
   systems = import ./mkSystemConfig.nix {
-    inherit lib inputs self nixpkgs nixpkgs-23_11 darwin meanvoid-overlay nur agenix;
-    inherit home-manager flatpaks aagl spicetify-nix hyprland;
-    inherit path vscode-server;
+    ### ----------------FLAKE------------------- ###
+    inherit lib;
+    inherit inputs self path;
+    ### ----------------FLAKE------------------- ###  
+
+    ### ----------------SYSTEM------------------- ###
+    inherit nixpkgs darwin;
+    ### ----------------SYSTEM------------------- ###
+
+    ### ----------------MODULES & OVERLAYS------------------- ###
+    inherit agenix sops-nix;
+    inherit home-manager spicetify-nix nur;
+
+    ### ----------------DESKTOP------------------- ###
+    inherit hyprland;
+    ### ----------------DESKTOP------------------- ###
+
+    inherit vscode-server flatpaks;
+    inherit catppuccin aagl;
+    ### ----------------MODULES & OVERLAYS------------------- ###
   };
   inherit (systems) mkSystemConfig;
-in {
+in
+{
+  OpenIris = mkSystemConfig.linux {
+    hostName = "OpenIris";
+    system = "x86_64-linux";
+    useHomeManager = true;
+    users = [ "jalemi" ];
+  };
   signed-int16 = mkSystemConfig.linux {
     hostName = "signed-int16";
     system = "x86_64-linux";
     useHomeManager = true;
+    useAagl = true;
     useFlatpak = true;
-    users = ["reisen"];
+    users = [ "reisen" ];
   };
   unsigned-int32 = mkSystemConfig.linux {
     hostName = "unsigned-int32";
@@ -40,7 +66,6 @@ in {
     useAagl = true;
     useFlatpak = true;
     useVscodeServer = true;
-    useNvidiaVgpu = false;
     users = [
       "ashuramaru"
       "meanrin"
@@ -52,6 +77,9 @@ in {
     useHomeManager = true;
     useVscodeServer = true;
     users = [
+      "root"
+      "minecraft"
+
       "ashuramaru"
       "meanrin"
       "fumono"

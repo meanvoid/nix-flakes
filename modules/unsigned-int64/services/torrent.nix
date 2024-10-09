@@ -2,15 +2,17 @@
   lib,
   config,
   pkgs,
-  agenix,
   path,
   ...
-}: {
-  age.secrets."transmission_openvpn" = {
-    file = path + /secrets/transmission_openvpn-env.age;
-    mode = "0640";
-    owner = "transmission";
-    group = "transmission";
+}:
+{
+  age.secrets = {
+    "transmission_env" = {
+      file = path + /secrets/transmission_env.age;
+      mode = "0640";
+      owner = "transmission";
+      group = "transmission";
+    };
   };
   services.transmission = {
     enable = true;
@@ -31,6 +33,7 @@
       rpc-host-whitelist-enabled = true;
       rpc-host-whitelist = "*";
     };
+    webHome = pkgs.flood-for-transmission;
   };
   services.radarr = {
     enable = true;
@@ -64,8 +67,29 @@
     group = "jellyfin";
   };
   services.prowlarr.enable = true;
-  users.groups.transmission.members = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
-  users.users.transmission.extraGroups = ["ashuramaru" "meanrin" "fumono" "jellyfin"];
+  users.groups.transmission = {
+    gid = 70;
+    members = [
+      "jellyfin"
+      "transmission"
+    ];
+  };
+  users.users.transmission = {
+    home = "/var/lib/transmission";
+    homeMode = "0770";
+    openssh.authorizedKeys.keys = lib.flatten [
+      config.users.users.ashuramaru.openssh.authorizedKeys.keys
+      config.users.users.meanrin.openssh.authorizedKeys.keys
+      config.users.users.fumono.openssh.authorizedKeys.keys
+    ];
+    group = "${config.users.groups.transmission.name}";
+    extraGroups = [
+      "jellyfin"
+      "transmission"
+    ];
+    uid = 70;
+    shell = pkgs.zsh;
+  };
   services.nginx.virtualHosts = {
     "public.tenjin.com" = {
       addSSL = true;
@@ -131,46 +155,60 @@
       };
     };
   };
-  virtualisation.oci-containers.containers."transmission_mullvad" = {
+  virtualisation.oci-containers.containers."transmission_private" = {
     image = "haugene/transmission-openvpn";
-    environmentFiles = [
-      "${config.age.secrets.transmission_openvpn.path}"
-    ];
+    environmentFiles = [ "${config.age.secrets.transmission_env.path}" ];
+    environment = {
+      "OPENVPN_PROVIDER" = "custom";
+      "OPENVPN_CONFIG" = "de-214.protonvpn.udp";
+      "LOCAL_NETWORK" = "172.16.31.0/24";
+
+      "TRANSMISSION_WEB_UI" = "flood-for-transmission";
+      "TRANSMISSION_RPC_PORT" = "9091";
+      "TRANSMISSION_RPC_USERNAME" = "ashuramaru";
+      "TRANSMISSION_DOWNLOAD_DIR" = "/data/private/Downloads";
+      "TRANSMISSION_INCOMPLETE_DIR_ENABLED" = "true";
+      "TRANSMISSION_INCOMPLETE_DIR" = "/data/private/incomplete";
+
+      "TRANSMISSION_SPEED_LIMIT_UP_ENABLED" = "true";
+      "TRANSMISSION_SPEED_LIMIT_UP" = "25000";
+      "TRANSMISSION_SPEED_LIMIT_DOWN_ENABLED" = "true";
+      "TRANSMISSION_SPEED_LIMIT_DOWN" = "100000";
+      "TRANSMISSION_ALT_SPEED_UP" = "50000";
+      "TRANSMISSION_ALT_SPEED_DOWN" = "250000";
+
+      "TZ" = "Europe/Berlin";
+      "PUID" = "70";
+      "PGID" = "70";
+    };
     volumes = [
+      "/var/lib/transmission/protonvpn:/etc/openvpn/custom"
       "/var/lib/transmission:/data:rw"
       "/var/lib/transmission/config:/config:rw"
     ];
-    ports = [
-      "172.16.31.1:9091:9091/tcp"
-    ];
+    ports = [ "172.16.31.1:9091:9091/tcp" ];
     log-driver = "journald";
     extraOptions = [
       "--device=/dev/net/tun"
       "--cap-add=NET_ADMIN,mknod"
       "--network-alias=transmission-ovpn"
       "--network=transmission_openvpn-default"
-      "--sysctl=net.ipv6.conf.all.disable_ipv6=0"
+
+      # Mullvad specific no longer needed
+      # "--sysctl=net.ipv6.conf.all.disable_ipv6=0"
     ];
   };
-  systemd.services."podman-transmission_mullvad" = {
+  systemd.services."podman-transmission_private" = {
     serviceConfig = {
       Restart = lib.mkOverride 500 "always";
     };
-    after = [
-      "podman-network-transmission_openvpn-default.service"
-    ];
-    requires = [
-      "podman-network-transmission_openvpn-default.service"
-    ];
-    partOf = [
-      "podman-compose-transmission_openvpn-root.target"
-    ];
-    wantedBy = [
-      "podman-compose-transmission_openvpn-root.target"
-    ];
+    after = [ "podman-network-transmission_openvpn-default.service" ];
+    requires = [ "podman-network-transmission_openvpn-default.service" ];
+    partOf = [ "podman-compose-transmission_openvpn-root.target" ];
+    wantedBy = [ "podman-compose-transmission_openvpn-root.target" ];
   };
   systemd.services."podman-network-transmission_openvpn-default" = {
-    path = [pkgs.podman];
+    path = [ pkgs.podman ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
@@ -179,13 +217,13 @@
     script = ''
       podman network inspect transmission_openvpn-default || podman network create transmission_openvpn-default --opt isolate=true
     '';
-    partOf = ["podman-compose-transmission_openvpn-root.target"];
-    wantedBy = ["podman-compose-transmission_openvpn-root.target"];
+    partOf = [ "podman-compose-transmission_openvpn-root.target" ];
+    wantedBy = [ "podman-compose-transmission_openvpn-root.target" ];
   };
   systemd.targets."podman-compose-transmission_openvpn-root" = {
     unitConfig = {
       Description = "Root target generated by compose2nix.";
     };
-    wantedBy = ["multi-user.target"];
+    wantedBy = [ "multi-user.target" ];
   };
 }

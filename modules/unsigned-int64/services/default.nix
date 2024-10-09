@@ -1,12 +1,15 @@
 [
-  ./msmtp.nix
+  ./ankisync.nix
+  ./cvat.nix
   ./fail2ban.nix
-  ./postgresql.nix
-  ./nginx.nix
-  ./nextcloud.nix
-  ./vaultwarden.nix
   ./grafana.nix
   ./jellyfin.nix
-  ./torrent.nix
   ./misc.nix
+  ./msmtp.nix
+  ./nextcloud.nix
+  ./nginx.nix
+  ./postgresql.nix
+  ./redis.nix
+  ./torrent.nix
+  ./vaultwarden.nix
 ]

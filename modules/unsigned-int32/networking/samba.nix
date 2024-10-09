@@ -1,10 +1,7 @@
+{ pkgs, ... }:
 {
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
-  # make shares visible for windows 10 clients
+  # nixpkgs.overlays = [ (self: super: { sambaFull = inputs.nixpkgs-23_11.legacyPackages.${pkgs.system}.sambaFull; }) ];
+  # # make shares visible for windows 10 clients
   services = {
     samba-wsdd = {
       enable = true;
@@ -15,7 +12,7 @@
       openFirewall = true;
       enableWinbindd = true;
       securityType = "user";
-      invalidUsers = ["root"];
+      invalidUsers = [ "root" ];
       extraConfig = ''
         workgroup = WORKGROUP
         server string = unsigned-int32
@@ -105,10 +102,11 @@
           public = "no";
           writeable = "yes";
           "read only" = "no";
-          "create mask" = "0644";
-          "directory mask" = "0770";
+          "security mask" = "0775";
+          "create mask" = "0775";
+          "directory mask" = "0775";
           "valid users" = "ashuramaru meanrin";
-          "force user" = "root";
+          "force user" = "backup";
           "force group" = "users";
           "fruit:aapl" = "yes";
           "fruit:time machine" = "yes";
@@ -117,7 +115,13 @@
       };
     };
   };
-  systemd.tmpfiles.rules = [
-    "d /var/spool/samba 1777 root root -"
-  ];
+  users.users.backup = {
+    isSystemUser = true;
+    home = "/var/lib/backup";
+    initialHashedPassword = "";
+    extraGroups = [ "users" ];
+    group = "backup";
+  };
+  users.groups.backup = { };
+  systemd.tmpfiles.rules = [ "d /var/spool/samba 1777 root root -" ];
 }

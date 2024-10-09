@@ -1,23 +1,29 @@
 {
-  lib,
-  config,
   pkgs,
   path,
   hostname,
   ...
-}: let
-  importModule = moduleName: let
-    dir = path + "/modules/${hostname}";
-  in
+}:
+let
+  importModule =
+    moduleName:
+    let
+      dir = path + "/modules/${hostname}";
+    in
     import (dir + "/${moduleName}");
 
   hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
-in {
+in
+{
   imports =
-    [(path + /modules/shared/settings/nix.nix)]
+    [
+      (path + /modules/shared/settings/nix.nix)
+      (path + /modules/shared/desktop/fonts.nix)
+    ]
     ++ hostModules [
       "environment"
       "programs"
+      "networking"
     ];
 
   security = {
@@ -25,15 +31,15 @@ in {
       enableSudoTouchIdAuth = true;
     };
   };
- networking = {
-    computerName = "${hostname}";
-    hostName = "${hostname}";
-  };
 
   # Environment
-  environment = {
-    systemPackages = with pkgs; [
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
+      # Literally should be bultin but apple being apple
+      soundsource
       # Utils
+      wireguard-tools
+      util-linux
       coreutils
       binutils
       openssh
@@ -49,15 +55,24 @@ in {
       lz4
       p7zip
 
-      # utils
+      # misc
       neofetch
       hyfetch
 
+      # Graphics/Video/enc/dec
       ffmpeg-full
       imagemagick
       mpv
       mpd
-    ];
+
+      # Virtualization
+      podman
+      podman-compose
+
+      # Android
+      android-tools
+      scrcpy
+      ;
   };
 
   programs.gnupg.agent = {

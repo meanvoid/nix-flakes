@@ -1,136 +1,200 @@
 {
   lib,
-  inputs,
   config,
   pkgs,
   path,
-  hostname,
   ...
-}: {
+}:
+{
   imports =
     [
+      ./_.env.nix
+      ### ----------------SERVICES------------------- ###
+      ./services/proton.nix
       ./services/easyeffects.nix
       ./services/systemd-utils.nix
-      (path + /modules/shared/home/ashuramaru/programs/dev/vim.nix)
+      ### ----------------SERVICES------------------- ###
+      ### ----------------PROGRAMS------------------- ###
+      ./programs/firefox.nix
+      ./programs/chromium.nix
+      ./programs/flatpak.nix
+      (path + /home/shared/programs/discord.nix)
+      (path + /home/shared/programs/spotify.nix)
+      ### ----------------PROGRAMS------------------- ###
     ]
-    ++ (import (path + /hosts/unsigned-int32/home/ashuramaru/programs))
-    ++ (import (path + /modules/shared/home/ashuramaru/programs/utils))
-    ++ (import (path + /modules/shared/home/overlays));
+    ++ lib.flatten [
+      (lib.concatLists [
+        (import (path + /home/ashuramaru/dev/default.nix))
+        (import (path + /home/ashuramaru/utils/default.nix))
+      ])
+    ];
+
   home = {
     username = "ashuramaru";
-    pointerCursor = {
-      name = "Marisa";
-      package = inputs.meanvoid-overlay.packages.${pkgs.system}.anime-cursors.marisa;
-      gtk.enable = true;
-      x11.enable = true;
-    };
-    packages =
-      (with pkgs; [
-        media-downloader
-        imgbrd-grabber
-        qbittorrent
+    packages = builtins.attrValues {
+      # Multimedia
+      inherit (pkgs)
+        quodlibet-full
+        vlc
+
+        brasero # cd/dvd burner
+        deluge # just as a backup
+        qbittorrent # understandable have a nice day
         nicotine-plus
-        # Audio
-        tenacity
-        pavucontrol
-        helvum
+        ;
 
-        # Working with graphics
-        krita
-        gimp
-        inkscape
-        godot3
-        kdenlive
-        obs-studio
-        blender
+      # Graphics & Design
+      inherit (pkgs)
+        krita # Digital painting
+        gimp # Image editing
+        inkscape # Vector graphics
+        godot3 # Game engine
+        kdenlive # Video editing
+        obs-studio # Streaming and recording
+        blender # 3D creation suite
+        ;
 
-        # Productivity
+      # Productivity
+      inherit (pkgs)
         libreoffice-fresh
+        anki # Flashcard app
+        obsidian
+        tenacity # Audio recording/editing
+        ;
+      # Social & Communication
+      inherit (pkgs.unstable) signal-desktop; # Signal desktop client
+      inherit (pkgs)
+        tdesktop # Telegram desktop
+        kotatogram-desktop # telegram's fork
+        dino # Jabber client
+        ;
 
-        # Socials
-        tdesktop
-        element-desktop
+      # Utilities
+      inherit (pkgs)
+        pavucontrol # PulseAudio volume control
+        qpwgraph
+        helvum # Jack controls
 
+        yt-dlp # youtube and whatnot media downloader
+        ani-cli # Anime downloader
+        thefuck # Correcting previous command
+        cdrtools # cd burner CLI
+        imgbrd-grabber
+        media-downloader
+        ;
+
+      # Gaming
+      inherit (pkgs)
         # Utils
-        ani-cli
-        thefuck
-        mullvad
+        mangohud # Vulkan overlay
+        goverlay # Game overlay for Linux
 
-        ### --- Games --- ###
-        goverlay
-        mangohud
-        heroic
-        gogdl
-        # Xbox
-        xemu
-
-        # pc98
-        np2kai
-
-        # Sega
-        flycast
+        # Misc
+        xemu # Xbox emulator
+        np2kai # PC-98 emulator
+        bottles # Play On Linux but modern
+        flycast # Sega Dreamcast emulator
+        prismlauncher # Minecraft launcher
 
         # Nintendo
-        mgba
-        dolphin-emu
-        cemu
-        ryujinx
+        mgba # Game Boy Advance emulator
+        dolphin-emu # GameCube and Wii emulator
+        cemu # Wii U emulator
+        ryujinx # Nintendo Switch emulator
 
-        # Sony
-        duckstation
-        pcsx2
-        ppsspp
-        rpcs3
+        # PlayStation
+        chiaki # PS4 Remote Play
+        duckstation # PlayStation 1 emulator
+        pcsx2 # PlayStation 2 emulator
+        ppsspp # PlayStation Portable emulator
+        rpcs3 # PlayStation 3 emulator
 
-        # Minecraft
-        prismlauncher-qt5
-        ### --- Games --- ###
+        # Stores
+        heroic # Epic Games Store client
+        gogdl # GOG Galaxy downloader
+        ;
 
-        # Python
-        android-studio
-        # .NET
-        dotnetPackages.Nuget
-        (with dotnetCorePackages;
-          combinePackages [
-            sdk_6_0
-            sdk_7_0
-            sdk_8_0
-          ])
-        mono
-        powershell
-        (nodejs.override {
-          enableNpm = true;
-          python3 = python311;
-        })
-        sass
-        deno
-        ### --- Utils --- ###
-        (cinnamon.nemo-with-extensions.override {
-          extensions = [
-            nemo-qml-plugin-dbus
-            cinnamon.nemo-python
-            cinnamon.nemo-emblems
-            cinnamon.nemo-fileroller
-            cinnamon.folder-color-switcher
-          ];
-        })
-        yt-dlp
-      ])
-      ++ (with pkgs.jetbrains; [
-        (plugins.addPlugins rider ["python-community-edition" "nixidea"])
-      ])
-      ++ (with inputs.meanvoid-overlay.packages.${pkgs.system}; [
-        anime-cursors.marisa
-      ]);
+      # File Management & Desktop Enhancements
+      cinnamon = pkgs.cinnamon.nemo-with-extensions.override {
+        extensions = [
+          pkgs.nemo-qml-plugin-dbus
+          pkgs.cinnamon.nemo-python
+          pkgs.cinnamon.nemo-emblems
+          pkgs.cinnamon.nemo-fileroller
+          pkgs.cinnamon.folder-color-switcher
+        ];
+      };
+
+      # Development Tools
+      inherit (pkgs) android-studio;
+      inherit (pkgs) mono powershell;
+      inherit (pkgs) sass deno;
+      inherit (pkgs.jetbrains) idea-community;
+      dotnetCorePackages = pkgs.dotnetCorePackages.combinePackages [
+        pkgs.dotnetCorePackages.sdk_6_0
+        pkgs.dotnetCorePackages.sdk_7_0
+        pkgs.dotnetCorePackages.sdk_8_0
+      ];
+      nodejs = pkgs.nodejs.override {
+        enableNpm = true;
+        python3 = pkgs.python311;
+      };
+
+      riderWithPlugins = pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider [
+        "python-community-edition"
+        "nixidea"
+        "csv-editor"
+        "ini"
+      ];
+      clionWithPlugins = pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.clion [
+        "rust"
+        "nixidea"
+        "csv-editor"
+        "ini"
+      ];
+      inherit (pkgs.unstable) osu-lazer-bin;
+      shadps4 = pkgs.unstable.callPackage ./programs/shadps4/default.nix {
+        # inherit (pkgs.unstable) vulkan-memory-allocator;
+      };
+    };
     stateVersion = "24.05";
   };
-  programs.rbw = {
-    enable = true;
-    settings = {
-      email = "ashuramaru@tenjin-dk.com";
-      base_url = "https://bitwarden.tenjin-dk.com";
-      lock_timeout = 600;
-      pinentry = pkgs.pinentry-gnome3;
+  programs = {
+    rbw = {
+      enable = true;
+      settings = {
+        email = "ashuramaru@tenjin-dk.com";
+        base_url = "https://bitwarden.tenjin-dk.com";
+        lock_timeout = 600;
+        pinentry = pkgs.pinentry-gnome3;
+      };
     };
+    mpv = {
+      #TODO: write mpv config
+      enable = true;
+      catppuccin = {
+        enable = true;
+        flavor = "mocha";
+        accent = "rosewater";
+      };
+    };
+    tmux = {
+      enable = true;
+      catppuccin = {
+        flavor = "mocha";
+        extraConfig = ''
+          set -g @catppuccin_status_modules_right "application session user host date_time"
+        '';
+      };
+    };
+    btop = {
+      enable = true;
+      catppuccin.flavor = "mocha";
+    };
+  };
+  i18n.inputMethod.fcitx5.catppuccin = {
+    enable = true;
+    apply = true;
+    flavor = "mocha";
   };
 }

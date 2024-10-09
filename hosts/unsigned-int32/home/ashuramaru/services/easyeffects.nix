@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+_: {
   services.easyeffects = {
     enable = true;
     preset = "";

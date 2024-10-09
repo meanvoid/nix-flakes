@@ -1,16 +1,19 @@
 {
   lib,
-  config,
   pkgs,
+  config,
+  hostname,
   path,
   ...
-}: let
+}:
+let
   private = config.age.secrets.wireguard-client.path;
   shared = config.age.secrets.wireguard-shared.path;
   auth-key = config.age.secrets.tailscale-auth-key.path;
-in {
+in
+{
   networking = {
-    hostName = "unsigned-int32";
+    hostName = "${hostname}";
     hostId = "ab5d64f5";
     interfaces = {
       "enp57s0" = {
@@ -22,21 +25,36 @@ in {
         useDHCP = true;
       };
     };
+    hosts = {
+      "104.27.206.92" = [
+        "nhentai.net"
+        "static.nhentai.net"
+        "t1.nhentai.net"
+        "t2.nhentai.net"
+        "t3.nhentai.net"
+      ];
+    };
     nat = {
       enable = true;
       enableIPv6 = true;
       externalInterface = "enp59s0";
-      internalInterfaces = ["ve-+"];
+      internalInterfaces = [ "ve-+" ];
     };
     networkmanager = {
       enable = true;
-      unmanaged = ["interface-name:ve-*"];
+      unmanaged = [ "interface-name:ve-*" ];
     };
     firewall = {
       enable = true;
       allowPing = true;
-      allowedUDPPorts = [25565 15800];
-      allowedTCPPorts = [80 443];
+      allowedUDPPorts = [
+        25565
+        15800
+      ];
+      allowedTCPPorts = [
+        80
+        443
+      ];
     };
   };
   services.resolved.enable = true;
@@ -77,7 +95,6 @@ in {
       }
     ];
   };
-
   age.secrets = {
     wireguard-client.file = path + /secrets/wireguard-client.age;
     wireguard-shared.file = path + /secrets/wireguard-shared.age;
@@ -87,7 +104,10 @@ in {
   networking.wireguard.enable = true;
   networking.wg-quick.interfaces = {
     wg-ui64 = {
-      address = ["172.16.31.3/32" "fd17:216b:31bc:1::3/128"];
+      address = [
+        "172.16.31.3/32"
+        "fd17:216b:31bc:1::3/128"
+      ];
       privateKeyFile = private;
       postUp = ''
         ${pkgs.systemd}/bin/resolvectl dns wg-ui64 172.16.31.1
@@ -106,13 +126,19 @@ in {
       ];
     };
   };
-  # services.tailscale = {
-  #   enable = true;
-  #   useRoutingFeatures = "both";
-  #   openFirewall = true;
-  #   authKeyFile = auth-key;
-  #   extraUpFlags = [
-  #     "--ssh"
-  #   ];
-  # };
+  services.mullvad-vpn = {
+    enable = true;
+    package = pkgs.mullvad-vpn;
+    enableExcludeWrapper = false;
+  };
+  services.v2raya.enable = true;
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "both";
+    openFirewall = true;
+    authKeyFile = auth-key;
+    extraUpFlags = [ "--ssh" ];
+  };
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 }

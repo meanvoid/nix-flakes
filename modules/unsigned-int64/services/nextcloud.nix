@@ -1,12 +1,11 @@
 {
-  config,
   lib,
+  config,
   pkgs,
-  agenix,
   path,
   ...
-}: let
-in {
+}:
+{
   age.secrets.admin = {
     file = path + /secrets/admin.age;
     mode = "770";
@@ -15,13 +14,112 @@ in {
   };
   services.nextcloud = {
     enable = true;
+    enableImagemagick = true;
     database.createLocally = true;
-    package = pkgs.nextcloud28;
-    extraApps = with config.services.nextcloud.package.packages.apps; {
-      inherit bookmarks calendar contacts cookbook cospend deck tasks polls forms;
-      inherit previewgenerator onlyoffice spreed; # files_markdown files_texteditor
-      inherit mail groupfolders; # memories music
-      inherit notify_push twofactor_webauthn twofactor_nextcloud_notification user_oidc user_saml; # twofactor_totp
+    package = pkgs.nextcloud29;
+    settings = {
+      enablePreview = true;
+      enabledPreviewProviders = [
+        "OC\\Preview\\XBitmap"
+        "OC\\Preview\\Image"
+        "OC\\Preview\\PNG"
+        "OC\\Preview\\MJPEG"
+        "OC\\Preview\\JPEG"
+        "OC\\Preview\\WEBP"
+        "OC\\Preview\\BMP"
+        "OC\\Preview\\HEIC"
+        "OC\\Preview\\SVG"
+        "OC\\Preview\\TIFF"
+        "OC\\Preview\\EMF"
+        "OC\\Preview\\Font"
+        "OC\\Preview\\Illustrator"
+        "OC\\Preview\\Photoshop"
+        "OC\\Preview\\Krita"
+        "OC\\Preview\\FLAC"
+        "OC\\Preview\\WAV"
+        "OC\\Preview\\OGG"
+        "OC\\Preview\\AAC"
+        "OC\\Preview\\M4A"
+        "OC\\Preview\\MP3"
+        "OC\\Preview\\Movie"
+        "OC\\Preview\\MP4"
+        "OC\\Preview\\MKV"
+        "OC\\Preview\\AVI"
+        "OC\\Preview\\GIF"
+        "OC\\Preview\\TXT"
+        "OC\\Preview\\OpenDocument"
+        "OC\\Preview\\Postscript"
+        "OC\\Preview\\MSOffice2003"
+        "OC\\Preview\\MSOffice2007"
+        "OC\\Preview\\MSOfficeDoc"
+        "OC\\Preview\\StarOffice"
+        "OC\\Preview\\MarkDown"
+        "OC\\Preview\\PDF"
+      ];
+    };
+
+    extraApps = {
+      inherit (config.services.nextcloud.package.packages.apps)
+        # admin
+        user_oidc
+        notify_push
+        twofactor_webauthn
+        twofactor_nextcloud_notification
+
+        # ical
+        calendar
+        contacts
+        deck
+
+        # productivity
+        mail
+        polls
+        forms
+        tasks
+        spreed
+        onlyoffice
+        qownnotesapi
+        richdocuments
+        previewgenerator
+
+        # misc
+        groupfolders
+        gpoddersync
+        bookmarks
+        cookbook
+        cospend
+        music
+        maps
+        ;
+      # Camera raw previes
+      camerarawpreviews = pkgs.fetchNextcloudApp {
+        appName = "camerarawpreviews";
+        homepage = "https://github.com/ariselseng/camerarawpreviews";
+        description = "Camera Raw Previews app for Nextcloud";
+        url = "https://github.com/ariselseng/camerarawpreviews/releases/download/v0.8.5/camerarawpreviews_nextcloud.tar.gz";
+        sha256 = "sha256-4e4paLmnNcv2x17RXwVKXSUr+Ze0Z7S0330BGZX1hso=";
+        license = "${lib.licenses.agpl3Only.shortName}";
+        appVersion = "0.8.5";
+      };
+      # finance management app
+      money = pkgs.fetchNextcloudApp {
+        appName = "nc_money";
+        homepage = "https://github.com/powerpaul17/nc_money";
+        description = "Nextcloud app for finance management";
+        url = "https://github.com/powerpaul17/nc_money/releases/download/v0.29.0/money.tar.gz";
+        sha256 = "sha256-MbqbEmLtsSwefF5FgOSGJeZtbZpgtVFrFiZ5xhGqVCI=";
+        license = "${lib.licenses.agpl3Only.shortName}";
+        appVersion = "0.29.0";
+      };
+      integration_paperless = pkgs.fetchNextcloudApp {
+        appName = "integration_paperless";
+        homepage = "https://apps.nextcloud.com/apps/integration_paperless";
+        description = "Integration with the Paperless Document Management System";
+        url = "https://github.com/nextcloud-releases/integration_paperless/releases/download/v1.0.4/integration_paperless-v1.0.4.tar.gz";
+        sha256 = "sha256-qIwGheJFPGSfd+2tzZTheECLqstZe0tBX/bTEu977Gg=";
+        license = "${lib.licenses.agpl3Only.shortName}";
+        appVersion = "1.0.4";
+      };
     };
     extraAppsEnable = true;
     hostName = "cloud.tenjin-dk.com";
@@ -39,6 +137,8 @@ in {
     settings = {
       overwriteprotocol = "https";
       default_phone_region = "UA";
+      maintenance_window_start = "1";
+      metadata_max_filesize = "256";
       redis = {
         host = "/run/redis-nextcloud/redis.sock";
         port = 0;
@@ -58,6 +158,7 @@ in {
     };
     phpExtraExtensions = all: [
       all.pdlib
+      all.gd
       all.bz2
       all.smbclient
     ];

@@ -1,67 +1,75 @@
 {
   lib,
-  inputs,
-  config,
   pkgs,
   path,
   ...
-}: {
+}:
+{
   imports =
     [
-      (path + /modules/shared/home/reisen/programs/dev/vim.nix)
+      ### ----------------PROGRAMS------------------- ###
+      ./programs/firefox.nix
+      ./programs/chromium.nix
+      ./programs/flatpak.nix
+      (path + /home/shared/programs/discord.nix)
+      (path + /home/shared/programs/spotify.nix)
+      ### ----------------PROGRAMS------------------- ###
     ]
-    ++ (import (path + /hosts/signed-int16/home/reisen/programs))
-    ++ (import (path + /modules/shared/home/reisen/programs/utils));
+    ++ lib.flatten [
+      (lib.concatLists [
+        (import ./programs/dev/default.nix)
+        (import ./programs/utils/default.nix)
+      ])
+    ];
   home = {
     username = "reisen";
-    packages = with pkgs; [
-      # Audio
-      tenacity
-      pavucontrol
-      qpwgraph
+    packages = builtins.attrValues {
+      inherit (pkgs)
+        # Audio
+        tenacity
+        pavucontrol
+        qpwgraph
 
-      # BROWSERS
-      librewolf
+        # BROWSERS
+        librewolf
 
-      # Graphics
-      krita
-      gimp
-      inkscape
-      kdenlive
+        # Graphics
+        krita
+        gimp
+        inkscape
+        kdenlive
 
-      # Media
-      quodlibet
-      vlc
-      yt-dlp
-      brasero
-      cdrtools
+        # Media
+        quodlibet-full
+        vlc
+        yt-dlp
+        brasero
+        cdrtools
 
-      # Dev
-      lazygit
+        # Dev
+        lazygit
 
-      # Gaming
-      steam
-      steam-tui
-      steam-run
+        # Office
+        libreoffice-fresh
 
-      # Office
-      libreoffice-fresh
+        # Communication
+        tdesktop
+        element-desktop
+        thunderbird
+        keepassxc
 
-      # Communication
-      tdesktop
-      element-desktop
-      thunderbird
-      keepassxc
-
-      # Utils
-      nextcloud-client
-      thefuck
-      qbittorrent
-      glxinfo
-      flameshot
-      unetbootin
-      woeusb-ng
-    ];
+        # Utils
+        nextcloud-client
+        thefuck
+        qbittorrent
+        glxinfo
+        flameshot
+        unetbootin
+        woeusb-ng
+        fsearch
+        obsidian
+        ;
+    };
     stateVersion = "24.05";
   };
 }

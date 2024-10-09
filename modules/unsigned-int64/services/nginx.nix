@@ -1,14 +1,13 @@
 {
   config,
-  lib,
   pkgs,
-  agenix,
   path,
   ...
-}: {
+}:
+{
   security.pam.services.nginx.setEnvironment = false;
   systemd.services.nginx.serviceConfig = {
-    SupplementaryGroups = ["shadow"];
+    SupplementaryGroups = [ "shadow" ];
   };
   age.secrets."archive.htpasswd" = {
     file = path + /secrets/htpasswd.age;
@@ -24,19 +23,24 @@
     owner = "nginx";
     group = "nginx";
   };
-
+  age.secrets."cloudflare-api_token" = {
+    file = path + /secrets/cloudflare-api_token.age;
+    mode = "0640";
+    owner = "acme";
+    group = "acme";
+  };
   security.acme = {
     acceptTerms = true;
     defaults = {
       email = "ashuramaru@tenjin-dk.com";
       dnsResolver = "1.1.1.1:53";
-      dnsProvider = "njalla";
-      credentialsFile = /var/lib/scerts/njalla-api;
+      dnsProvider = "cloudflare";
+      credentialsFile = "${config.age.secrets.cloudflare-api_token.path}";
     };
   };
   services.nginx = {
     enable = true;
-    additionalModules = [pkgs.nginxModules.pam];
+    additionalModules = [ pkgs.nginxModules.pam ];
 
     recommendedGzipSettings = true;
     recommendedOptimisation = true;
@@ -58,6 +62,15 @@
       add_header X-XSS-Protection "1; mode=block";
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
+    virtualHosts."ss.tenjin-dk.com" = {
+      serverName = "ss.tenjin-dk.com";
+      forceSSL = true;
+      enableACME = true;
+      locations."/ray" = {
+        proxyPass = "http://127.0.0.1:10800";
+        proxyWebsockets = true;
+      };
+    };
     virtualHosts."www.tenjin-dk.com" = {
       serverName = "www.tenjin-dk.com";
       forceSSL = true;
@@ -73,8 +86,8 @@
     virtualHosts."_" = {
       default = true;
       listen = [
-        {addr = "80";}
-        {addr = "[::]:80";}
+        { addr = "80"; }
+        { addr = "[::]:80"; }
         {
           addr = "443";
           ssl = true;
@@ -95,7 +108,7 @@
       enableACME = true;
       basicAuthFile = config.age.secrets."minecraft.htpaswd".path;
       locations."/" = {
-        root = "/var/lib/minecraft/static";
+        root = "/var/lib/www/minecraft/static";
         extraConfig = ''
           auth_basic off;
           autoindex on;

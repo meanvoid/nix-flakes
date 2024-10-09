@@ -1,41 +1,33 @@
-{
-  lib,
-  inputs,
-  config,
-  pkgs,
-  agenix,
-  aagl,
-  hostname,
-  users,
-  path,
-  nur,
-  vscode-server,
-  ...
-}: let
-  importModule = moduleName: let
-    dir = path + "/modules/${hostname}";
-  in
+{ hostname, path, ... }:
+let
+  importModule =
+    moduleName:
+    let
+      dir = path + "/modules/${hostname}";
+    in
     import (dir + "/${moduleName}");
   hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
-in {
+in
+{
   imports =
     [
       ### ----------------ESSENTIAL------------------- ###
       ./hardware-configuration.nix
       (path + "/modules/shared/settings/firmware.nix")
       (path + "/modules/shared/settings/nix.nix")
+      (path + "/modules/shared/settings/nvidia.nix")
       (path + "/modules/shared/settings/opengl.nix")
-      ### ----------------ESSENTIAL------------------- ###
       (path + "/modules/shared/settings/settings.nix")
+      ### ----------------ESSENTIAL------------------- ###
       ### ----------------DESKTOP------------------- ###
       (path + "/modules/shared/desktop/plasma.nix")
       (path + "/modules/shared/desktop/fonts.nix")
+      (path + "/modules/shared/programs/steam.nix")
       ### ----------------DESKTOP------------------- ###
     ]
     ++ hostModules [
       "environment"
       "networking"
-      "programs"
       "virtualisation"
     ];
 
@@ -52,7 +44,7 @@ in {
   time.timeZone = "Asia/Baku";
   i18n = {
     defaultLocale = "en_US.utf8";
-    supportedLocales = ["all"];
+    supportedLocales = [ "all" ];
   };
 
   system.stateVersion = "24.05";

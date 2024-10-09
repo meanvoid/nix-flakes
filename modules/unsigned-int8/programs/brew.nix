@@ -1,36 +1,51 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+_: {
   homebrew = {
     enable = true;
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      cleanup = "zap";
+      cleanup = "uninstall";
+    };
+    caskArgs = {
+      appdir = "~/Applications";
+      no_quarantine = true;
+      require_sha = true;
     };
     taps = [
       "homebrew/cask-versions"
+      "cfergeau/crc"
     ];
     brews = [
       "winetricks"
-      "openjdk"
-      "openjdk@17"
+      "smartmontools"
+      # virtualization
+      "vfkit"
+      # networking
     ];
     casks = [
-      #todo: revisit later
-      # Games
-      "wine-staging"
-      "crossover"
-      "steam"
-      "krita"
-      "blender"
+      ### --- Socials --- ###
       "telegram"
-      "iina"
+      "signal" # Telegram but if it wasnt owned by multimillioner living in Dubai
+      "element" # alo based department?
+      "thunderbird"
+      ### --- Socials
+      ### --- Gayming --- ###      
+      "crossover" # Supporting wine project
+      "whisky" # just for the wine
+      "steam" # Gayming
+      ### --- Gayming --- ###
+      ### --- Graphics --- ###
+      "blender"
+      "krita" # Soyjak drawing program
+      "affinity-photo" # Proffessional soyjak drawing program
+      "affinity-designer" # Proffessional soyjak designer program
+      ### --- Graphics --- ###
+      ### --- Utilities --- ###
+      "forklift"
       "nextcloud"
       "easy-move-plus-resize"
+      "yubico-authenticator"
+      ### --- Utilities --- ###
     ];
   };
 }

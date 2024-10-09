@@ -1,39 +1,38 @@
 {
-  lib,
   inputs,
+  lib,
   config,
   pkgs,
-  agenix,
-  aagl,
   hostname,
-  users,
   path,
-  meanvoid-overlay,
-  nur,
-  vscode-server,
   ...
-}: let
-  importModule = moduleName: let
-    dir = path + "/modules/${hostname}";
-  in
+}:
+let
+  importModule =
+    moduleName:
+    let
+      dir = path + "/modules/${hostname}";
+    in
     import (dir + "/${moduleName}");
 
   hostModules = moduleDirs: builtins.concatMap importModule moduleDirs;
-  cert = config.age.secrets."ca.crt".path;
-in {
+in
+{
   imports =
     [
       ### ----------------ESSENTIAL------------------- ###
       ./hardware-configuration.nix
       (path + "/modules/shared/settings/firmware.nix")
       (path + "/modules/shared/settings/nix.nix")
+      (path + "/modules/shared/settings/nvidia.nix")
       (path + "/modules/shared/settings/opengl.nix")
-      ### ----------------ESSENTIAL------------------- ###
       (path + "/modules/shared/settings/settings.nix")
+      (path + "/modules/shared/fcitx.nix")
+      ### ----------------ESSENTIAL------------------- ###
       ### ----------------DESKTOP------------------- ###
-      (path + "/modules/shared/desktop/gnome.nix")
-      # (path + "/modules/shared/desktop/plasma.nix")
+      (path + "/modules/shared/desktop/gnome_kde.nix")
       (path + "/modules/shared/desktop/fonts.nix")
+      (path + "/modules/shared/programs/steam.nix")
       ### ----------------DESKTOP------------------- ###
     ]
     ++ hostModules [
@@ -44,14 +43,21 @@ in {
       "virtualisation"
     ];
 
-  age.secrets."ca.crt" = {
-    file = path + /secrets/cert.age;
-    path = "/etc/ssl/self/ca.crt";
-    mode = "0775";
-    owner = "root";
-    group = "root";
+  age.secrets = {
+    "ca.crt" = {
+      file = path + /secrets/cert.age;
+      path = "/etc/ssl/self/ca.crt";
+      mode = "0775";
+      owner = "root";
+      group = "root";
+    };
+    "gh_token" = {
+      file = path + /secrets/gh_token.age;
+      mode = "0640";
+      owner = "root";
+      group = "root";
+    };
   };
-
   security = {
     wrappers = {
       doas = {
@@ -71,9 +77,7 @@ in {
     };
     polkit = {
       enable = true;
-      adminIdentities = [
-        "unix-group:wheel"
-      ];
+      adminIdentities = [ "unix-group:wheel" ];
     };
     pam = {
       services = {
@@ -83,15 +87,17 @@ in {
           enableGnomeKeyring = true;
           enableKwallet = true;
         };
+        su = {
+          sshAgentAuth = true;
+          u2fAuth = true;
+        };
         sudo = {
           sshAgentAuth = true;
           u2fAuth = true;
-          yubicoAuth = true;
         };
         sshd = {
           sshAgentAuth = true;
           u2fAuth = true;
-          yubicoAuth = true;
           enableGnomeKeyring = true;
           enableKwallet = true;
           googleOsLoginAuthentication = true;
@@ -99,11 +105,10 @@ in {
           googleAuthenticator.enable = true;
         };
       };
-      yubico = {
+      u2f = {
         enable = true;
-        id = "20693163";
-        mode = "client";
-        control = "sufficient";
+        cue = true;
+        control = "required";
       };
     };
   };
@@ -115,38 +120,43 @@ in {
       enableBrowserSocket = true;
       enableExtraSocket = true;
     };
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
   };
   services.yubikey-agent.enable = true;
   environment = {
-    systemPackages = with pkgs; [
-      # yubico
-      gpgme
-      yubioath-flutter
-      xorg.xhost
-      inputs.nix-software-center.packages.${system}.nix-software-center
-      inputs.nixos-conf-editor.packages.${system}.nixos-conf-editor
-    ];
-    shellInit = ''
-      [ -n "$DISPLAY" ] && xhost +si:localuser:$USER || true
-    '';
+    systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        # yubico
+        gpgme
+        yubioath-flutter
+        fcitx5-gtk
+        ;
+      inherit (pkgs.xorg) xhost;
+      inherit (inputs.nix-software-center.packages.${pkgs.system}) nix-software-center;
+      inherit (inputs.nixos-conf-editor.packages.${pkgs.system}) nixos-conf-editor;
+    };
   };
 
-  time.timeZone = "Europe/Warsaw";
+  time.timeZone = "Europe/Kyiv";
   i18n = {
     defaultLocale = "en_US.utf8";
-    supportedLocales = ["all"];
+    supportedLocales = [ "all" ];
     inputMethod = {
-      enabled = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [
-        anthy
-        mozc
-      ];
+      enabled = "fcitx5";
+      fcitx5 = {
+        plasma6Support = true;
+        waylandFrontend = true;
+        addEnvironmentVariables = true;
+        addons = builtins.attrValues { inherit (pkgs) fcitx5-mozc fcitx5-anthy fcitx5-gtk; };
+      };
     };
   };
   nix.settings = {
-    # todo use age
-    access-tokens = "/etc/nix/token";
-    netrc-file = "/etc/nix/netrc";
+    access-tokens = config.age.secrets.gh_token.path;
+    netrc-file = "/etc/nix/netrc"; # TODO: add netrc token as age
   };
   system.stateVersion = "24.05";
 }

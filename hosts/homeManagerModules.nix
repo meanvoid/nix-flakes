@@ -1,59 +1,72 @@
 {
   lib,
-  nixpkgs,
-  nixpkgs-23_11,
   inputs,
-  nur,
   darwin,
   home-manager,
+  catppuccin,
   spicetify-nix,
-  flatpaks,
+  nur,
   path,
   ...
-}: {
+}:
+{
+
   homeManagerModules = {
-    nixos = hostName: users: [
+    nixos = hostName: users: system: [
       home-manager.nixosModules.home-manager
       {
+        nixpkgs.overlays = [ (final: prev: { spicetify = spicetify-nix.legacyPackages.${system}; }) ];
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "bak";
         home-manager.extraSpecialArgs = {
           inherit inputs users path;
-          inherit nur spicetify-nix flatpaks;
+          inherit catppuccin spicetify-nix nur;
           host = {
             inherit hostName;
           };
         };
-        home-manager.users = lib.mkMerge (map
-          (userName: {
+        home-manager.users = lib.mkMerge (
+          map (userName: {
             "${userName}" = {
-              imports = [(path + "/hosts/${hostName}/home/${userName}/home.nix")];
+              imports = [
+                (path + "/hosts/${hostName}/home/${userName}/home.nix")
+                catppuccin.homeManagerModules.catppuccin
+                spicetify-nix.homeManagerModules.default
+              ];
             };
-          })
-          users);
+          }) users
+        );
       }
     ];
 
-    darwin = hostName: users: [
+    darwin = hostName: users: system: [
       home-manager.darwinModules.home-manager
       {
         nixpkgs.overlays = [
           inputs.nixpkgs-firefox-darwin.overlay
-          # nur.overlay
+          (final: prev: { spicetify = spicetify-nix.legacyPackages.${system}; })
         ];
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
-          inherit inputs darwin users path;
-          host = {inherit hostName;};
+          inherit inputs users path;
+          inherit darwin;
+          host = {
+            inherit hostName;
+          };
         };
-        home-manager.users = lib.mkMerge (map
-          (userName: {
+        home-manager.users = lib.mkMerge (
+          map (userName: {
             "${userName}" = {
-              imports = [(path + "/hosts/darwin/${hostName}/home/${userName}/home.nix")];
+              imports = [
+                (path + "/hosts/darwin/${hostName}/home/${userName}/home.nix")
+                catppuccin.homeManagerModules.catppuccin
+                spicetify-nix.homeManagerModules.default
+              ];
             };
-          })
-          users);
+          }) users
+        );
       }
     ];
   };

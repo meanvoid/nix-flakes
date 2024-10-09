@@ -1,13 +1,17 @@
 {
   config,
-  lib,
+  path,
   pkgs,
-  users,
-  meanvoid-overlay,
   ...
-}: let
-  admins = ["ashuramaru" "meanrin"];
-in {
+}:
+let
+  admins = [
+    "ashuramaru"
+    "meanrin"
+  ];
+in
+{
+  imports = [ (path + /modules/shared/kvmfr.nix) ];
   boot.extraModprobeConfig = "options kvm_intel kvm_amd nested=1";
   virtualisation.libvirtd = {
     enable = true;
@@ -17,16 +21,12 @@ in {
       "virbr1"
       "vireth0"
     ];
-    extraOptions = [
-      "--verbose"
-    ];
+    extraOptions = [ "--verbose" ];
   };
   virtualisation.libvirtd.qemu = {
     ovmf = {
       enable = true;
-      packages = [
-        pkgs.OVMFFull.fd
-      ];
+      packages = [ pkgs.OVMFFull.fd ];
     };
     verbatimConfig = ''
       cgroup_device_acl = [
@@ -58,19 +58,21 @@ in {
     qemu.members = admins;
   };
 
-  environment.systemPackages = with pkgs; [
-    virt-manager
-    virt-viewer
-    virt-top
-    spice
-    spice-gtk
-    spice-protocol
-    virtio-win
-    virtiofsd
-    win-spice
-    swtpm
-    looking-glass-client
-  ];
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
+      virt-manager
+      virt-viewer
+      virt-top
+      spice
+      spice-gtk
+      spice-protocol
+      virtio-win
+      virtiofsd
+      win-spice
+      swtpm
+      looking-glass-client
+      ;
+  };
   environment.etc = {
     "ovmf/edk2-x86_64-code.fd" = {
       source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-x86_64-code.fd";
@@ -94,23 +96,24 @@ in {
       source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-arm-vars.fd";
     };
   };
-  # virtualisation.kvmfr = {
-  #   enable = false;
-  #   shm = {
-  #     enable = false;
-  #     size = 128;
-  #     user = "ashuramaru";
-  #     group = "libvirtd";
-  #     mode = "0660";
-  #   };
-  # };
-  systemd.services.libvirtd.path = with pkgs; [
-    virtiofsd
-    virtio-win
-    mdevctl
-    swtpm
-    looking-glass-client
-  ];
-  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
+  #! wait until the next lts kernel
+  virtualisation.kvmfr = {
+    enable = true;
+    shm = {
+      enable = true;
+      size = 128;
+      user = "qemu-libvirtd";
+      group = "libvirtd";
+      mode = "0600";
+    };
+  };
+  systemd.services.libvirtd.path = builtins.attrValues {
+    inherit (pkgs)
+      virtiofsd
+      virtio-win
+      mdevctl
+      swtpm
+      looking-glass-client
+      ;
+  };
 }
