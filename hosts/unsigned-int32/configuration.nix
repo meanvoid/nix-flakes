@@ -57,6 +57,12 @@ in
       owner = "root";
       group = "root";
     };
+    "netrc_creds" = {
+      file = path + /secrets/netrc_creds.age;
+      mode = "0644";
+      owner = "root";
+      group = "root";
+    };
   };
   security = {
     wrappers = {
@@ -140,7 +146,7 @@ in
     };
   };
 
-  time.timeZone = "Europe/Kyiv";
+  time.timeZone = "Europe/Warsaw";
   i18n = {
     defaultLocale = "en_US.utf8";
     supportedLocales = [ "all" ];
@@ -156,7 +162,7 @@ in
   };
   nix.settings = {
     access-tokens = config.age.secrets.gh_token.path;
-    netrc-file = "/etc/nix/netrc"; # TODO: add netrc token as age
+    netrc-file = config.age.secrets.netrc_creds.path;
   };
   system.stateVersion = "24.05";
 }

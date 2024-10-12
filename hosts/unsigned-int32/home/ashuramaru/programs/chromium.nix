@@ -55,4 +55,8 @@
       "--enable-blink-features=MiddleClickAutoscroll"
     ];
   };
+  home.packages = [
+    pkgs.google-chrome
+    pkgs.microsoft-edge
+  ];
 }

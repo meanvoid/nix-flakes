@@ -66,6 +66,7 @@ in
   "wireguard-shared_jul.age".publicKeys = matrixTenjin;
   "tailscale-auth-key.age".publicKeys = matrixTenjin;
   "gh_token.age".publicKeys = matrixTenjin;
+  "netrc_creds.age".publicKeys = matrixTenjin;
   "cert.age".publicKeys = matrixTenjin;
 
   # matrixGlobal
