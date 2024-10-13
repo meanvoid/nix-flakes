@@ -54,6 +54,9 @@
     aagl.url = "github:ezKEa/aagl-gtk-on-nix/release-24.05";
     nix-gaming.url = "github:fufexan/nix-gaming/master";
 
+    # Proxy
+    zapret.url = "github:SnakeOPM/zapret-flake.nix";
+
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     ### --- Overlays and Applications --- ###
 
@@ -94,6 +97,7 @@
       nix-gaming,
       spicetify-nix,
       vscode-server,
+      zapret,
       ...
     }@inputs:
     let

@@ -103,7 +103,12 @@ in
             inherit hostName;
           };
         };
-        modules = [ "${path}/hosts/${hostName}/configuration.nix" ] ++ sharedModules;
+        modules =
+          if hostname == "OpenIris" then
+            [ "${path}/hosts/${hostName}/configuration.nix" ] ++ sharedModules ++ [ inputs.zapret.nixosModules.zapret ]
+          else
+            [ "${path}/hosts/${hostName}/configuration.nix" ] ++ sharedModules;
+
       };
 
     darwin =
