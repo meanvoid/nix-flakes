@@ -100,6 +100,7 @@
       pop-shell
       arcmenu
       kimpanel
+      tray-icons-reloaded
       ;
     catppuccin-gtk = pkgs.catppuccin-gtk.override {
       accents = [ "rosewater" ];
