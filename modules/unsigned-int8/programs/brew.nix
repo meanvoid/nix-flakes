@@ -41,6 +41,8 @@ _: {
       "affinity-designer" # Proffessional soyjak designer program
       ### --- Graphics --- ###
       ### --- Utilities --- ###
+      "shottr"
+      "soundsource"
       "forklift"
       "nextcloud"
       "easy-move-plus-resize"
