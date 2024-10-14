@@ -6,21 +6,27 @@ in
   home.packages = builtins.attrValues {
     inherit (pkgs)
       # c/c++
+
       cmakeCurses
       clang-tools
       gnumake
       # Python
+
       python3Full
       # Ruby
+
       ruby
       # Rust
+
       rustc
       # Golang
+
       go
       # Java
-      temurin-bin-17
 
+      temurin-bin-17
       # Nix
+
       nil
       nixfmt-rfc-style
       arduino-language-server
@@ -29,7 +35,6 @@ in
   };
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium;
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = true;
     mutableExtensionsDir = true;
