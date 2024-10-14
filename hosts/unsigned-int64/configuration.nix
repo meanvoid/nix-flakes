@@ -1,6 +1,7 @@
 {
   pkgs,
   path,
+  config,
   hostname,
   ...
 }:
@@ -50,5 +51,5 @@ in
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  system.stateVersion = "24.05";
+  system.stateVersion = config.system.nixos.release;
 }

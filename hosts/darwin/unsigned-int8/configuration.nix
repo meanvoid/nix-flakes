@@ -17,6 +17,7 @@ in
 {
   imports =
     [
+      (./system.nix)
       (path + /modules/shared/settings/nix.nix)
       (path + /modules/shared/desktop/fonts.nix)
     ]
@@ -25,7 +26,6 @@ in
       "programs"
       "networking"
     ];
-
   security = {
     pam = {
       enableSudoTouchIdAuth = true;
@@ -82,11 +82,4 @@ in
 
   programs.nix-index.enable = true;
   services.nix-daemon.enable = true;
-  # System configuration
-  system = {
-    keyboard = {
-      enableKeyMapping = true;
-    };
-  };
-  system.stateVersion = 5;
 }

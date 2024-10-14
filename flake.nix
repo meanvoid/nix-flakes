@@ -19,6 +19,7 @@
     ### --- nixpkgs channels --- ###
     darwin.url = "github:lnl7/nix-darwin/master";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
+    hm_unstable.url = "github:nix-community/home-manager/master";
     nur.url = "github:nix-community/NUR";
     ### --- System --- ###
 
@@ -52,7 +53,7 @@
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
     # Games
     aagl.url = "github:ezKEa/aagl-gtk-on-nix/release-24.05";
-    nix-gaming.url = "github:fufexan/nix-gaming/master";
+    # nix-gaming.url = "github:fufexan/nix-gaming/master";
 
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     ### --- Overlays and Applications --- ###
@@ -60,6 +61,7 @@
     ### --- De-duplication --- ###
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    hm_unstable.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
@@ -91,7 +93,7 @@
       flatpaks,
       nur,
       aagl,
-      nix-gaming,
+      # nix-gaming,
       spicetify-nix,
       vscode-server,
       ...

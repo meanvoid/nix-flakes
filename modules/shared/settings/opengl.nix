@@ -30,9 +30,9 @@
       *
     */
     #! config.inputMethod.enabled will soon be changed on a more better approach, so don't forget to edit this out once the 24.11 gets released
-    NIXOS_OZONE_WL =
-      if config.i18n.inputMethod.enabled == "fcitx5" || config.i18n.inputMethod.enabled == "ibus" then "0" else "1";
-
+    # NIXOS_OZONE_WL = "0";
+    # if config.i18n.inputMethod.enabled == "fcitx5" || config.i18n.inputMethod.enabled == "ibus" then "0" else "1";
+    QT_QPA_PLATFORM = "wayland;xcb";
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_DISABLE_RDD_SANDBOX = "1";
   };

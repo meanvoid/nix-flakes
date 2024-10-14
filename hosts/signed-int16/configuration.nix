@@ -1,4 +1,9 @@
-{ hostname, path, ... }:
+{
+  hostname,
+  config,
+  path,
+  ...
+}:
 let
   importModule =
     moduleName:
@@ -47,5 +52,5 @@ in
     supportedLocales = [ "all" ];
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = config.system.nixos.release;
 }

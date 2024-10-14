@@ -164,5 +164,5 @@ in
     access-tokens = config.age.secrets.gh_token.path;
     netrc-file = config.age.secrets.netrc_creds.path;
   };
-  system.stateVersion = "24.05";
+  system.stateVersion = config.system.nixos.release;
 }

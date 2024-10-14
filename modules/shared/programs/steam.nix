@@ -40,7 +40,7 @@
               ;
             inherit (super.gnome) zenity;
             inherit (super.stdenv.cc.cc) lib;
-            inherit (inputs.nix-gaming.packages.${super.system}) wine-discord-ipc-bridge;
+            # inherit (inputs.nix-gaming.packages.${super.system}) wine-discord-ipc-bridge;
           };
       };
     })
@@ -51,7 +51,7 @@
     inherit (pkgs) winetricks protontricks protonplus;
     inherit (pkgs) protonup-qt;
     inherit (pkgs.wineWowPackages) stagingFull;
-    inherit (inputs.nix-gaming.packages.${pkgs.system}) wine-discord-ipc-bridge;
+    # inherit (inputs.nix-gaming.packages.${pkgs.system}) wine-discord-ipc-bridge;
 
   };
   programs = {
