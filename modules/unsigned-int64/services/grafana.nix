@@ -12,7 +12,6 @@
     owner = "grafana";
     group = "grafana";
   };
-
   services.grafana = {
     enable = true;
     settings = {
