@@ -37,12 +37,12 @@ in
       isDefault = true;
       settings = {
         # hacks
-        "gfx.webrender.all" = if isLinux then true else false; # Force enable GPU acceleration
-        "media.ffmpeg.vaapi.enabled" = if isLinux then true else false;
-        "widget.dmabuf.force-enabled" = if isLinux then true else false; # Required in recent Firefoxes
+        "gfx.webrender.all" = true; # Force enable GPU acceleration
+        "media.ffmpeg.vaapi.enabled" = true;
+        "widget.dmabuf.force-enabled" = true; # Required in recent Firefoxes
 
         # settings
-        "widget.use-xdg-desktop-portal.file-picker" = if isLinux then 1 else 0;
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
         "extensions.webextensions.restrictedDomains" = ''
           accounts-static.cdn.mozilla.net,accounts.firefox.com,addons.cdn.mozilla.net,addons.mozilla.org,api.accounts.firefox.com,content.cdn.mozilla.net,discovery.addons.mozilla.org,install.mozilla.org,oauth.accounts.firefox.com,profile.accounts.firefox.com,support.mozilla.org,sync.services.mozilla.com,metrics.tenjin-dk.com,cloud.tenjin-dk.com,public.tenjin.com,private.tenjin.com,beta.foldingathome.org
         '';
