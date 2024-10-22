@@ -17,7 +17,7 @@ let
       addonId = "magnolia@12.34";
       url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
       name = "bypass-paywall-clean-${version}";
-      sha256 = "sha256-A+V4BFjBn+TcKifWrVOnzuSaW5ROTNLqWI5MUIzBx9Y=";
+      sha256 = "sha256-DLhryk7rdglguLEUscvZgveC2adyTDTyC0mp2eTuvBs=";
       meta = {
         homepage = "https://twitter.com/Magnolia1234B";
         description = "Bypass Paywalls of (custom) news sites";
@@ -75,6 +75,8 @@ in
           multi-account-containers
           sponsorblock
           return-youtube-dislikes
+
+          kagi-search
           # video-downloadhelper
           stylus
           steam-database
@@ -99,141 +101,26 @@ in
       search = {
         force = true;
         order = [
-          "GitHub"
-          "Google"
           "Kagi"
-          "4get"
-          "SearXNG"
-          "Brave"
-          "Qwant"
+          "Google"
           "DuckDuckGo"
-          "Start Page"
-          "Ecosia"
           "Home Manager"
           "Nix Options"
           "Nix Packages"
           "NixOS Wiki"
+          "GitHub"
           "SteamDB"
           "ProtonDB"
           "YouTube"
           "YoutubeMusic"
         ];
-        privateDefault = "4get";
         default = "Kagi";
+        privateDefault = "Kagi";
         engines = {
-          "GitHub" = {
-            urls = [
-              {
-                template = "https://github.com/search";
-                params = [
-                  {
-                    name = "q";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            iconUpdateURL = "https://github.com/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000;
-            definedAliases = [ "@gh" ];
-          };
-          "Google" = {
-            urls = [
-              {
-                template = "https://www.google.com/search";
-                params = [
-                  {
-                    name = "q";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            iconUpdateURL = "https://www.google.com/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000;
-            definedAliases = [ "@google" ];
-          };
-          "Kagi" = {
-            urls = [
-              {
-                template = "https://kagi.com/search";
-                params = [
-                  {
-                    name = "q";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            iconUpdateURL = "https://kagi.com/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000;
-            definedAliases = [ "@kagi" ];
-          };
-          # make a private instance
-          "4get" = {
-            urls = [
-              {
-                template = "https://4get.ca/web";
-                params = [
-                  {
-                    name = "s";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            iconUpdateURL = "https://4get.ca/favicon.ico";
-            updateInterval = 7 * 24 * 60 * 60 * 1000;
-            definedAliases = [ "@4get" ];
-          };
-          "SearXNG" = {
-            urls = [
-              {
-                template = "https://searx.org/search";
-                params = [
-                  {
-                    name = "q";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            iconUpdateURL = "https://searx.org/static/themes/simple/img/favicon.svg?ee99f2c4793c32451062177672c8ab309dbef940";
-            updateInterval = 7 * 24 * 60 * 60 * 1000;
-            definedAliases = [ "@sex" ];
-          };
-          "Brave" = {
-            urls = [
-              {
-                template = "https://search.brave.com/search";
-                params = [
-                  {
-                    name = "q";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            iconUpdateURL = "https://search.brave.com/favicon.ico";
-            updateInterval = 7 * 24 * 60 * 60 * 1000;
-            definedAliases = [ "@brave" ];
-          };
-          "Qwant" = {
-            urls = [
-              {
-                template = "https://www.qwant.com/";
-                params = [
-                  {
-                    name = "q";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            iconUpdateURL = "https://www.qwant.com/favicon.ico";
-            updateInterval = 7 * 24 * 60 * 60 * 1000;
-            definedAliases = [ "@qwant" ];
-          };
+          "Google".metaData.alias = "@g";
+          "Bing".metaData.hidden = true;
+          "You".metaData.hidden = true;
+          "You.com".metaData.hidden = true;
           "DuckDuckGo" = {
             urls = [
               {
@@ -250,38 +137,6 @@ in
             updateInterval = 7 * 24 * 60 * 60 * 1000;
             definedAliases = [ "@ddg" ];
           };
-          "Start Page" = {
-            urls = [
-              {
-                template = "https://www.startpage.com/sp/search";
-                params = [
-                  {
-                    name = "query";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            iconUpdateURL = "https://www.startpage.com/sp/cdn/favicons/favicon--dark.ico";
-            updateInterval = 7 * 24 * 60 * 60 * 1000;
-            definedAliases = [ "@start" ];
-          };
-          "Ecosia" = {
-            urls = [
-              {
-                template = "https://www.ecosia.org/search";
-                params = [
-                  {
-                    name = "q";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            iconUpdateURL = "https://cdn-static.ecosia.org/static/icons/favicon.ico";
-            updateInterval = 7 * 24 * 60 * 60 * 1000;
-            definedAliases = [ "@eco" ];
-          };
           "Home Manager" = {
             urls = [
               {
@@ -292,21 +147,23 @@ in
                     value = "{searchTerms}";
                   }
                   {
-                    name = "channel";
+                    name = "relase";
                     value = "unstable";
                   }
                 ];
               }
             ];
-            iconUpdateURL = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            updateInterval = 7 * 24 * 60 * 60 * 1000;
-            definedAliases = [ "@hm" ];
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           };
           "Nix Options" = {
             urls = [
               {
                 template = "https://search.nixos.org/options";
                 params = [
+                  {
+                    name = "type";
+                    value = "options";
+                  }
                   {
                     name = "query";
                     value = "{searchTerms}";
@@ -318,8 +175,7 @@ in
                 ];
               }
             ];
-            iconUpdateURL = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            updateInterval = 7 * 24 * 60 * 60 * 1000;
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@nq" ];
           };
           "Nix Packages" = {
@@ -328,6 +184,10 @@ in
                 template = "https://search.nixos.org/packages";
                 params = [
                   {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
                     name = "query";
                     value = "{searchTerms}";
                   }
@@ -338,8 +198,7 @@ in
                 ];
               }
             ];
-            iconUpdateURL = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            updateInterval = 7 * 24 * 60 * 60 * 1000;
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@np" ];
           };
           "NixOS Wiki" = {
@@ -357,6 +216,22 @@ in
             iconUpdateURL = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             updateInterval = 7 * 24 * 60 * 60 * 1000;
             definedAliases = [ "@nw" ];
+          };
+          "GitHub" = {
+            urls = [
+              {
+                template = "https://github.com/search";
+                params = [
+                  {
+                    name = "q";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            iconUpdateURL = "https://github.com/favicon.ico";
+            updateInterval = 24 * 60 * 60 * 1000;
+            definedAliases = [ "@gh" ];
           };
           "SteamDB" = {
             urls = [

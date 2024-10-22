@@ -34,7 +34,7 @@
 
         # Graphic
         krita
-        qbittorrent
+        #! qbittorrent insecure
 
         autorandr # you should move to a different location
         telegram-desktop

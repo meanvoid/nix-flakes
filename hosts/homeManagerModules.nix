@@ -1,12 +1,15 @@
 {
   lib,
   inputs,
+  path,
   darwin,
+  nur,
   home-manager,
+  agenix,
+  sops-nix,
   catppuccin,
   spicetify-nix,
-  nur,
-  path,
+  nixcord,
   ...
 }:
 {
@@ -21,7 +24,8 @@
         home-manager.backupFileExtension = "bak";
         home-manager.extraSpecialArgs = {
           inherit inputs users path;
-          inherit catppuccin spicetify-nix nur;
+          inherit nur agenix sops-nix;
+          inherit catppuccin spicetify-nix nixcord;
           host = {
             inherit hostName;
           };
@@ -31,8 +35,11 @@
             "${userName}" = {
               imports = [
                 (path + "/hosts/${hostName}/home/${userName}/home.nix")
+                agenix.homeManagerModules.default
+                sops-nix.homeManagerModules.sops
                 catppuccin.homeManagerModules.catppuccin
                 spicetify-nix.homeManagerModules.default
+                nixcord.homeManagerModules.nixcord
               ];
             };
           }) users
@@ -61,8 +68,11 @@
             "${userName}" = {
               imports = [
                 (path + "/hosts/darwin/${hostName}/home/${userName}/home.nix")
+                agenix.homeManagerModules.default
+                sops-nix.homeManagerModules.sops
                 catppuccin.homeManagerModules.catppuccin
                 spicetify-nix.homeManagerModules.default
+                nixcord.homeManagerModules.nixcord
               ];
             };
           }) users

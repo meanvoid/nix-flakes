@@ -38,7 +38,7 @@
 
         brasero # cd/dvd burner
         deluge # just as a backup
-        qbittorrent # understandable have a nice day
+        #! qbittorrent # understandable have a nice day
         nicotine-plus
         ;
 
@@ -152,9 +152,7 @@
         "ini"
       ];
       inherit (pkgs.unstable) osu-lazer-bin;
-      shadps4 = pkgs.unstable.callPackage ./programs/shadps4/default.nix {
-        # inherit (pkgs.unstable) vulkan-memory-allocator;
-      };
+      crossover = pkgs.callPackage "${path + /home/shared/pkgs/crossover.nix}" { };
     };
     stateVersion = "24.05";
   };

@@ -17,17 +17,23 @@
     username = "root";
     packages = builtins.attrValues {
       # Utils
-      inherit (pkgs) ani-cli thefuck;
+      inherit (pkgs) thefuck hyfetch ipfetch;
     };
     stateVersion = "24.05";
   };
-  programs.tmux = {
-    enable = true;
-    catppuccin = {
-      flavor = "mocha";
-      extraConfig = ''
-        set -g @catppuccin_status_modules_right "application session user host date_time"
-      '';
+  programs = {
+    tmux = {
+      enable = true;
+      catppuccin = {
+        flavor = "mocha";
+        extraConfig = ''
+          set -g @catppuccin_status_modules_right "application session user host date_time"
+        '';
+      };
+    };
+    btop = {
+      enable = true;
+      catppuccin.flavor = "mocha";
     };
   };
 }

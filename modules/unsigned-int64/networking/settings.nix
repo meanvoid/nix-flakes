@@ -99,6 +99,7 @@
         allowedTCPPorts = [ 53 ];
         allowedUDPPorts = [ 53 ];
       };
+      #todo: actually tide it up
       interfaces."wireguard0" = {
         allowedUDPPorts = [
           # forward all possible dns ports

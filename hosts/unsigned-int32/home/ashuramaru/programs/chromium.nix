@@ -4,10 +4,10 @@
     enable = true;
     extensions =
       let
-        bpc-version = "3.8.8.0";
+        bpc-version = "3.9.1.2";
         bpc-src = pkgs.fetchurl {
           url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass-paywalls-chrome-clean-${bpc-version}.crx";
-          sha256 = "sha256-4ARBjfEV09ExosnSG9C/Qzq5rDaqSEr9hwWLJQlB3CI=";
+          sha256 = "sha256-KvHSxP4zC+VvYoGFyz2b2e8CDlu0N/ujiq99LVdpr3E=";
         };
       in
       [
@@ -17,6 +17,7 @@
         { id = "nomnklagbgmgghhjidfhnoelnjfndfpd"; } # canvas blocker
         { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # dark reader
         { id = "jinjaccalgkegednnccohejagnlnfdag"; } # violentmonkey
+        { id = "cdglnehniifkbagbbombnjghhcihifij"; } # kagi search
 
         { id = "lckanjgmijmafbedllaakclkaicjfmnk"; } # clearurls
         { id = "hkligngkgcpcolhcnkgccglchdafcnao"; } # web archives

@@ -8,7 +8,8 @@
     x11.enable = true;
   };
   home.sessionVariables = {
+    CLUTTER_BACKEND = "wayland";
     QT_QPA_PLATFORM = "xcb";
-    penis = "size";
+    QT_SCALE_FACTOR_ROUNDING_POLICY = "RoundPreferFloor";
   };
 }

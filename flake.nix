@@ -42,8 +42,6 @@
     hyprland.url = "github:hyprwm/Hyprland";
     nixcord.url = "github:KaylorBen/nixcord";
 
-    nixified-ai.url = "github:nixified-ai/flake";
-
     # devenv dependencies
     nix2container.url = "github:nlewo/nix2container";
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
@@ -64,14 +62,15 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     hm_unstable.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
-    doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
-    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
-    nixified-ai.inputs.nixpkgs.follows = "nixpkgs";
+
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-python.inputs.nixpkgs.follows = "nixpkgs";
+
     meanvoid-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.emacs-overlay.follows = "emacs-overlay";
     ### --- de-duplication --- ###
   };
@@ -86,18 +85,18 @@
       pre-commit-hooks,
       nixpkgs,
       darwin,
-      home-manager,
-      catppuccin,
-      hyprland,
-      sops-nix,
-      agenix,
-      flatpaks,
       nur,
-      aagl,
-      # nix-gaming,
-      spicetify-nix,
+      home-manager,
+      agenix,
+      sops-nix,
       vscode-server,
       zapret,
+      hyprland,
+      catppuccin,
+      flatpaks,
+      spicetify-nix,
+      nixcord,
+      aagl,
       ...
     }@inputs:
     let
@@ -218,15 +217,14 @@
             ### ----------------FLAKE------------------- ###
 
             ### ----------------SYSTEM------------------- ###
-            inherit nixpkgs darwin;
+            inherit nixpkgs darwin nur;
+            inherit home-manager agenix sops-nix;
+            inherit vscode-server zapret;
             ### ----------------SYSTEM------------------- ###
 
             ### ----------------MODULES & OVERLAYS------------------- ###
-            inherit hyprland;
-            inherit agenix sops-nix;
-            inherit home-manager spicetify-nix nur;
-            inherit vscode-server flatpaks;
-            inherit catppuccin aagl;
+            inherit hyprland catppuccin flatpaks;
+            inherit spicetify-nix nixcord aagl;
             ### ----------------MODULES & OVERLAYS------------------- ###
           };
         in

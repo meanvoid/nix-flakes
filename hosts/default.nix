@@ -5,15 +5,17 @@
   path,
   nixpkgs,
   darwin,
-  sops-nix,
-  agenix,
-  home-manager,
-  catppuccin,
-  spicetify-nix,
   nur,
-  hyprland,
+  home-manager,
+  agenix,
+  sops-nix,
   vscode-server,
+  zapret,
+  hyprland,
+  catppuccin,
   flatpaks,
+  spicetify-nix,
+  nixcord,
   aagl,
   ...
 }:
@@ -25,19 +27,14 @@ let
     ### ----------------FLAKE------------------- ###  
 
     ### ----------------SYSTEM------------------- ###
-    inherit nixpkgs darwin;
+    inherit nixpkgs darwin nur;
+    inherit home-manager agenix sops-nix;
+    inherit vscode-server zapret;
     ### ----------------SYSTEM------------------- ###
 
     ### ----------------MODULES & OVERLAYS------------------- ###
-    inherit agenix sops-nix;
-    inherit home-manager spicetify-nix nur;
-
-    ### ----------------DESKTOP------------------- ###
-    inherit hyprland;
-    ### ----------------DESKTOP------------------- ###
-
-    inherit vscode-server flatpaks;
-    inherit catppuccin aagl;
+    inherit hyprland catppuccin flatpaks;
+    inherit spicetify-nix nixcord aagl;
     ### ----------------MODULES & OVERLAYS------------------- ###
   };
   inherit (systems) mkSystemConfig;
@@ -61,12 +58,12 @@ in
     hostName = "unsigned-int32";
     system = "x86_64-linux";
     useHomeManager = true;
-    useHyprland = true;
     useNur = true;
-    useAagl = true;
-    useFlatpak = true;
     useVscodeServer = true;
+    useFlatpak = true;
+    useAagl = true;
     users = [
+      "root"
       "ashuramaru"
       "meanrin"
     ];

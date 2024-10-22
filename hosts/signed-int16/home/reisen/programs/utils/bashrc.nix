@@ -33,7 +33,7 @@ _: {
       bc = "bc -l";
       diff = "colordiff";
       hm = "home-manager";
-      mount = "mount | column -t";
+      mount-c = "mount | column -t";
       hist = "history";
       h = "history";
       j = "jobs -l";

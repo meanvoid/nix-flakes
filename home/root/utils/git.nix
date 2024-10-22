@@ -19,6 +19,9 @@ _: {
         whitespace-error-style = "22 reverse";
       };
     };
+    extraConfig = {
+      safe.directory = "/etc/nixos";
+    };
   };
   programs.gh = {
     enable = true;

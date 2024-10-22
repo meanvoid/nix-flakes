@@ -27,16 +27,20 @@
       "dm-snapshot"
       "hid_playstation" # for some reason dualsense acts as a mouse if it's not loaded early on
     ];
-    extraModulePackages = builtins.attrValues { inherit (config.boot.kernelPackages) zenpower v4l2loopback zfs; };
-    # vendor-reset
+    extraModulePackages = builtins.attrValues {
+      inherit (config.boot.kernelPackages) zenpower v4l2loopback zfs;
+    };
     kernelParams = [
+      ### ------------------------------------ ###
+      "ip=192.168.1.100::192.168.1.1:255.255.255.0::enp57s0:dhcp"
+      "ip=192.168.1.110::192.168.1.1:255.255.255.0::enp59s0:dhcp"
       ### ------------------------------------ ###
       "video=DP-1:2560x1440@120"
       "video=DP-2:2560x1440@120"
       "video=DP-3:2560x1440@120"
       "video=DP-4:2560x1440@120"
-      ### ------------------------------------ ###
       "video=HDMI1:2560x1440@120"
+      ### ------------------------------------ ###
       "nvidia_drm.fbdev=1"
       "iommu=pt"
     ];
@@ -47,8 +51,8 @@
       enable = true;
       mdadmConf = ''
         HOMEHOST <ignore>
-        ARRAY /dev/md5 UUID=c672589e:b68e1eae:6d443de9:956ba431
-        ARRAY /dev/md50 metadata=1.2 name=unsigned-int32:fpool UUID=38d6870a:a1b00122:2c4aac4b:7ba0d7cd
+        ARRAY /dev/md/nvmepool0 metadata=1.2 name=unsgined-int32:nvmepool0 UUID=22366d16:84656da4:2612b2de:a3e77bca
+        ARRAY /dev/md/hddpool0 metadata=1.2 name=unsgined-int32:hddpool0 UUID=fe0631c5:f6957b40:6b696546:015251d0
         MAILADDR ashuramaru@tenjin-dk.com
         MAILFROM no-reply@cloud.tenjin-dk.com
       '';
@@ -70,19 +74,23 @@
       enable = true;
       device = "nodev";
       efiSupport = true;
+      useOSProber = true;
       configurationLimit = 15;
-      font = "${pkgs.hack-font}/share/fonts/truetype/Hack-Regular.ttf";
-      fontSize = 24;
+      font = "${pkgs.terminus_font_ttf}/share/fonts/truetype/TerminusTTF.ttf";
+      fontSize = 32;
     };
     generationsDir.copyKernels = true;
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot";
-    timeout = 15;
+    timeout = 30;
   };
-  boot.plymouth.enable = true;
+  boot.plymouth = {
+    enable = true;
+    logo = "${pkgs.nixos-icons}/share/icons/hicolor/24x24/apps/nix-snowflake-white.png";
+  };
   ### ----------------BOOT------------------- ###
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/4186-54D1";
+    device = "/dev/disk/by-uuid/D4E8-E96E";
     fsType = "vfat";
     options = [
       "fmask=0022"
@@ -95,57 +103,56 @@
     ### ---------------------LUKS--------------------- ###
     luks = {
       yubikeySupport = true;
-      reusePassphrases = true;
       mitigateDMAAttacks = true;
       devices = {
         "root" = {
-          device = "/dev/disk/by-uuid/82e2befb-2fb3-4c22-b921-0ee0bfec66f8";
+          device = "/dev/disk/by-uuid/d4305e26-65e9-490d-aa42-299c6f0ca3ed";
           allowDiscards = true;
           bypassWorkqueues = true;
           yubikey = {
             slot = 2;
             twoFactor = true;
-            gracePeriod = 30;
+            gracePeriod = 5;
             keyLength = 64;
             saltLength = 16;
             storage = {
-              device = "/dev/nvme1n1p1";
+              device = "${config.fileSystems."/boot".device}";
               fsType = "vfat";
-              path = "/crypt-storage/root_slot0";
+              path = "/crypt-storage/root_keyslot1";
             };
           };
         };
-        "fpool" = {
-          device = "/dev/md50";
+        "nvmepool0" = {
+          device = "/dev/md/nvmepool0";
           allowDiscards = true;
           bypassWorkqueues = true;
           yubikey = {
             slot = 2;
             twoFactor = true;
-            gracePeriod = 30;
+            gracePeriod = 5;
             keyLength = 64;
             saltLength = 16;
             storage = {
-              device = "/dev/nvme1n1p1";
+              device = "${config.fileSystems."/boot".device}";
               fsType = "vfat";
-              path = "/crypt-storage/fpool_slot0";
+              path = "/crypt-storage/nvmepool0_keyslot1";
             };
           };
         };
-        "hpool" = {
-          device = "/dev/md5";
+        "hddpool0" = {
+          device = "/dev/md/hddpool0";
+          allowDiscards = true;
           bypassWorkqueues = true;
-          preLVM = true;
           yubikey = {
             slot = 2;
             twoFactor = true;
-            gracePeriod = 30;
+            gracePeriod = 5;
             keyLength = 64;
             saltLength = 16;
             storage = {
-              device = "/dev/nvme1n1p1";
+              device = "${config.fileSystems."/boot".device}";
               fsType = "vfat";
-              path = "/crypt-storage/hpool_slot0";
+              path = "/crypt-storage/hddpool0_keyslot1";
             };
           };
         };
@@ -181,53 +188,73 @@
     ];
     supportedFilesystems = config.boot.supportedFilesystems;
   };
-  ### ---------------/dev/nvme1n1p2-------------------- ###
+  ### ---------------/dev/nvme0n1p2-------------------- ###
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/bcdcafa3-baca-479d-a9bc-112f5a6b8ecc";
+    device = "/dev/disk/by-uuid/2faf4c47-1541-45de-ba3e-757a22818bf3";
     fsType = "btrfs";
     options = [
       "subvol=root"
       "noatime"
-      "compress-force=zstd:9"
-      "ssd"
       "discard=async"
       "space_cache=v2"
-    ];
-  };
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/bcdcafa3-baca-479d-a9bc-112f5a6b8ecc";
-    fsType = "btrfs";
-    options = [
-      "subvol=nix"
-      "noatime"
-      "compress-force=zstd:9"
-      "ssd"
-      "discard=async"
-      "space_cache=v2"
+      "compress-force=zstd:1"
     ];
   };
   fileSystems."/var" = {
-    device = "/dev/disk/by-uuid/bcdcafa3-baca-479d-a9bc-112f5a6b8ecc";
+    device = "/dev/disk/by-uuid/2faf4c47-1541-45de-ba3e-757a22818bf3";
     fsType = "btrfs";
     options = [
       "subvol=var"
       "noatime"
-      "compress-force=zstd:9"
-      "ssd"
       "discard=async"
       "space_cache=v2"
+      "compress-force=zstd:1"
+    ];
+    neededForBoot = true;
+  };
+  fileSystems."/var/log" = {
+    device = "/dev/disk/by-uuid/2faf4c47-1541-45de-ba3e-757a22818bf3";
+    fsType = "btrfs";
+    options = [
+      "subvol=log"
+      "noatime"
+      "discard=async"
+      "space_cache=v2"
+      "compress-force=zstd:1"
+    ];
+    neededForBoot = true;
+  };
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/2faf4c47-1541-45de-ba3e-757a22818bf3";
+    fsType = "btrfs";
+    options = [
+      "subvol=nix"
+      "noatime"
+      "discard=async"
+      "space_cache=v2"
+      "compress-force=zstd:1"
+    ];
+  };
+  fileSystems."/persist" = {
+    device = "/dev/disk/by-uuid/2faf4c47-1541-45de-ba3e-757a22818bf3";
+    fsType = "btrfs";
+    options = [
+      "subvol=nix"
+      "noatime"
+      "discard=async"
+      "space_cache=v2"
+      "compress-force=zstd:1"
     ];
   };
   fileSystems."/Users" = {
-    device = "/dev/disk/by-uuid/bcdcafa3-baca-479d-a9bc-112f5a6b8ecc";
+    device = "/dev/disk/by-uuid/2faf4c47-1541-45de-ba3e-757a22818bf3";
     fsType = "btrfs";
     options = [
       "subvol=Users"
       "noatime"
-      "compress-force=zstd:9"
-      "ssd"
       "discard=async"
       "space_cache=v2"
+      "compress-force=zstd:1"
     ];
   };
   fileSystems."/home/ashuramaru" = {
@@ -238,50 +265,76 @@
     device = "/Users/alex";
     options = [ "bind" ];
   };
-  ### ---------------/dev/nvme1n1p2-------------------- ###
+  ### ---------------/dev/nvme0n1p2-------------------- ###
 
-  ### ---------------/dev/md5-------------------- ###
-  fileSystems."/Shared/media" = {
-    device = "/dev/hddpool/media";
-    fsType = "ext4";
-    options = [
-      "noatime"
-      "nofail"
-    ];
-  };
-
-  fileSystems."/var/lib/backup" = {
-    device = "/dev/hddpool/backup";
-    fsType = "ext4";
-    options = [
-      "noatime"
-      "nofail"
-    ];
-  };
-  ### ---------------/dev/md5-------------------- ###
-
-  ### ---------------/dev/md50-------------------- ###
-  fileSystems."/media/games" = {
-    device = "/dev/mapper/fpool";
+  ### ---------------/dev/md/nvmepool0-------------------- ###
+  fileSystems."/Shared/games" = {
+    device = "/dev/nvmepool0/media";
     fsType = "btrfs";
     options = [
       "subvol=games"
       "noatime"
-      "compress-force=zstd:9"
-      "ssd"
       "discard=async"
       "space_cache=v2"
+      "compress-force=zstd:1"
     ];
   };
-  ### ---------------/dev/md50-------------------- ###
+  fileSystems."/Shared/media" = {
+    device = "/dev/nvmepool0/media";
+    fsType = "btrfs";
+    options = [
+      "subvol=media"
+      "noatime"
+      "discard=async"
+      "space_cache=v2"
+      "compress-force=zstd:9"
+    ];
+  };
+  ### ---------------/dev/md/nvmepool0-------------------- ###
+
+  ### ---------------/dev/md/hddpool0-------------------- ###
+  fileSystems."/var/lib/backup/unsigned-int32" = {
+    device = "/dev/hddpool0/backup";
+    fsType = "btrfs";
+    options = [
+      "subvol=unsigned-int32"
+      "noatime"
+      "space_cache=v2"
+      "compress-force=zstd:9"
+    ];
+  };
+  fileSystems."/var/lib/backup/shared" = {
+    device = "/dev/hddpool0/backup";
+    fsType = "btrfs";
+    options = [
+      "subvol=shared"
+      "noatime"
+      "space_cache=v2"
+      "compress-force=zstd:9"
+    ];
+  };
+  fileSystems."/Shared/archive" = {
+    device = "/dev/hddpool0/archive";
+    fsType = "ext4";
+    options = [
+      "noatime"
+      "nofail"
+    ];
+  };
+  ### ---------------/dev/md/hddpool0-------------------- ###
 
   services.btrfs.autoScrub = {
     enable = true;
     interval = "monthly";
     fileSystems = [
       "/"
-      "/media/games"
+      "/Share/games"
+      "/var/lib/backup"
     ];
+  };
+  services.fstrim = {
+    enable = true;
+    interval = "weekly";
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = lib.mkDefault true;

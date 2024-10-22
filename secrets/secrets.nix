@@ -7,7 +7,7 @@ let
   systems = {
     signed-int16 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJQO7pHms4qW4zhWF7TxCP+ycOhfQ/8H6zgku7WHrols root@signed-int16";
     unsigned-int8 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIILMnyShWFM4IWZYdExMXcTwA9sC4KLbIGrLJHbZ+mxy";
-    unsigned-int32 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJQV9RnBPh3xOoh7fhaxS74YfgTH6BgqV9zsTSVdiWDI root@unsigned-int32";
+    unsigned-int32 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJLAwLB5eNJE3oTt5UYLiQFTzy5X2teCAO66w8XuDuzh root@unsigned-int32";
     unsigned-int64 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKdiVn6zgj+VGj3BIGiwMFH3AumoGSCzaVukcbQWVz1K root@unsigned-int64";
   };
   matrixGlobal = [
@@ -60,15 +60,15 @@ in
   "protonvpn_openvpn_password.age".publicKeys = [ systems.unsigned-int64 ];
 
   # matrixTenjin
+  "anki_kunny.age".publicKeys = matrixTenjin;
+  "anki_tenjinage".publicKeys = matrixTenjin;
   "wireguard-server.age".publicKeys = matrixTenjin;
   "wireguard0-server.age".publicKeys = matrixTenjin;
   "wireguard-shared.age".publicKeys = matrixTenjin;
-  "wireguard-shared_jul.age".publicKeys = matrixTenjin;
   "tailscale-auth-key.age".publicKeys = matrixTenjin;
   "gh_token.age".publicKeys = matrixTenjin;
   "netrc_creds.age".publicKeys = matrixTenjin;
-  "cert.age".publicKeys = matrixTenjin;
 
   # matrixGlobal
-  "netrc_token.age".publicKeys = matrixGlobal;
+  "cert.age".publicKeys = matrixGlobal;
 }

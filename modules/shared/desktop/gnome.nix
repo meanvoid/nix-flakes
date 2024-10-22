@@ -35,6 +35,17 @@
     enable = true;
     wlr.enable = true;
     xdgOpenUsePortal = true;
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+      GNOME = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+      };
+    };
   };
   qt = {
     enable = true;
@@ -109,7 +120,9 @@
       variant = "mocha";
     };
   };
-  environment.gnome.excludePackages = builtins.attrValues { inherit (pkgs) gnome-console gnome-builder; };
+  environment.gnome.excludePackages = builtins.attrValues {
+    inherit (pkgs) gnome-console gnome-builder;
+  };
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";
   };

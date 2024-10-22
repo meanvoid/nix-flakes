@@ -99,6 +99,7 @@ in
     wireguard-client.file = path + /secrets/wireguard-client.age;
     wireguard-shared.file = path + /secrets/wireguard-shared.age;
     tailscale-auth-key.file = path + /secrets/tailscale-auth-key.age;
+    openvpn-client_rpi5.file = path + /secrets/openvpn-client_rpi5.age;
   };
   services.wg-netmanager.enable = true;
   networking.wireguard.enable = true;
@@ -124,6 +125,13 @@ in
           endpoint = "www.tenjin-dk.com:51280";
         }
       ];
+    };
+  };
+  services.openvpn = {
+    servers.rpi5 = {
+      config = "config ${config.age.secrets.openvpn-client_rpi5.path}";
+      autoStart = true;
+      updateResolvConf = true;
     };
   };
   services.mullvad-vpn = {

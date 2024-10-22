@@ -36,6 +36,25 @@
     enable = true;
     wlr.enable = true;
     xdgOpenUsePortal = true;
+    config = {
+      "GNOME" = {
+        default = [
+          "gnome"
+          "kde"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.FileChooser" = "gnome";
+      };
+      "KDE Plasma" = {
+        default = [
+          "kde"
+          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.FileChooser" = "kde";
+        "org.freedesktop.impl.portal.Secret" = [ "kwallet" ];
+      };
+    };
     extraPortals = builtins.attrValues { inherit (pkgs) xdg-desktop-portal-kde; };
   };
   qt = {
@@ -111,7 +130,9 @@
       variant = "mocha";
     };
   };
-  environment.gnome.excludePackages = builtins.attrValues { inherit (pkgs) gnome-console gnome-builder; };
+  environment.gnome.excludePackages = builtins.attrValues {
+    inherit (pkgs) gnome-console gnome-builder;
+  };
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";
   };
@@ -120,22 +141,22 @@
   services.dbus.packages = [ pkgs.gcr ];
   services.gnome.gnome-browser-connector.enable = true;
 
-  nixpkgs.overlays = [
-    # GNOME 46: triple-buffering-v4-46
-    (final: prev: {
-      gnome = prev.gnome.overrideScope (
-        gnomeFinal: gnomePrev: {
-          mutter = gnomePrev.mutter.overrideAttrs (old: {
-            src = pkgs.fetchFromGitLab {
-              domain = "gitlab.gnome.org";
-              owner = "vanvugt";
-              repo = "mutter";
-              rev = "triple-buffering-v4-46";
-              hash = "sha256-C2VfW3ThPEZ37YkX7ejlyumLnWa9oij333d5c4yfZxc=";
-            };
-          });
-        }
-      );
-    })
-  ];
+  # nixpkgs.overlays = [
+  # GNOME 46: triple-buffering-v4-46
+  # (final: prev: {
+  # gnome = prev.gnome.overrideScope (
+  # gnomeFinal: gnomePrev: {
+  # mutter = gnomePrev.mutter.overrideAttrs (old: {
+  # src = pkgs.fetchFromGitLab {
+  # domain = "gitlab.gnome.org";
+  # owner = "vanvugt";
+  #repo = "mutter";
+  # rev = "triple-buffering-v4-46";
+  # hash = "sha256-C2VfW3ThPEZ37YkX7ejlyumLnWa9oij333d5c4yfZxc=";
+  # };
+  # });
+  # }
+  # );
+  # })
+  # ];
 }

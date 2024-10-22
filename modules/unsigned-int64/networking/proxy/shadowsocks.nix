@@ -15,21 +15,14 @@
     enable = true;
     fastOpen = true;
     port = 10800;
-    extraConfig = {
-      nameserver = "127.0.0.1";
-      plugin = "${pkgs.shadowsocks-v2ray-plugin}/bin/v2ray-plugin";
-      plugin_opts = ''
-        server;
-        mode=websocket;
-        path=/ray;
-        host=ss.tenjin-dk.com;
-        cert=/var/lib/acme/ss.tenjin-dk.com/fullchain.pem;
-        key=/var/lib/acme/ss.tenjin-dk.com/key.pem;
-        loglevel=warn
-        tls;
-      '';
-    };
-    localAddress = [ "0.0.0.0" ];
+    mode = "tcp_only";
+    localAddress = [
+      "172.16.31.1"
+      "[fd17:216b:31bc:1::1]"
+    ];
     passwordFile = config.age.secrets."shadowsocks".path;
+  };
+  networking.firewall.interfaces."wireguard0" = {
+    allowedTCPPorts = [ 10800 ];
   };
 }

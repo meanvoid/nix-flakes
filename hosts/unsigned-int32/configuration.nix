@@ -42,26 +42,28 @@ in
       "services"
       "virtualisation"
     ];
-
-  age.secrets = {
-    "ca.crt" = {
-      file = path + /secrets/cert.age;
-      path = "/etc/ssl/self/ca.crt";
-      mode = "0775";
-      owner = "root";
-      group = "root";
-    };
-    "gh_token" = {
-      file = path + /secrets/gh_token.age;
-      mode = "0640";
-      owner = "root";
-      group = "root";
-    };
-    "netrc_creds" = {
-      file = path + /secrets/netrc_creds.age;
-      mode = "0644";
-      owner = "root";
-      group = "root";
+  age = {
+    ageBin = "${pkgs.rage}/bin/rage";
+    secrets = {
+      "ca.crt" = {
+        file = path + /secrets/cert.age;
+        path = "/etc/ssl/self/ca.crt";
+        mode = "0775";
+        owner = "root";
+        group = "root";
+      };
+      "gh_token" = {
+        file = path + /secrets/gh_token.age;
+        mode = "0640";
+        owner = "root";
+        group = "root";
+      };
+      "netrc_creds" = {
+        file = path + /secrets/netrc_creds.age;
+        mode = "0644";
+        owner = "root";
+        group = "root";
+      };
     };
   };
   security = {

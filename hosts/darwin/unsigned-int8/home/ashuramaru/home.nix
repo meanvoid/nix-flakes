@@ -29,7 +29,7 @@
         raycast
         iina # frontend for ffmpeg
         iterm2
-        qbittorrent
+        #! qbittorrent insecure
 
         # Audio
         audacity

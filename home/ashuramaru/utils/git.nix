@@ -1,7 +1,7 @@
 _: {
   programs.git = {
     enable = true;
-    userName = "Tenjin";
+    userName = "tenjin";
     userEmail = "ashuramaru@tenjin-dk.com";
     lfs.enable = true;
     aliases = {
@@ -18,6 +18,9 @@ _: {
         features = "decorations";
         whitespace-error-style = "22 reverse";
       };
+    };
+    extraConfig = {
+      safe.directory = "/etc/nixos";
     };
   };
   programs.gh = {

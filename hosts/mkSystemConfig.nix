@@ -4,25 +4,26 @@
   path,
   nixpkgs,
   darwin,
-  sops-nix,
-  agenix,
-  home-manager,
-  catppuccin,
-  spicetify-nix,
   nur,
-  hyprland,
+  home-manager,
+  agenix,
+  sops-nix,
   vscode-server,
+  zapret,
+  hyprland,
+  catppuccin,
   flatpaks,
+  spicetify-nix,
+  nixcord,
   aagl,
   ...
 }:
 let
   homeManager = import ./homeManagerModules.nix {
     inherit lib inputs path;
-    inherit nixpkgs darwin;
-    inherit home-manager nur;
-    inherit catppuccin spicetify-nix;
-    # inherit system;
+    inherit nixpkgs darwin nur;
+    inherit home-manager agenix sops-nix;
+    inherit catppuccin spicetify-nix nixcord;
   };
   inherit (homeManager) homeManagerModules;
   addUnstablePackages = final: _prev: {
@@ -55,9 +56,10 @@ in
         useNur ? false,
         useHyprland ? false,
         useVscodeServer ? false,
-        useNvidiaVgpu ? false,
+        #TODO: useNvidiaVgpu ? false,
         useFlatpak ? false,
         useAagl ? false,
+        useZapret ? false,
         users ? [ ],
         modules ? [ ],
         ...
@@ -71,9 +73,13 @@ in
           catppuccin.nixosModules.catppuccin
         ] ++ modules;
         sharedModules = lib.flatten [
-          (lib.optional useHyprland hyprland.nixosModules.default)
+          (lib.optionals useHomeManager (homeManagerModules.nixos hostname users system))
           (lib.optional useNur nur.nixosModules.nur)
-          (lib.optional useAagl aagl.nixosModules.default)
+          (lib.optional useHyprland hyprland.nixosModules.default)
+          (lib.optionals useVscodeServer [
+            vscode-server.nixosModules.default
+            { config.services.vscode-server.enable = lib.mkDefault true; }
+          ])
           (lib.optionals useFlatpak [
             flatpaks.nixosModules.default
             {
@@ -86,11 +92,8 @@ in
               };
             }
           ])
-          (lib.optionals useVscodeServer [
-            vscode-server.nixosModules.default
-            { config.services.vscode-server.enable = lib.mkDefault true; }
-          ])
-          (lib.optionals useHomeManager (homeManagerModules.nixos hostname users system))
+          (lib.optional useAagl aagl.nixosModules.default)
+          (lib.optional useZapret zapret.nixosModules.zapret)
           defaults
         ];
       in
@@ -102,6 +105,7 @@ in
           host = {
             inherit hostName;
           };
+          nixpkgs.overlays = [ (lib.optional useNur nur.overlay) ];
         };
         modules = [ "${path}/hosts/${hostName}/configuration.nix" ] ++ sharedModules;
       };
