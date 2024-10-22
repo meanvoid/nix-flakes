@@ -3,7 +3,7 @@ on:
   repository_dispatch:
   workflow_dispatch:
   schedule:
-    - cron: "0 4 * * *"
+    - cron: "51 2 * * 0"
 jobs:
   createPullRequest:
     runs-on: ubuntu-latest
@@ -20,16 +20,3 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           pr-labels: |
             merge-queue
-
-          nix run .#fetcher
-
-          popd
-
-          git add -A
-
-          git commit -m "CI update $(date -I)" -m "$MESSAGE"
-
-          git push origin HEAD:${{ github.ref_name }}
-
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
