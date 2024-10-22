@@ -57,8 +57,6 @@
 
     # Proxy
     zapret.url = "github:SnakeOPM/zapret-flake.nix";
-
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     ### --- Overlays and Applications --- ###
 
     ### --- De-duplication --- ###
@@ -136,7 +134,7 @@
                   ".direnv"
                   ".devenv"
                 ];
-                settings.width = 240;
+                settings.width = 120;
                 package = pkgs.nixfmt-rfc-style;
               };
               ## --- NIX related hooks --- ##
@@ -144,9 +142,6 @@
           };
           devenv.shells.default = {
             name = "Flake Environment";
-            enterShell = ''
-              find . -type f -name "*.nix" -not -path "./.direnv*" -not -path "./.devenv*" -not -path "./.git*" -not -path "./.vscode*" | xargs nix fmt --impure
-            '';
             languages = {
               nix.enable = true;
               shell.enable = true;
