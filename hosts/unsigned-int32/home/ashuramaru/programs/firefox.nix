@@ -1,5 +1,4 @@
 {
-  config,
   inputs,
   lib,
   pkgs,
@@ -17,7 +16,7 @@ let
       addonId = "magnolia@12.34";
       url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
       name = "bypass-paywall-clean-${version}";
-      sha256 = "sha256-DLhryk7rdglguLEUscvZgveC2adyTDTyC0mp2eTuvBs=";
+      sha256 = "sha256-ruRhCD01gLhZ/5iXbe6u3/xJ6yiAwpBIpOFR2HhAUTA=";
       meta = {
         homepage = "https://twitter.com/Magnolia1234B";
         description = "Bypass Paywalls of (custom) news sites";

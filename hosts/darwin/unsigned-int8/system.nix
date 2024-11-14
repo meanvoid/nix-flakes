@@ -30,7 +30,7 @@ _: {
         orientation = "bottom";
         show-recents = false; # Show Recently Open
         showhidden = true;
-        tilesize = 36; # Size of Dock Icons
+        tilesize = 42; # Size of Dock Icons
 
         # Disable all Corners, 1 = Disabled
         # Top Left

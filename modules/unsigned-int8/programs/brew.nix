@@ -26,7 +26,7 @@ _: {
       ### --- Socials --- ###
       "telegram"
       "signal" # Telegram but if it wasnt owned by multimillioner living in Dubai
-      "element" # alo based department?
+      "element" # halo based department?
       "thunderbird"
       ### --- Socials
       ### --- Gayming --- ###      
@@ -42,7 +42,6 @@ _: {
       ### --- Graphics --- ###
       ### --- Utilities --- ###
       "shottr"
-      "soundsource"
       "forklift"
       "nextcloud"
       "easy-move-plus-resize"

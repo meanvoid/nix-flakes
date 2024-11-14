@@ -5,15 +5,17 @@
   path,
   nixpkgs,
   darwin,
-  home-manager,
-  catppuccin,
-  spicetify-nix,
   nur,
+  home-manager,
   agenix,
   sops-nix,
-  flatpaks,
-  hyprland,
   vscode-server,
+  zapret, # ! make arguments optional
+  hyprland,
+  catppuccin,
+  flatpaks,
+  spicetify-nix,
+  nixcord,
   aagl,
   ...
 }:
@@ -22,24 +24,17 @@ let
     ### ----------------FLAKE------------------- ###
     inherit lib;
     inherit inputs self path;
-    ### ----------------FLAKE------------------- ###
+    ### ----------------FLAKE------------------- ###  
 
     ### ----------------SYSTEM------------------- ###
-    inherit nixpkgs darwin;
+    inherit nixpkgs darwin nur;
+    inherit home-manager agenix sops-nix;
+    inherit vscode-server zapret;
     ### ----------------SYSTEM------------------- ###
 
     ### ----------------MODULES & OVERLAYS------------------- ###
-    inherit agenix sops-nix;
-    inherit home-manager nur;
-    inherit spicetify-nix;
-    # linux stuff
-    inherit
-      vscode-server
-      catppuccin
-      hyprland
-      flatpaks
-      aagl
-      ;
+    inherit hyprland catppuccin flatpaks;
+    inherit spicetify-nix nixcord aagl;
     ### ----------------MODULES & OVERLAYS------------------- ###
   };
   inherit (systems) mkSystemConfig;

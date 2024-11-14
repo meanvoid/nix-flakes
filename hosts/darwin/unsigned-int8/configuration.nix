@@ -36,7 +36,7 @@ in
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
       # Literally should be bultin but apple being apple
-      # soundsource
+      soundsource
       # Utils
       wireguard-tools
       util-linux
