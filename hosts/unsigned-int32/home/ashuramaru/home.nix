@@ -42,7 +42,7 @@
         #! qbittorrent # understandable have a nice day
         nicotine-plus
         ;
-
+      inherit (pkgs.kdePackages) ktorrent;
       # Graphics & Design
       inherit (pkgs)
         krita # Digital painting

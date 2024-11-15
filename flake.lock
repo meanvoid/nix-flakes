@@ -1702,7 +1702,7 @@
         "type": "github"
       }
     },
-    "nixpkgs-24_11": {
+    "nixpkgs-24_05": {
       "locked": {
         "lastModified": 1731523737,
         "narHash": "sha256-bmY8ENdk2iQveZe4mIp+MIcFzLk6DQ21gtKF39lDFVc=",
@@ -2512,7 +2512,7 @@
         "nixcord": "nixcord",
         "nixos-conf-editor": "nixos-conf-editor",
         "nixpkgs": "nixpkgs_14",
-        "nixpkgs-24_11": "nixpkgs-24_11",
+        "nixpkgs-24_05": "nixpkgs-24_05",
         "nixpkgs-firefox-darwin": "nixpkgs-firefox-darwin",
         "nixpkgs-python": "nixpkgs-python",
         "nur": "nur",

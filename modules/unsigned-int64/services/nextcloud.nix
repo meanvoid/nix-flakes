@@ -97,7 +97,7 @@
         homepage = "https://github.com/ariselseng/camerarawpreviews";
         description = "Camera Raw Previews app for Nextcloud";
         url = "https://github.com/ariselseng/camerarawpreviews/releases/download/v0.8.5/camerarawpreviews_nextcloud.tar.gz";
-        sha256 = "sha256-4e4paLmnNcv2x17RXwVKXSUr+Ze0Z7S0330BGZX1hso=";
+        sha256 = "sha256-suJZfs040xSTW5HUnbsMButMdppeKHPhBMzL/XajWq8=";
         license = "${lib.licenses.agpl3Only.shortName}";
         appVersion = "0.8.5";
       };
@@ -107,7 +107,7 @@
         homepage = "https://github.com/powerpaul17/nc_money";
         description = "Nextcloud app for finance management";
         url = "https://github.com/powerpaul17/nc_money/releases/download/v0.29.0/money.tar.gz";
-        sha256 = "sha256-MbqbEmLtsSwefF5FgOSGJeZtbZpgtVFrFiZ5xhGqVCI=";
+        sha256 = "sha256-D8w2TA2Olab326REnHHG+fFWRmWrhejAEokXZYx5H6w=";
         license = "${lib.licenses.agpl3Only.shortName}";
         appVersion = "0.29.0";
       };
@@ -116,7 +116,7 @@
         homepage = "https://apps.nextcloud.com/apps/integration_paperless";
         description = "Integration with the Paperless Document Management System";
         url = "https://github.com/nextcloud-releases/integration_paperless/releases/download/v1.0.4/integration_paperless-v1.0.4.tar.gz";
-        sha256 = "sha256-qIwGheJFPGSfd+2tzZTheECLqstZe0tBX/bTEu977Gg=";
+        sha256 = "sha256-EXcY69z5h6rT0RdkmOhQYKSWmVBr2zaWuSRj/m5dMkI=";
         license = "${lib.licenses.agpl3Only.shortName}";
         appVersion = "1.0.4";
       };

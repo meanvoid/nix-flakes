@@ -15,7 +15,7 @@
     master.url = "github:nixos/nixpkgs/master"; # Only for debug purposes e.g. nix run
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11-small";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    nixpkgs-24_11.url = "github:nixos/nixpkgs/nixos-24.05-small"; # for backwards compatibility with some older versions
+    nixpkgs-24_05.url = "github:nixos/nixpkgs/nixos-24.05-small"; # for backwards compatibility with some older versions
     ### --- nixpkgs channels --- ###
     darwin.url = "github:lnl7/nix-darwin/master";
     home-manager.url = "github:nix-community/home-manager/master"; # for now
