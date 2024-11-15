@@ -115,8 +115,10 @@ in
       };
       u2f = {
         enable = true;
-        cue = true;
-        control = "required";
+        settings = {
+          cue = true;
+          control = "required";
+        };
       };
     };
   };
@@ -153,12 +155,16 @@ in
     defaultLocale = "en_US.utf8";
     supportedLocales = [ "all" ];
     inputMethod = {
-      enabled = "fcitx5";
+      enable = true;
+      type = "fcitx5";
       fcitx5 = {
         plasma6Support = true;
         waylandFrontend = true;
         addEnvironmentVariables = true;
-        addons = builtins.attrValues { inherit (pkgs) fcitx5-mozc fcitx5-anthy fcitx5-gtk; };
+        addons = builtins.attrValues {
+          inherit (pkgs) fcitx5-anthy fcitx5-gtk;
+          inherit (pkgs.nixpkgs-24_11) fcitx5-mozc;
+        };
       };
     };
   };

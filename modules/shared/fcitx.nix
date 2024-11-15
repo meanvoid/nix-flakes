@@ -17,7 +17,7 @@
   config =
     lib.mkIf
       (
-        config.i18n.inputMethod.enabled == "fcitx5"
+        config.i18n.inputMethod.type == "fcitx5"
         && config.i18n.inputMethod.fcitx5.waylandFrontend == true
         && config.i18n.inputMethod.fcitx5.addEnvironmentVariables
       )

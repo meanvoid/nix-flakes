@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  # nixpkgs.overlays = [ (self: super: { sambaFull = inputs.nixpkgs-23_11.legacyPackages.${pkgs.system}.sambaFull; }) ];
-  # # make shares visible for windows 10 clients
   services = {
     samba-wsdd = {
       enable = true;
@@ -10,22 +8,42 @@
       enable = true;
       package = pkgs.sambaFull;
       openFirewall = true;
-      enableWinbindd = true;
-      securityType = "user";
-      invalidUsers = [ "root" ];
-      extraConfig = ''
-        workgroup = WORKGROUP
-        server string = unsigned-int32
-        netbios name = unsigned-int32
-        security = user
-        hosts allow = 192.168.1.0/24 172.16.31.0/24 127.0.0.1 localhost ::1
-        hosts deny = 0.0.0.0/0
-        guest account = nobody
-        map to guest = bad user
-        load printers = yes
-        printing = cups
-      '';
-      shares = {
+      winbindd.enable = true;
+      settings = {
+        global = {
+          workgroup = "WORKGROUP";
+          "server string" = "unsigned-int32";
+          "netbios name" = "unsigned-int32";
+
+          "hosts deny" = "0.0.0.0/0";
+          "hosts allow" = [
+            "192.168.1.0/24"
+            "172.16.31.0/24"
+            "127.0.0.1"
+            "localhost"
+          ];
+
+          security = "user";
+          invalidUsers = [ "root" ];
+          "guest account" = "nobody";
+          "map to guest" = "bad user";
+
+          "load printers" = "yes";
+          "printing" = "cups";
+          "printcap name" = "cups";
+        };
+        printers = {
+          "comment" = "All Printers";
+          "path" = "/var/spool/samba";
+          "public" = "yes";
+          "browseable" = "yes";
+
+          # to allow user 'guest account' to print.
+          "guest ok" = "yes";
+          "writable" = "no";
+          "printable" = "yes";
+          "create mode" = 700;
+        };
         Public = {
           comment = "Public Directory";
           path = "/Shared";
@@ -43,6 +61,7 @@
           "force user" = "ashuramaru";
           "force group" = "users";
         };
+
         marie = {
           comment = "Marie's personal directory";
           path = "/Users/marie";
@@ -56,6 +75,7 @@
           "force user" = "ashuramaru";
           "force group" = "ashuramaru";
         };
+
         alex = {
           comment = "Alex's personal directory";
           path = "/Users/alex";
@@ -68,6 +88,7 @@
           "force user" = "meanrin";
           "force group" = "meanrin";
         };
+
         "Marie's public directory" = {
           path = "/Users/marie/Public";
           browseable = "yes";

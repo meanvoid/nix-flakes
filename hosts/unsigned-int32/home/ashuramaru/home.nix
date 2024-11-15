@@ -38,6 +38,7 @@
 
         brasero # cd/dvd burner
         deluge # just as a backup
+
         #! qbittorrent # understandable have a nice day
         nicotine-plus
         ;
@@ -66,6 +67,7 @@
         tdesktop # Telegram desktop
         kotatogram-desktop # telegram's fork
         dino # Jabber client
+        element-desktop
         ;
 
       # Utilities
@@ -114,13 +116,13 @@
         ;
 
       # File Management & Desktop Enhancements
-      cinnamon = pkgs.cinnamon.nemo-with-extensions.override {
+      cinnamon = pkgs.nemo-with-extensions.override {
         extensions = [
           pkgs.nemo-qml-plugin-dbus
-          pkgs.cinnamon.nemo-python
-          pkgs.cinnamon.nemo-emblems
-          pkgs.cinnamon.nemo-fileroller
-          pkgs.cinnamon.folder-color-switcher
+          pkgs.nemo-python
+          pkgs.nemo-emblems
+          pkgs.nemo-fileroller
+          pkgs.folder-color-switcher
         ];
       };
 
@@ -188,6 +190,7 @@
       enable = true;
       catppuccin.flavor = "mocha";
     };
+    nheko.enable = true;
   };
   i18n.inputMethod.fcitx5.catppuccin = {
     enable = true;

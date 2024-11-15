@@ -32,8 +32,8 @@ let
       config = final.config;
     };
   };
-  add-23_11-packages = final: _prev: {
-    nixpkgs-23_11 = import inputs.nixpkgs-23_11 {
+  add-24_11-packages = final: _prev: {
+    nixpkgs-24_11 = import inputs.nixpkgs-24_11 {
       inherit (final) system;
       config = final.config;
     };
@@ -42,7 +42,7 @@ let
     nixpkgs.config.allowUnfree = true;
     nixpkgs.overlays = [
       addUnstablePackages
-      add-23_11-packages
+      add-24_11-packages
     ];
   };
 in

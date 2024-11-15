@@ -22,6 +22,7 @@ in
       permittedInsecurePackages = [
         "python-2.7.18.7"
         "python-2.7.18.7-env"
+        "olm-3.2.16" # ! not a lot of clients deprecated this yet
       ];
     };
   };
@@ -63,9 +64,7 @@ in
       *
       https://github.com/DontEatOreo/nix-dotfiles/blob/2370a16f6555f0fadbe570aa9b2781ac97cc01d3/hosts/nixos/users/nyx/nix.nix#L5C5-L7C7
     */
-    registry = (lib.mapAttrs (_: flake: { inherit flake; })) (
-      (lib.filterAttrs (_: lib.isType "flake")) inputs
-    );
+    registry = (lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
     channel.enable = if isLinux then false else true;
   };
   /*

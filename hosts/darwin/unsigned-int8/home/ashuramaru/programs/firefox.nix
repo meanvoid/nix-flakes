@@ -5,7 +5,6 @@
   ...
 }:
 let
-  isLinux = builtins.match ".*linux.*" pkgs.system != null;
   bypass-paywalls-clean =
     let
       version = "latest";
@@ -26,7 +25,6 @@ let
     };
 in
 {
-  imports = [ "${inputs.hm_unstable}/modules/programs/floorp.nix" ];
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-bin;

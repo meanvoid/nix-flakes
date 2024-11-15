@@ -41,7 +41,7 @@
             paths = [
               inputs.meanvoid-overlay.packages.${pkgs.system}.anime-cursors.marisa
               pkgs.libsForQt5.breeze-icons
-              pkgs.gnome.adwaita-icon-theme
+              pkgs.adwaita-icon-theme
               pkgs.capitaine-cursors
             ];
             pathsToLink = "/share/icons";

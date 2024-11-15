@@ -30,6 +30,7 @@
               thcrap-steam-proton-wrapper
               source-han-sans
               wqy_zenhei
+              zenity
               ;
             inherit (super.xorg)
               xhost
@@ -38,7 +39,6 @@
               libXinerama
               libXScrnSaver
               ;
-            inherit (super.gnome) zenity;
             inherit (super.stdenv.cc.cc) lib;
             # inherit (inputs.nix-gaming.packages.${super.system}) wine-discord-ipc-bridge;
           };

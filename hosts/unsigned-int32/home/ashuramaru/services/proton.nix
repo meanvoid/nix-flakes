@@ -18,7 +18,7 @@
         ''
           mkdir -p $out/bin
           makeWrapper $bridge/bin/protonmail-bridge $out/bin/protonmail-bridge \
-              --set PATH ${lib.strings.makeBinPath [ pkgs.gnome3.gnome-keyring ]}
+              --set PATH ${lib.strings.makeBinPath [ pkgs.gnome-keyring ]}
         '';
   };
 }

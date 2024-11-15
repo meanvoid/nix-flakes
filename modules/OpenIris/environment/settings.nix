@@ -3,8 +3,7 @@
   services = {
     udev = {
       packages = builtins.attrValues {
-        inherit (pkgs.gnome) gnome-settings-daemon;
-        inherit (pkgs) yubikey-personalization;
+        inherit (pkgs) yubikey-personalization gnome-settings-daemon;
         inherit (pkgs.gnome2) GConf;
       };
     };

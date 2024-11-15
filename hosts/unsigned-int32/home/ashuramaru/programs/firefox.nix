@@ -26,7 +26,6 @@ let
     };
 in
 {
-  imports = [ "${inputs.hm_unstable}/modules/programs/floorp.nix" ];
   programs.floorp = {
     enable = true;
     package = if isLinux then pkgs.floorp else pkgs.floorp-bin;

@@ -12,13 +12,6 @@
       }
     ];
   };
-  sound = {
-    enable = true;
-    mediaKeys = {
-      enable = true;
-      volumeStep = "5%";
-    };
-  };
 
   hardware.pulseaudio.enable = false;
   services = {

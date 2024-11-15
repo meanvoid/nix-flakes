@@ -39,9 +39,13 @@
   services = {
     udev = {
       packages = builtins.attrValues {
-        inherit (pkgs.gnome) gnome-settings-daemon;
         inherit (pkgs.gnome2) GConf;
-        inherit (pkgs) opentabletdriver libwacom yubikey-personalization;
+        inherit (pkgs)
+          opentabletdriver
+          libwacom
+          yubikey-personalization
+          gnome-settings-daemon
+          ;
       };
       extraRules = ''
         # XP-Pen CT1060

@@ -1,13 +1,16 @@
 {
-  config,
+  inputs,
   lib,
+  config,
   pkgs,
+  modulesPath,
   ...
 }:
 let
   automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
 in
 {
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod;
     kernelModules = [
@@ -25,7 +28,9 @@ in
       "dm-mirror"
       "dm-snapshot"
     ];
-    extraModulePackages = builtins.attrValues { inherit (config.boot.kernelPackages) vendor-reset zenpower; };
+    extraModulePackages = builtins.attrValues {
+      inherit (config.boot.kernelPackages) vendor-reset zenpower;
+    };
     supportedFilesystems = [ "xfs" ];
     swraid = {
       enable = true;
@@ -188,7 +193,9 @@ in
   fileSystems."/Users/ashuramaru/backup" = {
     device = "//u369008-sub3.your-storagebox.de/u369008-sub3";
     fsType = "cifs";
-    options = [ "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub3,uid=1000,gid=1000,dir_mode=0770" ];
+    options = [
+      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub3,uid=1000,gid=1000,dir_mode=0770"
+    ];
   };
   fileSystems."/var/lib/backup" = {
     device = "//u369008-sub4.your-storagebox.de/u369008-sub4";
@@ -198,17 +205,23 @@ in
   fileSystems."/var/lib/backup/archive" = {
     device = "//u369008-sub4.your-storagebox.de/u369008-sub4/archive";
     fsType = "cifs";
-    options = [ "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub4,uid=60,gid=60,dir_mode=0750" ];
+    options = [
+      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub4,uid=60,gid=60,dir_mode=0750"
+    ];
   };
   fileSystems."/var/lib/minecraft/backup/solonka" = {
     device = "//u369008-sub6.your-storagebox.de/u369008-sub6";
     fsType = "cifs";
-    options = [ "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub6,uid=5333,gid=5333" ];
+    options = [
+      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub6,uid=5333,gid=5333"
+    ];
   };
   fileSystems."/var/lib/minecraft/backup/fumoposting" = {
     device = "//u369008-sub7.your-storagebox.de/u369008-sub7";
     fsType = "cifs";
-    options = [ "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub7,uid=5333,gid=5333" ];
+    options = [
+      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub7,uid=5333,gid=5333"
+    ];
   };
   ### ---------------media-------------------- ###
   fileSystems."/mnt/media" = {
@@ -238,9 +251,12 @@ in
     interval = "monthly";
     fileSystems = [ "/" ];
   };
+  services.fstrim = {
+    enable = true;
+    interval = "weekly";
+  };
   system.fsPackages = [ pkgs.sshfs ];
   environment.systemPackages = [ pkgs.cifs-utils ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.enableRedistributableFirmware = true;
 }

@@ -109,10 +109,9 @@ in
       };
       consoleJanitor = {
         enable = true;
-        disableSpotifyLogger = true;
+        #disableSpotifyLogger = true;
         disableNoisyLoggers = true;
       };
-      noDevtoolsWarning.enable = true;
       noF1.enable = true;
     };
   };

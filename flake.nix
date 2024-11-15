@@ -12,13 +12,13 @@
 
     ### --- System --- ###
     ### --- nixpkgs channels --- ###
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
     master.url = "github:nixos/nixpkgs/master"; # Only for debug purposes e.g. nix run
-    nixpkgs-23_11.url = "github:nixos/nixpkgs/nixos-23.11"; # for ibus
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11-small";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs-24_11.url = "github:nixos/nixpkgs/nixos-24.05-small"; # for backwards compatibility with some older versions
     ### --- nixpkgs channels --- ###
     darwin.url = "github:lnl7/nix-darwin/master";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/master"; # for now
     hm_unstable.url = "github:nix-community/home-manager/master";
     nur.url = "github:nix-community/NUR";
     ### --- System --- ###
@@ -50,7 +50,7 @@
     nix-software-center.url = "github:snowfallorg/nix-software-center";
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
     # Games
-    aagl.url = "github:ezKEa/aagl-gtk-on-nix/release-24.05";
+    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     # nix-gaming.url = "github:fufexan/nix-gaming/master";
 
     # Proxy

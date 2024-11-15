@@ -1,4 +1,4 @@
 [
   ./settings.nix
-  ./zapret.nix
+  # ./zapret.nix
 ]

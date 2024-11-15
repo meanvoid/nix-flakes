@@ -61,7 +61,7 @@
         # Utils
         nextcloud-client
         thefuck
-        #! qbittorrent
+        #! qbittorrent insecure
         glxinfo
         flameshot
         unetbootin

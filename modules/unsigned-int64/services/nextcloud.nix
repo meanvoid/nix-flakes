@@ -16,7 +16,7 @@
     enable = true;
     enableImagemagick = true;
     database.createLocally = true;
-    package = pkgs.nextcloud29;
+    package = pkgs.nextcloud30;
     settings = {
       enablePreview = true;
       enabledPreviewProviders = [
@@ -64,7 +64,7 @@
         user_oidc
         notify_push
         twofactor_webauthn
-        twofactor_nextcloud_notification
+        # twofactor_nextcloud_notification
 
         # ical
         calendar
