@@ -313,10 +313,8 @@ in
       DisableTelemetry = true;
       OfferToSaveLogins = true;
       OfferToSaveLoginsDefault = true;
-      PasswordManagerEnabled = false;
       DisableFeedbackCommands = true;
       DisableFirefoxStudies = true;
-      DisableMasterPasswordCreation = true;
       DisablePocket = true;
       DisableSetDesktopBackground = true;
     };

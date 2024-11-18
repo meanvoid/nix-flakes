@@ -35,13 +35,10 @@
     wlr.enable = true;
     xdgOpenUsePortal = true;
     config = {
-      common = {
-        default = [ "gtk" ];
-      };
       GNOME = {
         default = [
           "gnome"
-          "gtk"
+          "*"
         ];
       };
     };

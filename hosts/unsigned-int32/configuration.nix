@@ -117,9 +117,16 @@ in
         enable = true;
         settings = {
           cue = true;
-          control = "required";
         };
+        control = "required";
       };
+      # yubico = {
+      #   enable = true;
+      #   debug = true;
+      #   mode = "challenge-response";
+      #   id = [ "" ];
+      #   control = "required";
+      # };
     };
   };
   programs = {

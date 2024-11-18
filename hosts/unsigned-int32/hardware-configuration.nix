@@ -323,6 +323,24 @@
   };
   ### ---------------/dev/md/hddpool0-------------------- ###
 
+  ### --------------- /dev/sda2(windows) --------------- ###
+  fileSystems."/Shared/windows" = {
+    device = "/dev/disk/by-uuid/E40A5B280A5AF750";
+    fsType = "ntfs";
+    options = [
+      "acl"
+      "noatime"
+      "discard"
+      "nohidden"
+      "sys_immutable"
+      "windows_names"
+      "uid=0"
+      "gid=100"
+      # "dmask=0003"
+      # "fmask=0002"
+    ];
+  };
+  ### --------------- /dev/sda2(windows) --------------- ###
   services.btrfs.autoScrub = {
     enable = true;
     interval = "monthly";

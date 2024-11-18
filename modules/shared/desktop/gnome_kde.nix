@@ -39,19 +39,17 @@
       "GNOME" = {
         default = [
           "gnome"
-          "kde"
-          "gtk"
+          "*"
         ];
         "org.freedesktop.impl.portal.FileChooser" = "gnome";
       };
       "KDE Plasma" = {
         default = [
           "kde"
-          "gnome"
-          "gtk"
+          "*"
         ];
         "org.freedesktop.impl.portal.FileChooser" = "kde";
-        "org.freedesktop.impl.portal.Secret" = [ "kwallet" ];
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
       };
     };
     extraPortals = builtins.attrValues { inherit (pkgs) xdg-desktop-portal-kde; };

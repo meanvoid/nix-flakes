@@ -15,6 +15,23 @@
     enable = true;
     wlr.enable = true;
     xdgOpenUsePortal = true;
+    config = {
+      "GNOME" = {
+        default = [
+          "gnome"
+          "*"
+        ];
+        "org.freedesktop.impl.portal.FileChooser" = "gnome";
+      };
+      "KDE Plasma" = {
+        default = [
+          "kde"
+          "*"
+        ];
+        "org.freedesktop.impl.portal.FileChooser" = "kde";
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+      };
+    };
     extraPortals = builtins.attrValues { inherit (pkgs.kdePackages) xdg-desktop-portal-kde; };
   };
   qt = {

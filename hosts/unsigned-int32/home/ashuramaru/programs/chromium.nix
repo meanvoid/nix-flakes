@@ -2,6 +2,9 @@
 {
   programs.chromium = {
     enable = true;
+    package = pkgs.chromium.override {
+      enableWideVine = true;
+    };
     extensions =
       let
         bpc-version = "3.9.1.2";
@@ -50,7 +53,6 @@
           crxPath = bpc-src;
         }
       ];
-    package = pkgs.chromium;
     commandLineArgs = [
       # debug
       "--enable-logging=stderr"
@@ -63,6 +65,14 @@
       "--wayland-text-input-version=3"
       "--enable-features=TouchpadOverscrollHistoryNavigation"
     ];
+    dictionaries = builtins.attrValues {
+      inherit (pkgs.hunspellDictsChromium)
+        en_US
+        de_DE
+        fr_FR
+        ;
+
+    };
   };
   home.packages = [
     pkgs.google-chrome
