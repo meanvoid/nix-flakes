@@ -7,7 +7,7 @@ _: {
       cleanup = "uninstall";
     };
     caskArgs = {
-      appdir = "~/Applications";
+      appdir = "/Applications";
       no_quarantine = true;
       require_sha = true;
     };
@@ -51,7 +51,6 @@ _: {
       "shottr"
       "forklift"
       "nextcloud"
-      "easy-move-plus-resize"
       "yubico-authenticator"
       ### --- Utilities --- ###
     ];

@@ -18,7 +18,7 @@
     nixpkgs-24_05.url = "github:nixos/nixpkgs/nixos-24.05-small"; # for backwards compatibility with some older versions
     ### --- nixpkgs channels --- ###
     darwin.url = "github:lnl7/nix-darwin/master";
-    home-manager.url = "github:nix-community/home-manager/master"; # for now
+    home-manager.url = "github:nix-community/home-manager/release-24.11"; # for now
     hm_unstable.url = "github:nix-community/home-manager/master";
     nur.url = "github:nix-community/NUR";
     ### --- System --- ###
