@@ -16,7 +16,7 @@ let
       addonId = "magnolia@12.34";
       url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
       name = "bypass-paywall-clean-${version}";
-      sha256 = lib.fakeSha256;
+      sha256 = "sha256-ruRhCD01gLhZ/5iXbe6u3/xJ6yiAwpBIpOFR2HhAUTA=";
       meta = {
         homepage = "https://twitter.com/Magnolia1234B";
         description = "Bypass Paywalls of (custom) news sites";
@@ -119,6 +119,7 @@ in
           "Bing".metaData.hidden = true;
           "You".metaData.hidden = true;
           "You.com".metaData.hidden = true;
+          "Kagi".metaData.alias = "@kagi";
           "DuckDuckGo" = {
             urls = [
               {
@@ -152,6 +153,7 @@ in
               }
             ];
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = [ "@hm" ];
           };
           "Nix Options" = {
             urls = [
@@ -211,8 +213,7 @@ in
                 ];
               }
             ];
-            iconUpdateURL = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            updateInterval = 7 * 24 * 60 * 60 * 1000;
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@nw" ];
           };
           "GitHub" = {
@@ -318,6 +319,7 @@ in
       DisablePocket = true;
       DisableSetDesktopBackground = true;
     };
+
     nativeMessagingHosts = [
       pkgs.firefoxpwa
       pkgs.gnome-browser-connector

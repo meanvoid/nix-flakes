@@ -206,8 +206,7 @@ in
                 ];
               }
             ];
-            iconUpdateURL = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            updateInterval = 7 * 24 * 60 * 60 * 1000;
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@nw" ];
           };
           "GitHub" = {
