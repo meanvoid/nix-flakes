@@ -34,7 +34,7 @@ in
     config.plugins = {
       #   betterNotesBox.enable = true;
       #   betterSessions.enable = true;
-      # betterUploadButton.enable = true;
+      #   betterUploadButton.enable = true;
       #   colorSighted.enable = true;
       #   crashHandler.enable = true;
       #   decor.enable = true;
@@ -109,7 +109,7 @@ in
       };
       consoleJanitor = {
         enable = true;
-        #disableSpotifyLogger = true;
+        disableSpotifyLogger = true;
         disableNoisyLoggers = true;
       };
       noF1.enable = true;

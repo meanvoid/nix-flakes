@@ -35,10 +35,8 @@
       inherit (pkgs)
         quodlibet-full
         vlc
-
         brasero # cd/dvd burner
         deluge # just as a backup
-
         #! qbittorrent # understandable have a nice day
         nicotine-plus
         ;

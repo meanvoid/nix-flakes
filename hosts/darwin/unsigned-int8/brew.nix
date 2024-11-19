@@ -24,19 +24,26 @@ _: {
     ];
     casks = [
       ### --- Socials --- ###
-      "telegram"
-      "signal" # Telegram but if it wasnt owned by multimillioner living in Dubai
+      "telegram" # telegram swift client
       "element" # halo based department?
-      "thunderbird"
+      "thunderbird" # mail client
       ### --- Socials
       ### --- Gayming --- ###      
       "crossover" # Supporting wine project
       "whisky" # just for the wine
+      "mythic" # heroic but better
+      "heroic"
       "steam" # Gayming
+      "flycast"
+      "ppsspp"
+      "xemu"
+      "cemu"
       ### --- Gayming --- ###
       ### --- Graphics --- ###
       "blender"
-      "krita" # Soyjak drawing program
+      "krita"
+      "kdenlive"
+      "obs"
       "affinity-photo" # Proffessional soyjak drawing program
       "affinity-designer" # Proffessional soyjak designer program
       ### --- Graphics --- ###

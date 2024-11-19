@@ -17,13 +17,13 @@ in
 {
   imports =
     [
-      (./system.nix)
+      ./system.nix
+      ./brew.nix
       (path + /modules/shared/settings/nix.nix)
       (path + /modules/shared/desktop/fonts.nix)
     ]
     ++ hostModules [
       "environment"
-      "programs"
       "networking"
     ];
   security = {
@@ -57,7 +57,6 @@ in
 
       # misc
       neofetch
-      hyfetch
 
       # Graphics/Video/enc/dec
       ffmpeg-full
