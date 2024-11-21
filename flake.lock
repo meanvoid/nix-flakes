@@ -2296,6 +2296,38 @@
         "type": "github"
       }
     },
+    "nixpkgs-stable_6": {
+      "locked": {
+        "lastModified": 1730602179,
+        "narHash": "sha256-efgLzQAWSzJuCLiCaQUCDu4NudNlHdg2NzGLX5GYaEY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "3c2f1c4ca372622cb2f9de8016c9a0b1cbd0f37c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-zapret-upstream": {
+      "locked": {
+        "lastModified": 1732150779,
+        "narHash": "sha256-vLi6Vg68lrEsfJffGUq7YAoQcKNuC46/CpTKuLhr13Y=",
+        "owner": "voronind-com",
+        "repo": "nixpkgs",
+        "rev": "2cde9592dfba6ea3a95d6cece22a328927908864",
+        "type": "github"
+      },
+      "original": {
+        "owner": "voronind-com",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_10": {
       "locked": {
         "lastModified": 1692638711,
@@ -2910,7 +2942,8 @@
         "nixpkgs": "nixpkgs_15",
         "nixpkgs-24_05": "nixpkgs-24_05",
         "nixpkgs-firefox-darwin": "nixpkgs-firefox-darwin",
-        "nixpkgs-python": "nixpkgs-python_2",
+        "nixpkgs-python": "nixpkgs-python",
+        "nixpkgs-zapret-upstream": "nixpkgs-zapret-upstream",
         "nur": "nur",
         "pre-commit-hooks": "pre-commit-hooks_5",
         "sops-nix": "sops-nix",

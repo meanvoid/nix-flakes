@@ -54,8 +54,9 @@
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     # nix-gaming.url = "github:fufexan/nix-gaming/master";
 
-    # Proxy
+    # DPI fooling
     zapret.url = "github:SnakeOPM/zapret-flake.nix";
+    nixpkgs-zapret-upstream.url = "github:voronind-com/nixpkgs/master";
     ### --- Overlays and Applications --- ###
 
     ### --- De-duplication --- ###
