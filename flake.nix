@@ -56,7 +56,6 @@
 
     # DPI fooling
     zapret.url = "github:SnakeOPM/zapret-flake.nix";
-    nixpkgs-zapret-upstream.url = "github:voronind-com/nixpkgs/master";
     ### --- Overlays and Applications --- ###
 
     ### --- De-duplication --- ###
