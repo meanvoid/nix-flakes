@@ -1,7 +1,7 @@
-{ inputs, ... }:
+{ path, hostname, ... }:
 {
   disabledModules = [ "services/networking/zapret.nix" ];
-  imports = [ "${inputs.nixpkgs-zapret-upstream}/nixos/modules/services/networking/zapret.nix" ];
+  imports = [ (path + "/modules/${hostname}/networking/custom/zapret.nix") ];
   services.zapret = {
     enable = true;
     udpSupport = true;
