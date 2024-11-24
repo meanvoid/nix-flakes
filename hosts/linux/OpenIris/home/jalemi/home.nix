@@ -27,6 +27,7 @@
 
         # Gaming
         bottles
+        osu-lazer
 
         # Productivity
         libreoffice-fresh
