@@ -7,7 +7,6 @@
 {
   imports =
     [
-      (path + /home/jalemi/config/hyprland.nix)
       ### ----------------PROGRAMS------------------- ###
       ./programs/firefox.nix
       (path + /home/shared/programs/discord.nix)

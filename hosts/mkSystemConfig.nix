@@ -10,7 +10,6 @@
   sops-nix,
   vscode-server,
   zapret,
-  hyprland,
   catppuccin,
   flatpaks,
   spicetify-nix,
@@ -54,7 +53,6 @@ in
         system,
         useHomeManager ? false,
         useNur ? false,
-        useHyprland ? false,
         useVscodeServer ? false,
         #TODO: useNvidiaVgpu ? false,
         useFlatpak ? false,
@@ -74,8 +72,7 @@ in
         ] ++ modules;
         sharedModules = lib.flatten [
           (lib.optionals useHomeManager (homeManagerModules.nixos hostname users system))
-          (lib.optional useNur nur.modules.nixos.default)
-          (lib.optional useHyprland hyprland.nixosModules.default)
+          (lib.optional useNur nur.nixosModules.nur)
           (lib.optionals useVscodeServer [
             vscode-server.nixosModules.default
             { config.services.vscode-server.enable = lib.mkDefault true; }

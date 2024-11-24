@@ -25,7 +25,6 @@ in
       (path + "/modules/shared/settings/settings.nix")
       ### ----------------ESSENTIAL------------------- ###
       ### ----------------DESKTOP------------------- ###
-      (path + "/modules/shared/desktop/hyprland.nix")
       (path + "/modules/shared/desktop/gnome.nix")
       (path + "/modules/shared/desktop/fonts.nix")
       (path + "/modules/shared/programs/steam.nix")
