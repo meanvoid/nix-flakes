@@ -40,7 +40,6 @@
     meanvoid-overlay.url = "github:meanvoid/nixos-overlay";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix/master";
     catppuccin.url = "github:catppuccin/nix";
-    hyprland.url = "github:hyprwm/Hyprland";
     nixcord.url = "github:KaylorBen/nixcord";
 
     # devenv dependencies
@@ -64,7 +63,6 @@
     hm_unstable.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
 
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
@@ -93,7 +91,6 @@
       sops-nix,
       vscode-server,
       zapret,
-      hyprland,
       catppuccin,
       flatpaks,
       spicetify-nix,
@@ -226,7 +223,7 @@
             ### ----------------SYSTEM------------------- ###
 
             ### ----------------MODULES & OVERLAYS------------------- ###
-            inherit hyprland catppuccin flatpaks;
+            inherit catppuccin flatpaks;
             inherit spicetify-nix nixcord aagl;
             ### ----------------MODULES & OVERLAYS------------------- ###
           };

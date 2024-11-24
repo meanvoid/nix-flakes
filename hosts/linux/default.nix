@@ -11,7 +11,6 @@
   sops-nix,
   vscode-server,
   zapret,
-  hyprland,
   catppuccin,
   flatpaks,
   spicetify-nix,
@@ -33,7 +32,7 @@ let
     ### ----------------SYSTEM------------------- ###
 
     ### ----------------MODULES & OVERLAYS------------------- ###
-    inherit hyprland catppuccin flatpaks;
+    inherit catppuccin flatpaks;
     inherit spicetify-nix nixcord aagl;
     ### ----------------MODULES & OVERLAYS------------------- ###
   };
