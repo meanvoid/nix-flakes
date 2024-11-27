@@ -195,4 +195,10 @@
     apply = true;
     flavor = "mocha";
   };
+  qt.style.catppuccin = {
+    enable = true;
+    apply = true;
+    accent = "rosewater";
+    flavor = "mocha";
+  };
 }
