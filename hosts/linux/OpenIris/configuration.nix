@@ -35,6 +35,7 @@ in
       "networking"
       "programs"
       "virtualisation"
+      "documentation"
     ];
 
   programs = {
