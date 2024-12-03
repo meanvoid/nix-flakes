@@ -9,6 +9,7 @@
     [
       ### ----------------PROGRAMS------------------- ###
       ./programs/firefox.nix
+      ./programs/flatpak.nix
       (path + /home/shared/programs/discord.nix)
       (path + /home/shared/programs/spotify.nix)
       ### ----------------PROGRAMS------------------- ###
@@ -27,7 +28,6 @@
 
         # Gaming
         bottles
-        osu-lazer
 
         # Productivity
         libreoffice-fresh
