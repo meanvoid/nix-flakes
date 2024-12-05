@@ -16,7 +16,7 @@ let
       addonId = "magnolia@12.34";
       url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
       name = "bypass-paywall-clean-${version}";
-      sha256 = "sha256-JwcB9xlB8416pV2m4dSL0w0x5ejaRJQTcgNhq2OD+9Q=";
+      sha256 = "sha256-YNG7loS6yJni9omH9X2qt6XDORIgtrbVnuH7N8kBkVs=";
       meta = {
         homepage = "https://twitter.com/Magnolia1234B";
         description = "Bypass Paywalls of (custom) news sites";
@@ -28,7 +28,7 @@ in
 {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-bin;
+    package = pkgs.unstable.firefox-unwrapped;
     profiles.default = {
       id = 0;
       name = "default";
