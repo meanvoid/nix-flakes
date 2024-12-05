@@ -1,7 +1,9 @@
-_: {
+{ lib, ... }:
+{
   services.postgresql = {
     enable = true;
     enableJIT = true;
+    enableTCPIP = true;
     ensureDatabases = [
       "vaultwarden"
       "grafana"
@@ -29,6 +31,12 @@ _: {
         ensureDBOwnership = true;
       }
     ];
+    authentication = lib.mkOverride 10 ''
+      #type database DBuser origin-address auth-method
+      local all       all     trust
+      host  all      all     127.0.0.1/32   trust
+      host all       all     ::1/128        trust
+    '';
   };
   services.postgresqlBackup = {
     enable = true;

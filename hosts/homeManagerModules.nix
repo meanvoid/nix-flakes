@@ -34,7 +34,7 @@
           map (userName: {
             "${userName}" = {
               imports = [
-                (path + "/hosts/${hostName}/home/${userName}/home.nix")
+                (path + "/hosts/linux/${hostName}/home/${userName}/home.nix")
                 agenix.homeManagerModules.default
                 sops-nix.homeManagerModules.sops
                 catppuccin.homeManagerModules.catppuccin

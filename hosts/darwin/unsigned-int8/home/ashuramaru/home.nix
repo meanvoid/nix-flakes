@@ -88,9 +88,8 @@
       inherit (pkgs) sass deno;
       inherit (pkgs.jetbrains) rider clion;
       dotnetCorePackages = pkgs.dotnetCorePackages.combinePackages [
-        pkgs.dotnetCorePackages.sdk_6_0
-        pkgs.dotnetCorePackages.sdk_7_0
         pkgs.dotnetCorePackages.sdk_8_0
+        pkgs.dotnetCorePackages.sdk_9_0
       ];
       nodejs = pkgs.nodejs.override {
         enableNpm = true;

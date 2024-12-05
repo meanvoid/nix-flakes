@@ -28,7 +28,7 @@ in
     peers = [
       # Clares@rt-ax86u
       {
-        publicKey = "iH6vtvDU/6TKA7unZAd0xTeiaIcc8a2bnXEiqZOYH2g=";
+        publicKey = "Qn6WDn9CHgla44vuo31whTen+Hj581dnHwJKQfWVOXY=";
         presharedKeyFile = preshared;
         allowedIPs = [
           "172.16.31.2/32"
@@ -42,24 +42,6 @@ in
         allowedIPs = [
           "172.16.31.3/32"
           "fd17:216b:31bc:1::3/128"
-        ];
-      }
-      # root@unsigned-int8
-      {
-        publicKey = "lvoQeRPrRE3pHLVlOpcAzg5FmSVhAk9quT2NVIbZGlk=";
-        presharedKeyFile = preshared;
-        allowedIPs = [
-          "172.16.31.4/32"
-          "fd17:216b:31bc:1::4/128"
-        ];
-      }
-      # @pixel7pro
-      {
-        publicKey = "WxQNVRD5zwzal95wUuSMZbx8Nl0cvKoa/5ICdTYDBnw=";
-        presharedKeyFile = preshared;
-        allowedIPs = [
-          "172.16.31.5/32"
-          "fd17:216b:31bc:1::5/128"
         ];
       }
       {

@@ -34,6 +34,9 @@ in
       name = "default";
       isDefault = true;
       settings = {
+        "browser.urlbar.update2.engineAliasRefresh" = true;
+        "browser.urlbar.suggest.calculator" = true;
+
         "extensions.webextensions.restrictedDomains" = ''
           accounts-static.cdn.mozilla.net,accounts.firefox.com,addons.cdn.mozilla.net,addons.mozilla.org,api.accounts.firefox.com,content.cdn.mozilla.net,discovery.addons.mozilla.org,install.mozilla.org,oauth.accounts.firefox.com,profile.accounts.firefox.com,support.mozilla.org,sync.services.mozilla.com,metrics.tenjin-dk.com,cloud.tenjin-dk.com,public.tenjin.com,private.tenjin.com,beta.foldingathome.org
         '';
@@ -68,7 +71,6 @@ in
           return-youtube-dislikes
 
           kagi-search
-          # video-downloadhelper
           stylus
           steam-database
           search-by-image
@@ -112,7 +114,35 @@ in
           "Bing".metaData.hidden = true;
           "You".metaData.hidden = true;
           "You.com".metaData.hidden = true;
-          "Kagi".metaData.alias = "@kagi";
+          "Kagi" = {
+            metaData.alias = "@kagi";
+            metaData.iconURI = "https://assets.kagi.com/v1/apple-touch-icon.png";
+          };
+          # "Kagi" = {
+          #   urls = [
+          #     {
+          #       template = "https://kagi.com/search";
+          #       params = [
+          #         {
+          #           name = "q";
+          #           value = "{searchTerms}";
+          #         }
+          #       ];
+          #     }
+          #     {
+          #       template = "https://kagi.com/api/autosuggest";
+          #       params = [
+          #         {
+          #           name = "q";
+          #           value = "{searchTerms}";
+          #         }
+          #       ];
+          #     }
+          #   ];
+          #   iconUpdateURL = "https://assets.kagi.com/v1/apple-touch-icon.png";
+          #   updateInterval = 7 * 24 * 60 * 60 * 1000;
+          #   definedAliases = [ "@kagi" ];
+          # };
           "DuckDuckGo" = {
             urls = [
               {
@@ -132,15 +162,15 @@ in
           "Home Manager" = {
             urls = [
               {
-                template = "https://mipmip.github.io/home-manager-option-search";
+                template = "https://home-manager-options.extranix.com";
                 params = [
                   {
                     name = "query";
                     value = "{searchTerms}";
                   }
                   {
-                    name = "relase";
-                    value = "unstable";
+                    name = "release";
+                    value = "master";
                   }
                 ];
               }

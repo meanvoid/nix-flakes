@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   path,
   hostname,

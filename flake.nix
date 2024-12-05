@@ -16,6 +16,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11-small";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-24_05.url = "github:nixos/nixpkgs/nixos-24.05-small"; # for backwards compatibility with some older versions
+    firefox-test.url = "github:booxter/nixpkgs/firefox-for-darwin";
     ### --- nixpkgs channels --- ###
     darwin.url = "github:lnl7/nix-darwin/master";
     home-manager.url = "github:nix-community/home-manager/release-24.11"; # for now
@@ -97,6 +98,7 @@
       spicetify-nix,
       nixcord,
       aagl,
+      firefox-test,
       ...
     }@inputs:
     let
@@ -229,7 +231,7 @@
           };
         in
         {
-          nixosConfigurations = import (path + /hosts) commonAttrs;
+          nixosConfigurations = import (path + /hosts/linux) commonAttrs;
           darwinConfigurations = import (path + /hosts/darwin) commonAttrs;
         };
     };

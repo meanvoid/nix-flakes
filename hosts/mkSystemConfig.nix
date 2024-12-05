@@ -107,7 +107,7 @@ in
           };
           nixpkgs.overlays = [ (lib.optional useNur nur.overlay) ];
         };
-        modules = [ "${path}/hosts/${hostName}/configuration.nix" ] ++ sharedModules;
+        modules = [ "${path}/hosts/linux/${hostName}/configuration.nix" ] ++ sharedModules;
       };
 
     darwin =
