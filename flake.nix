@@ -73,6 +73,7 @@
     meanvoid-overlay.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.emacs-overlay.follows = "emacs-overlay";
+    aagl.inputs.nixpkgs.follows = "unstable";
     ### --- de-duplication --- ###
   };
 

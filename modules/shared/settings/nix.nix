@@ -21,7 +21,7 @@ in
       packageOverrides = pkgs: { gimp-python = pkgs.gimp.override { withPython = true; }; };
       permittedInsecurePackages = [
         "python-2.7.18.7"
-        "python-2.7.18.7-env"
+        "python-2.7.18.7-env" # gimp
         "olm-3.2.16" # ! not a lot of clients deprecated this yet
       ];
     };

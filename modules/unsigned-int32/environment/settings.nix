@@ -34,6 +34,7 @@
   };
   hardware.opentabletdriver = {
     enable = true;
+    package = pkgs.unstable.opentabletdriver;
     daemon.enable = true;
   };
   services = {
@@ -41,11 +42,11 @@
       packages = builtins.attrValues {
         inherit (pkgs.gnome2) GConf;
         inherit (pkgs)
-          opentabletdriver
           libwacom
           yubikey-personalization
           gnome-settings-daemon
           ;
+        inherit (pkgs.unstable) opentabletdriver;
       };
       extraRules = ''
         # XP-Pen CT1060
