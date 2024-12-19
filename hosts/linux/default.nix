@@ -19,7 +19,7 @@
   ...
 }:
 let
-  systems = import ./mkSystemConfig.nix {
+  systems = import ../mkSystemConfig.nix {
     ### ----------------FLAKE------------------- ###
     inherit lib;
     inherit inputs self path;
