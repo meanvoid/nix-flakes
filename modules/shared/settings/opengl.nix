@@ -6,7 +6,6 @@
   ...
 }:
 {
-
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -36,7 +35,6 @@
       config.i18n.inputMethod.type != "fcitx5" && config.i18n.inputMethod.type != "ibus"
     ) "1";
     QT_QPA_PLATFORM = "wayland;xcb";
-    SDL_VIDEODRIVER = lib.optionalString (hostname != "OpenIris") "wayland,x11";
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_DISABLE_RDD_SANDBOX = "1";
   };

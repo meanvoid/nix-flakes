@@ -22,18 +22,16 @@
     stateVersion = "24.05";
   };
   programs = {
+    tmux.enable = true;
+    btop.enable = true;
+  };
+  catppuccin = {
     tmux = {
-      enable = true;
-      catppuccin = {
-        flavor = "mocha";
-        extraConfig = ''
-          set -g @catppuccin_status_modules_right "application session user host date_time"
-        '';
-      };
+      flavor = "mocha";
+      extraConfig = ''
+        set -g @catppuccin_status_modules_right "application session user host date_time"
+      '';
     };
-    btop = {
-      enable = true;
-      catppuccin.flavor = "mocha";
-    };
+    btop.flavor = "mocha";
   };
 }

@@ -150,6 +150,7 @@ in
         gpgme
         yubioath-flutter
         fcitx5-gtk
+        apfsprogs
         ;
       inherit (pkgs.xorg) xhost;
       inherit (inputs.nix-software-center.packages.${pkgs.system}) nix-software-center;

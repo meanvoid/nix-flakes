@@ -72,7 +72,7 @@ in
         ] ++ modules;
         sharedModules = lib.flatten [
           (lib.optionals useHomeManager (homeManagerModules.nixos hostname users system))
-          (lib.optional useNur nur.nixosModules.nur)
+          (lib.optional useNur nur.modules.nixos.default)
           (lib.optionals useVscodeServer [
             vscode-server.nixosModules.default
             { config.services.vscode-server.enable = lib.mkDefault true; }

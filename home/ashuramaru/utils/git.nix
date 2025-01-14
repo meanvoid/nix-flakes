@@ -5,7 +5,8 @@ _: {
     userEmail = "ashuramaru@tenjin-dk.com";
     lfs.enable = true;
     aliases = {
-      "lg" = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+      "lg" =
+        "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
     };
     delta = {
       enable = true; # syntax highlighter
@@ -28,20 +29,19 @@ _: {
     gitCredentialHelper.enable = true;
     settings.git_protocol = "ssh";
   };
-  programs.gh-dash = {
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-      accent = "rosewater";
-    };
-  };
-  programs.lazygit = {
-    enable = true;
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-      accent = "rosewater";
-    };
-  };
+  programs.lazygit.enable = true;
+
   programs.git-credential-oauth.enable = true;
+  catppuccin = {
+    gh-dash = {
+      enable = true;
+      flavor = "mocha";
+      accent = "rosewater";
+    };
+    lazygit = {
+      enable = true;
+      flavor = "mocha";
+      accent = "rosewater";
+    };
+  };
 }

@@ -168,36 +168,34 @@
     mpv = {
       #TODO: write mpv config
       enable = true;
-      catppuccin = {
-        enable = true;
-        flavor = "mocha";
-        accent = "rosewater";
-      };
     };
-    tmux = {
-      enable = true;
-      catppuccin = {
-        flavor = "mocha";
-        extraConfig = ''
-          set -g @catppuccin_status_modules_right "application session user host date_time"
-        '';
-      };
-    };
-    btop = {
-      enable = true;
-      catppuccin.flavor = "mocha";
-    };
+    tmux.enable = true;
+    btop.enable = true;
     nheko.enable = true;
   };
-  i18n.inputMethod.fcitx5.catppuccin = {
-    enable = true;
-    apply = true;
-    flavor = "mocha";
-  };
-  qt.style.catppuccin = {
-    enable = true;
-    apply = true;
-    accent = "rosewater";
-    flavor = "mocha";
+  catppuccin = {
+    kvantum = {
+      enable = true;
+      apply = true;
+      accent = "rosewater";
+      flavor = "mocha";
+    };
+    fcitx5 = {
+      enable = true;
+      apply = true;
+      flavor = "mocha";
+    };
+    mpv = {
+      enable = true;
+      flavor = "mocha";
+      accent = "rosewater";
+    };
+    tmux = {
+      flavor = "mocha";
+      extraConfig = ''
+        set -g @catppuccin_status_modules_right "application session user host date_time"
+      '';
+    };
+    btop.flavor = "mocha";
   };
 }

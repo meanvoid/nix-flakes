@@ -5,10 +5,6 @@
     enableBashIntegration = true;
     enableFishIntegration = true;
     enableZshIntegration = true;
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-    };
     settings = {
       "$schema" = "https://starship.rs/config-schema.json";
       scan_timeout = 10;
@@ -63,13 +59,7 @@
     enableVteIntegration = true;
     autocd = true;
     autosuggestion.enable = true;
-    syntaxHighlighting = {
-      enable = true;
-      catppuccin = {
-        enable = true;
-        flavor = "mocha";
-      };
-    };
+    syntaxHighlighting.enable = true;
     shellAliases = {
       ls = "ls --color";
       lt = "ls --human-readable --size -1 -S --classify";
@@ -144,5 +134,15 @@
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
     '';
+  };
+  catppuccin = {
+    starship = {
+      enable = true;
+      flavor = "mocha";
+    };
+    zsh-syntax-highlighting = {
+      enable = true;
+      flavor = "mocha";
+    };
   };
 }

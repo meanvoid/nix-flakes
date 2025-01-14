@@ -9,10 +9,6 @@
     withPython3 = true;
     withNodeJs = true;
     withRuby = true;
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-    };
     plugins = builtins.attrValues {
       inherit (pkgs.vimPlugins)
         # Syntax
@@ -57,6 +53,12 @@
 
       nmap <F6> :NERDTreeToggle<CR>             " F6 opens NERDTree
     '';
+  };
+  catppuccin = {
+    nvim = {
+      enable = true;
+      flavor = "mocha";
+    };
   };
   # colorscheme srcery                        " Color scheme text
   #     let g:lightline = {
