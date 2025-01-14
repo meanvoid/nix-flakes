@@ -28,7 +28,7 @@ _: {
       "element" # halo based department?
       "thunderbird" # mail client
       ### --- Socials
-      ### --- Gayming --- ###      
+      ### --- Gayming --- ###
       "crossover" # Supporting wine project
       "whisky" # just for the wine
       "mythic" # heroic but better

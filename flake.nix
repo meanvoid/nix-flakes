@@ -53,8 +53,6 @@
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     # nix-gaming.url = "github:fufexan/nix-gaming/master";
 
-    # DPI fooling
-    zapret.url = "github:SnakeOPM/zapret-flake.nix";
     ### --- Overlays and Applications --- ###
 
     ### --- De-duplication --- ###
@@ -90,7 +88,6 @@
       agenix,
       sops-nix,
       vscode-server,
-      zapret,
       catppuccin,
       flatpaks,
       spicetify-nix,
@@ -219,7 +216,7 @@
             ### ----------------SYSTEM------------------- ###
             inherit nixpkgs darwin nur;
             inherit home-manager agenix sops-nix;
-            inherit vscode-server zapret;
+            inherit vscode-server;
             ### ----------------SYSTEM------------------- ###
 
             ### ----------------MODULES & OVERLAYS------------------- ###

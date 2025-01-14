@@ -10,7 +10,6 @@
   agenix,
   sops-nix,
   vscode-server,
-  zapret, # ! make arguments optional
   catppuccin,
   flatpaks,
   spicetify-nix,
@@ -23,12 +22,12 @@ let
     ### ----------------FLAKE------------------- ###
     inherit lib;
     inherit inputs self path;
-    ### ----------------FLAKE------------------- ###  
+    ### ----------------FLAKE------------------- ###
 
     ### ----------------SYSTEM------------------- ###
     inherit nixpkgs darwin nur;
     inherit home-manager agenix sops-nix;
-    inherit vscode-server zapret;
+    inherit vscode-server;
     ### ----------------SYSTEM------------------- ###
 
     ### ----------------MODULES & OVERLAYS------------------- ###

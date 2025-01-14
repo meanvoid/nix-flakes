@@ -10,7 +10,6 @@
   agenix,
   sops-nix,
   vscode-server,
-  zapret,
   catppuccin,
   flatpaks,
   spicetify-nix,
@@ -28,7 +27,7 @@ let
     ### ----------------SYSTEM------------------- ###
     inherit nixpkgs darwin nur;
     inherit home-manager agenix sops-nix;
-    inherit vscode-server zapret;
+    inherit vscode-server;
     ### ----------------SYSTEM------------------- ###
 
     ### ----------------MODULES & OVERLAYS------------------- ###

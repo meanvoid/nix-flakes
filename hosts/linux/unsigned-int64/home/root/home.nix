@@ -21,13 +21,11 @@
     };
     stateVersion = "24.05";
   };
-  programs.tmux = {
-    enable = true;
-    catppuccin = {
-      flavor = "mocha";
-      extraConfig = ''
-        set -g @catppuccin_status_modules_right "application session user host date_time"
-      '';
-    };
+  programs.tmux.enable = true;
+  catppuccin.tmux = {
+    flavor = "mocha";
+    extraConfig = ''
+      set -g @catppuccin_status_modules_right "application session user host date_time"
+    '';
   };
 }

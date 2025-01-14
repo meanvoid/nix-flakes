@@ -9,7 +9,6 @@
   agenix,
   sops-nix,
   vscode-server,
-  zapret,
   catppuccin,
   flatpaks,
   spicetify-nix,
@@ -57,7 +56,6 @@ in
         #TODO: useNvidiaVgpu ? false,
         useFlatpak ? false,
         useAagl ? false,
-        useZapret ? false,
         users ? [ ],
         modules ? [ ],
         ...
@@ -95,7 +93,6 @@ in
               aagl.enableNixpkgsReleaseBranchCheck = false;
             }
           ])
-          (lib.optional useZapret zapret.nixosModules.zapret)
           defaults
         ];
       in

@@ -62,7 +62,6 @@
         nextcloud-client
         thefuck
         qbittorrent
-        insecure
         glxinfo
         flameshot
         unetbootin
