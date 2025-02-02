@@ -18,7 +18,7 @@
       ./programs/chromium.nix
       ./programs/flatpak.nix
       (path + /home/shared/programs/discord.nix)
-      # (path + /home/shared/programs/spotify.nix)
+      (path + /home/shared/programs/spotify.nix)
       ### ----------------PROGRAMS------------------- ###
     ]
     ++ lib.flatten [
@@ -37,7 +37,6 @@
         vlc
         brasero # cd/dvd burner
         deluge # just as a backup
-        #! qbittorrent # understandable have a nice day
         nicotine-plus
         ;
       inherit (pkgs.kdePackages) ktorrent kamera;
@@ -65,7 +64,6 @@
         tdesktop # Telegram desktop
         kotatogram-desktop # telegram's fork
         dino # Jabber client
-        # element-desktop
         ;
 
       # Utilities
@@ -147,9 +145,8 @@
         "ini"
       ];
       inherit (pkgs.unstable) osu-lazer-bin;
-      #crossover = pkgs.callPackage "${path + /home/shared/pkgs/crossover.nix}" { };
     };
-    stateVersion = "24.05";
+    stateVersion = "24.11";
   };
   programs = {
     rbw = {
@@ -158,7 +155,7 @@
         email = "ashuramaru@tenjin-dk.com";
         base_url = "https://bitwarden.tenjin-dk.com";
         lock_timeout = 600;
-        pinentry = pkgs.pinentry-gnome3;
+        pinentry = pkgs.pinentry-qt;
       };
     };
     mpv = {

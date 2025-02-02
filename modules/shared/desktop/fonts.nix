@@ -68,7 +68,6 @@ in
         ];
       };
     };
-    # Enable the fontdir program based on the system type
     programs.fontdir.enable = isLinux;
   };
 }

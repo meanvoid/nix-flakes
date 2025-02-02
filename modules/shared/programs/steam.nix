@@ -48,8 +48,7 @@
 
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs) scummvm inotify-tools;
-    inherit (pkgs) winetricks protontricks protonplus;
-    inherit (pkgs) protonup-qt;
+    inherit (pkgs) winetricks protonplus;
     inherit (pkgs.wineWowPackages) stagingFull;
     # inherit (inputs.nix-gaming.packages.${pkgs.system}) wine-discord-ipc-bridge;
 
@@ -57,6 +56,7 @@
   programs = {
     steam = {
       enable = true;
+      protontricks.enable = true;
       remotePlay.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
       extraCompatPackages = [ pkgs.proton-ge-bin ];
@@ -75,6 +75,8 @@
     };
   };
   environment.sessionVariables = rec {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = [ "\${HOME}/.steam/root/compatibilitytools.d:${pkgs.proton-ge-bin}" ];
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = [
+      "\${HOME}/.steam/root/compatibilitytools.d:${pkgs.proton-ge-bin}"
+    ];
   };
 }

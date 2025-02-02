@@ -25,15 +25,6 @@ in
         useDHCP = true;
       };
     };
-    hosts = {
-      "104.27.206.92" = [
-        "nhentai.net"
-        "static.nhentai.net"
-        "t1.nhentai.net"
-        "t2.nhentai.net"
-        "t3.nhentai.net"
-      ];
-    };
     nat = {
       enable = true;
       enableIPv6 = true;
@@ -95,44 +86,9 @@ in
       }
     ];
   };
-  age.secrets = {
-    wireguard-client.file = path + /secrets/wireguard-client.age;
-    wireguard-shared.file = path + /secrets/wireguard-shared.age;
-    tailscale-auth-key.file = path + /secrets/tailscale-auth-key.age;
-  };
+  age.secrets.tailscale-auth-key.file = path + /secrets/tailscale-auth-key.age;
   services.wg-netmanager.enable = true;
   networking.wireguard.enable = true;
-  networking.wg-quick.interfaces = {
-    wg-ui64 = {
-      address = [
-        "172.16.31.3/32"
-        "fd17:216b:31bc:1::3/128"
-      ];
-      privateKeyFile = private;
-      postUp = ''
-        ${pkgs.systemd}/bin/resolvectl dns wg-ui64 172.16.31.1
-        ${pkgs.systemd}/bin/resolvectl domain wg-ui64 ~tenjin.com ~internal.com ~\rcon.fumoposting.com
-      '';
-      peers = [
-        {
-          publicKey = "X6OBa2aMpoLGx9lYSa+p1U8OAx0iUxAE6Te9Mucu/HQ=";
-          presharedKeyFile = shared;
-          allowedIPs = [
-            "172.16.31.1/24"
-            "fd17:216b:31bc:1::1/128"
-          ];
-          endpoint = "www.tenjin-dk.com:51280";
-        }
-      ];
-    };
-  };
-  # services.openvpn = {
-  #   servers.rpi5 = {
-  #     config = "config ${config.age.secrets.openvpn-client_rpi5.path}";
-  #     autoStart = true;
-  #     updateResolvConf = true;
-  #   };
-  # };
   services.mullvad-vpn = {
     enable = true;
     package = pkgs.mullvad-vpn;

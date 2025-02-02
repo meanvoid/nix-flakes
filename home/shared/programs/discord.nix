@@ -2,7 +2,6 @@
 
 let
   ###---------------------------LINUX OVERLAY---------------------------###
-  discordOverride = pkgs.discord.override { withTTS = true; };
   vesktopOverride = pkgs.vesktop.override {
     withMiddleClickScroll = true;
     withTTS = true;
@@ -14,16 +13,13 @@ in
     enable = true;
     discord = {
       enable = true;
-      package = discordOverride;
-      # vencord = {
-      #   enable = true;
-      #   package = vesktopOverride;
-      # };
+      package = pkgs.unstable.discord;
+      vencord.enable = true;
       openASAR.enable = true;
     };
     vesktop = {
       enable = true;
-      package = vesktopOverride;
+      package = pkgs.unstable.vesktop;
     };
     config = {
       autoUpdate = false;

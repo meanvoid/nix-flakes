@@ -13,7 +13,7 @@
     ### --- System --- ###
     ### --- nixpkgs channels --- ###
     master.url = "github:nixos/nixpkgs/master"; # Only for debug purposes e.g. nix run
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11-small";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-24_05.url = "github:nixos/nixpkgs/nixos-24.05-small"; # for backwards compatibility with some older versions
     firefox-test.url = "github:booxter/nixpkgs/firefox-for-darwin";

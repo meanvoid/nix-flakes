@@ -30,7 +30,7 @@ in
       (path + "/modules/shared/fcitx.nix")
       ### ----------------ESSENTIAL------------------- ###
       ### ----------------DESKTOP------------------- ###
-      (path + "/modules/shared/desktop/gnome.nix")
+      (path + "/modules/shared/desktop/gnome_kde.nix")
       (path + "/modules/shared/desktop/fonts.nix")
       (path + "/modules/shared/programs/steam.nix")
       ### ----------------DESKTOP------------------- ###

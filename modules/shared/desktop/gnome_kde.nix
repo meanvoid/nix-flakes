@@ -14,7 +14,7 @@
     gnome-remote-desktop.enable = true;
   };
   services.sysprof.enable = true;
-  programs.ssh.askPassword = lib.mkForce "${pkgs.seahorse}/libexec/seahorse/ssh-askpass}";
+  programs.ssh.askPassword = lib.mkForce "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass}";
 
   # services.xserver = {
   services.xserver.displayManager.gdm = {
@@ -35,27 +35,10 @@
     enable = true;
     wlr.enable = true;
     xdgOpenUsePortal = true;
-    config = {
-      "GNOME" = {
-        default = [ "gnome;*" ];
-        "org.freedesktop.impl.portal.FileChooser" = "gnome";
-      };
-    };
-    configPackages = [ pkgs.gnome-session ];
-    #   "KDE Plasma" = {
-    #     default = [
-    #       "kde"s
-    #       "*"
-    #     ];
-    #     "org.freedesktop.impl.portal.FileChooser" = "kde";
-    #     "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-    #   };
-    # ;
-    # extraPortals = builtins.attrValues { inherit (pkgs) xdg-desktop-portal-kde; };
   };
   qt = {
     enable = true;
-    platformTheme = "qt5ct";
+    platformTheme = "kde";
   };
   programs = {
     gnome-terminal.enable = true;
@@ -63,7 +46,7 @@
     firefox.nativeMessagingHosts.gsconnect = pkgs.gnome-browser-connector;
     kdeconnect = {
       enable = true;
-      package = lib.mkForce pkgs.gnomeExtensions.gsconnect;
+      # package = lib.mkForce pkgs.gnomeExtensions.gsconnect;
     };
   };
   environment.systemPackages = builtins.attrValues {
@@ -72,33 +55,43 @@
       adwaita-qt
       adwsteamgtk
       adwaita-qt6
+      lightly-qt
+      lightly-boehs
       theme-obsidian2
       lounge-gtk-theme
       capitaine-cursors
       catppuccin-kde
       catppuccin-kvantum
       sierra-breeze-enhanced
-      lightly-qt
-      lightly-boehs
+      ;
+    inherit (pkgs)
       gparted
       gradience
-      authenticator
       pop-launcher
       sysprof
       ;
-    inherit (pkgs.kdePackages) breeze kclock merkuro;
-    inherit (pkgs.libsForQt5)
-      breeze-icons
+    inherit (pkgs.kdePackages)
+      breeze
       breeze-gtk
-      breeze-qt5
+      breeze-icons
+      ;
+    inherit (pkgs.kdePackages)
+      ark
       konsole
       dolphin
-      dolphin-plugins
-      ffmpegthumbs
+      filelight
       kio-admin
       kio-extras
       kio-gdrive
-      filelight
+      ffmpegthumbs
+      dolphin-plugins
+      ;
+    inherit (pkgs.kdePackages)
+      merkuro
+      kclock
+      ;
+    inherit (pkgs.libsForQt5)
+      breeze-qt5
       lightly
       ;
     inherit (pkgs)
@@ -134,12 +127,12 @@
     MOZ_USE_XINPUT2 = "1";
   };
 
-  programs.gnupg.agent.pinentryPackage = pkgs.pinentry-gnome3;
+  programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
   services.dbus.packages = [ pkgs.gcr ];
   services.gnome.gnome-browser-connector.enable = true;
 
   nixpkgs.overlays = [
-    # GNOME 46: triple-buffering-v4-46
+    # GNOME 47: triple-buffering-v4-47
     (final: prev: {
       gnome = prev.gnome.overrideScope (
         gnomeFinal: gnomePrev: {

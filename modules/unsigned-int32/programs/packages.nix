@@ -3,7 +3,7 @@
   environment.systemPackages = builtins.attrValues {
     # just in case for some users
     inherit (pkgs) chromium firefox thunderbird;
-    inherit (pkgs) nextcloud-client ark;
+    inherit (pkgs) nextcloud-client;
     inherit (pkgs) keepassxc;
     inherit (pkgs) nufraw-thumbnailer;
     inherit (pkgs) nekoray v2raya udptunnel;

@@ -76,7 +76,7 @@
       pop-launcher
       sysprof
       ;
-    inherit (pkgs.kdePackages) breeze kclock merkuro;
+    inherit (pkgs.kdePackages) breeze;
     inherit (pkgs.libsForQt5)
       breeze-icons
       breeze-gtk
@@ -126,7 +126,7 @@
   services.gnome.gnome-browser-connector.enable = true;
 
   nixpkgs.overlays = [
-    # GNOME 46: triple-buffering-v4-46
+    # GNOME 47: triple-buffering-v4-47
     (final: prev: {
       gnome = prev.gnome.overrideScope (
         gnomeFinal: gnomePrev: {
