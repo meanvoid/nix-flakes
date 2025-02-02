@@ -68,7 +68,4 @@ in
   "tailscale-auth-key.age".publicKeys = matrixTenjin;
   "gh_token.age".publicKeys = matrixTenjin;
   "netrc_creds.age".publicKeys = matrixTenjin;
-
-  # matrixGlobal
-  "cert.age".publicKeys = matrixGlobal;
 }

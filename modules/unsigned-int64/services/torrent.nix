@@ -55,11 +55,6 @@
     user = "jellyfin";
     group = "jellyfin";
   };
-  services.jackett = {
-    enable = true;
-    user = "jellyfin";
-    group = "jellyfin";
-  };
   services.bazarr = {
     enable = true;
     listenPort = 8763;
@@ -149,9 +144,6 @@
       };
       locations."/prowlarr/api" = {
         proxyPass = "http://172.16.31.1:9696";
-      };
-      locations."/jackett" = {
-        proxyPass = "http://172.16.31.1:9117";
       };
     };
   };
