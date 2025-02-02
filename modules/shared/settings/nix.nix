@@ -24,11 +24,11 @@ in
         "python-2.7.18.7-env" # gimp
         # "olm-3.2.16" # ! not a lot of clients deprecated this yet
         # # sonarr issue
-        # "dotnet-runtime-wrapped-6.0.36"
-        # "aspnetcore-runtime-6.0.36"
-        # "aspnetcore-runtime-wrapped-6.0.36"
-        # "dotnet-sdk-6.0.428"
-        # "dotnet-sdk-wrapped-6.0.428"
+        "dotnet-runtime-wrapped-6.0.36"
+        "aspnetcore-runtime-6.0.36"
+        "aspnetcore-runtime-wrapped-6.0.36"
+        "dotnet-sdk-6.0.428"
+        "dotnet-sdk-wrapped-6.0.428"
       ];
     };
   };
