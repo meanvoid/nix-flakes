@@ -29,6 +29,7 @@
         extraGroups = [
           "wheel"
           "networkmanager"
+          "camera"
           "video"
           "audio"
           "storage"

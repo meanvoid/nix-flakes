@@ -35,13 +35,12 @@
     wlr.enable = true;
     xdgOpenUsePortal = true;
     config = {
-      GNOME = {
-        default = [
-          "gnome"
-          "*"
-        ];
+      "GNOME" = {
+        default = [ "gnome;*" ];
+        "org.freedesktop.impl.portal.FileChooser" = "gnome";
       };
     };
+    configPackages = [ pkgs.gnome-session ];
   };
   qt = {
     enable = true;
@@ -77,7 +76,7 @@
       pop-launcher
       sysprof
       ;
-    inherit (pkgs.kdePackages) breeze;
+    inherit (pkgs.kdePackages) breeze kclock merkuro;
     inherit (pkgs.libsForQt5)
       breeze-icons
       breeze-gtk
@@ -92,7 +91,6 @@
       filelight
       lightly
       ;
-    # gnome
     inherit (pkgs)
       gnome-boxes
       gnome-tweaks
@@ -107,8 +105,10 @@
       appindicator
       pop-shell
       arcmenu
+      gsconnect
       kimpanel
-      tray-icons-reloaded
+      dual-monitor-toggle
+      smart-auto-move
       ;
     catppuccin-gtk = pkgs.catppuccin-gtk.override {
       accents = [ "rosewater" ];
@@ -116,9 +116,6 @@
       tweaks = [ "normal" ];
       variant = "mocha";
     };
-  };
-  environment.gnome.excludePackages = builtins.attrValues {
-    inherit (pkgs) gnome-console gnome-builder;
   };
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";

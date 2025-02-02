@@ -100,11 +100,11 @@
       s = "sudo";
       update = "nix flake update /etc/nixos";
       check = "nix flake check";
-      rebuild = "nixos-rebuild switch --use-remote-sudo --flake /etc/nixos#unsigned-int64";
+      rebuild = "nixos-rebuild switch --use-remote-sudo";
+      rebuild-trace = "nixos-rebuild build --show-trace 2>/dev/stdout | grep 'while evaluating derivation'";
       vms = "nixos-build-vms";
       buildvm = "nixos-rebuild build-vm";
       buildvm_ = "nixos-rebuild build-vm-with-bootloader";
-      test = "nixos-rebuild test --flake /etc/nixos#unsigned-int64";
       ".." = "../";
       ".3" = "../../";
       ".4" = "../../..";

@@ -31,9 +31,13 @@
         A better sollution ofc would be to iterate over the list of strings of `config.i18n.inputdMethod.enable` with each possible value but i'm too lazy to do it and it's not like i would ever use any other input method besides fcitx or ibus
       *
     */
-    NIXOS_OZONE_WL = lib.optionalString (
-      config.i18n.inputMethod.type != "fcitx5" && config.i18n.inputMethod.type != "ibus"
-    ) "1";
+    NIXOS_OZONE_WL =
+      /**
+        lib.optionalString (
+          config.i18n.inputMethod.type != "fcitx5" && config.i18n.inputMethod.type != "ibus"
+        )
+      */
+      "1";
     QT_QPA_PLATFORM = "wayland;xcb";
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_DISABLE_RDD_SANDBOX = "1";

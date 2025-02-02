@@ -37,28 +37,26 @@
     xdgOpenUsePortal = true;
     config = {
       "GNOME" = {
-        default = [
-          "gnome"
-          "*"
-        ];
+        default = [ "gnome;*" ];
         "org.freedesktop.impl.portal.FileChooser" = "gnome";
       };
-      "KDE Plasma" = {
-        default = [
-          "kde"
-          "*"
-        ];
-        "org.freedesktop.impl.portal.FileChooser" = "kde";
-        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-      };
     };
-    extraPortals = builtins.attrValues { inherit (pkgs) xdg-desktop-portal-kde; };
+    configPackages = [ pkgs.gnome-session ];
+    #   "KDE Plasma" = {
+    #     default = [
+    #       "kde"s
+    #       "*"
+    #     ];
+    #     "org.freedesktop.impl.portal.FileChooser" = "kde";
+    #     "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+    #   };
+    # ;
+    # extraPortals = builtins.attrValues { inherit (pkgs) xdg-desktop-portal-kde; };
   };
   qt = {
     enable = true;
     platformTheme = "qt5ct";
   };
-
   programs = {
     gnome-terminal.enable = true;
     calls.enable = true;
@@ -119,6 +117,8 @@
       arcmenu
       gsconnect
       kimpanel
+      dual-monitor-toggle
+      smart-auto-move
       ;
     catppuccin-gtk = pkgs.catppuccin-gtk.override {
       accents = [ "rosewater" ];

@@ -26,9 +26,11 @@
       "dm-mirror"
       "dm-snapshot"
       "hid_playstation" # for some reason dualsense acts as a mouse if it's not loaded early on
+      "hid_apple"
     ];
     extraModulePackages = builtins.attrValues {
-      inherit (config.boot.kernelPackages) zenpower v4l2loopback zfs;
+      inherit (config.boot.kernelPackages) zenpower v4l2loopback;
+      zfs = config.boot.kernelPackages.${pkgs.zfs.kernelModuleAttribute};
     };
     kernelParams = [
       ### ------------------------------------ ###
@@ -45,7 +47,7 @@
       "iommu=pt"
     ];
     extraModprobeConfig = ''
-      options hid_apple fnmode=3
+      options hid_apple fnmode=2
     '';
     swraid = {
       enable = true;
@@ -67,6 +69,7 @@
       btrfs = true;
       xfs = true;
       ntfs = true;
+      # zfs = true;
     };
   };
   boot.loader = {
@@ -354,5 +357,9 @@
     enable = true;
     interval = "weekly";
   };
+  system.fsPackages = [
+    pkgs.sshfs
+    pkgs.gphoto2fs
+  ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

@@ -50,8 +50,8 @@ _: {
       s = "sudo";
       update = "nix flake update /etc/nixos";
       check = "nix flake check";
-      darwin-update = "darwin-rebuld switch --flake /etc/nixos#unsigned-int8";
-      linux-rebuild = "nixos-rebuild switch --use-remote-sudo --flake /etc/nixos#unsigned-int32";
+      rebuild = "nixos-rebuild switch --use-remote-sudo";
+      rebuild-trace = "nixos-rebuild build --show-trace 2>/dev/stdout | grep 'while evaluating derivation'";
       vms = "nixos-build-vms";
       buildvm = "nixos-rebuild build-vm";
       buildvm_ = "nixos-rebuild build-vm-with-bootloader";

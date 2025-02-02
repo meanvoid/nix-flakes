@@ -18,7 +18,7 @@
       ./programs/chromium.nix
       ./programs/flatpak.nix
       (path + /home/shared/programs/discord.nix)
-      (path + /home/shared/programs/spotify.nix)
+      # (path + /home/shared/programs/spotify.nix)
       ### ----------------PROGRAMS------------------- ###
     ]
     ++ lib.flatten [
@@ -40,7 +40,7 @@
         #! qbittorrent # understandable have a nice day
         nicotine-plus
         ;
-      inherit (pkgs.kdePackages) ktorrent;
+      inherit (pkgs.kdePackages) ktorrent kamera;
       # Graphics & Design
       inherit (pkgs)
         krita # Digital painting
@@ -65,7 +65,7 @@
         tdesktop # Telegram desktop
         kotatogram-desktop # telegram's fork
         dino # Jabber client
-        element-desktop
+        # element-desktop
         ;
 
       # Utilities
@@ -133,10 +133,6 @@
         pkgs.dotnetCorePackages.sdk_8_0
         pkgs.dotnetCorePackages.sdk_9_0
       ];
-      nodejs = pkgs.nodejs.override {
-        enableNpm = true;
-        python3 = pkgs.python311;
-      };
 
       riderWithPlugins = pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider [
         "python-community-edition"
@@ -151,7 +147,7 @@
         "ini"
       ];
       inherit (pkgs.unstable) osu-lazer-bin;
-      crossover = pkgs.callPackage "${path + /home/shared/pkgs/crossover.nix}" { };
+      #crossover = pkgs.callPackage "${path + /home/shared/pkgs/crossover.nix}" { };
     };
     stateVersion = "24.05";
   };
@@ -171,7 +167,6 @@
     };
     tmux.enable = true;
     btop.enable = true;
-    nheko.enable = true;
   };
   catppuccin = {
     kvantum = {

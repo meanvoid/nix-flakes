@@ -51,12 +51,12 @@ _: {
       update = "nix flake update /etc/nixos";
       check = "nix flake check";
       darwin-update = "darwin-rebuld switch --flake /etc/nixos#unsigned-int8";
-      linux-rebuild = "nixos-rebuild switch --use-remote-sudo --flake /etc/nixos#unsigned-int32";
+      darwin-update-trace = "darwin-rebuild switch --show-trace 2>/dev/stdout --flake /etc/nixos#unsigned-int8 | grep 'while evaluating derivation'";
+      linux-rebuild = "nixos-rebuild switch --use-remote-sudo";
+      linux-rebuild-trace = "nixos-rebuild build --show-trace 2>/dev/stdout | grep 'while evaluating derivation'";
       vms = "nixos-build-vms";
       buildvm = "nixos-rebuild build-vm";
       buildvm_ = "nixos-rebuild build-vm-with-bootloader";
-      darwin-test = "nixos-rebuild check --flake /etc/nixos#unsigned-int32";
-      linux-test = "nixos-rebuild test --flake /etc/nixos#unsigned-int32";
       ".." = "cd ..";
       ".3" = "cd ../../";
       ".4" = "cd ../../..";

@@ -30,7 +30,7 @@ in
       (path + "/modules/shared/fcitx.nix")
       ### ----------------ESSENTIAL------------------- ###
       ### ----------------DESKTOP------------------- ###
-      (path + "/modules/shared/desktop/gnome_kde.nix")
+      (path + "/modules/shared/desktop/gnome.nix")
       (path + "/modules/shared/desktop/fonts.nix")
       (path + "/modules/shared/programs/steam.nix")
       ### ----------------DESKTOP------------------- ###
@@ -141,6 +141,7 @@ in
       enable = true;
       binfmt = true;
     };
+    gphoto2.enable = if config.services.gvfs.enable == true then true else false;
   };
   services.yubikey-agent.enable = true;
   environment = {

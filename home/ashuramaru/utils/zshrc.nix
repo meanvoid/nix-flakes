@@ -100,11 +100,14 @@
       s = "sudo";
       update = "nix flake update /etc/nixos";
       check = "nix flake check";
-      rebuild = "nixos-rebuild switch --use-remote-sudo --flake /etc/nixos#unsigned-int32";
+      darwin-rebuild = "darwin-rebuld switch --flake /etc/nixos#unsigned-int8";
+      darwin-rebuild-trace = "darwin-rebuild switch --show-trace 2>/dev/stdout --flake /etc/nixos#unsigned-int8 | grep 'while evaluating derivation'";
+      linux-rebuild = "nixos-rebuild switch --use-remote-sudo";
+      linux-rebuild-trace = "nixos-rebuild build --show-trace 2>/dev/stdout | grep 'while evaluating derivation'";
       vms = "nixos-build-vms";
       buildvm = "nixos-rebuild build-vm";
       buildvm_ = "nixos-rebuild build-vm-with-bootloader";
-      test = "nixos-rebuild test --flake /etc/nixos#unsigned-int32";
+      test = "nixos-rebuild test";
       ".." = "../";
       ".3" = "../../";
       ".4" = "../../..";
