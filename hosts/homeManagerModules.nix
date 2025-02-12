@@ -10,6 +10,7 @@
   catppuccin,
   spicetify-nix,
   nixcord,
+  nixvim,
   ...
 }:
 {
@@ -25,7 +26,7 @@
         home-manager.extraSpecialArgs = {
           inherit inputs users path;
           inherit nur agenix sops-nix;
-          inherit catppuccin spicetify-nix nixcord;
+          inherit catppuccin spicetify-nix nixcord nixvim;
           host = {
             inherit hostName;
           };
@@ -40,6 +41,7 @@
                 catppuccin.homeManagerModules.catppuccin
                 spicetify-nix.homeManagerModules.default
                 nixcord.homeManagerModules.nixcord
+                nixvim.homeManagerModules.nixvim
               ];
             };
           }) users
@@ -73,6 +75,7 @@
                 catppuccin.homeManagerModules.catppuccin
                 spicetify-nix.homeManagerModules.default
                 nixcord.homeManagerModules.nixcord
+                nixvim.homeManagerModules.nixvim
               ];
             };
           }) users

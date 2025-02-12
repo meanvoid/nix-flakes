@@ -41,6 +41,8 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix/master";
     catppuccin.url = "github:catppuccin/nix";
     nixcord.url = "github:KaylorBen/nixcord";
+    nixvim.url = "github:nix-community/nixvim";
+
 
     # devenv dependencies
     nix2container.url = "github:nlewo/nix2container";
@@ -62,6 +64,7 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-python.inputs.nixpkgs.follows = "nixpkgs";
@@ -70,6 +73,7 @@
     doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.inputs.emacs-overlay.follows = "emacs-overlay";
     aagl.inputs.nixpkgs.follows = "unstable";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
     ### --- de-duplication --- ###
   };
 
@@ -92,6 +96,7 @@
       flatpaks,
       spicetify-nix,
       nixcord,
+      nixvim,
       aagl,
       firefox-test,
       ...
@@ -221,7 +226,7 @@
 
             ### ----------------MODULES & OVERLAYS------------------- ###
             inherit catppuccin flatpaks;
-            inherit spicetify-nix nixcord aagl;
+            inherit spicetify-nix nixcord aagl nixvim;
             ### ----------------MODULES & OVERLAYS------------------- ###
           };
         in

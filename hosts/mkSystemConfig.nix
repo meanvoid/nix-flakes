@@ -13,6 +13,7 @@
   flatpaks,
   spicetify-nix,
   nixcord,
+  nixvim,
   aagl,
   ...
 }:
@@ -21,7 +22,7 @@ let
     inherit lib inputs path;
     inherit nixpkgs darwin nur;
     inherit home-manager agenix sops-nix;
-    inherit catppuccin spicetify-nix nixcord;
+    inherit catppuccin spicetify-nix nixcord nixvim;
   };
   inherit (homeManager) homeManagerModules;
   addUnstablePackages = final: _prev: {
