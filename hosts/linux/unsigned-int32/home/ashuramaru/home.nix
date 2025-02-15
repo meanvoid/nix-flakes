@@ -33,24 +33,28 @@
     packages = builtins.attrValues {
       # Multimedia
       inherit (pkgs)
-        quodlibet-full
         vlc
-        brasero # cd/dvd burner
         deluge # just as a backup
         nicotine-plus
+        quodlibet-full
         ;
-      inherit (pkgs.kdePackages) ktorrent kamera;
+      inherit (pkgs.kdePackages)
+        k3b
+        kamera
+        ktorrent
+        ;
       # Graphics & Design
       inherit (pkgs)
         krita # Digital painting
         gimp # Image editing
         inkscape # Vector graphics
         godot3 # Game engine
-        kdenlive # Video editing
         obs-studio # Streaming and recording
         blender # 3D creation suite
         ;
-
+      inherit (pkgs.kdePackages)
+        kdenlive # Video editing
+        ;
       # Productivity
       inherit (pkgs)
         libreoffice-fresh

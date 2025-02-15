@@ -71,7 +71,6 @@
         de_DE
         fr_FR
         ;
-
     };
   };
   home.packages = [

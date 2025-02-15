@@ -87,10 +87,11 @@
     efi.efiSysMountPoint = "/boot";
     timeout = 30;
   };
-  boot.plymouth = {
-    enable = true;
-    logo = "${pkgs.nixos-icons}/share/icons/hicolor/24x24/apps/nix-snowflake-white.png";
-  };
+  # boot.plymouth = {
+  #   enable = true;
+  #   logo = "${pkgs.nixos-icons}/share/icons/hicolor/24x24/apps/nix-snowflake-white.png";
+  #   font  = "${pkgs.dejavu_fonts.minimal}/share/fonts/truetype/DejaVuSans.ttf";
+  # };
   ### ----------------BOOT------------------- ###
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/D4E8-E96E";

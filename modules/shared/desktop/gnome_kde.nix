@@ -80,6 +80,7 @@
       konsole
       dolphin
       filelight
+      kio-fuse
       kio-admin
       kio-extras
       kio-gdrive

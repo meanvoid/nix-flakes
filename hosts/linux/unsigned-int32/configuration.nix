@@ -165,7 +165,7 @@ in
         addEnvironmentVariables = true;
         addons = builtins.attrValues {
           inherit (pkgs) fcitx5-anthy fcitx5-gtk;
-          inherit (pkgs.nixpkgs-24_05) fcitx5-mozc;
+          inherit (pkgs) fcitx5-mozc;
         };
       };
     };
