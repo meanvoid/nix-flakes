@@ -1,0 +1,4 @@
+[
+  ./vim.nix
+  ./vscode.nix
+]
