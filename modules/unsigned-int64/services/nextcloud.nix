@@ -158,8 +158,10 @@
     port = 0;
     user = "nextcloud";
   };
-  services.nginx.virtualHosts."${config.services.nextcloud.hostName}" = {
-    forceSSL = true;
-    enableACME = true;
+  services.nginx.virtualHosts = {
+    "${config.services.nextcloud.hostName}" = {
+      forceSSL = true;
+      enableACME = true;
+    };
   };
 }

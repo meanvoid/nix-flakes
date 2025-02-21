@@ -57,20 +57,30 @@
     hosts = {
       "172.16.31.1" = [
         "www.tenjin.com"
-        "prom.tenjin.com"
-        "lib.tenjin.com"
-        "uptime.tenjin.com"
+
+        "metrics.tenjin.com"
+
+        "media.tenjin.com"
+        "track.tenjin.com"
         "public.tenjin.com"
         "private.tenjin.com"
+
+        "ankisync.tenjin.com"
+        "uptime.tenjin.com"
         "cvat.tenjin.com"
       ];
       "fd17:216b:31bc:1::1" = [
         "www.tenjin.com"
-        "prom.tenjin.com"
-        "lib.tenjin.com"
-        "uptime.tenjin.com"
+
+        "metrics.tenjin.com"
+
+        "media.tenjin.com"
+        "track.tenjin.com"
         "public.tenjin.com"
         "private.tenjin.com"
+
+        "ankisync.tenjin.com"
+        "uptime.tenjin.com"
         "cvat.tenjin.com"
       ];
     };
@@ -78,11 +88,10 @@
       enable = true;
       allowedUDPPorts = [
         # Proxy
-        1080
-        3128
+        # 1080
+        # 3128
         # Wireguard
         51280
-        # 51820
       ];
       allowedTCPPorts = [
         # HTTP
@@ -113,28 +122,27 @@
           67
           5353
           8053
+          # 3001
+          # # prometheus
+          # 9000
 
-          3001
-          # prometheus
-          9000
-
-          #radarr
-          7878
-          # sonarr
-          8989
-          # lidarr
-          8686
-          # readarr
-          8787
-          # prowlarr
-          9696
-          # bazarr
-          8763
-          # jackett
-          9117
-          # transmission
-          9091
-          18765
+          # #radarr
+          # 7878
+          # # sonarr
+          # 8989
+          # # lidarr
+          # 8686
+          # # readarr
+          # 8787
+          # # prowlarr
+          # 9696
+          # # bazarr
+          # 8763
+          # # jackett
+          # 9117
+          # # transmission
+          # 9091
+          # 18765
         ];
       };
     };
@@ -257,12 +265,20 @@
             "\"tenjin.com. 10800 IN A 172.16.31.1\""
             "\"tenjin.com. 10800 IN AAAA fd17:216b:31bc:1::1\""
             "\"www.tenjin.com. 10800 IN CNAME tenjin.com.\""
-            "\"prom.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
-            "\"lib.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
-            "\"uptime.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
-            "\"public.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
-            "\"private.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
-            "\"cvat.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
+            # CNAME
+            # metrics
+            "\"metrics.tenjin.com. 10800 IN CNAME www.tenjin.com.\""
+
+            # Torrent and Media
+            "\"media.tenjin.com. 10800 IN CNAME www.tenjin.com.\"" # Jellyfin instance
+            "\"track.tenjin.com. 10800 IN CNAME www.tenjin.com.\"" # track torrents
+            "\"public.tenjin.com. 10800 IN CNAME www.tenjin.com.\"" # public transmission instance
+            "\"private.tenjin.com. 10800 IN CNAME www.tenjin.com.\"" # private transmission instance
+
+            # Utils
+            "\"ankisync.tenjin.com. 10800 IN CNAME www.tenjin.com.\"" # ankisyncing service
+            "\"uptime.tenjin.com. 10800 IN CNAME www.tenjin.com.\"" # uptime check (should be outsourced)
+            "\"cvat.tenjin.com. 10800 IN CNAME www.tenjin.com.\"" # CVAT instance
           ];
         };
         forward-zone = [

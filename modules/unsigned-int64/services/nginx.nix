@@ -9,13 +9,6 @@
   systemd.services.nginx.serviceConfig = {
     SupplementaryGroups = [ "shadow" ];
   };
-  age.secrets."archive.htpasswd" = {
-    file = path + /secrets/htpasswd.age;
-    path = "/var/lib/secrets/archive.htpasswd";
-    mode = "0640";
-    owner = "nginx";
-    group = "nginx";
-  };
   age.secrets."minecraft.htpaswd" = {
     file = path + /secrets/minecraft.age;
     path = "/var/lib/secrets/minecraft.htpasswd";
@@ -62,27 +55,6 @@
       add_header X-XSS-Protection "1; mode=block";
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
-    virtualHosts."ss.tenjin-dk.com" = {
-      serverName = "ss.tenjin-dk.com";
-      forceSSL = true;
-      enableACME = true;
-      locations."/ray" = {
-        proxyPass = "http://127.0.0.1:10800";
-        proxyWebsockets = true;
-      };
-    };
-    virtualHosts."www.tenjin-dk.com" = {
-      serverName = "www.tenjin-dk.com";
-      forceSSL = true;
-      enableACME = true;
-      locations."/archive" = {
-        root = "/var/lib/backup";
-        basicAuthFile = config.age.secrets."archive.htpasswd".path;
-        extraConfig = ''
-          autoindex on;
-        '';
-      };
-    };
     virtualHosts."_" = {
       default = true;
       listen = [

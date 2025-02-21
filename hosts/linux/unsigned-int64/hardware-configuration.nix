@@ -29,7 +29,7 @@ in
       "dm-snapshot"
     ];
     extraModulePackages = builtins.attrValues {
-      inherit (config.boot.kernelPackages) vendor-reset zenpower;
+      inherit (config.boot.kernelPackages) zenpower;
     };
     supportedFilesystems = [ "xfs" ];
     swraid = {
@@ -75,13 +75,10 @@ in
             "${pathToSecrets}/ssh_host_ecdsa"
             "${pathToSecrets}/ssh_host_rsa_key"
           ];
-        authorizedKeys =
-          [
-            # Fumono
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHBeBj6thLiVFNGZI1NuTHKIPvh332Szad2zsgjdzhR mc-server"
-          ]
-          # Marie and Alex
-          ++ config.users.users.root.openssh.authorizedKeys.keys;
+        authorizedKeys = lib.flatten [
+          config.users.users.ashuramaru.openssh.authorizedKeys.keys
+          config.users.users.fumono.openssh.authorizedKeys.keys
+        ];
       };
     };
     luks = {
@@ -190,39 +187,6 @@ in
   };
   ### ---------------SMB/NAS/CIFS-------------------- ###
   ### ---------------backups-------------------- ###
-  fileSystems."/Users/ashuramaru/backup" = {
-    device = "//u369008-sub3.your-storagebox.de/u369008-sub3";
-    fsType = "cifs";
-    options = [
-      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub3,uid=1000,gid=1000,dir_mode=0770"
-    ];
-  };
-  fileSystems."/var/lib/backup" = {
-    device = "//u369008-sub4.your-storagebox.de/u369008-sub4";
-    fsType = "cifs";
-    options = [ "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub4" ];
-  };
-  fileSystems."/var/lib/backup/archive" = {
-    device = "//u369008-sub4.your-storagebox.de/u369008-sub4/archive";
-    fsType = "cifs";
-    options = [
-      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub4,uid=60,gid=60,dir_mode=0750"
-    ];
-  };
-  fileSystems."/var/lib/minecraft/backup/solonka" = {
-    device = "//u369008-sub6.your-storagebox.de/u369008-sub6";
-    fsType = "cifs";
-    options = [
-      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub6,uid=5333,gid=5333"
-    ];
-  };
-  fileSystems."/var/lib/minecraft/backup/fumoposting" = {
-    device = "//u369008-sub7.your-storagebox.de/u369008-sub7";
-    fsType = "cifs";
-    options = [
-      "${automount_opts},credentials=/root/secrets/storagebox/u369008-sub7,uid=5333,gid=5333"
-    ];
-  };
   ### ---------------media-------------------- ###
   fileSystems."/mnt/media" = {
     device = "//u369008-sub9.your-storagebox.de/u369008-sub9";

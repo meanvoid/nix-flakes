@@ -19,12 +19,12 @@
         enable_gzip = true;
         enforce_domain = true;
         protocol = "http";
-        domain = "metrics.tenjin-dk.com";
+        domain = "metrics.tenjin.com";
         http_addr = "127.0.0.1";
         http_port = 2301;
         serve_from_sub_path = true;
         # root_url = "%(protocol)s://%(domain)s:%(http_port)s/";
-        root_url = "https://metrics.tenjin-dk.com/grafana/";
+        root_url = "https://metrics.tenjin.com/grafana/";
       };
       database = {
         type2 = "postgres";
@@ -74,8 +74,8 @@
   };
   services.prometheus = {
     enable = true;
-    listenAddress = "172.16.31.1";
-    webExternalUrl = "/";
+    listenAddress = "127.0.0.1";
+    webExternalUrl = "/prometheus";
     port = 9000;
     exporters = {
       node = {
@@ -103,25 +103,33 @@
     scrapeConfigs = [
       {
         job_name = "unsigned-int64";
-        static_configs = [ { targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ]; } ];
+        static_configs = [
+          { targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ]; }
+        ];
       }
       {
         job_name = "wireguard";
-        static_configs = [ { targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.wireguard.port}" ]; } ];
+        static_configs = [
+          { targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.wireguard.port}" ]; }
+        ];
       }
       {
         job_name = "redis";
-        static_configs = [ { targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.redis.port}" ]; } ];
+        static_configs = [
+          { targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.redis.port}" ]; }
+        ];
       }
       {
         job_name = "grafana";
         metrics_path = "/grafana/metrics";
-        static_configs = [ { targets = [ "127.0.0.1:${toString config.services.grafana.settings.server.http_port}" ]; } ];
+        static_configs = [
+          { targets = [ "127.0.0.1:${toString config.services.grafana.settings.server.http_port}" ]; }
+        ];
       }
       {
         job_name = "prometheus";
         metrics_path = "/metrics";
-        static_configs = [ { targets = [ "172.16.31.1:${toString config.services.prometheus.port}" ]; } ];
+        static_configs = [ { targets = [ "127.0.0.1:${toString config.services.prometheus.port}" ]; } ];
       }
       {
         job_name = "ecoflow";
@@ -213,7 +221,9 @@
         filename = "/tmp/positions.yaml";
       };
       clients = [
-        { url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push"; }
+        {
+          url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
+        }
       ];
       scrape_configs = [
         {
@@ -238,8 +248,10 @@
 
   services.nginx.virtualHosts = {
     "${config.services.grafana.settings.server.domain}" = {
-      enableACME = true;
-      forceSSL = true;
+      addSSL = true;
+      sslCertificate = "/etc/ssl/self/tenjin.com/tenjin.com.crt";
+      sslCertificateKey = "/etc/ssl/self/tenjin.com/tenjin.com.key";
+      sslTrustedCertificate = "/etc/ssl/self/tenjin.com/ca.crt";
       locations = {
         "/grafana/" = {
           proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
@@ -251,16 +263,10 @@
           proxyWebsockets = true;
           recommendedProxySettings = true;
         };
-      };
-    };
-    "prom.tenjin.com" = {
-      addSSL = true;
-      sslCertificate = "/etc/ssl/self/tenjin.com/tenjin.com.crt";
-      sslCertificateKey = "/etc/ssl/self/tenjin.com/tenjin.com.key";
-      sslTrustedCertificate = "/etc/ssl/self/tenjin.com/ca.crt";
-      locations."/" = {
-        proxyPass = "http://172.16.31.1:${toString config.services.prometheus.port}";
-        proxyWebsockets = true;
+        "/prometheus" = {
+          proxyPass = "http://127.0.0.1:${toString config.services.prometheus.port}";
+          proxyWebsockets = true;
+        };
       };
     };
   };

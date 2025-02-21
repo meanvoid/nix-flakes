@@ -2,7 +2,6 @@
 let
   admins = [
     "ashuramaru"
-    "meanrin"
     "fumono"
   ];
 in

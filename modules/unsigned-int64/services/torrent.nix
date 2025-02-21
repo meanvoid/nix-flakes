@@ -74,7 +74,6 @@
     homeMode = "0770";
     openssh.authorizedKeys.keys = lib.flatten [
       config.users.users.ashuramaru.openssh.authorizedKeys.keys
-      config.users.users.meanrin.openssh.authorizedKeys.keys
       config.users.users.fumono.openssh.authorizedKeys.keys
     ];
     group = "${config.users.groups.transmission.name}";
@@ -104,7 +103,7 @@
         proxyPass = "http://172.16.31.1:9091";
       };
     };
-    "lib.tenjin.com" = {
+    "track.tenjin.com" = {
       addSSL = true;
       sslCertificate = "/etc/ssl/self/tenjin.com/tenjin.com.crt";
       sslCertificateKey = "/etc/ssl/self/tenjin.com/tenjin.com.key";
