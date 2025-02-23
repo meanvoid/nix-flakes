@@ -5,7 +5,7 @@
     debug = true;
     autoSuspend = true;
   };
-  libinput = {
+  services.libinput = {
     enable = true;
     mouse.accelProfile = "flat";
     mouse.accelSpeed = "0";
