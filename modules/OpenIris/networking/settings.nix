@@ -21,6 +21,21 @@
       ];
     };
   };
+  services.openssh = {
+    enable = true;
+    allowSFTP = true;
+    openFirewall = true;
+    listenAddresses = [
+      {
+        addr = "0.0.0.0";
+        port = 57255;
+      }
+      {
+        addr = "[::]";
+        port = 57255;
+      }
+    ];
+  };
   services.dnscrypt-proxy2 = {
     enable = true;
     settings = {

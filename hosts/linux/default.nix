@@ -79,4 +79,11 @@ in
       "fumono"
     ];
   };
+  OpenIris = mkSystemConfig.linux {
+    hostName = "OpenIris";
+    system = "x86_64-linux";
+    useHomeManager = true;
+    useFlatpak = true;
+    users = [ "jalemi" ];
+  };
 }

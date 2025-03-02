@@ -31,6 +31,7 @@
 
         # Productivity
         libreoffice-fresh
+        anki
 
         # Graphic
         krita
@@ -38,6 +39,7 @@
 
         autorandr # you should move to a different location
         telegram-desktop
+        monero-gui
         ;
       # dev
       inherit (pkgs) php83 phpunit;

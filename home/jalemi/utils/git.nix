@@ -1,8 +1,8 @@
 _: {
   programs.git = {
     enable = true;
-    userName = "git";
-    userEmail = "git@git";
+    userName = "jalemi";
+    userEmail = "snikersdaun@gmail.com";
     lfs.enable = true;
     aliases = {
       "lg" =
@@ -26,16 +26,15 @@ _: {
     gitCredentialHelper.enable = true;
     settings.git_protocol = "ssh";
   };
-  programs.gh-dash = {
-    catppuccin = {
+  programs.lazygit.enable = true;
+
+  catppuccin = {
+    gh-dash = {
       enable = true;
       flavor = "mocha";
       accent = "rosewater";
     };
-  };
-  programs.lazygit = {
-    enable = true;
-    catppuccin = {
+    lazygit = {
       enable = true;
       flavor = "mocha";
       accent = "rosewater";
