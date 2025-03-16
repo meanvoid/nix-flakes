@@ -16,7 +16,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-24_05.url = "github:nixos/nixpkgs/nixos-24.05-small"; # for backwards compatibility with some older versions
-    firefox-test.url = "github:booxter/nixpkgs/firefox-for-darwin";
     ### --- nixpkgs channels --- ###
     darwin.url = "github:lnl7/nix-darwin/master";
     home-manager.url = "github:nix-community/home-manager/release-24.11"; # for now
@@ -43,14 +42,10 @@
     nixcord.url = "github:KaylorBen/nixcord";
     nixvim.url = "github:nix-community/nixvim";
 
-
     # devenv dependencies
     nix2container.url = "github:nlewo/nix2container";
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
 
-    # Utility apps
-    nix-software-center.url = "github:snowfallorg/nix-software-center";
-    nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
     # Games
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     # nix-gaming.url = "github:fufexan/nix-gaming/master";
@@ -63,7 +58,6 @@
     hm_unstable.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-
 
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
@@ -98,7 +92,6 @@
       nixcord,
       nixvim,
       aagl,
-      firefox-test,
       ...
     }@inputs:
     let
@@ -226,7 +219,12 @@
 
             ### ----------------MODULES & OVERLAYS------------------- ###
             inherit catppuccin flatpaks;
-            inherit spicetify-nix nixcord aagl nixvim;
+            inherit
+              spicetify-nix
+              nixcord
+              aagl
+              nixvim
+              ;
             ### ----------------MODULES & OVERLAYS------------------- ###
           };
         in

@@ -14,18 +14,20 @@
     gnome-remote-desktop.enable = true;
   };
   services.sysprof.enable = true;
-  programs.ssh.askPassword = lib.mkForce "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass}";
+  programs.ssh = {
+    startAgent = true;
+    askPassword = lib.mkForce "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
+  };
 
   # services.xserver = {
   services.xserver.displayManager.gdm = {
     enable = true;
-    debug = true;
     autoSuspend = true;
   };
   services.xserver.desktopManager.gnome.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  services.displayManager.defaultSession = "gnome";
+  services.displayManager.defaultSession = "plasma";
   services.libinput = {
     enable = true;
     mouse.accelProfile = "flat";
@@ -38,16 +40,13 @@
   };
   qt = {
     enable = true;
+    style = "breeze";
     platformTheme = "kde";
   };
   programs = {
     gnome-terminal.enable = true;
     calls.enable = true;
-    firefox.nativeMessagingHosts.gsconnect = pkgs.gnome-browser-connector;
-    kdeconnect = {
-      enable = true;
-      # package = lib.mkForce pkgs.gnomeExtensions.gsconnect;
-    };
+    kdeconnect.enable = true;
   };
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
@@ -127,7 +126,6 @@
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";
   };
-
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
   services.dbus.packages = [ pkgs.gcr ];
   services.gnome.gnome-browser-connector.enable = true;

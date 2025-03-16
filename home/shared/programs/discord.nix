@@ -1,25 +1,39 @@
 { pkgs, ... }:
-
 let
-  ###---------------------------LINUX OVERLAY---------------------------###
-  vesktopOverride = pkgs.vesktop.override {
-    withMiddleClickScroll = true;
-    withTTS = true;
-  };
+  krisp-patcher =
+    pkgs.writers.writePython3Bin "krisp-patcher"
+      {
+        libraries = with pkgs.python3Packages; [
+          capstone
+          pyelftools
+        ];
+        flakeIgnore = [
+          "E501" # line too long (82 > 79 characters)
+          "F403" # 'from module import *' used; unable to detect undefined names
+          "F405" # name may be undefined, or defined from star imports: module
+        ];
+      }
+      (
+        builtins.readFile (
+          pkgs.fetchurl {
+            url = "https://pastebin.com/raw/8tQDsMVd";
+            sha256 = "sha256-IdXv0MfRG1/1pAAwHLS2+1NESFEz2uXrbSdvU9OvdJ8=";
+          }
+        )
+      );
 in
-###---------------------------LINUX OVERLAY---------------------------###
 {
   programs.nixcord = {
     enable = true;
     discord = {
       enable = true;
-      package = pkgs.unstable.discord;
+      package = pkgs.discord;
       vencord.enable = true;
       openASAR.enable = true;
     };
     vesktop = {
       enable = true;
-      package = pkgs.unstable.vesktop;
+      package = pkgs.vesktop;
     };
     config = {
       autoUpdate = false;
@@ -29,39 +43,22 @@ in
       themeLinks = [ "https://catppuccin.github.io/discord/dist/catppuccin-mocha-rosewater.theme.css" ];
     };
     config.plugins = {
-      #   betterNotesBox.enable = true;
-      #   betterSessions.enable = true;
-      #   betterUploadButton.enable = true;
-      #   colorSighted.enable = true;
-      #   crashHandler.enable = true;
-      #   decor.enable = true;
-      #   disableCallIdle.enable = true;
-      #   dontRoundMyTimestamps.enable = true;
-      #   friendInvites.enable = true;
-      #   friendsSince.enable = true;
-      #   fullSearchContext.enable = true;
-      #   hideAttachments.enable = true;
-      #   imageZoom.enable = true;
-      #   implicitRelationships.enable = true;
-      #   memberCount.enable = true;
-      #   messageLatency.enable = true;
-      #   messageTags.enable = true;
-      #   moreUserTags.enable = true;
-      #   mutualGroupDMs.enable = true;
-      #   newGuildSettings.enable = true;
-      #   unlockedAvatarZoom.enable = true;
-      #   userVoiceShow.enable = true;
-      #   validReply.enable = true;
-      #   validUser.enable = true;
-      #   viewIcons.enable = true;
-      #   viewRaw.enable = true;
-      #   voiceChatDoubleClick.enable = true;
-      #   voiceDownload.enable = true;
-      #   voiceMessages.enable = true;
-
+      # dontRoundMyTimestamps.enable = true;
+      # friendInvites.enable = true;
+      # friendsSince.enable = true;
+      # fullSearchContext.enable = true;
+      # imageZoom.enable = true;
+      # memberCount.enable = true;
+      # mutualGroupDMs.enable = true;
+      # unlockedAvatarZoom.enable = true;
+      # validReply.enable = true;
+      # validUser.enable = true;
+      # viewIcons.enable = true;
+      # viewRaw.enable = true;
+      # voiceChatDoubleClick.enable = true;
+      # voiceDownload.enable = true;
+      # voiceMessages.enable = true;
       ### Embeds, media, youtube, spotify, etc...
-      dearrow.enable = true;
-      spotifyCrack.enable = true;
       youtubeAdblock.enable = true;
       fixCodeblockGap.enable = true;
       fixSpotifyEmbeds.enable = true;
@@ -69,17 +66,13 @@ in
       messageLinkEmbeds.enable = true;
 
       ### QoL
-      gifPaste.enable = true;
       clearURLs.enable = true;
       moreKaomoji.enable = true;
       moreCommands.enable = true;
       forceOwnerCrown.enable = true;
       copyEmojiMarkdown.enable = true;
       alwaysExpandRoles.enable = true;
-      greetStickerPicker.enable = true;
-      gameActivityToggle.enable = true;
       favoriteEmojiFirst.enable = true;
-      biggerStreamPreview.enable = true;
       # show message history
       messageLogger = {
         enable = true;
@@ -91,11 +84,6 @@ in
         enable = true;
         format = "human";
       };
-      ### vesktop
-      webKeybinds.enable = true;
-      webScreenShareFixes.enable = true;
-      vencordToolbox.enable = true;
-
       ### utils
       appleMusicRichPresence = {
         enable = true;
@@ -112,4 +100,7 @@ in
       noF1.enable = true;
     };
   };
+  home.packages = [
+    krisp-patcher
+  ];
 }

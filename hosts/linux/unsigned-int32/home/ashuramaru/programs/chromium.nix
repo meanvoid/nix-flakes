@@ -17,7 +17,6 @@
         # necessity
         { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
         { id = "pkehgijcmpdhfbdbbnkijodmdjhbjlgp"; } # PrivacyBadger
-        { id = "nomnklagbgmgghhjidfhnoelnjfndfpd"; } # canvas blocker
         { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # dark reader
         { id = "jinjaccalgkegednnccohejagnlnfdag"; } # violentmonkey
         { id = "cdglnehniifkbagbbombnjghhcihifij"; } # kagi search

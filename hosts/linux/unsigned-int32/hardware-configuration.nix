@@ -34,6 +34,10 @@
     };
     kernelParams = [
       ### ------------------------------------ ###
+      # if thunderbolt turned off
+      "ip=192.168.1.100::192.168.1.1:255.255.255.0::enp5s0:dhcp"
+      "ip=192.168.1.110::192.168.1.1:255.255.255.0::enp7s0:dhcp"
+      # if thunerbolt turned on
       "ip=192.168.1.100::192.168.1.1:255.255.255.0::enp57s0:dhcp"
       "ip=192.168.1.110::192.168.1.1:255.255.255.0::enp59s0:dhcp"
       ### ------------------------------------ ###
@@ -44,6 +48,7 @@
       "video=HDMI1:2560x1440@120"
       ### ------------------------------------ ###
       "nvidia_drm.fbdev=1"
+      "nvme_core.default_ps_max_latency_us=0"
       "iommu=pt"
     ];
     extraModprobeConfig = ''

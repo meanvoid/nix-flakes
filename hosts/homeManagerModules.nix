@@ -26,7 +26,12 @@
         home-manager.extraSpecialArgs = {
           inherit inputs users path;
           inherit nur agenix sops-nix;
-          inherit catppuccin spicetify-nix nixcord nixvim;
+          inherit
+            catppuccin
+            spicetify-nix
+            nixcord
+            nixvim
+            ;
           host = {
             inherit hostName;
           };
@@ -52,10 +57,7 @@
     darwin = hostName: users: system: [
       home-manager.darwinModules.home-manager
       {
-        nixpkgs.overlays = [
-          inputs.nixpkgs-firefox-darwin.overlay
-          (final: prev: { spicetify = spicetify-nix.legacyPackages.${system}; })
-        ];
+        nixpkgs.overlays = [ (final: prev: { spicetify = spicetify-nix.legacyPackages.${system}; }) ];
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {

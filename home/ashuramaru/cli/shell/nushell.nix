@@ -89,9 +89,7 @@
           "tar"
           "vscode"
         ];
-        sourceCommands = map (
-          t: "source ${customCompletions}/custom-completions/${t}/${t}-completions.nu"
-        ) completionTypes;
+        sourceCommands = map (t: "source ${customCompletions}/custom-completions/${t}/${t}-completions.nu") completionTypes;
       in
       builtins.concatStringsSep "\n" sourceCommands;
   };

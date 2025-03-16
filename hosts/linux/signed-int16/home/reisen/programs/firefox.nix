@@ -1,4 +1,29 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  bypass-paywalls-clean =
+    let
+      version = "latest";
+    in
+    inputs.firefox-addons.lib.${pkgs.system}.buildFirefoxXpiAddon {
+      pname = "bypass-paywalls-clean";
+      inherit version;
+      addonId = "magnolia@12.34";
+      url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
+      name = "bypass-paywall-clean-${version}";
+      sha256 = "sha256-ruRhCD01gLhZ/5iXbe6u3/xJ6yiAwpBIpOFR2HhAUTA=";
+      meta = {
+        homepage = "https://twitter.com/Magnolia1234B";
+        description = "Bypass Paywalls of (custom) news sites";
+        license = lib.licenses.mit;
+        platforms = lib.platforms.all;
+      };
+    };
+in
 {
   programs.firefox = {
     enable = true;
@@ -22,7 +47,6 @@
           firemonkey
           facebook-container
 
-          bypass-paywalls-clean
           clearurls
           user-agent-string-switcher
           web-archives
@@ -43,6 +67,7 @@
           old-reddit-redirect
           reddit-enhancement-suite
           ;
+        bpc = bypass-paywalls-clean;
       };
       search = {
         force = true;

@@ -10,7 +10,7 @@
     ++ lib.flatten [
       (lib.concatLists [
         (import (path + /home/ashuramaru/dev/default.nix))
-        (import (path + /home/ashuramaru/utils/default.nix))
+        (import (path + /home/ashuramaru/cli/default.nix))
       ])
     ];
   home = {

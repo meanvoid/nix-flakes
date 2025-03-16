@@ -103,7 +103,7 @@
         proxyPass = "http://172.16.31.1:9091";
       };
     };
-    "track.tenjin.com" = {
+    "2" = {
       addSSL = true;
       sslCertificate = "/etc/ssl/self/tenjin.com/tenjin.com.crt";
       sslCertificateKey = "/etc/ssl/self/tenjin.com/tenjin.com.key";

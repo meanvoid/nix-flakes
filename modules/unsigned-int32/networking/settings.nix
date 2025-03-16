@@ -15,16 +15,16 @@ in
   networking = {
     hostName = "${hostname}";
     hostId = "ab5d64f5";
-    interfaces = {
-      "enp57s0" = {
-        name = "enp57s0";
-        useDHCP = true;
-      };
-      "enp59s0" = {
-        name = "enp59s0";
-        useDHCP = true;
-      };
-    };
+    # interfaces = {
+    #   "enp57s0" = {
+    #     name = "enp57s0";
+    #     useDHCP = true;
+    #   };
+    #   "enp59s0" = {
+    #     name = "enp59s0";
+    #     useDHCP = true;
+    #   };
+    # };
     nat = {
       enable = true;
       enableIPv6 = true;

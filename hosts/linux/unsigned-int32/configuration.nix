@@ -126,7 +126,6 @@ in
     gnupg.dirmngr.enable = true;
     gnupg.agent = {
       enable = true;
-      enableSSHSupport = true;
       enableBrowserSocket = true;
       enableExtraSocket = true;
     };
@@ -136,19 +135,15 @@ in
     };
     gphoto2.enable = if config.services.gvfs.enable == true then true else false;
   };
-  services.yubikey-agent.enable = true;
+  # services.yubikey-agent.enable = true;
   environment = {
     systemPackages = builtins.attrValues {
       inherit (pkgs)
         # yubico
         gpgme
         yubioath-flutter
-        fcitx5-gtk
         apfsprogs
         ;
-      inherit (pkgs.xorg) xhost;
-      inherit (inputs.nix-software-center.packages.${pkgs.system}) nix-software-center;
-      inherit (inputs.nixos-conf-editor.packages.${pkgs.system}) nixos-conf-editor;
     };
   };
 

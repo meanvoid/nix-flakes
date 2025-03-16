@@ -28,7 +28,7 @@ in
 {
   programs.firefox = {
     enable = true;
-    package = pkgs.unstable.firefox-unwrapped;
+    package = pkgs.floorp;
     profiles.default = {
       id = 0;
       name = "default";
@@ -45,8 +45,8 @@ in
         inherit (inputs.firefox-addons.packages.${pkgs.system})
           # necessity
           ublock-origin
-          privacy-badger
-          canvasblocker
+          # privacy-badger
+          # canvasblocker
           mullvad
           darkreader
 
@@ -65,7 +65,6 @@ in
           vue-js-devtools
 
           # utils
-          gnome-shell-integration
           multi-account-containers
           sponsorblock
           return-youtube-dislikes

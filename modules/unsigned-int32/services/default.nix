@@ -1,4 +1,4 @@
 [
-  ./utils/hddparm.nix
+  # ./utils/hddparm.nix
   ./foldinghome.nix
 ]

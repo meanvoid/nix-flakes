@@ -92,9 +92,7 @@ in
     };
     extensions = builtins.attrValues {
       ## -- Vscode specific -- ##
-      remote-development = vscode-marketplace.ms-vscode-remote.vscode-remote-extensionpack;
       vscode-hexeditor = vscode-marketplace.ms-vscode.hexeditor;
-      vscode-remote-extensionpack = vscode-marketplace.ms-vscode-remote.vscode-remote-extensionpack;
       vscode-liveshare = vscode-marketplace.ms-vsliveshare.vsliveshare;
       vscode-intellisense = vscode-marketplace.visualstudioexptteam.vscodeintellicode;
       vscode-intellicode-api-usage-examples = vscode-marketplace.visualstudioexptteam.intellicode-api-usage-examples;
@@ -109,7 +107,7 @@ in
       ## -- Programming languages/lsp support -- ##
       cmake = vscode-marketplace.josetr.cmake-language-support-vscode;
       python = vscode-marketplace.ms-python.python;
-      dotnet = vscode-marketplace.ms-dotnettools.csharp;
+      dotnet = pkgs.vscode-extensions.ms-dotnettools.csharp;
       cpptools-extension-pack = vscode-marketplace.ms-vscode.cpptools-extension-pack;
       rust-lang = vscode-marketplace.rust-lang.rust-analyzer;
       golang = vscode-marketplace.golang.go;

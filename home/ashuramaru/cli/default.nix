@@ -1,0 +1,9 @@
+[
+  ./shell/bash.nix
+  ./shell/zsh.nix
+  ./shell/nushell.nix
+  ./shell/starship.nix
+  ./fastfetch.nix
+  ./git.nix
+  ./utils.nix
+]

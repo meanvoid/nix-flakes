@@ -24,7 +24,7 @@
     ++ lib.flatten [
       (lib.concatLists [
         (import (path + /home/ashuramaru/dev/default.nix))
-        (import (path + /home/ashuramaru/utils/default.nix))
+        (import (path + /home/ashuramaru/cli/default.nix))
       ])
     ];
 
@@ -34,7 +34,6 @@
       # Multimedia
       inherit (pkgs)
         vlc
-        deluge # just as a backup
         nicotine-plus
         quodlibet-full
         ;
@@ -63,18 +62,17 @@
         tenacity # Audio recording/editing
         ;
       # Social & Communication
-      inherit (pkgs.unstable) signal-desktop; # Signal desktop client
       inherit (pkgs)
         tdesktop # Telegram desktop
-        kotatogram-desktop # telegram's fork
         dino # Jabber client
+        signal-desktop # Signal desktop client
         ;
-
       # Utilities
       inherit (pkgs)
         pavucontrol # PulseAudio volume control
         qpwgraph
         helvum # Jack controls
+        feather # monero
 
         yt-dlp # youtube and whatnot media downloader
         ani-cli # Anime downloader
@@ -85,6 +83,7 @@
         ;
 
       # Gaming
+      inherit (pkgs.unstable) osu-lazer-bin;
       inherit (pkgs)
         # Utils
         mangohud # Vulkan overlay
@@ -109,6 +108,7 @@
         pcsx2 # PlayStation 2 emulator
         ppsspp # PlayStation Portable emulator
         rpcs3 # PlayStation 3 emulator
+        shadps4 # PlayStation 4 emulator
 
         # Stores
         heroic # Epic Games Store client
@@ -148,7 +148,6 @@
         "csv-editor"
         "ini"
       ];
-      inherit (pkgs.unstable) osu-lazer-bin;
     };
     stateVersion = "24.11";
   };
@@ -170,12 +169,6 @@
     btop.enable = true;
   };
   catppuccin = {
-    kvantum = {
-      enable = true;
-      apply = true;
-      accent = "rosewater";
-      flavor = "mocha";
-    };
     fcitx5 = {
       enable = true;
       apply = true;

@@ -50,7 +50,6 @@ in
           # necessity
           ublock-origin
           privacy-badger
-          canvasblocker
           mullvad
           darkreader
 
@@ -323,6 +322,7 @@ in
     nativeMessagingHosts = [
       pkgs.firefoxpwa
       pkgs.gnome-browser-connector
+      pkgs.kdePackages.plasma-browser-integration
       pkgs.keepassxc
     ];
   };
