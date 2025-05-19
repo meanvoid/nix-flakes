@@ -15,7 +15,7 @@ jobs:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.ACCESS_TOKEN }}
       - name: Update flake.lock
-        uses: DeterminateSystems/update-flake-lock@v24
+        uses: DeterminateSystems/update-flake-lock@v25
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           pr-labels: |
